@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css" />
         <!-- Styles -->
         <style>
             html, body {
@@ -64,9 +64,9 @@
             }
         </style>
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+    <body >
+        <div class="flex-center position-ref full-height" id="app">
+            @if (Auth::guest())
                 <div class="top-right links">
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Register</a>
@@ -87,5 +87,6 @@
                 </div>
             </div>
         </div>
+        <script src="{{asset('js/app.js')}}"></script>
     </body>
 </html>
