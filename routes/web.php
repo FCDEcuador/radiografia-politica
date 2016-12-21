@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/perfil/{id}', function ($id) {
+    return view('perfil');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

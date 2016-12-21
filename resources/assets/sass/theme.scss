@@ -35,10 +35,16 @@ html,body,#app
   font-family: 'OpenSansBold';
 }
 
-h3
+h3,h4
 {
   color: $primary-color;
+  font-weight: bold;
   font-family: 'OpenSansBold';
+}
+
+.title
+{
+  border-bottom: 1px solid $primary-color;
 }
 
 .navbar-nav
@@ -216,4 +222,42 @@ body:before {
 .political-party-logo
 {
   margin: 5px;
+}
+
+
+
+/* Profile */
+.btn-dark
+{
+  background: $primary-color;
+  color: $secondary-color;
+}
+
+#transparency>div.row>div
+{
+  padding: 10px;
+}
+.well-body
+{
+  margin-top: 5px;
+}
+.well-footer>button
+{
+  font-size: 10px;
+  font-family: "OpenSansBold";
+}
+.well-title
+{
+    margin-top: -10px;
+    text-align: center;
+}
+.well-card-title{
+  font-weight: bold;
+  font-family: "OpenSansBold";
+}
+
+.sri-table>thead
+{
+  background: #2196F3;
+  color: $white;
 }

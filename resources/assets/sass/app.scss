@@ -2,6 +2,8 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
+@import "reset";
+
 @import "fonts";
 // Variables
 @import "variables";
@@ -12,5 +14,6 @@
 
 @import "helpers";
 // Theme
+@import "timeline";
 
 @import "theme";
