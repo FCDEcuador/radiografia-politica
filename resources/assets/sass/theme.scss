@@ -1,0 +1,219 @@
+$primary-color: $black;
+$secondary-color: $white;
+$third-color: #5d5d5d;
+
+html,body,#app
+{
+  height: 100%;
+  width: 100%;
+  font-family: 'OpenSansReuglar' !important;
+}
+.navbar-nav
+{
+  padding-top: 10px;
+}
+.navbar-default{
+  height: 65px;
+  border-color: $third-color;
+}
+.navbar-brand > img
+{
+  height: 35px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: $secondary-color;
+}
+
+.navbar-default .navbar-brand {
+    color: $secondary-color;
+}
+
+.nav-tabs>li>a
+{
+  color: $third-color;
+  font-family: 'OpenSansBold';
+}
+
+h3
+{
+  color: $primary-color;
+  font-family: 'OpenSansBold';
+}
+
+.navbar-nav
+{
+  font-size: 10px;
+  font-family: 'OpenSansBold';
+}
+#wrapper
+{
+  min-height: 100%;
+}
+
+#content
+{
+  padding-bottom: 156px;
+}
+/*Opera Fix*/
+body:before {
+	content:"";
+	height:100%;
+	float:left;
+	width:0;
+	margin-top:-32767px;
+}
+
+#footer
+{
+  position: absolute;
+  width: 100%;
+  min-height: 100px;
+  padding: 20px 80px;
+  background: $third-color;
+  color: $secondary-color;
+  margin-top: -156px;
+  clear: both;
+  font-size: 12px;
+}
+#footer-site-map
+{
+  border-right: 1px solid $secondary-color;
+  padding-bottom: 40px;
+}
+#footer-sponsors
+{
+  text-align: right;
+}
+
+.footer-sponsor-img
+{
+  margin: 10px 0px;
+}
+@media(max-width: 768px)
+{
+  #footer-site-map
+  {
+    border: 0 !important;
+  }
+
+  #footer-sponsors
+  {
+    text-align: center;
+  }
+
+}
+
+.footer-title-head
+{
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: 'OpenSansBold';
+}
+
+.footer-item>a
+{
+  color: $secondary-color;
+  text-decoration: underline;
+}
+
+
+/* CARDS */
+.binomial > div.president
+{
+  z-index: 99;
+  width: 150px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
+.binomial > div.president:hover > a
+{
+  display: block;
+}
+.binomial > div.president > a
+{
+    display: none;
+    z-index: 100;
+    color: $primary-color;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(33, 150, 243, 0.45);
+    border-radius: 50%;
+    padding-top: 40%;
+}
+.binomial > div.president > a > span
+{
+    z-index: 101;
+    font-family: 'OpenSansBold';
+    color: $secondary-color;
+}
+.binomial > div.vicepresident
+{
+  margin-left: -15px;
+  width: 100px;
+  display: inline-block;
+  margin-top: 15px;
+}
+.binomial > div.vicepresident:hover > a
+{
+  display: block;
+}
+.binomial > div.vicepresident > a
+{
+    display: none;
+    z-index: 80;
+    color: $primary-color;
+    top: 25px;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(33, 150, 243, 0.45);
+    border-radius: 50%;
+    padding-top: 15%;
+    text-align: center;
+}
+.binomial > div.vicepresident > a > span
+{
+    z-index: 81;
+    font-size: 11px;
+    font-family: 'OpenSansBold';
+    color: $secondary-color;
+}
+.tab-pane
+{
+  padding: 30px;
+}
+.politics-card
+{
+
+  padding: 30px;
+  font-family: 'OpenSansReuglar';
+}
+.vicepresident-label
+{
+  font-family: 'OpenSansBold';
+  text-decoration: underline;
+  margin-bottom: 0px;
+}
+.president-label
+{
+  color: $primary-color;
+  font-family: 'OpenSansBold';
+  text-decoration: underline;
+  margin-bottom: 0px;
+}
+.politic-position
+{
+    margin-top: -5px;
+    font-size: 9px;
+    font-family: 'OpenSansRegular';
+}
+.political-party-logo
+{
+  margin: 5px;
+}
