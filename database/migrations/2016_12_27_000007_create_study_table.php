@@ -16,17 +16,15 @@ class CreateStudyTable extends Migration
         Schema::create('study', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('profile_id');
+            $table->integer('profile_id')->unsigned();
             $table->string('profession', 45)->nullable();
             $table->integer('pregrade')->nullable();
             $table->integer('postgrad')->nullable();
             $table->integer('phd')->nullable();
-
+            $table->timestamps();
 
             $table->foreign('profile_id', 'fk_study_profile1_idx')
-                ->references('id')->on('profile')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->references('id')->on('profile');
         });
     }
 

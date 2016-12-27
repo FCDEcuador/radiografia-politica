@@ -16,18 +16,16 @@ class CreateTimelineTable extends Migration
         Schema::create('timeline', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('person_id');
+            $table->integer('person_id')->unsigned();
             $table->tinyInteger('typeEvent')->nullable();
             $table->date('start')->nullable();
             $table->date('end')->nullable();
             $table->string('shortDescription', 255)->nullable();
             $table->string('description', 500)->nullable();
-
+            $table->timestamps();
 
             $table->foreign('person_id', 'fk_timeline_person1_idx')
-                ->references('id')->on('person')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->references('id')->on('person');
         });
     }
 

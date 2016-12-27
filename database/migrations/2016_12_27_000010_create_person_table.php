@@ -16,9 +16,9 @@ class CreatePersonTable extends Migration
         Schema::create('person', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('politicalParty_id');
-            $table->integer('state_id');
-            $table->integer('profile_id');
+            $table->integer('politicalParty_id')->unsigned();
+            $table->integer('state_id')->unsigned();
+            $table->integer('profile_id')->unsigned();
             $table->tinyInteger('type')->nullable();
             $table->string('img', 45)->nullable();
             $table->string('name', 45)->nullable();
@@ -28,22 +28,16 @@ class CreatePersonTable extends Migration
             $table->string('plan', 45)->nullable();
             $table->string('twitter', 45)->nullable();
             $table->string('facebook', 45)->nullable();
-
+            $table->timestamps();
 
             $table->foreign('politicalParty_id', 'fk_person_politicalParty1_idx')
-                ->references('id')->on('politicalParty')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->references('id')->on('politicalParty');
 
             $table->foreign('state_id', 'fk_person_state1_idx')
-                ->references('id')->on('state')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->references('id')->on('state');
 
             $table->foreign('profile_id', 'fk_person_profile1_idx')
-                ->references('id')->on('profile')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->references('id')->on('profile');
         });
     }
 

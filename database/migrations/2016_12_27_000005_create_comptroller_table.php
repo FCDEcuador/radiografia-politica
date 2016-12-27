@@ -16,14 +16,13 @@ class CreateComptrollerTable extends Migration
         Schema::create('comptroller', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('profile_id');
+            $table->integer('profile_id')->unsigned();
             $table->integer('processes')->nullable();
+            $table->timestamps();
 
 
             $table->foreign('profile_id', 'fk_comptroller_profile1_idx')
-                ->references('id')->on('profile')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->references('id')->on('profile');
         });
     }
 

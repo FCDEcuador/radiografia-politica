@@ -24,6 +24,7 @@ class CreateProfileTable extends Migration
             $table->string('urlStudy', 125)->nullable();
             $table->string('urlComptroller', 125)->nullable();
             $table->string('urlProfile', 45)->nullable();
+            $table->timestamps();
         });
     }
 

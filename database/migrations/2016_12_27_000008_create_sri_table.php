@@ -16,16 +16,14 @@ class CreateSriTable extends Migration
         Schema::create('sri', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('profile_id');
+            $table->integer('profile_id')->unsigned();
             $table->string('year', 4)->nullable();
             $table->tinyInteger('taxType')->nullable();
             $table->float('value')->nullable();
-
+            $table->timestamps();
 
             $table->foreign('profile_id', 'fk_sri_profile_idx')
-                ->references('id')->on('profile')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->references('id')->on('profile');
         });
     }
 

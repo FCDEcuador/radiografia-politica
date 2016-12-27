@@ -16,14 +16,12 @@ class CreatePenalTable extends Migration
         Schema::create('penal', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('profile_id');
+            $table->integer('profile_id')->unsigned();
             $table->string('total', 45)->nullable();
-
+            $table->timestamps();
 
             $table->foreign('profile_id', 'fk_penal_profile1_idx')
-                ->references('id')->on('profile')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->references('id')->on('profile');
         });
     }
 
