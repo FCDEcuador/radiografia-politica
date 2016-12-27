@@ -13,15 +13,17 @@ class CreatePenalTable extends Migration
      */
     public function up()
     {
-        Schema::create('penal', function (Blueprint $table) {
+        Schema::create('penals', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('profile_id')->unsigned();
             $table->string('total', 45)->nullable();
             $table->timestamps();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->foreign('profile_id', 'fk_penal_profile1_idx')
-                ->references('id')->on('profile');
+                ->references('id')->on('profiles');
         });
     }
 
@@ -32,6 +34,6 @@ class CreatePenalTable extends Migration
      */
      public function down()
      {
-       Schema::dropIfExists('penal');
+       Schema::dropIfExists('penals');
      }
 }

@@ -13,7 +13,7 @@ class CreateJudicialTable extends Migration
      */
     public function up()
     {
-        Schema::create('judicial', function (Blueprint $table) {
+        Schema::create('judicials', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('profile_id')->unsigned();
@@ -23,9 +23,10 @@ class CreateJudicialTable extends Migration
             $table->integer('penal')->nullable();
             $table->integer('transit')->nullable();
             $table->timestamps();
-
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('profile_id', 'fk_judicial_profile1_idx')
-                ->references('id')->on('profile');
+                ->references('id')->on('profiles');
         });
     }
 
@@ -36,6 +37,6 @@ class CreateJudicialTable extends Migration
      */
      public function down()
      {
-       Schema::dropIfExists('judicial');
+       Schema::dropIfExists('judicials');
      }
 }

@@ -21,9 +21,11 @@ class CreateCompaniesTable extends Migration
             $table->tinyInteger('position')->nullable();
             $table->integer('total_companies')->nullable();
             $table->timestamps();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->foreign('profile_id', 'fk_companies_profile1_idx')
-                ->references('id')->on('profile');
+                ->references('id')->on('profiles');
         });
     }
 

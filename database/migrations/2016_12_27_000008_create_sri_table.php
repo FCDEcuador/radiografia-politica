@@ -21,9 +21,11 @@ class CreateSriTable extends Migration
             $table->tinyInteger('taxType')->nullable();
             $table->float('value')->nullable();
             $table->timestamps();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->foreign('profile_id', 'fk_sri_profile_idx')
-                ->references('id')->on('profile');
+                ->references('id')->on('profiles');
         });
     }
 

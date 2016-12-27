@@ -13,7 +13,7 @@ class CreateProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('urlSri', 125)->nullable();
@@ -24,6 +24,8 @@ class CreateProfileTable extends Migration
             $table->string('urlStudy', 125)->nullable();
             $table->string('urlComptroller', 125)->nullable();
             $table->string('urlProfile', 45)->nullable();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -35,6 +37,6 @@ class CreateProfileTable extends Migration
      */
      public function down()
      {
-       Schema::dropIfExists('profile');
+       Schema::dropIfExists('profiles');
      }
 }

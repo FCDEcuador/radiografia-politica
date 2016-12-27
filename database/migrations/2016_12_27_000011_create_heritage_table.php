@@ -13,10 +13,10 @@ class CreateHeritageTable extends Migration
      */
     public function up()
     {
-        Schema::create('heritage', function (Blueprint $table) {
+        Schema::create('heritages', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('profile_id')->unsigned();
+            $table->integer('profiles_id')->unsigned();
             $table->integer('houses')->nullable();
             $table->integer('cars')->nullable();
             $table->integer('money')->nullable();
@@ -31,8 +31,8 @@ class CreateHeritageTable extends Migration
             $table->float('actualHeritage')->nullable();
             $table->timestamps();
 
-            $table->foreign('profile_id', 'fk_heritage_profile1_idx')
-                ->references('id')->on('profile');
+            $table->foreign('profiles_id', 'fk_heritage_profile1_idx')
+                ->references('id')->on('profiles');
         });
     }
 
@@ -43,6 +43,6 @@ class CreateHeritageTable extends Migration
      */
      public function down()
      {
-       Schema::dropIfExists('heritage');
+       Schema::dropIfExists('heritages');
      }
 }

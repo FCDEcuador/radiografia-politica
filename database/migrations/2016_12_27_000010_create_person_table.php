@@ -13,7 +13,7 @@ class CreatePersonTable extends Migration
      */
     public function up()
     {
-        Schema::create('person', function (Blueprint $table) {
+        Schema::create('people', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('politicalParty_id')->unsigned();
@@ -29,15 +29,17 @@ class CreatePersonTable extends Migration
             $table->string('twitter', 45)->nullable();
             $table->string('facebook', 45)->nullable();
             $table->timestamps();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->foreign('politicalParty_id', 'fk_person_politicalParty1_idx')
-                ->references('id')->on('politicalParty');
+                ->references('id')->on('politicalParties');
 
             $table->foreign('state_id', 'fk_person_state1_idx')
-                ->references('id')->on('state');
+                ->references('id')->on('states');
 
             $table->foreign('profile_id', 'fk_person_profile1_idx')
-                ->references('id')->on('profile');
+                ->references('id')->on('profiles');
         });
     }
 
@@ -48,6 +50,6 @@ class CreatePersonTable extends Migration
      */
      public function down()
      {
-       Schema::dropIfExists('person');
+       Schema::dropIfExists('people');
      }
 }

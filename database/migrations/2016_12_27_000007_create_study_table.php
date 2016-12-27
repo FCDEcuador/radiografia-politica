@@ -13,7 +13,7 @@ class CreateStudyTable extends Migration
      */
     public function up()
     {
-        Schema::create('study', function (Blueprint $table) {
+        Schema::create('studies', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('profile_id')->unsigned();
@@ -22,9 +22,11 @@ class CreateStudyTable extends Migration
             $table->integer('postgrad')->nullable();
             $table->integer('phd')->nullable();
             $table->timestamps();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->foreign('profile_id', 'fk_study_profile1_idx')
-                ->references('id')->on('profile');
+                ->references('id')->on('profiles');
         });
     }
 
@@ -35,6 +37,6 @@ class CreateStudyTable extends Migration
      */
      public function down()
      {
-       Schema::dropIfExists('study');
+       Schema::dropIfExists('studies');
      }
 }

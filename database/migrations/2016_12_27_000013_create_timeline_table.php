@@ -13,7 +13,7 @@ class CreateTimelineTable extends Migration
      */
     public function up()
     {
-        Schema::create('timeline', function (Blueprint $table) {
+        Schema::create('timelines', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('person_id')->unsigned();
@@ -23,9 +23,11 @@ class CreateTimelineTable extends Migration
             $table->string('shortDescription', 255)->nullable();
             $table->string('description', 500)->nullable();
             $table->timestamps();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->foreign('person_id', 'fk_timeline_person1_idx')
-                ->references('id')->on('person');
+                ->references('id')->on('people');
         });
     }
 
@@ -36,6 +38,6 @@ class CreateTimelineTable extends Migration
      */
      public function down()
      {
-       Schema::dropIfExists('timeline');
+       Schema::dropIfExists('timelines');
      }
 }
