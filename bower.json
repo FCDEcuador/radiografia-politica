@@ -1,0 +1,24 @@
+{
+  "name": "radiografia-politica",
+  "description": "Radiografia politica",
+  "main": "index.php",
+  "authors": [
+    "Roberto Armas <rarmas@umpacto.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "radiografia"
+  ],
+  "homepage": "https://github.com/RobertoArmas/radiografia-politica",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sweetalert": "^1.1.3"
+  }
+}

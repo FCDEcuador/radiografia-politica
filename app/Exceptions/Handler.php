@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,7 +45,45 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        if ($exception instanceof ApiResponseException)
+        {
+
+            $response = [
+                'status' => false,
+                'code' => $exception->getCode(),
+                'message' => $exception->getMessage(),
+                'errors' => $exception->errors
+            ];
+
+            if (config('app.debug'))
+            {
+                $response['exception'] = get_class($exception);
+                $response['trace'] = $exception->getTrace();
+            }
+
+            $status = 400;
+
+            if($this->isHttpException($exception))
+            {
+                $status = $exception->getStatusCode();
+            }
+
+            return response()->json(['result' => $response],$status);
+
+        }else if($exception instanceof AuthorizationException)
+        {
+
+            if($exception->getMessage() == "This action is unauthorized.")
+            {
+              return response()->view('errors.403');
+            }else {
+              return parent::render($request, $exception);
+            }
+        }else {
+            return parent::render($request, $exception);
+
+        }
+
     }
 
     /**
