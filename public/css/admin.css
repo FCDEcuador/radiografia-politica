@@ -1,0 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@font-face {
+  font-family: "OpenSansRegular";
+  src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "OpenSansBold";
+  src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
+}
+
+.main-sidebar .user-panel {
+  min-height: 60px;
+}
+
+/*# sourceMappingURL=admin.css.map */
