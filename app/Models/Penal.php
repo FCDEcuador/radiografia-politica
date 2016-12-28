@@ -12,4 +12,8 @@ class Penal extends Model
     {
       return $this->belongsTo(JudgmentType::class);
     }
+
+    protected $fillable = [
+      'user_id','profile_id','total'
+    ];
 }
