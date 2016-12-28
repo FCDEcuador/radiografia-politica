@@ -30,11 +30,11 @@
             <div class="box-body">
               <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Ingrese el nombre">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Ingrese el nombre" required>
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese el email">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese el email" required>
               </div>
               <div class="form-group">
                 <label>Rol</label>

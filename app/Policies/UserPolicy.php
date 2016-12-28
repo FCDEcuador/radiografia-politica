@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\User;
-use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
@@ -54,6 +53,6 @@ class UserPolicy
      */
     public function delete(User $auth, User $user)
     {
-        return $auth->isAdmin();
+        return $auth->isAdmin() && $auth->id != $user->id;
     }
 }

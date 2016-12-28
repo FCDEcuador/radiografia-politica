@@ -516,5 +516,6 @@
 <script src="{{asset('js/libs.js')}}"></script>
 <script src="{{asset('js/admin.js')}}"></script>
 @include('sweet::alert')
+	@yield('scripts')
 </body>
 </html>

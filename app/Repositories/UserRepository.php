@@ -25,6 +25,12 @@ class UserRepository
     return $this->model->find($id);
   }
 
+  function delete($id)
+  {
+    $m =  $this->model->find($id);
+    return $m->delete();
+  }
+
   function create($data)
   {
     $pass = $this->randomPassword(15);
@@ -45,6 +51,24 @@ class UserRepository
         return false;
       }
     } catch (Exception $e) {
+      $m = $this->model->withTrashed()->where('email', $data["email"])->first();
+      if($m->restore())
+      {
+        $m->password = $data["password"];
+        $m->name = $data["name"];
+        $m->role_id = $data["role_id"];
+        if($m->update())
+        {
+          Mail::send('emails.new_user', $data, function ($m) {
+                $from = Config::get('mail_settings.system.send_from');
+                $to = 'rarmas@umpacto.com';
+                $m->from($from, 'Politics Service');
+                $m->to($to)->subject('Bienvenido de nuevo a Políticos');
+          });
+          return true;
+        }
+      }
+
       return false;
     }
   }

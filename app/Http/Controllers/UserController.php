@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use App\Models\Role;
-use App\Models\User;
+use App\User;
 use Auth;
 
 class UserController extends Controller
@@ -103,6 +103,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('delete', User::find($id));
+        return response()->json(['sucess' => $this->repository->delete($id)],200);
     }
 }

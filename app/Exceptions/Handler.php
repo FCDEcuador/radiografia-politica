@@ -72,13 +72,18 @@ class Handler extends ExceptionHandler
 
         }else if($exception instanceof AuthorizationException)
         {
-
-            if($exception->getMessage() == "This action is unauthorized.")
+            if($request->all()["_method"] != "delete")
             {
-              return response()->view('errors.403');
+              if($exception->getMessage() == "This action is unauthorized.")
+              {
+                return response()->view('errors.403');
+              }else {
+                return parent::render($request, $exception);
+              }
             }else {
-              return parent::render($request, $exception);
+              return response()->json(['sucess' => false, 'message' => "Not authorized."],403);
             }
+
         }else {
             return parent::render($request, $exception);
 
