@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     //
+    protected $fillable = [
+      'user_id','urlSri','urlHeritage','urlCompanies','urlJudicial','urlPenal','urlStudy','urlComptroller','urlProfile'
+    ];
 
     public function penals()
     {

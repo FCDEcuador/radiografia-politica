@@ -12,6 +12,6 @@ class Judicial extends Model
     }
 
     protected $fillable = [
-      'user_id','profile_id','administrative','civil','constitutional','penal','transit'
+      'user_id','profile_id','judgment_type_id'
     ];
 }

@@ -14,6 +14,6 @@ class Penal extends Model
     }
 
     protected $fillable = [
-      'user_id','profile_id','total'
+      'user_id','profile_id','total','judgment_type_id'
     ];
 }
