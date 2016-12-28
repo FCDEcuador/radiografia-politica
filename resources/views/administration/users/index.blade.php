@@ -81,12 +81,13 @@
       var description = button.data('description');
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-      var modal = $(this)
+      var modal = $(this);
       modal.find('#modal-question').html("¿Desea eliminar <b>" + description + "</b>?");
       modal.find('#modal-ok-btn').click(function(){
         $.ajax({
           url: "{{url('/administration/user').'/'}}" + id,
           type:"post",
+          cache: false,
           data: {_method: 'delete', _token: "{{ csrf_token() }}"},
           success:function(res)
           {
@@ -102,6 +103,10 @@
           }
         });
       });
-    })
+    });
+
+    $('#myModal').on('hidden.bs.modal', function (e) {
+      $(this).find('#modal-ok-btn').unbind('click');
+    });
     </script>
 @endsection
