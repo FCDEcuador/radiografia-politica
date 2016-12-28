@@ -51,14 +51,16 @@ class UserRepository
         return false;
       }
     } catch (Exception $e) {
-      $m = $this->model->withTrashed()->where('email', $data["email"])->first();
-      if($m->restore())
+      $m = $this->model->onlyTrashed()->where('email', $data["email"])->first();
+
+      if($m != null && $m->restore())
       {
         $m->password = $data["password"];
         $m->name = $data["name"];
         $m->role_id = $data["role_id"];
         if($m->update())
         {
+          $data["password"] = $pass;
           Mail::send('emails.new_user', $data, function ($m) {
                 $from = Config::get('mail_settings.system.send_from');
                 $to = 'rarmas@umpacto.com';
