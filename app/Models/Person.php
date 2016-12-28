@@ -21,4 +21,8 @@ class Person extends Model
   {
     return $this->hasMany(Timeline::class);
   }
+
+  protected $fillable = [
+    'user_id','profile_id','politicalParty_id','state_id','type','img','name','lastname','shortDescription','description','plan','twitter','facebook'
+  ];
 }

@@ -8,4 +8,8 @@ class PoliticalParty extends Model
 {
     protected $table = "politicalParties";
 
+    protected $fillable = [
+      'user_id','name','img'
+    ];
+
 }

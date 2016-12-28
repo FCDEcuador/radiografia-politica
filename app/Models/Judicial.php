@@ -10,4 +10,8 @@ class Judicial extends Model
     {
       return $this->belongsTo(JudgmentType::class);
     }
+
+    protected $fillable = [
+      'user_id','profile_id','administrative','civil','constitutional','penal','transit'
+    ];
 }
