@@ -16,7 +16,7 @@ class CreatePersonTable extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('politicalParty_id')->unsigned();
+            $table->integer('politicalParty_id')->unsigned()->nullable();
             $table->integer('state_id')->unsigned();
             $table->integer('profile_id')->unsigned();
             $table->tinyInteger('type')->nullable();

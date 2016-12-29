@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
       Dashboard
@@ -560,6 +558,4 @@
     <!-- /.row -->
   </section>
   <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
 @endsection

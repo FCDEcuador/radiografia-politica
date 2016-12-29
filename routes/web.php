@@ -45,5 +45,20 @@ Route::group(['prefix'=>'administration'],function(){
     Route::resource('user', UserController::class);
   });
 
+
+  Route::resource('profile', ProfileController::class);
+
+  Route::get('presidencial-candidates/drafts', 'PresidencialCandidatesController@drafts');
+  Route::get('presidencial-candidates/published', 'PresidencialCandidatesController@published');
+
+  Route::get('asambleistas-candidates/drafts', 'DeputyCandidatesController@drafts');
+  Route::get('asambleistas-candidates/published', 'DeputyCandidatesController@published');
+
+  Route::get('asambleistas/drafts', 'DeputyController@drafts');
+  Route::get('asambleistas/published', 'DeputyController@published');
+
+  Route::get('public-servants/drafts', 'PublicServantController@drafts');
+  Route::get('public-servants/published', 'PublicServantController@published');
+
   Auth::routes();
 });

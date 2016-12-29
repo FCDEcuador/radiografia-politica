@@ -5,7 +5,7 @@ use App\Models\Person;
 
 class PersonRepository extends Repository
 {
-  function __construct(Comptroller $model)
+  function __construct(Person $model)
   {
     $this->model = $model;
   }
