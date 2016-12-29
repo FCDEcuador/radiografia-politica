@@ -87,6 +87,7 @@ class ProfileController extends Controller
    */
   public function update(Request $request, $id)
   {
+    dd($request->all());
     if($this->repository->update($id,$request->all()))
     {
       return redirect(route('profile.edit',$id))->with('success', 'Usuario editado exitosamente!');

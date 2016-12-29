@@ -29,7 +29,7 @@ class ProfileRepository extends Repository
         $personData['name'] = $data["name"];
         $personData["lastname"] = $data["lastname"];
         $personData["position_id"] = $data["position"];
-        $personData["is_candidate"] = ($data["isCandidate"] == "on") ? true : false;
+        $personData["is_candidate"] = (isset($data["isCandidate"]) && $data["isCandidate"] == "on") ? true : false;
         $personData["state_id"] = State::draft();
         $personData["profile_id"] = $profile->id;
         if($this->personRepository->create($personData))

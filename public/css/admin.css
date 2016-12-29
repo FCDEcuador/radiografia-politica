@@ -13,4 +13,8 @@
   min-height: 60px;
 }
 
+#timeline-grid > tr > td > label {
+  font-weight: normal;
+}
+
 /*# sourceMappingURL=admin.css.map */

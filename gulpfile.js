@@ -33,7 +33,8 @@ elixir(mix => {
         bower('AdminLTE','plugins/jvectormap/jquery-jvectormap-1.2.2.css'),
         bower('AdminLTE','dist/css/AdminLTE.min.css'),
         bower('AdminLTE','dist/css/skins/_all-skins.min.css'),
-        bower('sweetalert','dist/sweetalert.css')
+        bower('sweetalert','dist/sweetalert.css'),
+        bower('AdminLTE','plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')
       ],'public/css/libs.css');
 
       mix.scripts([
@@ -46,6 +47,8 @@ elixir(mix => {
         bower('AdminLTE','plugins/jvectormap/jquery-jvectormap-world-mill-en.js'),
         bower('AdminLTE','plugins/slimScroll/jquery.slimscroll.min.js'),
         bower('AdminLTE','plugins/chartjs/Chart.min.js'),
-        bower('sweetalert','dist/sweetalert.min.js')
+        bower('AdminLTE','plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'),
+        bower('sweetalert','dist/sweetalert.min.js'),
+        bower('holderjs','holder.min.js')
       ],'public/js/libs.js');
 });
