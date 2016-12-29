@@ -1,4 +1,3 @@
-
 var app = angular.module('politics', [
   'politics.controllers',
   'politics.services'
