@@ -5,7 +5,7 @@ use App\Models\Penal;
 
 class PenalRepository extends Repository
 {
-  function __construct(Comptroller $model)
+  function __construct(Penal $model)
   {
     $this->model = $model;
   }

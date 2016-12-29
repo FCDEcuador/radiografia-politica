@@ -21,7 +21,7 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Ingresar Usuario</h3>
+          <h3 class="box-title">Editar Usuario</h3>
         </div>
         <form class="form-horizontal" action="{{URL::to(route('user.update',$user->id))}}" method="POST">
           <input type="hidden" name="_token" value="{{ csrf_token() }}"/>

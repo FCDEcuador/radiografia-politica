@@ -5,7 +5,7 @@ use App\Models\Judicial;
 
 class JudicialRepository extends Repository
 {
-  function __construct(Comptroller $model)
+  function __construct(Judicial $model)
   {
     $this->model = $model;
   }
