@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="main-header">
-
     </div>
     <div class="container main-content">
         <div class="row">
