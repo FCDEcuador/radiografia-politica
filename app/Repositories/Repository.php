@@ -19,22 +19,25 @@ abstract class Repository
 
   public function update($id, $data)
   {
+    $m = $this->model->find($id);
+    return $m->update($data);
 
   }
 
   public function delete($id)
   {
-
+    $m =  $this->model->find($id);
+    return $m->delete();
   }
 
-  public function get($id)
+  public function find($id)
   {
-
+    return $this->model->find($id);
   }
 
   public function all()
   {
-    return $model->all();
+    return $this->model->all();
   }
 
 }

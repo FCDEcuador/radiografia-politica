@@ -17,9 +17,7 @@ class CreateStateTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 45)->nullable();
-            $table->timestamps();
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');  
+            $table->timestamps(); 
         });
     }
 

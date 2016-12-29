@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Exception;
 
-class UserRepository
+class UserRepository extends Repository
 {
 
   protected $model;
@@ -13,22 +13,6 @@ class UserRepository
   function __construct(User $model)
   {
     $this->model = $model;
-  }
-
-  function all()
-  {
-    return $this->model->all();
-  }
-
-  function find($id)
-  {
-    return $this->model->find($id);
-  }
-
-  function delete($id)
-  {
-    $m =  $this->model->find($id);
-    return $m->delete();
   }
 
   function create($data)
