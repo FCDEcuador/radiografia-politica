@@ -155,8 +155,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{url('administration/user')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-              <li><a href={{url('administration/user/create')}}><i class="fa fa-circle-o"></i> Nuevo</a></li>
+              <li><a href="{{url('administration/judgment_type')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+              <li><a href={{url('administration/judgment_type/create')}}><i class="fa fa-circle-o"></i> Nuevo</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -167,8 +167,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{url('administration/user')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-              <li><a href={{url('administration/user/create')}}><i class="fa fa-circle-o"></i> Nuevo</a></li>
+              <li><a href="{{url('administration/political_party')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+              <li><a href={{url('administration/political_party/create')}}><i class="fa fa-circle-o"></i> Nuevo</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -179,8 +179,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{url('administration/user')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
-              <li><a href={{url('administration/user/create')}}><i class="fa fa-circle-o"></i> Nuevo</a></li>
+              <li><a href="{{url('administration/position')}}"><i class="fa fa-circle-o"></i> Ver</a></li>
+              <li><a href={{url('administration/position/create')}}><i class="fa fa-circle-o"></i> Nuevo</a></li>
             </ul>
           </li>
           <li class="treeview">

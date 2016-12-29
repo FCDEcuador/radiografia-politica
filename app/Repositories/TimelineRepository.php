@@ -5,7 +5,7 @@ use App\Models\Timeline;
 
 class TimelineRepository extends Repository
 {
-  function __construct(Comptroller $model)
+  function __construct(Timeline $model)
   {
     $this->model = $model;
   }

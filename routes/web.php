@@ -57,6 +57,10 @@ Route::group(['prefix'=>'administration'],function(){
   Route::get('asambleistas/drafts', 'DeputyController@drafts');
   Route::get('asambleistas/published', 'DeputyController@published');
 
+  Route::resource('position', PositionController::class);
+  Route::resource('judgment_type', judgmentTypeController::class);
+  Route::resource('political_party', PoliticalPartyController::class);
+
   Route::get('public-servants/drafts', 'PublicServantController@drafts');
   Route::get('public-servants/published', 'PublicServantController@published');
 

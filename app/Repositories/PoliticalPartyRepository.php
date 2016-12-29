@@ -5,7 +5,7 @@ use App\Models\PoliticalParty;
 
 class PoliticalPartyRepository extends Repository
 {
-  function __construct(Comptroller $model)
+  function __construct(PoliticalParty $model)
   {
     $this->model = $model;
   }

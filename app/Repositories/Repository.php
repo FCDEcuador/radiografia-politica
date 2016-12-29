@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Auth;
+
 abstract class Repository
 {
 
@@ -9,6 +11,7 @@ abstract class Repository
 
   public function create($data)
   {
+      $data['user_id'] = Auth::user()->id;
       if($this->model->create($data) != null)
       {
           return true;
@@ -20,6 +23,7 @@ abstract class Repository
   public function update($id, $data)
   {
     $m = $this->model->find($id);
+    $data['user_id'] = Auth::user()->id;
     return $m->update($data);
 
   }
