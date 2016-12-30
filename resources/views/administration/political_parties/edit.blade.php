@@ -13,7 +13,6 @@
       <li class="active">Editar</li>
     </ol>
   </section>
-
   <!-- Main content -->
   <section class="content">
     <div class="row">
@@ -43,11 +42,11 @@
 
             <div class="box-footer">
               <button type="submit" class="btn btn-primary">Crear</button>
+
             </div>
           </form>
         </div>
         <!-- /.box -->
-
       </div>
     </div>
     <!-- /.row -->
