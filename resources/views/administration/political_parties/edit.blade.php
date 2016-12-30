@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
@@ -42,6 +43,7 @@
 
             <div class="box-footer">
               <button type="submit" class="btn btn-primary">Crear</button>
+
 
             </div>
           </form>
