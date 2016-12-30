@@ -296,7 +296,7 @@
               <div class="col-md-12">
                 <div class="box box-success">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Declaración partimonial</h3>
+                    <h3 class="box-title">Declaración patrimonial</h3>
                     <div class="box-tools pull-right">
                       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                       </button>
@@ -314,17 +314,66 @@
                       </div>
                       <div class="col-md-3">
                         <label>$ Dinero</label>
-                        <input type="text" name="money" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
+                        <input type="number" name="money" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
                       </div>
                       <div class="col-md-3">
                         <label># Compañias</label>
                         <input type="number" name="companies" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->companies : 0)}}" placeholder="Compañias">
                       </div>
                     </div>
-                  </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Declaración actual</label>
+                      </div>
+                      <div class="col-md-6">
+                        <label>Declaración previa</label>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="date">Fecha actual</label>
+                        <input type="date" class="form-control" name="actualDate-declaration" id="actualDeclarationDate">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="date">Fecha previa</label>
+                        <input type="date" class="form-control" name="actualDate-declaration" id="previousDeclarationDate">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Activos Actuales</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Activos Previos</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Pasivos Actuales</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Pasivos Previos</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Patromonio Actual</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Patromonio Previos</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                    </div>
                 </div>
+                <!-- END BOX -->
               </div>
             </div>
+              </div>
             <!-- END ROW -->
             <!-- ROW -->
             <div class="row">
@@ -338,10 +387,54 @@
                     </div>
                   </div>
                   <div class="box-body">
-                    <div class="form-horizontal">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Posición</th>
+                            <th># Companias</th>
+                            <th>Acción</th>
+                          </tr>
+                        </thead>
+                        <tbody id="position-grid">
+                          @foreach($profile->person->timelines as $i => $timelines)
+                          <tr class="">
+                            <input type="hidden" name="timeline[{{$i}}]['id']" value="{{$timeline->id}}"/>
+                            <td class="startDate"><label>{{$timeline->start}}</label><input type="hidden" name="timeline[{{$i}}]['startDate']" value="{{$timeline->start}}"/></td>
+                            <td class="endDate"><label>{{$timeline->end}}</label><input type="hidden" name="timeline[{{$i}}]['endDate']" value="{{$timeline->end}}"/></td>
+                            <td class="title"><label>{{$timeline->shortDescription}}</label><input type="hidden" name="timeline[{{$i}}]['title']" value="{{$timeline->shortDescription}}"/></td>
+                            <td class="type"><label>{{$timeline->typeEvent}}</label><input type="hidden" name="timeline[{{$i}}]['type']" value="{{$timeline->typeEvent}}"/></td>
+                            <td class="description"><label>{{$timeline->description}}</label><input type="hidden" name="timeline[{{$i}}]['description']" value="{{$timeline->description}}"/></td>
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                        <tfooter>
+                          <tr class="model-companies hidden">
+                            <input type="hidden" name="id-model" value="-1"/>
+                            <td class="position"><label></label><input type="hidden" name="position-model" value="-1"/></td>
+                            <td class="total_companies"><label></label><input type="hidden" name="total_companies-model" value="-1"/></td>
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                          </tr>
+                        </tfooter>
+                      </table>
                     </div>
-
-
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label for="name">Posición</label>
+                          <select id="position" name="type-timeline" class="form-control">
+                            <option value="1">Presidente</option>
+                            <option value="2">Gerente</option>
+                            <option value="3">Accionista</option>
+                          </select>  </div>
+                        <div class="col-md-6">
+                          <label for="name"># Companias</label>
+                          <input type="number" class="form-control" name="endDate-timeline" id="companies">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="box-footer">
+                    <button id="add-to-timeline" type="button" class="btn btn-success">Agregar</button>
                   </div>
                 </div>
               </div>
@@ -401,6 +494,29 @@
                     </div>
                   </div>
                   <div class="box-body">
+
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <label>Profesión</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Ingrese el título universitario">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-4">
+                        <label># Pregrado</label>
+                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="Casas">
+                      </div>
+                      <div class="col-md-4">
+                        <label># Posgrado</label>
+                        <input type="number" name="posgrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->cars : 0)}}" placeholder="Carros">
+                      </div>
+                      <div class="col-md-4">
+                        <label>$ Phd</label>
+                        <input type="number" name="phd" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-body">
                     <div class="form-horizontal">
                     </div>
 
@@ -419,6 +535,14 @@
                     <div class="box-tools pull-right">
                       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                       </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <label>Número de Procesos</label>
+                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="0">
+                      </div>
                     </div>
                   </div>
                   <div class="box-body">
@@ -537,4 +661,5 @@
 
   sortInputsTimeline();
 </script>
+
 @endsection
