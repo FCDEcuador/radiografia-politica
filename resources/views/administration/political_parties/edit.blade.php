@@ -26,8 +26,9 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <form action="{{URL::to(route('political_party.store'))}}" method="POST" enctype="multipart/form-data">
+          <form action="{{URL::to(route('political_party.update',$political_party->id))}}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+            <input name="_method" type="hidden" value="PUT">
             <div class="box-body">
               <div class="form-group">
                 <label for="name">Partido Politico</label>

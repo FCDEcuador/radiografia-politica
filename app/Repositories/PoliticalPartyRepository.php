@@ -36,6 +36,7 @@ class PoliticalPartyRepository extends Repository
       {
         $storage_path = public_path()."/img/political-parties";
         $filename  = $this->nameGenerator($name).".".$file->getClientOriginalExtension();
+        $file->move($storage_path,$filename);
         $relativePath = "/img/political-parties/".$filename;
         $data = [
           'name' => $name,
@@ -54,18 +55,34 @@ class PoliticalPartyRepository extends Repository
   function update($id,$request)
   {
 
-      $file = $request->file('logo');
-      $name = $request->get('name');
-      $storage_path = public_path()."/img/political-parties";
-      $filename  = $this->nameGenerator($name).".".$file->getClientOriginalExtension();
-      $relativePath = "/img/political-parties/".$filename;
+    $file = $request->file('logo');
+    $name = $request->get('name');
+    if($file==null){
       $data = [
         'name' => $name,
-        'img' => $relativePath,
         'user_id' => Auth::user()->id
       ];
+      $temp = $this->model->find($id);
+      return $temp->update($data) != null;
+    }else{
+      if(collect($this->validsExtensions)->contains($file->getClientOriginalExtension()))
+      {
+        $storage_path = public_path()."/img/political-parties";
+        $filename  = $this->nameGenerator($name).".".$file->getClientOriginalExtension();
+        $file->move($storage_path,$filename);
+        $relativePath = "/img/political-parties/".$filename;
+        $data = [
+          'name' => $name,
+          'img' => $relativePath,
+          'user_id' => Auth::user()->id
+        ];
 
-      return $this->model->update($data) != null;
+        $temp = $this->model->find($id);
+        return $temp->update($data) != null;
+      }else {
+        throw new ApiResponseException(["Fotografía inválida, solo se admite png, jpg, jpge"]);
+      }
+    }
   }
 
 

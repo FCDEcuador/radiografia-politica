@@ -95,11 +95,15 @@ class PoliticalPartyController extends Controller
     public function update(Request $request, $id)
     {
         //
+        try{
         if($this->repository->update($id,$request))
         {
           return redirect(route('political_party.index'))->with('success', 'Partido Politico editado exitosamente!');
         }else {
             return redirect()->back()->with('errors', 'Error al editar');
+        }
+        } catch (ApiResponseException $e) {
+          return redirect()->back()->with('errors', collect($e->errors)->first());
         }
     }
 
