@@ -30,12 +30,12 @@
             <div class="form-group">
               <label class="col-md-2 control-label">Nombre</label>
               <div class="col-md-10">
-                <input type="text" name="name" class="form-control" value="{{ $judgment_type->name }}" required/>
+                <input type="text" name="name" class="form-control" value="{{ $political_party->name }}" required/>
               </div>
             </div>
             <div class="col-md-4">
               <label>Foto Partido Politico</label><br>
-              <img class="img-circle" data-src="{{ (isset($profile->picture)) ? $profile->picture : 'holder.js/150x150' }}" />
+              <img class="img-circle" data-src="{{ (isset($political_party->picture)) ? $political_party->picture : 'holder.js/150x150' }}" />
               <input type="file" name="profile" placeholder="ingrese">
             </div>
           </div>
