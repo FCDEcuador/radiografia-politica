@@ -26,9 +26,9 @@ class Profile extends Model
       return $this->hasMany(Compnany::class);
     }
 
-    public function heritages()
+    public function heritage()
     {
-      return $this->hasMany(Heritage::class);
+      return $this->hasOne(Heritage::class);
     }
 
     public function sri()

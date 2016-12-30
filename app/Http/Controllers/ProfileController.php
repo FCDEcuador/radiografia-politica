@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ProfileRepository;
+use App\Models\PoliticalParty;
 use App\Models\Position;
 use App\Profile;
 use Auth;
@@ -73,9 +74,9 @@ class ProfileController extends Controller
    */
   public function edit($id)
   {
-    $positions = Position::all();
+    $politicalParties = PoliticalParty::all();
     $profile = $this->repository->find($id);
-    return view('administration.profiles.edit')->with(['positions' => $positions,'profile' => $profile]);
+    return view('administration.profiles.edit')->with(['politicalParties' => $politicalParties,'profile' => $profile]);
   }
 
   /**

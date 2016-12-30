@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\PoliticalPartyRepository;
+use App\Exceptions\ApiResponseException;
 
 class PoliticalPartyController extends Controller
 {
@@ -45,13 +46,19 @@ class PoliticalPartyController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        if($this->repository->create($request->all()))
+      try {
+        if($this->repository->create($request))
         {
           return redirect(route('judgment_type.create'))->with('success', 'Partido Politico creado exitosamente!');
         }else {
             return redirect()->back()->with('errors', 'Ha ocurrido un error!');
         }
+
+      } catch (ApiResponseException $e) {
+        return redirect()->back()->with('errors', collect($e->errors)->first());
+      }
+
+
     }
 
     /**
@@ -88,7 +95,7 @@ class PoliticalPartyController extends Controller
     public function update(Request $request, $id)
     {
         //
-        if($this->repository->update($id,$request->all()))
+        if($this->repository->update($id,$request))
         {
           return redirect(route('political_party.index'))->with('success', 'Partido Politico editado exitosamente!');
         }else {

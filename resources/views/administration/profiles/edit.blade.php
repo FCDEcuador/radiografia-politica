@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-8">
                     <label>Foto Detalle</label><br>
-                  <img class="img-thumbnail" data-src="{{ (isset($profile->picture)) ? $profile->picture : 'holder.js/200x150' }}" />
+                  <img class="img-thumbnail" data-src="{{ (isset($profile->person->img)) ? $profile->person->img : 'holder.js/200x150' }}" />
                   <input type="file" name="profile" placeholder="ingrese">
                 </div>
               </div>
@@ -59,6 +59,14 @@
                   <label for="email">Apellido</label>
                   <input type="text" class="form-control" name="lastname"value="{{$profile->person->lastname}}"  id="lastname" placeholder="Ingrese el apellido" required>
                 </div>
+              </div>
+              <div class="form-group">
+                  <label for="politicalParty">Partido Político</label>
+                  <select name="politicalParty" class="form-control">
+                    @foreach ($politicalParties as $politicalParty)
+                    <option value="{{$politicalParty->id}}">{{$politicalParty->name}}</option>
+                    @endforeach
+                  </select>
               </div>
               <div class="form-group">
                 <label for="email">Descripción</label>
@@ -176,13 +184,255 @@
             </div>
           </div>
           <div class="box-body">
-            <div class="form-horizontal">
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">SRI</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="col-md-6">
+                    <label>Inpuesto a la Renta</label>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Año</th>
+                            <th>Inpuesto</th>
+                            <th>Acción</th>
+                          </tr>
+                        </thead>
+                        <tbody id="timeline-grid">
+                          @foreach([] as $i => $rentTax)
+                          <tr class="">
+                            <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
+                            <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                            <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                        <tfooter>
+                          <tr class="model-rent-taxes hidden">
+                            <input type="hidden" name="id-model" value="-1"/>
+                            <td class="year"><label></label><input type="hidden" name="year-model" value="-1"/></td>
+                            <td class="tax"><label></label><input type="hidden" name="tax-model" value="-1"/></td>
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                          </tr>
+                        </tfooter>
+                      </table>
+                    </div>
+                    </div>
+                    <!-- End col --->
+                    <div class="col-md-6">
+                    <label>Inpuesto a la Salida Divisas</label>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Año</th>
+                            <th>Inpuesto</th>
+                            <th>Acción</th>
+                          </tr>
+                        </thead>
+                        <tbody id="timeline-grid">
+                          @foreach([] as $i => $rentTax)
+                          <tr class="">
+                            <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
+                            <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                            <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                        <tfooter>
+                          <tr class="model-rent-taxes hidden">
+                            <input type="hidden" name="id-model" value="-1"/>
+                            <td class="year"><label></label><input type="hidden" name="year-model" value="-1"/></td>
+                            <td class="tax"><label></label><input type="hidden" name="tax-model" value="-1"/></td>
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                          </tr>
+                        </tfooter>
+                      </table>
+                    </div>
+                    </div>
+                    <!-- End col --->
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Tipo</label>
+                        <select class="form-control">
+                          <option value="1">Renta</option>
+                          <option value="1">Salida Divisas</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label>Año</label>
+                        <select class="form-control">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Valor</label>
+                      <input type="text" name="tax-value" class="form-control" placeholder="Inpuesto">
+                    </div>
+                  </div>
+                  <div class="box-footer">
+                    <button id="add-to-timeline" type="button" class="btn btn-success">Agregar</button>
+                  </div>
+                </div>
+              </div>
             </div>
+            <!-- END ROW -->
+
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Declaración partimonial</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-group row">
+                      <div class="col-md-3">
+                        <label># Casas</label>
+                        <input type="number" name="houses" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="Casas">
+                      </div>
+                      <div class="col-md-3">
+                        <label># Carros</label>
+                        <input type="number" name="cars" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->cars : 0)}}" placeholder="Carros">
+                      </div>
+                      <div class="col-md-3">
+                        <label>$ Dinero</label>
+                        <input type="text" name="money" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
+                      </div>
+                      <div class="col-md-3">
+                        <label># Compañias</label>
+                        <input type="number" name="companies" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->companies : 0)}}" placeholder="Compañias">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-info">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Superintendencia</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-horizontal">
+                    </div>
 
 
-          </div>
-          <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Editar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-warning">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Antecedentes Judiciales</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-horizontal">
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-danger">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Antecedentes Penales</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-horizontal">
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Senecyt</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-horizontal">
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Contraloría</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-horizontal">
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+
+
           </div>
         </div>
       </div>
