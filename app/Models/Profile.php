@@ -23,7 +23,7 @@ class Profile extends Model
 
     public function companies()
     {
-      return $this->hasMany(Compnany::class);
+      return $this->hasMany(Company::class);
     }
 
     public function heritage()

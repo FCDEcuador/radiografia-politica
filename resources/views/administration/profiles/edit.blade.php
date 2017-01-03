@@ -1,6 +1,20 @@
+
 @extends('layouts.admin')
 
 @section('content')
+<?php
+
+  function containsPosition($id,$companies)
+  {
+    foreach ($companies as $company) {
+      if($company->position == $id){
+        return true;
+      }
+    }
+    return false;
+  }
+
+ ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -397,15 +411,12 @@
                           </tr>
                         </thead>
                         <tbody id="position-grid">
-                          @foreach($profile->person->timelines as $i => $timelines)
+                          @foreach($profile->companies as $i => $company)
                           <tr class="">
-                            <input type="hidden" name="timeline[{{$i}}]['id']" value="{{$timeline->id}}"/>
-                            <td class="startDate"><label>{{$timeline->start}}</label><input type="hidden" name="timeline[{{$i}}]['startDate']" value="{{$timeline->start}}"/></td>
-                            <td class="endDate"><label>{{$timeline->end}}</label><input type="hidden" name="timeline[{{$i}}]['endDate']" value="{{$timeline->end}}"/></td>
-                            <td class="title"><label>{{$timeline->shortDescription}}</label><input type="hidden" name="timeline[{{$i}}]['title']" value="{{$timeline->shortDescription}}"/></td>
-                            <td class="type"><label>{{$timeline->typeEvent}}</label><input type="hidden" name="timeline[{{$i}}]['type']" value="{{$timeline->typeEvent}}"/></td>
-                            <td class="description"><label>{{$timeline->description}}</label><input type="hidden" name="timeline[{{$i}}]['description']" value="{{$timeline->description}}"/></td>
-                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            <input type="hidden" name="company[{{$i}}]['id']" value="{{$company->id}}"/>
+                            <td class="position"><label>{{$company->position}}</label><input type="hidden" name="company[{{$i}}]['position']" value="{{$company->position}}"/></td>
+                            <td class="total_companies"><label>{{$company->total_companies}}</label><input type="hidden" name="company[{{$i}}]['total_companies']" value="{{$company->total_companies}}"/></td>
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete-company">Eliminar</button></td>
                           </tr>
                           @endforeach
                         </tbody>
@@ -414,7 +425,7 @@
                             <input type="hidden" name="id-model" value="-1"/>
                             <td class="position"><label></label><input type="hidden" name="position-model" value="-1"/></td>
                             <td class="total_companies"><label></label><input type="hidden" name="total_companies-model" value="-1"/></td>
-                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete-company">Eliminar</button></td>
                           </tr>
                         </tfooter>
                       </table>
@@ -423,18 +434,24 @@
                         <div class="col-md-6">
                           <label for="name">Posición</label>
                           <select id="position" name="type-timeline" class="form-control">
+                            @if(!containsPosition(1,$profile->companies))
                             <option value="1">Presidente</option>
+                            @endif
+                            @if(!containsPosition(2,$profile->companies))
                             <option value="2">Gerente</option>
+                            @endif
+                            @if(!containsPosition(3,$profile->companies))
                             <option value="3">Accionista</option>
+                            @endif
                           </select>  </div>
                         <div class="col-md-6">
                           <label for="name"># Companias</label>
-                          <input type="number" class="form-control" name="endDate-timeline" id="companies">
+                          <input type="number" class="form-control" name="endDate-timeline" id="total_companies">
                         </div>
                       </div>
                   </div>
                   <div class="box-footer">
-                    <button id="add-to-timeline" type="button" class="btn btn-success">Agregar</button>
+                    <button id="add-to-companies" type="button" class="btn btn-success">Agregar</button>
                   </div>
                 </div>
               </div>
@@ -580,6 +597,7 @@
 
   var $CONTAINER = $('#timeline-grid');
 
+
   $('#add-to-timeline').click(function () {
     var index = $('#timeline-grid').find('tr').length;
     var $clone = $('.model-timeline').clone(true).removeClass('hidden model-timeline');
@@ -611,10 +629,12 @@
 
   });
 
+
   $('.btn-delete').click(function(){
     var $this = $(this);
     var divToDelete = $($this.context.parentElement.parentElement);
     divToDelete.remove();
+
 
     sortInputsTimeline();
   });
@@ -660,6 +680,42 @@
   }
 
   sortInputsTimeline();
+</script>
+
+<script>
+
+  var $CONTAINER = $('#position-grid');
+
+  $('#add-to-companies').click(function () {
+    var index = $('#position-grid').find('tr').length;
+    var $clone = $('.model-companies').clone(true).removeClass('hidden model-companies');
+    $clone.find('input').attr('name' , 'company['+index+']["id"]');
+    $clone.find('.position').find('input').attr('name' , 'company['+index+']["position"]');
+    $clone.find('.position').find('input').val($('#position').val());
+    $clone.find('.position').find('label').text($('#position option:selected').text());
+
+    $clone.find('.total_companies').find('input').attr('name' , 'company['+index+']["total_companies"]');
+    $clone.find('.total_companies').find('input').val($('#total_companies').val());
+    $clone.find('.total_companies').find('label').text($('#total_companies').val());
+
+    $CONTAINER.append($clone);
+
+    $('#position option:selected').remove();
+
+  });
+
+  $('.btn-delete-company').click(function(){
+    var $this = $(this);
+    var divToDelete = $($this.context.parentElement.parentElement);
+
+    var newOption = $(document.createElement("option"));
+    newOption.val(divToDelete.find('.position').find('input').val());
+    newOption.text(divToDelete.find('.position').find('label').text());
+    $('#position').append(newOption);
+
+    divToDelete.remove();
+  });
+
 </script>
 
 @endsection
