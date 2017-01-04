@@ -226,8 +226,8 @@
                             <tr class="">
                               <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
                               <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
-                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="rentTax[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="rentTax[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -262,8 +262,8 @@
                             <tr class="">
                               <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
                               <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
-                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="rentTax[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="rentTax[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -497,23 +497,23 @@
                             </tr>
                           </thead>
                           <tbody id="actor-grid">
-                            @foreach([] as $i => $rentTax)
+                            @foreach([] as $i => $judicial)
                             <tr class="">
-                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
-                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
-                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                              <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
+                              <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
+                              <td class="type"><label>{{$judicial->type}}</label><input type="hidden" name="judicial[{{$i}}]['type']" value="{{$judicial->type}}"/></td>
+                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
                             @endforeach
                           </tbody>
                           <tfooter>
-                            <tr class="model-sri-taxes hidden">
+                            <tr class="model-actor hidden">
                               <input type="hidden" name="id-model" value="-1"/>
                               <input type="hidden" name="type-model" value="-1"/>
-                              <td class="year"><label></label><input type="hidden" name="year-model" value="-1"/></td>
-                              <td class="tax"><label></label><input type="hidden" name="tax-model" value="-1"/></td>
+                              <td class="type"><label></label><input type="hidden" name="type-model" value="-1"/></td>
+                              <td class="number"><label></label><input type="hidden" name="number-model" value="-1"/></td>
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
                           </tfooter>
@@ -533,12 +533,12 @@
                             </tr>
                           </thead>
                           <tbody id="demandado-grid">
-                            @foreach([] as $i => $rentTax)
+                            @foreach([] as $i => $judicial)
                             <tr class="">
-                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
-                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
-                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                              <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
+                              <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
+                              <td class="type"><label>{{$judicial->type}}</label><input type="hidden" name="judicial[{{$i}}]['type']" value="{{$judicial->type}}"/></td>
+                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -861,5 +861,56 @@
  });
 
 </script>
+
+<script>
+
+  var $ACTORCONTAINER = $('#actor-grid');
+  var $DEMANDADOCONTAINER = $('#demandado-grid');
+
+
+  $('#add-to-antecedente').click(function(){
+    var index = 0;
+    switch ($('#taxType').val()) {
+      case "1":
+      index  = $ACTORCONTAINER.find('tr').length;
+        break;
+      case "2":
+      index = 6 + $DEMANDADOCONTAINER.find('tr').length;
+        break;
+      default:
+        break;
+    }
+
+    var clone = $('.model-actor').clone(true).removeClass('hidden model-actor');
+    clone.find('input[name=id-model]').attr('name' , 'judicial['+index+']["id"]');
+    clone.find('input[name=type-model]').attr('name' , 'judicial['+index+']["judgment_type_id"]');
+    clone.find('input[name=type-model]').val($('#judgment_type_id').val());
+
+    clone.find('.type').find('input').attr('name' , 'judicial['+index+']["type"]');
+    clone.find('.type').find('input').val($('#type').val());
+    clone.find('.type').find('label').text($('#type').val());
+
+    clone.find('.number').find('input').attr('name' , 'judicial['+index+']["number"]');
+    clone.find('.number').find('input').val($('#number').val());
+    clone.find('.number').find('label').text($('#number').val());
+
+    switch ($('#judgment_type_id').val()) {
+      case "1":
+        $ACTORCONTAINER.append(clone);
+        break;
+      case "2":
+        $DEMANDADOCONTAINER.append(clone);
+        break;
+      default:
+        break;
+    }
+
+  });
+
+
+</script>
+
+
+
 
 @endsection
