@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\ProfileRepository;
 use App\Models\PoliticalParty;
 use App\Models\Position;
+use App\Models\JudgmentType;
 use App\Profile;
 use Auth;
 
@@ -66,6 +67,17 @@ class ProfileController extends Controller
       //
   }
 
+  private function generateLastYears($last=6)
+  {
+    $years = [];
+    $startDate = date('Y') - $last;
+    for ($i=$startDate; $i<=date('Y');$i++)
+    {
+      array_push($years,(string)$i);
+    }
+    return $years;
+  }
+
   /**
    * Show the form for editing the specified resource.
    *
@@ -76,7 +88,15 @@ class ProfileController extends Controller
   {
     $politicalParties = PoliticalParty::all();
     $profile = $this->repository->find($id);
-    return view('administration.profiles.edit')->with(['politicalParties' => $politicalParties,'profile' => $profile]);
+    $years = $this->generateLastYears();
+    return view('administration.profiles.edit')->with(
+      [
+        'politicalParties' => $politicalParties,
+        'profile' => $profile,
+        'years' => $years,
+        'judgment_types' => JudgmentType::all()
+      ]
+    );
   }
 
   /**

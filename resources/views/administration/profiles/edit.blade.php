@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 
 @section('content')
@@ -210,95 +209,95 @@
                     </div>
                   </div>
                   <div class="box-body">
-                    <div class="col-md-6">
-                    <label>Inpuesto a la Renta</label>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>Año</th>
-                            <th>Inpuesto</th>
-                            <th>Acción</th>
-                          </tr>
-                        </thead>
-                        <tbody id="timeline-grid">
-                          @foreach([] as $i => $rentTax)
-                          <tr class="">
-                            <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
-                            <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                            <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                    <div class="row">
+                      <div class="col-md-6">
+                      <label>Inpuesto a la Renta</label>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Año</th>
+                              <th>Inpuesto</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody id="sri-impuesto-grid">
+                            @foreach([] as $i => $rentTax)
+                            <tr class="">
+                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
 
-                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                        <tfooter>
-                          <tr class="model-rent-taxes hidden">
-                            <input type="hidden" name="id-model" value="-1"/>
-                            <td class="year"><label></label><input type="hidden" name="year-model" value="-1"/></td>
-                            <td class="tax"><label></label><input type="hidden" name="tax-model" value="-1"/></td>
-                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
-                          </tr>
-                        </tfooter>
-                      </table>
-                    </div>
-                    </div>
-                    <!-- End col --->
-                    <div class="col-md-6">
-                    <label>Inpuesto a la Salida Divisas</label>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>Año</th>
-                            <th>Inpuesto</th>
-                            <th>Acción</th>
-                          </tr>
-                        </thead>
-                        <tbody id="timeline-grid">
-                          @foreach([] as $i => $rentTax)
-                          <tr class="">
-                            <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
-                            <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                            <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                          <tfooter>
+                            <tr class="model-sri-taxes hidden">
+                              <input type="hidden" name="id-model" value="-1"/>
+                              <input type="hidden" name="type-model" value="-1"/>
+                              <td class="year"><label></label><input type="hidden" name="year-model" value="-1"/></td>
+                              <td class="tax"><label></label><input type="hidden" name="tax-model" value="-1"/></td>
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                          </tfooter>
+                        </table>
+                      </div>
+                      </div>
+                      <!-- End col --->
+                      <div class="col-md-6">
+                      <label>Inpuesto a la Salida Divisas</label>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Año</th>
+                              <th>Inpuesto</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody id="sri-divisas-grid">
+                            @foreach([] as $i => $rentTax)
+                            <tr class="">
+                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
 
-                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                        <tfooter>
-                          <tr class="model-rent-taxes hidden">
-                            <input type="hidden" name="id-model" value="-1"/>
-                            <td class="year"><label></label><input type="hidden" name="year-model" value="-1"/></td>
-                            <td class="tax"><label></label><input type="hidden" name="tax-model" value="-1"/></td>
-                            <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
-                          </tr>
-                        </tfooter>
-                      </table>
-                    </div>
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                      </div>
                     </div>
                     <!-- End col --->
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label>Tipo</label>
-                        <select class="form-control">
+                        <select id="taxType" class="form-control">
                           <option value="1">Renta</option>
-                          <option value="1">Salida Divisas</option>
+                          <option value="2">Salida Divisas</option>
                         </select>
                       </div>
                       <div class="col-md-6">
                         <label>Año</label>
-                        <select class="form-control">
+                        <select id="taxYear" class="form-control">
+                          @foreach($years as $year)
+                            <option value="{{$year}}">{{$year}}</option>
+                          @endforeach
                         </select>
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Valor</label>
-                      <input type="text" name="tax-value" class="form-control" placeholder="Inpuesto">
+                      <input id="taxValue" type="text" name="tax-value" class="form-control" placeholder="Inpuesto">
                     </div>
                   </div>
                   <div class="box-footer">
-                    <button id="add-to-timeline" type="button" class="btn btn-success">Agregar</button>
+                    <button id="add-to-sri" type="button" class="btn btn-success">Agregar</button>
                   </div>
                 </div>
               </div>
@@ -443,7 +442,8 @@
                             @if(!containsPosition(3,$profile->companies))
                             <option value="3">Accionista</option>
                             @endif
-                          </select>  </div>
+                          </select>
+                        </div>
                         <div class="col-md-6">
                           <label for="name"># Companias</label>
                           <input type="number" class="form-control" name="endDate-timeline" id="total_companies">
@@ -460,40 +460,119 @@
             <!-- ROW -->
             <div class="row">
               <div class="col-md-12">
-                <div class="box box-warning">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Antecedentes Judiciales</h3>
-                    <div class="box-tools pull-right">
-                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="box-body">
-                    <div class="form-horizontal">
-                    </div>
-
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- END ROW -->
-            <!-- ROW -->
-            <div class="row">
-              <div class="col-md-12">
                 <div class="box box-danger">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Antecedentes Penales</h3>
+                    <h3 class="box-title">Antecedentes</h3>
                     <div class="box-tools pull-right">
                       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                       </button>
                     </div>
                   </div>
                   <div class="box-body">
-                    <div class="form-horizontal">
+                    <div class="row-fluid">
+                      <h4>Penales</h4>
                     </div>
+                    <div class="form-group row">
+                      <div class="col-md-3">
+                        <label>Si</label> <br><input type="checkbox" name="hasPenals" />
+                      </div>
+                        <div class="col-md-9">
+                          <label>Cantidad</label>
+                          <input type="number" class="form-control" name="penalsNumber" disabled/>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                      <h4>Judiciales</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                      <label>Actor</label>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Tipo</th>
+                              <th>Número</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody id="actor-grid">
+                            @foreach([] as $i => $rentTax)
+                            <tr class="">
+                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
 
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                          <tfooter>
+                            <tr class="model-sri-taxes hidden">
+                              <input type="hidden" name="id-model" value="-1"/>
+                              <input type="hidden" name="type-model" value="-1"/>
+                              <td class="year"><label></label><input type="hidden" name="year-model" value="-1"/></td>
+                              <td class="tax"><label></label><input type="hidden" name="tax-model" value="-1"/></td>
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                          </tfooter>
+                        </table>
+                      </div>
+                      </div>
+                      <!-- End col --->
+                      <div class="col-md-6">
+                      <label>Demandado</label>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Tipo</th>
+                              <th>Número</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody id="demandado-grid">
+                            @foreach([] as $i => $rentTax)
+                            <tr class="">
+                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="timeline[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="timeline[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
 
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                      </div>
+                    </div>
+                    <!-- End col --->
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Es</label>
+                        <select id="judgment" class="form-control">
+                          <option value="1">Actor</option>
+                          <option value="2">Demandado</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label>Tipo</label>
+                        <select id="jugmentType" class="form-control">
+                          @foreach($judgment_types as $judgment_type)
+                            <option value="{{$judgment_type->id}}">{{$judgment_type->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Número de casos</label>
+                      <input id="jugdmentCount" type="text" name="tax-value" class="form-control" placeholder="Inpuesto">
+                    </div>
+                  </div>
+                  <div class="box-footer">
+                    <button id="add-to-judgment" type="button" class="btn btn-success">Agregar</button>
                   </div>
                 </div>
               </div>
@@ -528,7 +607,7 @@
                         <input type="number" name="posgrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->cars : 0)}}" placeholder="Carros">
                       </div>
                       <div class="col-md-4">
-                        <label>$ Phd</label>
+                        <label># Phd</label>
                         <input type="number" name="phd" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
                       </div>
                     </div>
@@ -546,7 +625,7 @@
             <!-- ROW -->
             <div class="row">
               <div class="col-md-12">
-                <div class="box box-success">
+                <div class="box box-warning">
                   <div class="box-header with-border">
                     <h3 class="box-title">Contraloría</h3>
                     <div class="box-tools pull-right">
@@ -597,7 +676,6 @@
 
   var $CONTAINER = $('#timeline-grid');
 
-
   $('#add-to-timeline').click(function () {
     var index = $('#timeline-grid').find('tr').length;
     var $clone = $('.model-timeline').clone(true).removeClass('hidden model-timeline');
@@ -629,12 +707,10 @@
 
   });
 
-
   $('.btn-delete').click(function(){
     var $this = $(this);
     var divToDelete = $($this.context.parentElement.parentElement);
     divToDelete.remove();
-
 
     sortInputsTimeline();
   });
@@ -682,39 +758,107 @@
   sortInputsTimeline();
 </script>
 
+
 <script>
 
-  var $CONTAINER = $('#position-grid');
+  var $SRIIMPUESTOSCONTAINER = $('#sri-impuesto-grid');
+  var $SRIDIVISASCONTAINER = $('#sri-divisas-grid');
 
-  $('#add-to-companies').click(function () {
-    var index = $('#position-grid').find('tr').length;
-    var $clone = $('.model-companies').clone(true).removeClass('hidden model-companies');
-    $clone.find('input').attr('name' , 'company['+index+']["id"]');
-    $clone.find('.position').find('input').attr('name' , 'company['+index+']["position"]');
-    $clone.find('.position').find('input').val($('#position').val());
-    $clone.find('.position').find('label').text($('#position option:selected').text());
+  $('#taxType').change(function(){
+    loadYears();
+  });
 
-    $clone.find('.total_companies').find('input').attr('name' , 'company['+index+']["total_companies"]');
-    $clone.find('.total_companies').find('input').val($('#total_companies').val());
-    $clone.find('.total_companies').find('label').text($('#total_companies').val());
+  function generateLastYears()
+  {
+    //TODO: Generar los los años. Y refrescar en la opción de editar para que se vayan quitando los años.
+  }
 
-    $CONTAINER.append($clone);
+  function loadYears()
+  {
+    switch ($('#taxType').val()) {
+      case "1":
+        break;
+      case "2":
+        break;
+      default:
+        break;
+    }
+  }
 
-    $('#position option:selected').remove();
+  $('#add-to-sri').click(function(){
+    var index = 0;
+    switch ($('#taxType').val()) {
+      case "1":
+      index  = $SRIIMPUESTOSCONTAINER.find('tr').length;
+        break;
+      case "2":
+      index = 6 + $SRIDIVISASCONTAINER.find('tr').length;
+        break;
+      default:
+        break;
+    }
+
+    var clone = $('.model-sri-taxes').clone(true).removeClass('hidden model-sri-taxes');
+    clone.find('input[name=id-model]').attr('name' , 'sri['+index+']["id"]');
+    clone.find('input[name=type-model]').attr('name' , 'sri['+index+']["type"]');
+    clone.find('input[name=type-model]').val($('#taxType').val());
+
+    clone.find('.year').find('input').attr('name' , 'sri['+index+']["year"]');
+    clone.find('.year').find('input').val($('#taxYear').val());
+    clone.find('.year').find('label').text($('#taxYear').val());
+
+    clone.find('.tax').find('input').attr('name' , 'sri['+index+']["tax"]');
+    clone.find('.tax').find('input').val($('#taxValue').val());
+    clone.find('.tax').find('label').text($('#taxValue').val());
+
+    switch ($('#taxType').val()) {
+      case "1":
+        $SRIIMPUESTOSCONTAINER.append(clone);
+        break;
+      case "2":
+        $SRIDIVISASCONTAINER.append(clone);
+        break;
+      default:
+        break;
+    }
 
   });
 
-  $('.btn-delete-company').click(function(){
-    var $this = $(this);
-    var divToDelete = $($this.context.parentElement.parentElement);
 
-    var newOption = $(document.createElement("option"));
-    newOption.val(divToDelete.find('.position').find('input').val());
-    newOption.text(divToDelete.find('.position').find('label').text());
-    $('#position').append(newOption);
+</script>
+<script>
 
-    divToDelete.remove();
-  });
+ var $CONTAINER = $('#position-grid');
+
+ $('#add-to-companies').click(function () {
+   var index = $('#position-grid').find('tr').length;
+   var $clone = $('.model-companies').clone(true).removeClass('hidden model-companies');
+   $clone.find('input').attr('name' , 'company['+index+']["id"]');
+   $clone.find('.position').find('input').attr('name' , 'company['+index+']["position"]');
+   $clone.find('.position').find('input').val($('#position').val());
+   $clone.find('.position').find('label').text($('#position option:selected').text());
+
+   $clone.find('.total_companies').find('input').attr('name' , 'company['+index+']["total_companies"]');
+   $clone.find('.total_companies').find('input').val($('#total_companies').val());
+   $clone.find('.total_companies').find('label').text($('#total_companies').val());
+
+   $CONTAINER.append($clone);
+
+   $('#position option:selected').remove();
+
+ });
+
+ $('.btn-delete-company').click(function(){
+   var $this = $(this);
+   var divToDelete = $($this.context.parentElement.parentElement);
+
+   var newOption = $(document.createElement("option"));
+   newOption.val(divToDelete.find('.position').find('input').val());
+   newOption.text(divToDelete.find('.position').find('label').text());
+   $('#position').append(newOption);
+
+   divToDelete.remove();
+ });
 
 </script>
 
