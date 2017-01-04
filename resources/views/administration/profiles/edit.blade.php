@@ -1,6 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
+<?php
+
+  function containsPosition($id,$companies)
+  {
+    foreach ($companies as $company) {
+      if($company->position == $id){
+        return true;
+      }
+    }
+    return false;
+  }
+
+ ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -45,7 +58,7 @@
                 </div>
                 <div class="col-md-8">
                     <label>Foto Detalle</label><br>
-                  <img class="img-thumbnail" data-src="{{ (isset($profile->picture)) ? $profile->picture : 'holder.js/200x150' }}" />
+                  <img class="img-thumbnail" data-src="{{ (isset($profile->person->img)) ? $profile->person->img : 'holder.js/200x150' }}" />
                   <input type="file" name="profile" placeholder="ingrese">
                 </div>
               </div>
@@ -59,6 +72,14 @@
                   <label for="email">Apellido</label>
                   <input type="text" class="form-control" name="lastname"value="{{$profile->person->lastname}}"  id="lastname" placeholder="Ingrese el apellido" required>
                 </div>
+              </div>
+              <div class="form-group">
+                  <label for="politicalParty">Partido Político</label>
+                  <select name="politicalParty" class="form-control">
+                    @foreach ($politicalParties as $politicalParty)
+                    <option value="{{$politicalParty->id}}">{{$politicalParty->name}}</option>
+                    @endforeach
+                  </select>
               </div>
               <div class="form-group">
                 <label for="email">Descripción</label>
@@ -176,13 +197,462 @@
             </div>
           </div>
           <div class="box-body">
-            <div class="form-horizontal">
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">SRI</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                      <label>Inpuesto a la Renta</label>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Año</th>
+                              <th>Inpuesto</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody id="sri-impuesto-grid">
+                            @foreach([] as $i => $rentTax)
+                            <tr class="">
+                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="rentTax[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="rentTax[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                          <tfooter>
+                            <tr class="model-sri-taxes hidden">
+                              <input type="hidden" name="id-model" value="-1"/>
+                              <input type="hidden" name="type-model" value="-1"/>
+                              <td class="year"><label></label><input type="hidden" name="year-model" value="-1"/></td>
+                              <td class="tax"><label></label><input type="hidden" name="tax-model" value="-1"/></td>
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                          </tfooter>
+                        </table>
+                      </div>
+                      </div>
+                      <!-- End col --->
+                      <div class="col-md-6">
+                      <label>Inpuesto a la Salida Divisas</label>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Año</th>
+                              <th>Inpuesto</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody id="sri-divisas-grid">
+                            @foreach([] as $i => $rentTax)
+                            <tr class="">
+                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="rentTax[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="rentTax[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                      </div>
+                    </div>
+                    <!-- End col --->
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Tipo</label>
+                        <select id="taxType" class="form-control">
+                          <option value="1">Renta</option>
+                          <option value="2">Salida Divisas</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label>Año</label>
+                        <select id="taxYear" class="form-control">
+                          @foreach($years as $year)
+                            <option value="{{$year}}">{{$year}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Valor</label>
+                      <input id="taxValue" type="text" name="tax-value" class="form-control" placeholder="Inpuesto">
+                    </div>
+                  </div>
+                  <div class="box-footer">
+                    <button id="add-to-sri" type="button" class="btn btn-success">Agregar</button>
+                  </div>
+                </div>
+              </div>
             </div>
+            <!-- END ROW -->
+
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Declaración patrimonial</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-group row">
+                      <div class="col-md-3">
+                        <label># Casas</label>
+                        <input type="number" name="houses" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="Casas">
+                      </div>
+                      <div class="col-md-3">
+                        <label># Carros</label>
+                        <input type="number" name="cars" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->cars : 0)}}" placeholder="Carros">
+                      </div>
+                      <div class="col-md-3">
+                        <label>$ Dinero</label>
+                        <input type="number" name="money" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
+                      </div>
+                      <div class="col-md-3">
+                        <label># Compañias</label>
+                        <input type="number" name="companies" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->companies : 0)}}" placeholder="Compañias">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Declaración actual</label>
+                      </div>
+                      <div class="col-md-6">
+                        <label>Declaración previa</label>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="date">Fecha actual</label>
+                        <input type="date" class="form-control" name="actualDate-declaration" id="actualDeclarationDate">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="date">Fecha previa</label>
+                        <input type="date" class="form-control" name="actualDate-declaration" id="previousDeclarationDate">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Activos Actuales</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Activos Previos</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Pasivos Actuales</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Pasivos Previos</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Patromonio Actual</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Patromonio Previos</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                      </div>
+                    </div>
+                </div>
+                <!-- END BOX -->
+              </div>
+            </div>
+              </div>
+            <!-- END ROW -->
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-info">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Superintendencia</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Posición</th>
+                            <th># Companias</th>
+                            <th>Acción</th>
+                          </tr>
+                        </thead>
+                        <tbody id="position-grid">
+                          @foreach($profile->companies as $i => $company)
+                          <tr class="">
+                            <input type="hidden" name="company[{{$i}}]['id']" value="{{$company->id}}"/>
+                            <td class="position"><label>{{$company->position}}</label><input type="hidden" name="company[{{$i}}]['position']" value="{{$company->position}}"/></td>
+                            <td class="total_companies"><label>{{$company->total_companies}}</label><input type="hidden" name="company[{{$i}}]['total_companies']" value="{{$company->total_companies}}"/></td>
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete-company">Eliminar</button></td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                        <tfooter>
+                          <tr class="model-companies hidden">
+                            <input type="hidden" name="id-model" value="-1"/>
+                            <td class="position"><label></label><input type="hidden" name="position-model" value="-1"/></td>
+                            <td class="total_companies"><label></label><input type="hidden" name="total_companies-model" value="-1"/></td>
+                            <td class="action"><button type="button" class="btn btn-danger btn-delete-company">Eliminar</button></td>
+                          </tr>
+                        </tfooter>
+                      </table>
+                    </div>
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label for="name">Posición</label>
+                          <select id="position" name="type-timeline" class="form-control">
+                            @if(!containsPosition(1,$profile->companies))
+                            <option value="1">Presidente</option>
+                            @endif
+                            @if(!containsPosition(2,$profile->companies))
+                            <option value="2">Gerente</option>
+                            @endif
+                            @if(!containsPosition(3,$profile->companies))
+                            <option value="3">Accionista</option>
+                            @endif
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="name"># Companias</label>
+                          <input type="number" class="form-control" name="endDate-timeline" id="total_companies">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="box-footer">
+                    <button id="add-to-companies" type="button" class="btn btn-success">Agregar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-danger">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Antecedentes</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="row-fluid">
+                      <h4>Penales</h4>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-3">
+                        <label>Si</label> <br><input type="checkbox" name="hasPenals" />
+                      </div>
+                        <div class="col-md-9">
+                          <label>Cantidad</label>
+                          <input type="number" class="form-control" name="penalsNumber" disabled/>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                      <h4>Judiciales</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                      <label>Actor</label>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Tipo</th>
+                              <th>Número</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody id="actor-grid">
+                            @foreach([] as $i => $judicial)
+                            <tr class="">
+                              <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
+                              <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
+                              <td class="type"><label>{{$judicial->type}}</label><input type="hidden" name="judicial[{{$i}}]['type']" value="{{$judicial->type}}"/></td>
+                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
+
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                          <tfooter>
+                            <tr class="model-actor hidden">
+                              <input type="hidden" name="id-model" value="-1"/>
+                              <input type="hidden" name="type-model" value="-1"/>
+                              <td class="type"><label></label><input type="hidden" name="type-model" value="-1"/></td>
+                              <td class="number"><label></label><input type="hidden" name="number-model" value="-1"/></td>
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                          </tfooter>
+                        </table>
+                      </div>
+                      </div>
+                      <!-- End col --->
+                      <div class="col-md-6">
+                      <label>Demandado</label>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Tipo</th>
+                              <th>Número</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody id="demandado-grid">
+                            @foreach([] as $i => $judicial)
+                            <tr class="">
+                              <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
+                              <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
+                              <td class="type"><label>{{$judicial->type}}</label><input type="hidden" name="judicial[{{$i}}]['type']" value="{{$judicial->type}}"/></td>
+                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
+
+                              <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                      </div>
+                    </div>
+                    <!-- End col --->
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label>Es</label>
+                        <select id="judgment" class="form-control">
+                          <option value="1">Actor</option>
+                          <option value="2">Demandado</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label>Tipo</label>
+                        <select id="jugmentType" class="form-control">
+                          @foreach($judgment_types as $judgment_type)
+                            <option value="{{$judgment_type->id}}">{{$judgment_type->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Número de casos</label>
+                      <input id="jugdmentCount" type="text" name="tax-value" class="form-control" placeholder="Inpuesto">
+                    </div>
+                  </div>
+                  <div class="box-footer">
+                    <button id="add-to-judgment" type="button" class="btn btn-success">Agregar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Senecyt</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <label>Profesión</label>
+                        <input type="text" name="tax-value" class="form-control" placeholder="Ingrese el título universitario">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-4">
+                        <label># Pregrado</label>
+                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="Casas">
+                      </div>
+                      <div class="col-md-4">
+                        <label># Posgrado</label>
+                        <input type="number" name="posgrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->cars : 0)}}" placeholder="Carros">
+                      </div>
+                      <div class="col-md-4">
+                        <label># Phd</label>
+                        <input type="number" name="phd" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-horizontal">
+                    </div>
 
 
-          </div>
-          <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Editar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+            <!-- ROW -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-warning">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Contraloría</h3>
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-group row">
+                      <div class="col-md-12">
+                        <label>Número de Procesos</label>
+                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="0">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-horizontal">
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END ROW -->
+
+
           </div>
         </div>
       </div>
@@ -287,4 +757,160 @@
 
   sortInputsTimeline();
 </script>
+
+
+<script>
+
+  var $SRIIMPUESTOSCONTAINER = $('#sri-impuesto-grid');
+  var $SRIDIVISASCONTAINER = $('#sri-divisas-grid');
+
+  $('#taxType').change(function(){
+    loadYears();
+  });
+
+  function generateLastYears()
+  {
+    //TODO: Generar los los años. Y refrescar en la opción de editar para que se vayan quitando los años.
+  }
+
+  function loadYears()
+  {
+    switch ($('#taxType').val()) {
+      case "1":
+        break;
+      case "2":
+        break;
+      default:
+        break;
+    }
+  }
+
+  $('#add-to-sri').click(function(){
+    var index = 0;
+    switch ($('#taxType').val()) {
+      case "1":
+      index  = $SRIIMPUESTOSCONTAINER.find('tr').length;
+        break;
+      case "2":
+      index = 6 + $SRIDIVISASCONTAINER.find('tr').length;
+        break;
+      default:
+        break;
+    }
+
+    var clone = $('.model-sri-taxes').clone(true).removeClass('hidden model-sri-taxes');
+    clone.find('input[name=id-model]').attr('name' , 'sri['+index+']["id"]');
+    clone.find('input[name=type-model]').attr('name' , 'sri['+index+']["type"]');
+    clone.find('input[name=type-model]').val($('#taxType').val());
+
+    clone.find('.year').find('input').attr('name' , 'sri['+index+']["year"]');
+    clone.find('.year').find('input').val($('#taxYear').val());
+    clone.find('.year').find('label').text($('#taxYear').val());
+
+    clone.find('.tax').find('input').attr('name' , 'sri['+index+']["tax"]');
+    clone.find('.tax').find('input').val($('#taxValue').val());
+    clone.find('.tax').find('label').text($('#taxValue').val());
+
+    switch ($('#taxType').val()) {
+      case "1":
+        $SRIIMPUESTOSCONTAINER.append(clone);
+        break;
+      case "2":
+        $SRIDIVISASCONTAINER.append(clone);
+        break;
+      default:
+        break;
+    }
+
+  });
+
+
+</script>
+<script>
+
+ var $CONTAINER = $('#position-grid');
+
+ $('#add-to-companies').click(function () {
+   var index = $('#position-grid').find('tr').length;
+   var $clone = $('.model-companies').clone(true).removeClass('hidden model-companies');
+   $clone.find('input').attr('name' , 'company['+index+']["id"]');
+   $clone.find('.position').find('input').attr('name' , 'company['+index+']["position"]');
+   $clone.find('.position').find('input').val($('#position').val());
+   $clone.find('.position').find('label').text($('#position option:selected').text());
+
+   $clone.find('.total_companies').find('input').attr('name' , 'company['+index+']["total_companies"]');
+   $clone.find('.total_companies').find('input').val($('#total_companies').val());
+   $clone.find('.total_companies').find('label').text($('#total_companies').val());
+
+   $CONTAINER.append($clone);
+
+   $('#position option:selected').remove();
+
+ });
+
+ $('.btn-delete-company').click(function(){
+   var $this = $(this);
+   var divToDelete = $($this.context.parentElement.parentElement);
+
+   var newOption = $(document.createElement("option"));
+   newOption.val(divToDelete.find('.position').find('input').val());
+   newOption.text(divToDelete.find('.position').find('label').text());
+   $('#position').append(newOption);
+
+   divToDelete.remove();
+ });
+
+</script>
+
+<script>
+
+  var $ACTORCONTAINER = $('#actor-grid');
+  var $DEMANDADOCONTAINER = $('#demandado-grid');
+
+
+  $('#add-to-antecedente').click(function(){
+    var index = 0;
+    switch ($('#taxType').val()) {
+      case "1":
+      index  = $ACTORCONTAINER.find('tr').length;
+        break;
+      case "2":
+      index = 6 + $DEMANDADOCONTAINER.find('tr').length;
+        break;
+      default:
+        break;
+    }
+
+    var clone = $('.model-actor').clone(true).removeClass('hidden model-actor');
+    clone.find('input[name=id-model]').attr('name' , 'judicial['+index+']["id"]');
+    clone.find('input[name=type-model]').attr('name' , 'judicial['+index+']["judgment_type_id"]');
+    clone.find('input[name=type-model]').val($('#judgment_type_id').val());
+
+    clone.find('.type').find('input').attr('name' , 'judicial['+index+']["type"]');
+    clone.find('.type').find('input').val($('#type').val());
+    clone.find('.type').find('label').text($('#type').val());
+
+    clone.find('.number').find('input').attr('name' , 'judicial['+index+']["number"]');
+    clone.find('.number').find('input').val($('#number').val());
+    clone.find('.number').find('label').text($('#number').val());
+
+    switch ($('#judgment_type_id').val()) {
+      case "1":
+        $ACTORCONTAINER.append(clone);
+        break;
+      case "2":
+        $DEMANDADOCONTAINER.append(clone);
+        break;
+      default:
+        break;
+    }
+
+  });
+
+
+</script>
+
+
+
+
 @endsection

@@ -23,12 +23,12 @@ class Profile extends Model
 
     public function companies()
     {
-      return $this->hasMany(Compnany::class);
+      return $this->hasMany(Company::class);
     }
 
-    public function heritages()
+    public function heritage()
     {
-      return $this->hasMany(Heritage::class);
+      return $this->hasOne(Heritage::class);
     }
 
     public function sri()

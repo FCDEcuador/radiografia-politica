@@ -26,7 +26,7 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <form action="{{URL::to(route('political_party.store'))}}" method="POST">
+          <form action="{{URL::to(route('political_party.store'))}}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
             <div class="box-body">
               <div class="form-group">
@@ -35,8 +35,7 @@
               </div>
               <div class="col-md-4">
                 <label>Foto Partido Politico</label><br>
-                <img class="img-circle" data-src="{{ (isset($profile->picture)) ? $profile->picture : 'holder.js/150x150' }}" />
-                <input type="file" name="profile" placeholder="ingrese">
+                <input type="file" name="logo" placeholder="ingrese">
               </div>
             </div>
             <!-- /.box-body -->
