@@ -501,7 +501,7 @@
                             <tr class="">
                               <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
                               <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
-                              <td class="type"><label>{{$judicial->type}}</label><input type="hidden" name="judicial[{{$i}}]['type']" value="{{$judicial->type}}"/></td>
+                              <td class="typeJudicial"><label>{{$judicial->typeJudicial}}</label><input type="hidden" name="judicial[{{$i}}]['typeJudicial']" value="{{$judicial->typeJudicial}}"/></td>
                               <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
@@ -512,7 +512,7 @@
                             <tr class="model-actor hidden">
                               <input type="hidden" name="id-model" value="-1"/>
                               <input type="hidden" name="type-model" value="-1"/>
-                              <td class="type"><label></label><input type="hidden" name="type-model" value="-1"/></td>
+                              <td class="typeJudicial"><label></label><input type="hidden" name="type-model" value="-1"/></td>
                               <td class="number"><label></label><input type="hidden" name="number-model" value="-1"/></td>
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -537,7 +537,7 @@
                             <tr class="">
                               <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
                               <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
-                              <td class="type"><label>{{$judicial->type}}</label><input type="hidden" name="judicial[{{$i}}]['type']" value="{{$judicial->type}}"/></td>
+                              <td class="typeJudicial"><label>{{$judicial->typeJudicial}}</label><input type="hidden" name="judicial[{{$i}}]['typeJudicial']" value="{{$judicial->typeJudicial}}"/></td>
                               <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
@@ -559,7 +559,7 @@
                       </div>
                       <div class="col-md-6">
                         <label>Tipo</label>
-                        <select id="jugmentType" class="form-control">
+                        <select id="typeJudicial" class="form-control">
                           @foreach($judgment_types as $judgment_type)
                             <option value="{{$judgment_type->id}}">{{$judgment_type->name}}</option>
                           @endforeach
@@ -568,7 +568,7 @@
                     </div>
                     <div class="form-group">
                       <label>Número de casos</label>
-                      <input id="jugdmentCount" type="text" name="tax-value" class="form-control" placeholder="Inpuesto">
+                      <input id="number" type="text" name="tax-value" class="form-control" placeholder="number">
                     </div>
                   </div>
                   <div class="box-footer">
@@ -833,25 +833,24 @@
  $('#add-to-companies').click(function () {
    var index = $('#position-grid').find('tr').length;
    var $clone = $('.model-companies').clone(true).removeClass('hidden model-companies');
-   $clone.find('input').attr('name' , 'company['+index+']["id"]');
-   $clone.find('.position').find('input').attr('name' , 'company['+index+']["position"]');
-   $clone.find('.position').find('input').val($('#position').val());
-   $clone.find('.position').find('label').text($('#position option:selected').text());
+   if(($('#position')[0]).options.length > 0){
+     $clone.find('input').attr('name' , 'company['+index+']["id"]');
+     $clone.find('.position').find('input').attr('name' , 'company['+index+']["position"]');
+     $clone.find('.position').find('input').val($('#position').val());
+     $clone.find('.position').find('label').text($('#position option:selected').text());
 
-   $clone.find('.total_companies').find('input').attr('name' , 'company['+index+']["total_companies"]');
-   $clone.find('.total_companies').find('input').val($('#total_companies').val());
-   $clone.find('.total_companies').find('label').text($('#total_companies').val());
+     $clone.find('.total_companies').find('input').attr('name' , 'company['+index+']["total_companies"]');
+     $clone.find('.total_companies').find('input').val($('#total_companies').val());
+     $clone.find('.total_companies').find('label').text($('#total_companies').val());
 
-   $CONTAINER.append($clone);
-
-   $('#position option:selected').remove();
-
+     $CONTAINER.append($clone);
+     $('#position option:selected').remove();
+   }
  });
 
  $('.btn-delete-company').click(function(){
    var $this = $(this);
    var divToDelete = $($this.context.parentElement.parentElement);
-
    var newOption = $(document.createElement("option"));
    newOption.val(divToDelete.find('.position').find('input').val());
    newOption.text(divToDelete.find('.position').find('label').text());
@@ -868,37 +867,43 @@
   var $DEMANDADOCONTAINER = $('#demandado-grid');
 
 
-  $('#add-to-antecedente').click(function(){
+  $('#add-to-judgment').click(function(){
+    console.log("escribe cualquie cosa");
     var index = 0;
-    switch ($('#taxType').val()) {
+    switch ($('#judgment').val()) {
       case "1":
       index  = $ACTORCONTAINER.find('tr').length;
+      var clone = $('.model-actor').clone(true).removeClass('hidden model-actor');
+      clone.find('input[name=id-model]').attr('name' , 'judicialActor['+index+']["id"]');
+      clone.find('input[name=type-model]').attr('name' , 'judicialActor['+index+']["judgment_type_id"]');
+      clone.find('input[name=type-model]').val($('#judgment_type_id').val());
+
+      clone.find('.typeJudicial').find('input').attr('name' , 'judicialActor['+index+']["typeJudicial"]');
+      clone.find('.typeJudicial').find('input').val($('#typeJudicial').val());
+      clone.find('.typeJudicial').find('label').text($('#typeJudicial option:selected').text());
+
+      clone.find('.number').find('input').attr('name' , 'judicialActor['+index+']["number"]');
+      clone.find('.number').find('input').val($('#number').val());
+      clone.find('.number').find('label').text($('#number').val());
+
+      $ACTORCONTAINER.append(clone);
         break;
       case "2":
-      index = 6 + $DEMANDADOCONTAINER.find('tr').length;
-        break;
-      default:
-        break;
-    }
+      index = $DEMANDADOCONTAINER.find('tr').length;
 
-    var clone = $('.model-actor').clone(true).removeClass('hidden model-actor');
-    clone.find('input[name=id-model]').attr('name' , 'judicial['+index+']["id"]');
-    clone.find('input[name=type-model]').attr('name' , 'judicial['+index+']["judgment_type_id"]');
-    clone.find('input[name=type-model]').val($('#judgment_type_id').val());
+      var clone = $('.model-actor').clone(true).removeClass('hidden model-actor');
+      clone.find('input[name=id-model]').attr('name' , 'judicialDemand['+index+']["id"]');
+      clone.find('input[name=type-model]').attr('name' , 'judicialDemand['+index+']["judgment_type_id"]');
+      clone.find('input[name=type-model]').val($('#judgment_type_id').val());
 
-    clone.find('.type').find('input').attr('name' , 'judicial['+index+']["type"]');
-    clone.find('.type').find('input').val($('#type').val());
-    clone.find('.type').find('label').text($('#type').val());
+      clone.find('.typeJudicial').find('input').attr('name' , 'judicialDemand['+index+']["typeJudicial"]');
+      clone.find('.typeJudicial').find('input').val($('#typeJudicial').val());
+      clone.find('.typeJudicial').find('label').text($('#typeJudicial option:selected').text());
 
-    clone.find('.number').find('input').attr('name' , 'judicial['+index+']["number"]');
-    clone.find('.number').find('input').val($('#number').val());
-    clone.find('.number').find('label').text($('#number').val());
+      clone.find('.number').find('input').attr('name' , 'judicialDemand['+index+']["number"]');
+      clone.find('.number').find('input').val($('#number').val());
+      clone.find('.number').find('label').text($('#number').val());
 
-    switch ($('#judgment_type_id').val()) {
-      case "1":
-        $ACTORCONTAINER.append(clone);
-        break;
-      case "2":
         $DEMANDADOCONTAINER.append(clone);
         break;
       default:
