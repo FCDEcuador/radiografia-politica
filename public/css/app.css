@@ -65,6 +65,11 @@ table {
   src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "OpenSansExtraBold";
+  src: url("../fonts/OpenSans-ExtraBold.ttf") format("truetype");
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -8144,6 +8149,27 @@ html, body, #app {
   font-family: 'OpenSansReuglar' !important;
 }
 
+p {
+  font-family: 'OpenSansReuglar' !important;
+  line-height: 1.2em;
+}
+
+th {
+  font-weight: bold;
+  text-align: -internal-center;
+}
+
+.main-header {
+  margin-top: -22px;
+  min-height: 235px;
+  background: #6c6c6c;
+  background-image: url(../img/banner-home.jpg), -webkit-linear-gradient(top, #6c6c6c 0%, #8a8a8a 100%);
+  background-image: url(../img/banner-home.jpg), linear-gradient(to bottom, #6c6c6c 0%, #8a8a8a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6c6c6c', endColorstr='#8a8a8a',GradientType=0 ), url(../img/banner-home.jpg) no-repeat center center;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .navbar-nav {
   padding-top: 10px;
 }
@@ -8165,12 +8191,24 @@ html, body, #app {
   color: #fff;
 }
 
-.nav-tabs > li > a {
-  color: #5d5d5d;
+.navbar-default .navbar-nav > li > a {
+  font-size: 12px;
   font-family: 'OpenSansBold';
 }
 
-h3, h4 {
+.nav-tabs > li > a {
+  color: #5d5d5d;
+  font-size: 20px;
+  font-family: 'OpenSansBold';
+}
+
+h2, h3 {
+  color: #000;
+  font-weight: bold;
+  font-family: 'OpenSansExtraBold';
+}
+
+h4 {
   color: #000;
   font-weight: bold;
   font-family: 'OpenSansBold';
@@ -8239,7 +8277,7 @@ body:before {
 .footer-title-head {
   margin-bottom: 10px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'OpenSansBold';
 }
 
@@ -8251,7 +8289,7 @@ body:before {
 /* CARDS */
 .binomial > div.president {
   z-index: 99;
-  width: 150px;
+  width: 200px;
   display: inline-block;
   position: relative;
   text-align: center;
@@ -8267,11 +8305,16 @@ body:before {
   color: #000;
   top: 0;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   background: rgba(33, 150, 243, 0.45);
   border-radius: 50%;
+  text-decoration: none;
   padding-top: 40%;
+}
+
+.binomial > div.president > img {
+  border: 3px solid #000;
 }
 
 .binomial > div.president > a > span {
@@ -8281,8 +8324,8 @@ body:before {
 }
 
 .binomial > div.vicepresident {
-  margin-left: -15px;
-  width: 100px;
+  margin-left: -35px;
+  width: 150px;
   display: inline-block;
   margin-top: 15px;
 }
@@ -8295,13 +8338,15 @@ body:before {
   display: none;
   z-index: 80;
   color: #000;
-  top: 25px;
+  top: 50px;
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background: rgba(33, 150, 243, 0.45);
   border-radius: 50%;
-  padding-top: 15%;
+  padding-top: 20%;
+  padding-left: 10%;
+  text-decoration: none;
   text-align: center;
 }
 
@@ -8310,6 +8355,14 @@ body:before {
   font-size: 11px;
   font-family: 'OpenSansBold';
   color: #fff;
+}
+
+.binomial > div.vicepresident > img {
+  vertical-align: baseline;
+}
+
+.binomial > div.president > img {
+  vertical-align: baseline;
 }
 
 .tab-pane {
@@ -8321,17 +8374,22 @@ body:before {
   font-family: 'OpenSansReuglar';
 }
 
-.vicepresident-label {
+.vicepresident-label > label {
+  color: gray;
+  cursor: pointer;
   font-family: 'OpenSansBold';
   text-decoration: underline;
   margin-bottom: 0px;
+  width: 100%;
 }
 
-.president-label {
+.president-label > label {
   color: #000;
+  cursor: pointer;
   font-family: 'OpenSansBold';
   text-decoration: underline;
   margin-bottom: 0px;
+  width: 100%;
 }
 
 .politic-position {
@@ -8348,14 +8406,27 @@ body:before {
 .btn-dark {
   background: #000;
   color: #fff;
+  margin-bottom: 10px;
 }
 
 #transparency > div.row > div {
   padding: 10px;
 }
 
+.well-transparency {
+  position: relative;
+  padding-bottom: 40px;
+}
+
 .well-body {
   margin-top: 5px;
+}
+
+.well-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-right: 30px;
 }
 
 .well-footer > button {
@@ -8376,6 +8447,49 @@ body:before {
 .sri-table > thead {
   background: #2196F3;
   color: #fff;
+}
+
+.profile-description {
+  text-align: justify;
+}
+
+.profile-socials > a {
+  margin: 5px 10px;
+}
+
+.profile-socials > a > i {
+  color: #000;
+}
+
+.share-transaprency > a > i {
+  color: #000;
+  font-size: 20px;
+}
+
+/* PATRIMONIO */
+.patrimonial-declaration-icons {
+  text-align: center;
+}
+
+.patrimonial-declaration-icons > div > span {
+  color: #3b81c4;
+  font-weight: bold;
+}
+
+.table-vertical > tbody > tr > td, .table-vertical > tbody > tr > th {
+  border-top: 0;
+}
+
+.table-vertical > tbody > tr > th {
+  text-align: right;
+}
+
+.table-vertical > tbody > tr > td {
+  text-align: left;
+}
+
+.table-vertical > tbody > tr > th {
+  border-right: 1px solid #ddd;
 }
 
 /*# sourceMappingURL=app.css.map */
