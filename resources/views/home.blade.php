@@ -29,18 +29,18 @@
               <div class="col-md-8 col-lg-6">
                 <div class="binomial">
                   <div class="president">
-                    <img ng-src="{{asset('img').'/'}}<% binomial.president.picture %>" alt="<% binomial.president.name %>" class="img-circle" width="150px">
+                    <img ng-src="{{asset('img/perfiles').'/'}}<% binomial.president.picture %>" alt="<% binomial.president.name %>" class="img-circle" width="150px">
                     <a href="{{URL::to('/perfil/1')}}"><span>VER PERFIL</span></a>
                   </div>
                   <div class="vicepresident">
-                    <img ng-src="{{asset('img').'/'}}<% binomial.vicepresident.picture %>" alt="<% binomial.vicepresident.name %>" class="img-circle" width="100px">
+                    <img ng-src="{{asset('img/perfiles').'/'}}<% binomial.vicepresident.picture %>" alt="<% binomial.vicepresident.name %>" class="img-circle" width="100px">
                     <a href="{{URL::to('/perfil/1')}}"><span>VER PERFIL</span></a>
                   </div>
                 </div>
               </div>
               <div class="col-md-4 col-lg-6" style="text-align: center;">
                   <div class="row">
-                    <img src="{{asset('img/alianza-pais.jpg')}}" class="political-party-logo" >
+                    <img src="{{asset('img/political-parties').'/'}}<% binomial.partido.icon %>" class="political-party-logo" width="50px">
                   </div>
                   <div class="row">
                     <label class="president-label"><% binomial.president.name + " " +  binomial.president.lastname %></label><br>
