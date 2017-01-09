@@ -95,6 +95,22 @@
                   <input type="text" class="form-control" name="twitter"value="{{$profile->person->lastname}}"  id="lastname" placeholder="Ingrese el apellido">
                 </div>
               </div>
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="curriculum">Curriculum</label>
+                  <input type="file" class="form-control" name="Curriculum"  placeholder="Ingrese el Curriculum">
+                </div>
+                <div class="col-md-6">
+                  <label for="government">Plan de Gobierno</label>
+                  <input type="file" class="form-control" name="Gobierno" placeholder="Ingrese el plan de gobierno">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="observatory">Observatorio</label>
+                  <input type="text" class="form-control" name="Observatorio" placeholder="Ingrese el url del Observatorio" >
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -295,9 +311,21 @@
                       <label>Valor</label>
                       <input id="taxValue" type="text" name="tax-value" class="form-control" placeholder="Inpuesto">
                     </div>
+                    <div class="box-footer">
+                      <button id="add-to-sri" type="button" class="btn btn-success">Agregar</button>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="fuente">Url Fuente</label>
+                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="archivo">Archivo Fuente</label>
+                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                      </div>
                   </div>
-                  <div class="box-footer">
-                    <button id="add-to-sri" type="button" class="btn btn-success">Agregar</button>
+
                   </div>
                 </div>
               </div>
@@ -382,6 +410,16 @@
                         <input type="text" name="tax-value" class="form-control" placeholder="Valor">
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="fuente">Url Fuente</label>
+                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="archivo">Archivo Fuente</label>
+                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                      </div>
+                  </div>
                 </div>
                 <!-- END BOX -->
               </div>
@@ -449,10 +487,22 @@
                           <input type="number" class="form-control" name="endDate-timeline" id="total_companies">
                         </div>
                       </div>
-                  </div>
+
                   <div class="box-footer">
                     <button id="add-to-companies" type="button" class="btn btn-success">Agregar</button>
                   </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label for="fuente">Url Fuente</label>
+                      <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="archivo">Archivo Fuente</label>
+                      <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                    </div>
+                </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -569,11 +619,23 @@
                     <div class="form-group">
                       <label>Número de casos</label>
                       <input id="number" type="text" name="tax-value" class="form-control" placeholder="number">
-                    </div>
+
                   </div>
                   <div class="box-footer">
                     <button id="add-to-judgment" type="button" class="btn btn-success">Agregar</button>
                   </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label for="fuente">Url Fuente</label>
+                      <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="archivo">Archivo Fuente</label>
+                      <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                    </div>
+                </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -611,6 +673,16 @@
                         <input type="number" name="phd" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="fuente">Url Fuente</label>
+                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="archivo">Archivo Fuente</label>
+                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                      </div>
+                  </div>
                   </div>
                   <div class="box-body">
                     <div class="form-horizontal">
@@ -640,6 +712,16 @@
                         <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="0">
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="fuente">Url Fuente</label>
+                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="archivo">Archivo Fuente</label>
+                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                      </div>
+                  </div>
                   </div>
                   <div class="box-body">
                     <div class="form-horizontal">

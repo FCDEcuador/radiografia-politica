@@ -67,10 +67,10 @@
         <div id="public-wrapper" class="events-wrapper">
           <div class="events">
             <ol>
-              <li><a href="#0" data-date="16/01/2014" class="selected">16 Jan</a></li>
-              <li><a href="#0" data-date="09/07/2014">09 Jul</a></li>
-              <li><a href="#0" data-date="30/08/2014">30 Aug</a></li>
-              <li><a href="#0" data-date="15/09/2014">15 Sep</a></li>
+			        <li><a href="#0" data-date="01/01/0001" class="selected">1998</a></li>
+              <li><a href="#0" data-date="01/01/0002">1999</a></li>
+              <li><a href="#0" data-date="01/01/0003">2002</a></li>
+              <li><a href="#0" data-date="01/01/0004">2003</a></li>
             </ol>
 
             <span class="filling-line" aria-hidden="true"></span>
@@ -89,11 +89,17 @@
   		<div id="private-wrapper" class="events-wrapper">
   			<div class="events">
   				<ol>
-  					<li><a href="#0" data-date="16/01/2014">16 Jan</a></li>
-  					<li><a href="#0" data-date="28/02/2014">28 Feb</a></li>
-  					<li><a href="#0" data-date="20/04/2014">20 Mar</a></li>
-  					<li><a href="#0" data-date="19/01/2015">29 Jan</a></li>
-  					<li><a href="#0" data-date="03/03/2015">3 Mar</a></li>
+  					<li><a href="#0" data-date="01/01/1001">1977</a></li>
+  					<li><a href="#0" data-date="01/01/1002">1980</a></li>
+  					<li><a href="#0" data-date="01/01/1003">1984</a></li>
+  					<li><a href="#0" data-date="01/01/1004">1987</a></li>
+  					<li><a href="#0" data-date="01/01/1005">1989</a></li>
+					<li><a href="#0" data-date="01/01/1006">1989</a></li>
+  					<li><a href="#0" data-date="01/01/1007">1993</a></li>
+  					<li><a href="#0" data-date="01/01/1008">1994</a></li>
+  					<li><a href="#0" data-date="01/01/1009">1994</a></li>
+  					<li><a href="#0" data-date="01/01/1010">2008</a></li>
+  					<li><a href="#0" data-date="01/01/1011">2010</a></li>
   				</ol>
 
   				<span class="filling-line" aria-hidden="true"></span>
@@ -112,17 +118,11 @@
       <div id="politician-wrapper" class="events-wrapper">
         <div class="events">
           <ol>
-            <li><a href="#0" data-date="16/01/2014">16 Jan</a></li>
-            <li><a href="#0" data-date="28/02/2014">28 Feb</a></li>
-            <li><a href="#0" data-date="20/04/2014">20 Mar</a></li>
-            <li><a href="#0" data-date="20/05/2014">20 May</a></li>
-            <li><a href="#0" data-date="09/07/2014">09 Jul</a></li>
-            <li><a href="#0" data-date="30/08/2014">30 Aug</a></li>
-            <li><a href="#0" data-date="15/09/2014">15 Sep</a></li>
-            <li><a href="#0" data-date="01/11/2014">01 Nov</a></li>
-            <li><a href="#0" data-date="10/12/2014">10 Dec</a></li>
-            <li><a href="#0" data-date="19/01/2015">29 Jan</a></li>
-            <li><a href="#0" data-date="03/03/2015">3 Mar</a></li>
+            <li><a href="#0" data-date="01/01/2001">2006</a></li>
+  			<li><a href="#0" data-date="01/01/2002">2011</a></li>
+  			<li><a href="#0" data-date="01/01/2003">2013</a></li>
+  			<li><a href="#0" data-date="01/01/2004">2014</a></li>
+  			<li><a href="#0" data-date="01/01/2005">2016</a></li>
           </ol>
 
           <span class="filling-line" aria-hidden="true"></span>
@@ -138,93 +138,172 @@
 
   	<div class="events-content">
   		<ol>
-  			<li class="selected" data-date="16/01/2014">
-  				<h2>Horizontal Timeline</h2>
-  				<em>January 16th, 2014</em>
+
+			<!-- VIDA PUBLICA -->
+
+  			<li class="selected" data-date="01/01/0001">
+  				<h4>Vida Pública</h4>
+  				<em>1998 - 1999</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Gobernador del Guayas (gobierno de Jamil Mahuad)
   				</p>
   			</li>
 
-  			<li data-date="28/02/2014">
-  				<h2>Event title here</h2>
-  				<em>February 28th, 2014</em>
+  			<li data-date="01/01/0002">
+  				<h4>Vida Pública</h4>
+  				<em>1999</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Superministro de Economía y Energía (gobierno de Jamil Mahuad)
   				</p>
   			</li>
 
-  			<li data-date="20/04/2014">
-  				<h2>Event title here</h2>
-  				<em>March 20th, 2014</em>
+  			<li data-date="01/01/0003">
+  				<h4>Vida Pública</h4>
+  				<em>2002 - 2007</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Presidente de la Fundación Terminal Terrestre y encargado de la reconstrucción del Terminal Terrestre de Guayaquil.
   				</p>
   			</li>
 
-  			<li data-date="20/05/2014">
-  				<h2>Event title here</h2>
-  				<em>May 20th, 2014</em>
+  			<li data-date="01/01/0004">
+  				<h4>Vida Pública</h4>
+  				<em>2003</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Embajador Itinerante de Ecuador de relaciones con EEUU (gobierno de Lucio Gutierrez)
   				</p>
   			</li>
 
-  			<li data-date="09/07/2014">
-  				<h2>Event title here</h2>
-  				<em>July 9th, 2014</em>
+			<!-- FIN VIDA PUBLICA -->
+
+			<!-- INICIO VIDA PRIVADA -->
+			<li data-date="01/01/1001">
+  				<h4>Vida Privada</h4>
+  				<em>1977-1980 </em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Gerente de ProCrédito.
   				</p>
   			</li>
 
-  			<li data-date="30/08/2014">
-  				<h2>Event title here</h2>
-  				<em>August 30th, 2014</em>
+  			<li data-date="01/01/1002">
+  				<h4>Vida Privada</h4>
+  				<em>1980-1989</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Presidente ejecutivo de Finansur.
   				</p>
   			</li>
 
-  			<li data-date="15/09/2014">
-  				<h2>Event title here</h2>
-  				<em>September 15th, 2014</em>
+  			<li data-date="01/01/1003">
+  				<h4>Vida Privada</h4>
+  				<em>1984</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Vicepresidente de la filial nacional de Coca-Cola, empresa a la que rehabilitó.
   				</p>
   			</li>
 
-  			<li data-date="01/11/2014">
-  				<h2>Event title here</h2>
-  				<em>November 1st, 2014</em>
+  			<li data-date="01/01/1004">
+  				<h4>Vida Privada</h4>
+  				<em>1987-1988</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Presidente de la Asociación de Compañías Financieras del Ecuador.
+  				</p>
+  			</li>
+			<li data-date="01/01/1005">
+  				<h4>Vida Privada</h4>
+  				<em>1989</em>
+  				<p>
+  					Vicepresidencia Ejecutiva y la Gerencia General del Banco de Guayaquil.
   				</p>
   			</li>
 
-  			<li data-date="10/12/2014">
-  				<h2>Event title here</h2>
-  				<em>December 10th, 2014</em>
+  			<li data-date="01/01/1006">
+  				<h4>Vida Privada</h4>
+  				<em>1989-1999</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Adquisición de la empresa Mavesa, representante de Hino.
   				</p>
   			</li>
 
-  			<li data-date="19/01/2015">
-  				<h2>Event title here</h2>
-  				<em>January 19th, 2015</em>
+  			<li data-date="01/01/1007">
+  				<h4>Vida Privada</h4>
+  				<em>1993-1997</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Presidente de la Asociación de Bancos Privados del Ecuador.
   				</p>
   			</li>
 
-  			<li data-date="03/03/2015">
-  				<h2>Event title here</h2>
-  				<em>March 3rd, 2015</em>
+  			<li data-date="01/01/1008">
+  				<h4>Vida Privada</h4>
+  				<em>1994</em>
   				<p>
-  					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium officia, fugit recusandae ipsa, quia velit nulla adipisci? Consequuntur aspernatur at, eaque hic repellendus sit dicta consequatur quae, ut harum ipsam molestias maxime non nisi reiciendis eligendi! Doloremque quia pariatur harum ea amet quibusdam quisquam, quae, temporibus dolores porro doloribus.
+  					Vocal en la Junta Monetaria en representación de los bancos privados nacionales.
   				</p>
   			</li>
+			<li data-date="01/01/1009">
+  				<h4>Vida Privada</h4>
+  				<em>1994-2012</em>
+  				<p>
+  					Presidente Ejecutivo del Banco de Guayaquil.
+  				</p>
+  			</li>
+
+  			<li data-date="01/01/1010">
+  				<h4>Vida Privada</h4>
+  				<em>2008</em>
+  				<p>
+  					Funda “Banco del Barrio”.
+  				</p>
+  			</li>
+
+  			<li data-date="01/01/1011">
+  				<h4>Vida Privada</h4>
+  				<em>2010</em>
+  				<p>
+  					El BID reconoce el “Banco del Barrio” como el mayor proyecto de bancarización de Latinoamérica.
+  				</p>
+  			</li>
+			<!-- FIN VIDA PRIVADA -->
+
+			<!-- INICIO VIDA POLITICA -->
+			<li data-date="01/01/2001">
+  				<h4>Vida Privada</h4>
+  				<em>2006</em>
+  				<p>
+  					Miembro del movimiento político liberal UNO.
+  				</p>
+  			</li>
+
+  			<li data-date="01/01/2002">
+  				<h4>Vida Privada</h4>
+  				<em>2011</em>
+  				<p>
+  					Fundador del movimiento político CREO.
+  				</p>
+  			</li>
+
+  			<li data-date="01/01/2003">
+  				<h4>Vida Privada</h4>
+  				<em>2013</em>
+  				<p>
+  					Candidato a Presidente por el movimiento CREO.
+  				</p>
+  			</li>
+
+  			<li data-date="01/01/2004">
+  				<h4>Vida Privada</h4>
+  				<em>2014</em>
+  				<p>
+  					Conformó la coalición Compromiso Ecuador.
+  				</p>
+  			</li>
+			<li data-date="01/01/2005">
+  				<h4>Vida Privada</h4>
+  				<em>2016</em>
+  				<p>
+  					Candidato presidencial para las Elecciones 2017 por el movimiento CREO.
+  				</p>
+  			</li>
+             <!-- FIN VIDA POLITICA -->
+
   		</ol>
   	</div> <!-- .events-content -->
   </section>
@@ -253,8 +332,24 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>2018</td>
-                    <td>$7.726,00</td>
+                    <td>2015</td>
+                    <td>$0,00</td>
+                  </tr>
+				 <tr>
+                    <td>2014</td>
+                    <td>$4.884,96</td>
+                  </tr>
+				 <tr>
+                    <td>2013</td>
+                    <td>$27.980,62</td>
+                  </tr>
+				 <tr>
+                    <td>2012</td>
+                    <td>$2.508,52</td>
+                  </tr>
+				 <tr>
+                    <td>2011</td>
+                    <td>$2.224,81</td>
                   </tr>
                 </tbody>
               </table>
@@ -269,8 +364,24 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>2018</td>
-                    <td>$7.726,00</td>
+                    <td>2016</td>
+                    <td>$1.446,32</td>
+                  </tr>
+				 <tr>
+                    <td>2015</td>
+                    <td>$1.645,98</td>
+                  </tr>
+				 <tr>
+                    <td>2014</td>
+                    <td>$2.099,59</td>
+                  </tr>
+				 <tr>
+                    <td>2013</td>
+                    <td>$465,59</td>
+                  </tr>
+				 <tr>
+                    <td>2012</td>
+                    <td>$241,42</td>
                   </tr>
                 </tbody>
               </table>
@@ -301,25 +412,25 @@
                 <div class="img-responsive">
                   <img src="/img/ico-vivienda.png">
                 </div>
-                <span>5</span>
+                <span>2</span>
               </div>
               <div class="col-md-3">
                 <div class="img-responsive">
                   <img src="/img/ico-auto.png">
                 </div>
-                <span>5</span>
+                <span>3</span>
               </div>
               <div class="col-md-3">
                 <div class="img-responsive">
                   <img src="/img/ico-dinero.png">
                 </div>
-                <span>5</span>
+                <span>$80.000,00</span>
               </div>
               <div class="col-md-3">
                 <div class="img-responsive">
                   <img src="/img/ico-industria.png">
                 </div>
-                <span>5</span>
+                <span>0</span>
               </div>
             </div>
             <div class="row">
@@ -375,7 +486,7 @@
               <col width="50%">
               <tr>
                 <th>Gerente</th>
-                <td>1</td>
+                <td>0</td>
               </tr>
               <tr>
                 <th>Presidente</th>
@@ -383,7 +494,7 @@
               </tr>
               <tr>
                 <th>Accionista</th>
-                <td>0</td>
+                <td>1</td>
               </tr>
             </table>
           </div>
@@ -419,7 +530,11 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Civil</td>
+                      <td>Inquilinato</td>
+                      <td>1</td>
+                    </tr>
+				   <tr>
+                      <td>Penal</td>
                       <td>1</td>
                     </tr>
                   </tbody>
@@ -437,7 +552,15 @@
                   <tbody>
                     <tr>
                       <td>Civil</td>
+                      <td>3</td>
+                    </tr>
+				   <tr>
+                      <td>Laboral</td>
                       <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>Constitucional</td>
+                      <td>2</td>
                     </tr>
                   </tbody>
                 </table>
@@ -478,11 +601,11 @@
                 <col width="50%">
                 <tr>
                   <th>Tercer Nivel</th>
-                  <td>1</td>
+                  <td>Licenciado en Administración Pública</td>
                 </tr>
                 <tr>
                   <th>Maestría</th>
-                  <td>2</td>
+                  <td>0</td>
                 </tr>
                 <tr>
                   <th>PhD</th>
