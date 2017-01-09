@@ -9,7 +9,7 @@ jQuery(document).ready(function($){
 			var timeline = $(this),
 				timelineComponents = {};
 			//cache timeline components
-			timelineComponents['timelineWrapper'] = timeline.find('.events-wrapper');
+			timelineComponents['timelineWrapper'] = timeline.find('#public-wrapper');
 			timelineComponents['eventsWrapper'] = timelineComponents['timelineWrapper'].children('.events');
 			timelineComponents['fillingLine'] = timelineComponents['eventsWrapper'].children('.filling-line');
 			timelineComponents['timelineEvents'] = timelineComponents['eventsWrapper'].find('a');
@@ -18,10 +18,37 @@ jQuery(document).ready(function($){
 			timelineComponents['timelineNavigation'] = timeline.find('.cd-timeline-navigation');
 			timelineComponents['eventsContent'] = timeline.children('.events-content');
 
+
+			var timelineComponents2 = {};
+		//cache timeline components
+		timelineComponents2['timelineWrapper'] = timeline.find('#private-wrapper');
+		timelineComponents2['eventsWrapper'] = timelineComponents2['timelineWrapper'].children('.events');
+		timelineComponents2['fillingLine'] = timelineComponents2['eventsWrapper'].children('.filling-line');
+		timelineComponents2['timelineEvents'] = timelineComponents2['eventsWrapper'].find('a');
+		timelineComponents2['timelineDates'] = parseDate(timelineComponents2['timelineEvents']);
+		timelineComponents2['eventsMinLapse'] = minLapse(timelineComponents2['timelineDates']);
+		timelineComponents2['timelineNavigation'] = timeline.find('.cd-timeline-navigation');
+		timelineComponents2['eventsContent'] = timeline.children('.events-content');
+
+		var timelineComponents3 = {};
+	//cache timeline components
+	timelineComponents3['timelineWrapper'] = timeline.find('#politician-wrapper');
+	timelineComponents3['eventsWrapper'] = timelineComponents3['timelineWrapper'].children('.events');
+	timelineComponents3['fillingLine'] = timelineComponents3['eventsWrapper'].children('.filling-line');
+	timelineComponents3['timelineEvents'] = timelineComponents3['eventsWrapper'].find('a');
+	timelineComponents3['timelineDates'] = parseDate(timelineComponents3['timelineEvents']);
+	timelineComponents3['eventsMinLapse'] = minLapse(timelineComponents3['timelineDates']);
+	timelineComponents3['timelineNavigation'] = timeline.find('.cd-timeline-navigation');
+	timelineComponents3['eventsContent'] = timeline.children('.events-content');
+
 			//assign a left postion to the single events along the timeline
 			setDatePosition(timelineComponents, eventsMinDistance);
+			setDatePosition(timelineComponents2, eventsMinDistance);
+				setDatePosition(timelineComponents3, eventsMinDistance);
 			//assign a width to the timeline
 			var timelineTotWidth = setTimelineWidth(timelineComponents, eventsMinDistance);
+				var timelineTotWidth2 = setTimelineWidth(timelineComponents2, eventsMinDistance);
+					var timelineTotWidth3 = setTimelineWidth(timelineComponents3, eventsMinDistance);
 			//the timeline has been initialize - show it
 			timeline.addClass('loaded');
 
@@ -30,10 +57,28 @@ jQuery(document).ready(function($){
 				event.preventDefault();
 				updateSlide(timelineComponents, timelineTotWidth, 'next');
 			});
+
+			timelineComponents2['timelineNavigation'].on('click', '.next', function(event){
+				event.preventDefault();
+				updateSlide(timelineComponents2, timelineTotWidth2, 'next');
+			});
+
+			timelineComponents3['timelineNavigation'].on('click', '.next', function(event){
+				event.preventDefault();
+				updateSlide(timelineComponents3, timelineTotWidth3, 'next');
+			});
 			//detect click on the prev arrow
 			timelineComponents['timelineNavigation'].on('click', '.prev', function(event){
 				event.preventDefault();
 				updateSlide(timelineComponents, timelineTotWidth, 'prev');
+			});
+			timelineComponents2['timelineNavigation'].on('click', '.prev', function(event){
+				event.preventDefault();
+				updateSlide(timelineComponents2, timelineTotWidth2, 'prev');
+			});
+			timelineComponents3['timelineNavigation'].on('click', '.prev', function(event){
+				event.preventDefault();
+				updateSlide(timelineComponents3, timelineTotWidth3, 'prev');
 			});
 			//detect click on the a single event - show new event content
 			timelineComponents['eventsWrapper'].on('click', 'a', function(event){
@@ -44,25 +89,69 @@ jQuery(document).ready(function($){
 				updateFilling($(this), timelineComponents['fillingLine'], timelineTotWidth);
 				updateVisibleContent($(this), timelineComponents['eventsContent']);
 			});
+			timelineComponents2['eventsWrapper'].on('click', 'a', function(event){
+				event.preventDefault();
+				timelineComponents2['timelineEvents'].removeClass('selected');
+				$(this).addClass('selected');
+				updateOlderEvents($(this));
+				updateFilling($(this), timelineComponents2['fillingLine'], timelineTotWidth2);
+				updateVisibleContent($(this), timelineComponents2['eventsContent']);
+			});
+			timelineComponents3['eventsWrapper'].on('click', 'a', function(event){
+				event.preventDefault();
+				timelineComponents3['timelineEvents'].removeClass('selected');
+				$(this).addClass('selected');
+				updateOlderEvents($(this));
+				updateFilling($(this), timelineComponents3['fillingLine'], timelineTotWidth3);
+				updateVisibleContent($(this), timelineComponents3['eventsContent']);
+			});
 
 			//on swipe, show next/prev event content
 			timelineComponents['eventsContent'].on('swipeleft', function(){
 				var mq = checkMQ();
 				( mq == 'mobile' ) && showNewContent(timelineComponents, timelineTotWidth, 'next');
 			});
+
+			timelineComponents2['eventsContent'].on('swipeleft', function(){
+				var mq = checkMQ();
+				( mq == 'mobile' ) && showNewContent(timelineComponents2, timelineTotWidth2, 'next');
+			});
+
+			timelineComponents3['eventsContent'].on('swipeleft', function(){
+				var mq = checkMQ();
+				( mq == 'mobile' ) && showNewContent(timelineComponents3, timelineTotWidth3, 'next');
+			});
+
 			timelineComponents['eventsContent'].on('swiperight', function(){
 				var mq = checkMQ();
-				( mq == 'mobile' ) && showNewContent(timelineComponents, timelineTotWidth, 'prev');
+				( mq == 'mobile' ) && showNewContent(timelineComponents, timelineTotWidth2, 'prev');
+			});
+
+			timelineComponents2['eventsContent'].on('swiperight', function(){
+				var mq = checkMQ();
+				( mq == 'mobile' ) && showNewContent(timelineComponents2, timelineTotWidth2, 'prev');
+			});
+
+			timelineComponents3['eventsContent'].on('swiperight', function(){
+				var mq = checkMQ();
+				( mq == 'mobile' ) && showNewContent(timelineComponents3, timelineTotWidth3, 'prev');
 			});
 
 			//keyboard navigation
-			$(document).keyup(function(event){
+		/*	$(document).keyup(function(event){
 				if(event.which=='37' && elementInViewport(timeline.get(0)) ) {
 					showNewContent(timelineComponents, timelineTotWidth, 'prev');
 				} else if( event.which=='39' && elementInViewport(timeline.get(0))) {
 					showNewContent(timelineComponents, timelineTotWidth, 'next');
 				}
-			});
+
+				if(event.which=='37' && elementInViewport(timeline.get(0)) ) {
+					showNewContent(timelineComponents2, timelineTotWidth2, 'prev');
+				} else if( event.which=='39' && elementInViewport(timeline.get(0))) {
+					showNewContent(timelineComponents2, timelineTotWidth2, 'next');
+				}
+			}); */
+
 		});
 	}
 
