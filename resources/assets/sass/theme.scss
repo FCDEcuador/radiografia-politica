@@ -2,11 +2,34 @@ $primary-color: $black;
 $secondary-color: $white;
 $third-color: #5d5d5d;
 
+$president-profile-img-width: 200px;
+$vicepresident-profile-img-width: 150px;
 html,body,#app
 {
   height: 100%;
   width: 100%;
   font-family: 'OpenSansReuglar' !important;
+}
+p
+{
+    font-family: 'OpenSansReuglar' !important;
+    line-height: 1.2em;
+}
+th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+.main-header
+{
+  margin-top: -22px;
+  min-height: 235px;
+  background: #6c6c6c;
+  background-image: url(../img/banner-home.jpg), -moz-linear-gradient(top, #6c6c6c 0%, #8a8a8a 100%);
+  background-image: url(../img/banner-home.jpg),-webkit-linear-gradient(top, #6c6c6c 0%,#8a8a8a 100%);
+  background-image: url(../img/banner-home.jpg),linear-gradient(to bottom, #6c6c6c 0%,#8a8a8a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6c6c6c', endColorstr='#8a8a8a',GradientType=0 ) ,url(../img/banner-home.jpg) no-repeat center center;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 .navbar-nav
 {
@@ -28,14 +51,24 @@ html,body,#app
 .navbar-default .navbar-brand {
     color: $secondary-color;
 }
-
+.navbar-default .navbar-nav > li > a {
+  font-size: 12px;
+  font-family: 'OpenSansBold';
+}
 .nav-tabs>li>a
 {
   color: $third-color;
+  font-size: 20px;
   font-family: 'OpenSansBold';
 }
 
-h3,h4
+h2,h3
+{
+  color: $primary-color;
+  font-weight: bold;
+  font-family: 'OpenSansExtraBold';
+}
+h4
 {
   color: $primary-color;
   font-weight: bold;
@@ -114,7 +147,7 @@ body:before {
 {
   margin-bottom: 10px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'OpenSansBold';
 }
 
@@ -129,7 +162,7 @@ body:before {
 .binomial > div.president
 {
   z-index: 99;
-  width: 150px;
+  width: $president-profile-img-width;
   display: inline-block;
   position: relative;
   text-align: center;
@@ -146,11 +179,17 @@ body:before {
     color: $primary-color;
     top: 0;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: $president-profile-img-width;
+    height: $president-profile-img-width;
     background: rgba(33, 150, 243, 0.45);
     border-radius: 50%;
+    text-decoration: none;
     padding-top: 40%;
+}
+
+.binomial > div.president > img
+{
+  border: 3px solid #000;
 }
 .binomial > div.president > a > span
 {
@@ -160,8 +199,8 @@ body:before {
 }
 .binomial > div.vicepresident
 {
-  margin-left: -15px;
-  width: 100px;
+  margin-left: -35px;
+  width: $vicepresident-profile-img-width;
   display: inline-block;
   margin-top: 15px;
 }
@@ -174,13 +213,15 @@ body:before {
     display: none;
     z-index: 80;
     color: $primary-color;
-    top: 25px;
+    top: 50px;
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: $vicepresident-profile-img-width;
+    height: $vicepresident-profile-img-width;
     background: rgba(33, 150, 243, 0.45);
     border-radius: 50%;
-    padding-top: 15%;
+    padding-top: 20%;
+    padding-left: 10%;
+    text-decoration: none;
     text-align: center;
 }
 .binomial > div.vicepresident > a > span
@@ -190,6 +231,17 @@ body:before {
     font-family: 'OpenSansBold';
     color: $secondary-color;
 }
+
+.binomial > div.vicepresident > img
+{
+  vertical-align: baseline;
+}
+
+.binomial > div.president > img
+{
+  vertical-align: baseline;
+}
+
 .tab-pane
 {
   padding: 30px;
@@ -200,18 +252,23 @@ body:before {
   padding: 30px;
   font-family: 'OpenSansReuglar';
 }
-.vicepresident-label
+.vicepresident-label > label
 {
+  color: gray;
+  cursor: pointer;
   font-family: 'OpenSansBold';
   text-decoration: underline;
   margin-bottom: 0px;
+  width: 100%;
 }
-.president-label
+.president-label > label
 {
   color: $primary-color;
+  cursor: pointer;
   font-family: 'OpenSansBold';
   text-decoration: underline;
   margin-bottom: 0px;
+  width: 100%;
 }
 .politic-position
 {
@@ -231,15 +288,26 @@ body:before {
 {
   background: $primary-color;
   color: $secondary-color;
+  margin-bottom: 10px;
 }
 
 #transparency>div.row>div
 {
   padding: 10px;
 }
+.well-transparency
+{
+  position:relative;
+  padding-bottom: 40px;
+}
 .well-body
 {
   margin-top: 5px;
+}
+.well-footer
+{
+  position:absolute; bottom:0;    width: 100%;
+  padding-right: 30px;
 }
 .well-footer>button
 {
@@ -260,4 +328,59 @@ body:before {
 {
   background: #2196F3;
   color: $white;
+}
+
+.profile-description
+{
+  text-align: justify;
+}
+
+.profile-socials > a
+{
+  margin: 5px 10px;
+}
+
+.profile-socials > a > i
+{
+  color: $primary-color;
+}
+
+.share-transaprency > a > i
+{
+  color: $primary-color;
+  font-size: 20px;
+}
+
+
+
+/* PATRIMONIO */
+.patrimonial-declaration-icons
+{
+  text-align: center;
+}
+
+.patrimonial-declaration-icons>div>span
+{
+  color: #3b81c4;
+  font-weight: bold;
+}
+
+.table-vertical > tbody > tr > td,.table-vertical > tbody > tr > th
+{
+  border-top: 0;
+}
+
+.table-vertical > tbody > tr > th
+{
+  text-align: right;
+}
+
+.table-vertical > tbody > tr > td
+{
+  text-align: left;
+}
+
+.table-vertical > tbody > tr > th
+{
+  border-right: 1px solid #ddd;
 }

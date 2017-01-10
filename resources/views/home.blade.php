@@ -7,11 +7,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 right">
-      <h3>ELECCIONES 2017</h3>
+      <h2>ELECCIONES 2017</h2>
     </div>
   </div>
-    <br>
-  <br>
   <div class="row">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -26,28 +24,28 @@
           <!-- Init political card -->
           <div class="politics-card col-md-6" ng-repeat="binomial in binomails">
             <div class="row">
-              <div class="col-md-8 col-lg-6">
+              <div class="col-md-10 col-lg-8">
                 <div class="binomial">
                   <div class="president">
-                    <img ng-src="{{asset('img').'/'}}<% binomial.president.picture %>" alt="<% binomial.president.name %>" class="img-circle" width="150px">
+                    <img ng-src="{{asset('img/perfiles').'/'}}<% binomial.president.picture %>" alt="<% binomial.president.name %>" class="img-circle" width="200px">
                     <a href="{{URL::to('/perfil/1')}}"><span>VER PERFIL</span></a>
                   </div>
                   <div class="vicepresident">
-                    <img ng-src="{{asset('img').'/'}}<% binomial.vicepresident.picture %>" alt="<% binomial.vicepresident.name %>" class="img-circle" width="100px">
+                    <img ng-src="{{asset('img/perfiles').'/'}}<% binomial.vicepresident.picture %>" alt="<% binomial.vicepresident.name %>" class="img-circle" width="150px">
                     <a href="{{URL::to('/perfil/1')}}"><span>VER PERFIL</span></a>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 col-lg-6" style="text-align: center;">
+              <div class="col-md-2 col-lg-4" style="text-align: center;">
                   <div class="row">
-                    <img src="{{asset('img/alianza-pais.jpg')}}" class="political-party-logo" >
+                    <img ng-src="{{asset('img/political-parties').'/'}}<% binomial.partido.icon %>" class="political-party-logo" width="70px">
                   </div>
-                  <div class="row">
-                    <label class="president-label"><% binomial.president.name + " " +  binomial.president.lastname %></label><br>
+                  <div class="row" style="line-height: 15px;">
+                    <a class="president-label" href="{{URL::to('/perfil/1')}}"><label><% binomial.president.name + " " +  binomial.president.lastname %></label></a>
                     <label class="politic-position">Candidato Presidencia</label>
                   </div>
-                  <div class="row">
-                    <label class="vicepresident-label"><% binomial.vicepresident.name + " " +  binomial.vicepresident.lastname %></label><br>
+                  <div class="row" style="line-height: 15px;">
+                  <a  class="vicepresident-label" href="{{URL::to('/perfil/1')}}"><label><% binomial.vicepresident.name + " " +  binomial.vicepresident.lastname %></label></a>
                     <label class="politic-position">Candidato Vicepresidencia</label>
                   </div>
               </div>
