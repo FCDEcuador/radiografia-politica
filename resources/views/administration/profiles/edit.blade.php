@@ -148,6 +148,7 @@
                     <td class="title"><label>{{$timeline->shortDescription}}</label><input type="hidden" name="timeline[{{$i}}]['title']" value="{{$timeline->shortDescription}}"/></td>
                     <td class="type"><label>{{$timeline->typeEvent}}</label><input type="hidden" name="timeline[{{$i}}]['type']" value="{{$timeline->typeEvent}}"/></td>
                     <td class="description"><label>{{$timeline->description}}</label><input type="hidden" name="timeline[{{$i}}]['description']" value="{{$timeline->description}}"/></td>
+                    <td class="outstanding"><label>{{$timeline->outstanding}}</label><input type="hidden" name="timeline[{{$i}}]['outstanding']" value="{{$timeline->outstanding}}"/></td>
                     <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                   </tr>
                   @endforeach
@@ -160,6 +161,7 @@
                     <td class="title"><label></label><input type="hidden" name="title-model" value="-1"/></td>
                     <td class="type"><label></label><input type="hidden" name="type-model" value="-1"/></td>
                     <td class="description"><label></label><input type="hidden" name="description-model" value="-1"/></td>
+                    <td class="outstanding"><label></label><input type="hidden" name="outstanding-model" value="-1"/></td>
                     <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                   </tr>
                 </tfooter>
@@ -192,6 +194,12 @@
               <div class="form-group">
                 <label for="email">Descripción</label>
                 <textarea id="description" class="textarea" name="description-timeline" placeholder="Escriba la descripción aquí" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="outstanding">Es Destacado</label>
+                  <input type="checkbox" name="outstanding" id="outstanding" checked="false">
+                </div>
               </div>
           </div>
           <div class="box-footer">
