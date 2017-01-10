@@ -58,6 +58,8 @@ Route::group(['prefix'=>'administration'],function(){
   Route::resource('position', PositionController::class);
   Route::resource('judgment_type', judgmentTypeController::class);
   Route::resource('political_party', PoliticalPartyController::class);
+  Route::get('/message/edit', 'MessageController@edit')->name("message.edit");
+  Route::put('/message/update', 'MessageController@update')->name("message.update");
 
   Route::get('public-servants/drafts', 'PublicServantController@drafts');
   Route::get('public-servants/published', 'PublicServantController@published');

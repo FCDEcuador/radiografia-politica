@@ -247,6 +247,17 @@
               <li><a href={{url('administration/profile/create')}}><i class="fa fa-circle-o"></i> Nuevo</a></li>
             </ul>
           </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-users"></i> <span>Mensaje</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{url('administration/message/edit')}}"><i class="fa fa-circle-o"></i> editar</a></li>
+            </ul>
+          </li>
         </ul>
       </section>
       <!-- /.sidebar -->
