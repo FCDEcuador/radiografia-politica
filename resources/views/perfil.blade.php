@@ -15,7 +15,7 @@
     </div>
     <div class="row">
       <div class="col-md-3">
-        <img src="/img/perfiles/lenin-300.jpg" width="250px" />
+          <img src="/img/perfiles/lenin-300.jpg" class="img-responsive" />
       </div>
       <div class="col-md-6">
         <div class="row profile-description">
