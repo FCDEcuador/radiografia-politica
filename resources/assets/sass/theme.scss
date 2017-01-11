@@ -196,6 +196,7 @@ body:before {
     z-index: 101;
     font-family: 'OpenSansBold';
     color: $secondary-color;
+    font-size: 22px;
 }
 .binomial > div.vicepresident
 {
@@ -269,12 +270,14 @@ body:before {
   text-decoration: underline;
   margin-bottom: 0px;
   width: 100%;
+  line-height: 20px;
 }
 .politic-position
 {
     margin-top: -5px;
-    font-size: 9px;
+    font-size: 11px;
     font-family: 'OpenSansRegular';
+    line-height: 20px;
 }
 .political-party-logo
 {
