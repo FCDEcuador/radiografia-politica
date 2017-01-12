@@ -411,29 +411,28 @@
           <div class="well-body">
             <div class="row patrimonial-declaration-icons">
               <div class="col-md-3">
-                <div class="img-responsive img-vivienda">
+                <div class="img-responsive hint--top" data-hint="VIVIENDAS">
                   <img src="/img/ico-vivienda.png">
-                  <div class="type-patrimonio">VIVIENDA</div>
                 </div>
-                <span>2</span>
+                <div>2</div>
               </div>
               <div class="col-md-3">
-                <div class="img-responsive">
+                <div class="img-responsive hint--top" data-hint="VEHÍCULOS">
                   <img src="/img/ico-auto.png">
                 </div>
-                <span>3</span>
+                <div>3</div>
               </div>
               <div class="col-md-3">
-                <div class="img-responsive">
+                <div class="img-responsive hint--top" data-hint="PATRIMONIO">
                   <img src="/img/ico-dinero.png">
                 </div>
-                <span>$80.000,00</span>
+                <div>$80.000,00</div>
               </div>
               <div class="col-md-3">
-                <div class="img-responsive">
+                <div class="img-responsive hint--top" data-hint="COMPAÑÍAS">
                   <img src="/img/ico-industria.png">
                 </div>
-                <span>0</span>
+                <div>0</div>
               </div>
             </div>
             <div class="row">
