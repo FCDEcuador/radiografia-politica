@@ -8583,6 +8583,31 @@ body:before {
   height: 75%;
 }
 
+.type-patrimonio {
+  opacity: 0;
+  margin-top: -30px;
+  padding: 10px;
+  display: block;
+}
+
+.img-vivienda .type-patrimonio:hover {
+  opacity: 1;
+  background: #3b81c3;
+  padding: 3px;
+  color: #fff;
+  margin-top: 5px;
+}
+
+.ico-auto {
+  background: url("../img/ico-vivienda-doble.png") no-repeat center top;
+  width: 54px;
+  height: 55px;
+}
+
+.ico-auto:hover {
+  background: url("../img/ico-vivienda-doble.png") no-repeat center bottom;
+}
+
 /*  === RESPONSIVE === */
 /*  phones */
 @media (max-width: 425px) {

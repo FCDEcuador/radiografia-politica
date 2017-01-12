@@ -411,8 +411,9 @@
           <div class="well-body">
             <div class="row patrimonial-declaration-icons">
               <div class="col-md-3">
-                <div class="img-responsive">
+                <div class="img-responsive img-vivienda">
                   <img src="/img/ico-vivienda.png">
+                  <div class="type-patrimonio">VIVIENDA</div>
                 </div>
                 <span>2</span>
               </div>
