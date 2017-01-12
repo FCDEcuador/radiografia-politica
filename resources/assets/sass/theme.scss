@@ -276,6 +276,7 @@ body:before {
   margin-bottom: 0px;
   width: 100%;
   line-height: 20px;
+  font-size: 20px;
 }
 .politic-position
 {
@@ -283,6 +284,7 @@ body:before {
     font-size: 11px;
     font-family: 'OpenSansRegular';
     line-height: 20px;
+    font-size: 13px;
 }
 .political-party-logo
 {
@@ -294,10 +296,12 @@ body:before {
 /* Profile */
 .btn-dark
 {
-  background: $primary-color;
+  /*background: $primary-color;*/
+  background: #3b618a;
   color: $secondary-color;
   margin-bottom: 10px;
 }
+.btn-dark:hover {color: #6782a0;}
 
 #transparency>div.row>div
 {
@@ -397,6 +401,24 @@ body:before {
 .avatar .img-responsive {margin: 0 auto 20px;}
 .btn-profile, .profile-redes {margin: 0;}
 .profile-afiliacion .row {text-align: center;}
+
+.cd-horizontal-timeline .time-yellow .events a.selected::after {background-color: #eaa200; border-color: #eaa200;}
+.cd-horizontal-timeline .time-yellow .events a.older-event::after {border-color: #eaa200;}
+.cd-horizontal-timeline .time-yellow .filling-line {background-color: #eaa200}
+
+.cd-horizontal-timeline .time-blue .events a.selected::after {background-color: #0089ea; border-color: #0089ea;}
+.cd-horizontal-timeline .time-blue .events a.older-event::after {border-color: #0089ea;}
+.cd-horizontal-timeline .time-blue .filling-line {background-color: #0089ea}
+
+.cd-horizontal-timeline .time-red .events a.selected::after {background-color: #bb2b00; border-color: #bb2b00;}
+.cd-horizontal-timeline .time-red .events a.older-event::after {border-color: #bb2b00;}
+.cd-horizontal-timeline .time-red .filling-line {background-color: #bb2b00}
+
+.cd-horizontal-timeline {margin: 1.4em auto;}
+.timeline h4 {margin-top: 0; margin-bottom: 0;}
+.cd-horizontal-timeline .timeline {height: 85px;}
+.cd-horizontal-timeline .events-wrapper {height: 75%;}
+
 
 /*  === RESPONSIVE === */
 
