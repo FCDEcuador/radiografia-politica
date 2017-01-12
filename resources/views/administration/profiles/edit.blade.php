@@ -13,6 +13,31 @@
     return false;
   }
 
+  function getTypeEvent($id)
+  {
+    switch ($id) {
+      case '1':
+        return "Pública";
+      case '2':
+          return "Privada";
+      case '3':
+          return "Política";
+      default:
+        return "";
+    }
+  }
+
+  function getBooleanString($id)
+  {
+    switch ($id) {
+      case '0':
+        return "No";
+      case '1':
+          return "Sí";
+      default:
+        return "";
+    }
+  }
  ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -29,7 +54,7 @@
 
 <!-- Main content -->
 <section class="content">
-  <form action="{{URL::to(route('profile.update',$profile->id))}}" method="POST">
+  <form action="{{URL::to(route('profile.update',$profile->id))}}" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
     <input name="_method" type="hidden" value="PUT">
     <!-- /.row -->
@@ -53,13 +78,13 @@
               <div class="form-group">
                 <div class="col-md-4">
                   <label>Foto Perfil</label><br>
-                  <img class="img-circle" data-src="{{ (isset($profile->picture)) ? $profile->picture : 'holder.js/150x150' }}" />
-                  <input type="file" name="profile" placeholder="ingrese">
+                  <img class="img-circle" data-src="{{ (isset($profile->picture)) ? asset($profile->picture) : 'holder.js/150x150' }}" src="{{ (isset($profile->picture)) ? asset($profile->picture) : 'holder.js/150x150' }}" />
+                  <input type="file" name="profilePicture" placeholder="ingrese">
                 </div>
                 <div class="col-md-8">
                     <label>Foto Detalle</label><br>
-                  <img class="img-thumbnail" data-src="{{ (isset($profile->person->img)) ? $profile->person->img : 'holder.js/200x150' }}" />
-                  <input type="file" name="profile" placeholder="ingrese">
+                  <img class="img-thumbnail" data-src="{{ (isset($profile->person->img)) ? asset($profile->person->img) : 'holder.js/200x150' }}" src="{{ (isset($profile->person->img)) ? asset($profile->person->img) : 'holder.js/200x150' }}" />
+                  <input type="file" name="detailPicture" placeholder="ingrese">
                 </div>
               </div>
               <br><br>
@@ -76,39 +101,74 @@
               <div class="form-group">
                   <label for="politicalParty">Partido Político</label>
                   <select name="politicalParty" class="form-control">
+                    <option value="null">-- Sin asignar --</option>
                     @foreach ($politicalParties as $politicalParty)
-                    <option value="{{$politicalParty->id}}">{{$politicalParty->name}}</option>
+                      @if($politicalParty->id == $profile->person->politicalParty_id)
+                        <option value="{{$politicalParty->id}}" selected>{{$politicalParty->name}}</option>
+                      @else
+                          <option value="{{$politicalParty->id}}">{{$politicalParty->name}}</option>
+                      @endif
                     @endforeach
                   </select>
               </div>
               <div class="form-group">
                 <label for="email">Descripción</label>
-                <textarea class="textarea" name="description" placeholder="Escriba la descripción aquí" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                <textarea class="textarea" name="description" placeholder="Escriba la descripción aquí" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$profile->person->description}}</textarea>
               </div>
               <div class="form-group row">
                 <div class="col-md-6">
                   <label for="name">Facebook</label>
-                  <input type="text" class="form-control" name="facebook" value="{{$profile->person->name}}" id="name" placeholder="Ingrese el nombre">
+                  <input type="text" class="form-control" name="facebook" value="{{$profile->person->facebook}}" id="facebook" placeholder="URL Facebook">
                 </div>
                 <div class="col-md-6">
                   <label for="email">Twitter</label>
-                  <input type="text" class="form-control" name="twitter"value="{{$profile->person->lastname}}"  id="lastname" placeholder="Ingrese el apellido">
+                  <input type="text" class="form-control" name="twitter"value="{{$profile->person->twitter}}"  id="twitter" placeholder="@cuenta">
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-6">
-                  <label for="curriculum">Curriculum</label>
-                  <input type="file" class="form-control" name="Curriculum"  placeholder="Ingrese el Curriculum">
+                  <div class="col-md-6">
+                    <label for="curriculum">Curriculum</label>
+                    <input type="file" class="form-control" name="curriculum"  placeholder="Ingrese el Curriculum">
+                    <input type="hidden" name="curriculumDelete" id="curriculumDelete" value="false">
+                  </div>
+                  @if(!empty($profile->person->curriculum))
+                    <div id="curriculum-controls">
+                      <div class="col-md-3">
+                          <br>
+                        <a href="{{asset($profile->person->curriculum)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                      </div>
+                      <div class="col-md-3">
+                          <br>
+                        <button type="button" class="btn btn-danger" id="deleteCurriculum">Borrar</button>
+                      </div>
+                    </div>
+                  @endif
                 </div>
                 <div class="col-md-6">
-                  <label for="government">Plan de Gobierno</label>
-                  <input type="file" class="form-control" name="Gobierno" placeholder="Ingrese el plan de gobierno">
+                  <div class="col-md-6">
+                    <label for="curriculum">Plan de Gobierno</label>
+                    <input type="file" class="form-control" name="gobermentPlan"  placeholder="Ingrese el Plan de Gobierno">
+                    <input type="hidden" name="gobermentPlanDelete" id="gobermentPlanDelete" value="false">
+                  </div>
+                  @if(!empty($profile->person->plan))
+                    <div id="plan-controls">
+                    <div class="col-md-3">
+                        <br>
+                        <a href="{{asset($profile->person->plan)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                    </div>
+                    <div class="col-md-3">
+                        <br>
+                      <button type="button" class="btn btn-danger" id="deletePlan">Borrar</button>
+                    </div>
+                  </div>
+                  @endif
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
                   <label for="observatory">Observatorio</label>
-                  <input type="text" class="form-control" name="Observatorio" placeholder="Ingrese el url del Observatorio" >
+                  <input type="text" class="form-control" name="observatory" value="{{$profile->person->observatory}}" placeholder="Ingrese el url del Observatorio" >
                 </div>
               </div>
           </div>
@@ -136,19 +196,20 @@
                     <th>Título</th>
                     <th>Tipo</th>
                     <th>Descripción</th>
+                    <th>Destacado</th>
                     <th>Acción</th>
                   </tr>
                 </thead>
                 <tbody id="timeline-grid">
                   @foreach($profile->person->timelines as $i => $timeline)
                   <tr class="">
-                    <input type="hidden" name="timeline[{{$i}}]['id']" value="{{$timeline->id}}"/>
-                    <td class="startDate"><label>{{$timeline->start}}</label><input type="hidden" name="timeline[{{$i}}]['startDate']" value="{{$timeline->start}}"/></td>
-                    <td class="endDate"><label>{{$timeline->end}}</label><input type="hidden" name="timeline[{{$i}}]['endDate']" value="{{$timeline->end}}"/></td>
-                    <td class="title"><label>{{$timeline->shortDescription}}</label><input type="hidden" name="timeline[{{$i}}]['title']" value="{{$timeline->shortDescription}}"/></td>
-                    <td class="type"><label>{{$timeline->typeEvent}}</label><input type="hidden" name="timeline[{{$i}}]['type']" value="{{$timeline->typeEvent}}"/></td>
-                    <td class="description"><label>{{$timeline->description}}</label><input type="hidden" name="timeline[{{$i}}]['description']" value="{{$timeline->description}}"/></td>
-                    <td class="outstanding"><label>{{$timeline->outstanding}}</label><input type="hidden" name="timeline[{{$i}}]['outstanding']" value="{{$timeline->outstanding}}"/></td>
+                    <input type="hidden" name="timeline[{{$i}}][id]" value="{{$timeline->id}}"/>
+                    <td class="startDate"><label>{{$timeline->start}}</label><input type="hidden" name="timeline[{{$i}}][startDate]" value="{{$timeline->start}}"/></td>
+                    <td class="endDate"><label>{{$timeline->end}}</label><input type="hidden" name="timeline[{{$i}}][endDate]" value="{{$timeline->end}}"/></td>
+                    <td class="title"><label>{{$timeline->shortDescription}}</label><input type="hidden" name="timeline[{{$i}}][title]" value="{{$timeline->shortDescription}}"/></td>
+                    <td class="type"><label>{{getTypeEvent($timeline->typeEvent)}}</label><input type="hidden" name="timeline[{{$i}}][type]" value="{{$timeline->typeEvent}}"/></td>
+                    <td class="description"><label>{{$timeline->description}}</label><input type="hidden" name="timeline[{{$i}}][description]" value="{{$timeline->description}}"/></td>
+                    <td class="outstanding"><label>{{getBooleanString($timeline->important)}}</label><input type="hidden" name="timeline[{{$i}}][outstanding]" value="{{$timeline->important}}"/></td>
                     <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                   </tr>
                   @endforeach
@@ -198,7 +259,7 @@
               <div class="form-group row">
                 <div class="col-md-12">
                   <label for="outstanding">Es Destacado</label>
-                  <input type="checkbox" name="outstanding" id="outstanding" checked="false">
+                  <input type="checkbox" name="outstanding" id="outstanding-check">
                 </div>
               </div>
           </div>
@@ -758,11 +819,25 @@
 </script>
 
 <script>
+  $('#deleteCurriculum').click(function(){
+      $('#curriculum-controls').addClass('hidden');
+      $('#curriculumDelete').val(true);
+  });
+
+  $('#deletePlan').click(function(){
+      $('#plan-controls').addClass('hidden');
+      $('#gobermentPlanDelete').val(true);
+      deletePlan
+  });
+</script>
+
+<script>
 
 
   var $CONTAINER = $('#timeline-grid');
 
   $('#add-to-timeline').click(function () {
+    console.log("Click");
     var index = $('#timeline-grid').find('tr').length;
     var $clone = $('.model-timeline').clone(true).removeClass('hidden model-timeline');
     $clone.find('input').attr('name' , 'timeline['+index+']["id"]');
@@ -785,6 +860,18 @@
     $clone.find('.description').find('input').attr('name' , 'timeline['+index+']["description"]');
     $clone.find('.description').find('input').val($('#type').val());
     $clone.find('.description').find('label').text($('#description').val());
+
+    $clone.find('.outstanding').find('input').attr('name' , 'timeline['+index+']["outstanding"]');
+
+    if ($('#outstanding-check:checked').length > 0)
+    {
+      $clone.find('.outstanding').find('input').val(1);
+      $clone.find('.outstanding').find('label').text("Sí");
+    }else {
+      $clone.find('.outstanding').find('input').val(0);
+      $clone.find('.outstanding').find('label').text("No");
+    }
+
 
     $CONTAINER.append($clone);
 
@@ -820,12 +907,13 @@
 
     for (var i = 0; i < childrensSorted.length; i++) {
       var $clone = $(childrensSorted[i]).clone(true);
-      $clone.find('input').attr('name' , 'timeline['+i+']["id"]');
-      $clone.find('.startDate').find('input').attr('name' , 'timeline['+i+']["startDate"]');
-      $clone.find('.endDate').find('input').attr('name' , 'timeline['+i+']["endDate"]');
-      $clone.find('.title').find('input').attr('name' , 'timeline['+i+']["title"]');
-      $clone.find('.type').find('input').attr('name' , 'timeline['+i+']["type"]');
-      $clone.find('.description').find('input').attr('name' , 'timeline['+i+']["description"]');
+      $clone.find('input').attr('name' , 'timeline['+i+'][id]');
+      $clone.find('.startDate').find('input').attr('name' , 'timeline['+i+'][startDate]');
+      $clone.find('.endDate').find('input').attr('name' , 'timeline['+i+'][endDate]');
+      $clone.find('.title').find('input').attr('name' , 'timeline['+i+'][title]');
+      $clone.find('.type').find('input').attr('name' , 'timeline['+i+'][type]');
+      $clone.find('.description').find('input').attr('name' , 'timeline['+i+'][description]');
+      $clone.find('.outstanding').find('input').attr('name' , 'timeline['+i+'][outstanding]');
       $CONTAINER.append($clone);
     }
   }
@@ -914,7 +1002,7 @@
 </script>
 <script>
 
- var $CONTAINER = $('#position-grid');
+ var $CONTAINERGRD = $('#position-grid');
 
  $('#add-to-companies').click(function () {
    var index = $('#position-grid').find('tr').length;
@@ -929,7 +1017,7 @@
      $clone.find('.total_companies').find('input').val($('#total_companies').val());
      $clone.find('.total_companies').find('label').text($('#total_companies').val());
 
-     $CONTAINER.append($clone);
+     $CONTAINERGRD.append($clone);
      $('#position option:selected').remove();
    }
  });

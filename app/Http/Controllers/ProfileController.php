@@ -9,6 +9,7 @@ use App\Models\Position;
 use App\Models\JudgmentType;
 use App\Profile;
 use Auth;
+use App\Exceptions\ApiResponseException;
 
 class ProfileController extends Controller
 {
@@ -108,13 +109,18 @@ class ProfileController extends Controller
    */
   public function update(Request $request, $id)
   {
-    dd($request->all());
-    if($this->repository->update($id,$request->all()))
-    {
-      return redirect(route('profile.edit',$id))->with('success', 'Usuario editado exitosamente!');
-    }else {
-        return redirect()->back()->with('errors', 'Error al editar');
+    try {
+      if($this->repository->update($id,$request))
+      {
+        return redirect(route('profile.edit',$id))->with('success', 'Perfil editado exitosamente!');
+      }else {
+          return redirect()->back()->with('errors', 'Error al editar');
+      }
+    } catch (ApiResponseException $e) {
+        return redirect()->back()->with('errors', collect($e->errors)->first());
     }
+
+
   }
 
   /**
