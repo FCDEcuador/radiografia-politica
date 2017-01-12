@@ -8146,17 +8146,29 @@ Main Components
 html, body, #app {
   height: 100%;
   width: 100%;
-  font-family: 'OpenSansReuglar' !important;
+  font-family: 'OpenSansRegular' !important;
 }
 
 p {
-  font-family: 'OpenSansReuglar' !important;
+  font-family: 'OpenSansRegular' !important;
   line-height: 1.2em;
 }
 
 th {
   font-weight: bold;
   text-align: -internal-center;
+}
+
+.align-c {
+  text-align: center;
+}
+
+.align-l {
+  text-align: left;
+}
+
+.align-r {
+  text-align: right;
 }
 
 .main-header {
@@ -8321,6 +8333,7 @@ body:before {
   z-index: 101;
   font-family: 'OpenSansBold';
   color: #fff;
+  font-size: 22px;
 }
 
 .binomial > div.vicepresident {
@@ -8371,7 +8384,7 @@ body:before {
 
 .politics-card {
   padding: 30px;
-  font-family: 'OpenSansReuglar';
+  font-family: 'OpenSansRegular';
 }
 
 .vicepresident-label > label {
@@ -8390,12 +8403,14 @@ body:before {
   text-decoration: underline;
   margin-bottom: 0px;
   width: 100%;
+  line-height: 20px;
 }
 
 .politic-position {
   margin-top: -5px;
-  font-size: 9px;
+  font-size: 11px;
   font-family: 'OpenSansRegular';
+  line-height: 20px;
 }
 
 .political-party-logo {
@@ -8451,6 +8466,7 @@ body:before {
 
 .profile-description {
   text-align: justify;
+  padding: 10px;
 }
 
 .profile-socials > a {
@@ -8490,6 +8506,68 @@ body:before {
 
 .table-vertical > tbody > tr > th {
   border-right: 1px solid #ddd;
+}
+
+.avatar .img-responsive {
+  margin: 0 auto 20px;
+}
+
+.btn-profile, .profile-redes {
+  margin: 0;
+}
+
+.profile-afiliacion .row {
+  text-align: center;
+}
+
+/*  === RESPONSIVE === */
+/*  phones */
+@media (max-width: 425px) {
+  .btn-profile, .profile-redes {
+    text-align: center;
+  }
+  .profile-redes {
+    margin-bottom: 20px;
+  }
+  .transparencia-sri, .transparencia-patrimonio {
+    min-height: 680px;
+  }
+  .transparencia-superintendencia {
+    min-height: 270px;
+  }
+  .transparencia-antecedentes {
+    min-height: 580px;
+  }
+  .transparencia-senescyt {
+    min-height: 280px;
+  }
+  .transparencia-contraloria {
+    min-height: 200px;
+  }
+}
+
+/*  banner */
+@media (max-width: 1260px) {
+  .main-header {
+    background-position: left center;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-header {
+    display: none;
+  }
+  .title-elecciones h2 {
+    margin-top: 0;
+  }
+}
+
+/*  politicos cards */
+@media (max-width: 992px) {
+  .politics-card .row .col-md-10 {
+    width: 350px;
+    margin: 0 auto;
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
