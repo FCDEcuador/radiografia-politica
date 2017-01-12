@@ -71,7 +71,7 @@
             </div>
           </div>
           <br>
-            <label class="president-label">Rosita Espinosa</label><br>
+            <label class="align-c president-label">Rosita Espinosa</label><br>
         </div>
         <div class="col-md-3">
           <div class="binomial">
@@ -81,7 +81,7 @@
           </div>
         </div>
         <br>
-          <label class="president-label">Rosita Espinosa</label><br>
+          <label class="align-c president-label">Rosita Espinosa</label><br>
       </div>
       <div class="col-md-3">
         <div class="binomial">
@@ -91,7 +91,7 @@
         </div>
       </div>
       <br>
-        <label class="president-label">Rosita Espinosa</label><br>
+        <label class="align-c president-label">Rosita Espinosa</label><br>
     </div>
         </div>
       </div>

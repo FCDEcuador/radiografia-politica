@@ -48,7 +48,6 @@
                       <li><a href="{{ url('/') }}">INICIO</a></li>
                       <li><a href="{{ url('/candidatos') }}">CANDIDATOS</a></li>
                       <li><a href="{{ url('/funcionarios') }}">FUNCIONARIOS PÚBLICOS</a></li>
-                      <li><a href="{{ url('/contacto') }}">CONTACTO</a></li>
                     </ul>
                 </div>
             </div>
