@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 align-c avatar">
           <img src="/img/perfiles/lenin-300.jpg" class="img-responsive" />
       </div>
       <div class="col-md-6">
@@ -22,34 +22,34 @@
           <p>Rosita Andrea Espinosa Fernandez, canidata a la Asamblea Nacional por la provincia de Cotopaxi.</p>
           <p>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</p>
         </div>
-        <div class="row">
+        <div class="row btn-profile">
           <button type="button" class="btn btn-dark">Descargar curriculum</button>
         </div>
-        <div class="row">
+        <div class="row btn-profile">
             <button type="button" class="btn btn-dark">Descargar Plan de gobierno</button>
         </div>
-        <div class="row">
+        <div class="row profile-redes">
           <b>Redes sociales</b>
-        </div>
-        <div class="row profile-socials">
-          <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-          <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-          <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
-          <a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+          <div class="profile-socials">
+            <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+            <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+          </div>
         </div>
       </div>
-      <div class="col-md-offset-1 col-md-2">
-        <div class="row" style="text-align: center;">
-          <label>Afiliación Actual:</label>
+      <div class="col-md-offset-1 col-md-2 profile-afiliacion">
+        <div class="row">
+          <h4>Afiliación Actual:</h4>
         </div>
-        <div class="row" style="text-align:center;">
+        <div class="row">
           <img src="/img/political-parties/35-pais.png" />
         </div>
         <br>
-        <div class="row" style="text-align: center;">
+        <div class="row">
           <label>Binomio:</label>
         </div>
-        <div class="row" style="text-align:center;">
+        <div class="row">
           <a href="{{url('profile/1')}}"><label style="color:#506F93;text-decoration:underline;cursor:pointer;">Jorge Glass</label></a>
         </div>
       </div>
@@ -317,7 +317,7 @@
     <br>
     <div class="row">
       <div class="col-md-6">
-        <div class="well well-lg well-transparency">
+        <div class="well well-lg well-transparency transparencia-sri">
           <div class="well-title">
             <span class="well-card-title">SRI<span>
           </div>
@@ -402,7 +402,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="well well-lg well-transparency">
+        <div class="well well-lg well-transparency transparencia-patrimonio">
           <div class="well-title">
             <span class="well-card-title">DECLARACION PATRIMONIAL<span>
           </div>
@@ -476,7 +476,7 @@
     <!-- end row -->
     <div class="row">
       <div class="col-md-4">
-        <div class="well well-lg well-transparency">
+        <div class="well well-lg well-transparency transparencia-superintendencia">
           <div class="well-title">
             <span class="well-card-title">SUPERINTENDENCIA<span>
           </div>
@@ -513,7 +513,7 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="well well-lg well-transparency">
+        <div class="well well-lg well-transparency transparencia-antecedentes">
           <div class="well-title">
             <span class="well-card-title">ANTECEDENTES<span>
           </div>
@@ -591,7 +591,7 @@
       <!-- end row -->
       <div class="row">
         <div class="col-md-6">
-          <div class="well well-lg well-transparency">
+          <div class="well well-lg well-transparency transparencia-senescyt">
             <div class="well-title">
               <span class="well-card-title">SENESCYT<span>
             </div>
@@ -628,7 +628,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="well well-lg well-transparency">
+          <div class="well well-lg well-transparency transparencia-contraloria">
             <div class="well-title">
               <span class="well-card-title">CONTRALORÍA<span>
             </div>
