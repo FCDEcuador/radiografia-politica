@@ -19,3 +19,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/binomials', "Api\BinomialController@getBinomials");
 Route::get('/deputys', "Api\DeputyController@getDeputys");
+Route::get('/publicServants', "Api\PublicServantController@getPublicServants");

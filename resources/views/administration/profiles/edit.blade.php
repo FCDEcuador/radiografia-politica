@@ -534,10 +534,6 @@
                       <div class="col-md-3">
                         <label>Si</label> <br><input type="checkbox" name="hasPenals" />
                       </div>
-                        <div class="col-md-9">
-                          <label>Cantidad</label>
-                          <input type="number" class="form-control" name="penalsNumber" disabled/>
-                        </div>
                     </div>
                     <div class="row-fluid">
                       <h4>Judiciales</h4>
