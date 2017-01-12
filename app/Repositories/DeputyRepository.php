@@ -12,7 +12,7 @@ class DeputyRepository extends ProfileRepository
 
     return $this->model->whereHas('person', function ($query) use($isCandidate){
       $query->where('state_id',State::draft())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
-        $query->where('name', "Asambleista");
+        $query->where('name', "Asambleísta");
       });
     })->get();
   }
@@ -21,8 +21,8 @@ class DeputyRepository extends ProfileRepository
   {
     return $this->model->whereHas('person', function ($query) use ($isCandidate){
       $query->where('state_id',State::published())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
-        $query->where('name', "Asambleista");
+        $query->where('name', "Asambleísta");
       });
-    })->get();
+    })->with('person')->get();
   }
 }

@@ -31,4 +31,6 @@ class Person extends Model
     return $this->hasMany(Timeline::class);
   }
 
+  
+
 }
