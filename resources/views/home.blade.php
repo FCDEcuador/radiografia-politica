@@ -6,7 +6,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-12 right">
+    <div class="col-md-12 right title-elecciones">
       <h2>ELECCIONES 2017</h2>
     </div>
   </div>
