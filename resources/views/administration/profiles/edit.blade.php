@@ -13,6 +13,45 @@
     return false;
   }
 
+  function getTypeEvent($id)
+  {
+    switch ($id) {
+      case '1':
+        return "Pública";
+      case '2':
+          return "Privada";
+      case '3':
+          return "Política";
+      default:
+        return "";
+    }
+  }
+
+  function getCompanyPosition($id)
+  {
+    switch ($id) {
+      case '1':
+        return "Presidente";
+      case '2':
+          return "Gerente";
+      case '3':
+          return "Accionista";
+      default:
+        return "";
+    }
+  }
+
+  function getBooleanString($id)
+  {
+    switch ($id) {
+      case '0':
+        return "No";
+      case '1':
+          return "Sí";
+      default:
+        return "";
+    }
+  }
  ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -29,7 +68,7 @@
 
 <!-- Main content -->
 <section class="content">
-  <form action="{{URL::to(route('profile.update',$profile->id))}}" method="POST">
+  <form action="{{URL::to(route('profile.update',$profile->id))}}" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
     <input name="_method" type="hidden" value="PUT">
     <!-- /.row -->
@@ -53,13 +92,13 @@
               <div class="form-group">
                 <div class="col-md-4">
                   <label>Foto Perfil</label><br>
-                  <img class="img-circle" data-src="{{ (isset($profile->picture)) ? $profile->picture : 'holder.js/150x150' }}" />
-                  <input type="file" name="profile" placeholder="ingrese">
+                  <img class="img-circle" data-src="{{ (isset($profile->picture)) ? asset($profile->picture) : 'holder.js/150x150' }}" src="{{ (isset($profile->picture)) ? asset($profile->picture) : 'holder.js/150x150' }}" />
+                  <input type="file" name="profilePicture" placeholder="ingrese">
                 </div>
                 <div class="col-md-8">
                     <label>Foto Detalle</label><br>
-                  <img class="img-thumbnail" data-src="{{ (isset($profile->person->img)) ? $profile->person->img : 'holder.js/200x150' }}" />
-                  <input type="file" name="profile" placeholder="ingrese">
+                  <img class="img-thumbnail" data-src="{{ (isset($profile->person->img)) ? asset($profile->person->img) : 'holder.js/200x150' }}" src="{{ (isset($profile->person->img)) ? asset($profile->person->img) : 'holder.js/200x150' }}" />
+                  <input type="file" name="detailPicture" placeholder="ingrese">
                 </div>
               </div>
               <br><br>
@@ -76,39 +115,74 @@
               <div class="form-group">
                   <label for="politicalParty">Partido Político</label>
                   <select name="politicalParty" class="form-control">
+                    <option value="null">-- Sin asignar --</option>
                     @foreach ($politicalParties as $politicalParty)
-                    <option value="{{$politicalParty->id}}">{{$politicalParty->name}}</option>
+                      @if($politicalParty->id == $profile->person->politicalParty_id)
+                        <option value="{{$politicalParty->id}}" selected>{{$politicalParty->name}}</option>
+                      @else
+                          <option value="{{$politicalParty->id}}">{{$politicalParty->name}}</option>
+                      @endif
                     @endforeach
                   </select>
               </div>
               <div class="form-group">
                 <label for="email">Descripción</label>
-                <textarea class="textarea" name="description" placeholder="Escriba la descripción aquí" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                <textarea class="textarea" name="description" placeholder="Escriba la descripción aquí" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$profile->person->description}}</textarea>
               </div>
               <div class="form-group row">
                 <div class="col-md-6">
                   <label for="name">Facebook</label>
-                  <input type="text" class="form-control" name="facebook" value="{{$profile->person->name}}" id="name" placeholder="Ingrese el nombre">
+                  <input type="text" class="form-control" name="facebook" value="{{$profile->person->facebook}}" id="facebook" placeholder="URL Facebook">
                 </div>
                 <div class="col-md-6">
                   <label for="email">Twitter</label>
-                  <input type="text" class="form-control" name="twitter"value="{{$profile->person->lastname}}"  id="lastname" placeholder="Ingrese el apellido">
+                  <input type="text" class="form-control" name="twitter"value="{{$profile->person->twitter}}"  id="twitter" placeholder="@cuenta">
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-6">
-                  <label for="curriculum">Curriculum</label>
-                  <input type="file" class="form-control" name="Curriculum"  placeholder="Ingrese el Curriculum">
+                  <div class="col-md-6">
+                    <label for="curriculum">Curriculum</label>
+                    <input type="file" class="form-control" name="curriculum"  placeholder="Ingrese el Curriculum">
+                    <input type="hidden" name="curriculumDelete" id="curriculumDelete" value="false">
+                  </div>
+                  @if(!empty($profile->person->curriculum))
+                    <div id="curriculum-controls">
+                      <div class="col-md-3">
+                          <br>
+                        <a href="{{asset($profile->person->curriculum)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                      </div>
+                      <div class="col-md-3">
+                          <br>
+                        <button type="button" class="btn btn-danger" id="deleteCurriculum">Borrar</button>
+                      </div>
+                    </div>
+                  @endif
                 </div>
                 <div class="col-md-6">
-                  <label for="government">Plan de Gobierno</label>
-                  <input type="file" class="form-control" name="Gobierno" placeholder="Ingrese el plan de gobierno">
+                  <div class="col-md-6">
+                    <label for="curriculum">Plan de Gobierno</label>
+                    <input type="file" class="form-control" name="gobermentPlan"  placeholder="Ingrese el Plan de Gobierno">
+                    <input type="hidden" name="gobermentPlanDelete" id="gobermentPlanDelete" value="false">
+                  </div>
+                  @if(!empty($profile->person->plan))
+                    <div id="plan-controls">
+                    <div class="col-md-3">
+                        <br>
+                        <a href="{{asset($profile->person->plan)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                    </div>
+                    <div class="col-md-3">
+                        <br>
+                      <button type="button" class="btn btn-danger" id="deletePlan">Borrar</button>
+                    </div>
+                  </div>
+                  @endif
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
                   <label for="observatory">Observatorio</label>
-                  <input type="text" class="form-control" name="Observatorio" placeholder="Ingrese el url del Observatorio" >
+                  <input type="text" class="form-control" name="observatory" value="{{$profile->person->observatory}}" placeholder="Ingrese el url del Observatorio" >
                 </div>
               </div>
           </div>
@@ -136,19 +210,20 @@
                     <th>Título</th>
                     <th>Tipo</th>
                     <th>Descripción</th>
+                    <th>Destacado</th>
                     <th>Acción</th>
                   </tr>
                 </thead>
                 <tbody id="timeline-grid">
                   @foreach($profile->person->timelines as $i => $timeline)
                   <tr class="">
-                    <input type="hidden" name="timeline[{{$i}}]['id']" value="{{$timeline->id}}"/>
-                    <td class="startDate"><label>{{$timeline->start}}</label><input type="hidden" name="timeline[{{$i}}]['startDate']" value="{{$timeline->start}}"/></td>
-                    <td class="endDate"><label>{{$timeline->end}}</label><input type="hidden" name="timeline[{{$i}}]['endDate']" value="{{$timeline->end}}"/></td>
-                    <td class="title"><label>{{$timeline->shortDescription}}</label><input type="hidden" name="timeline[{{$i}}]['title']" value="{{$timeline->shortDescription}}"/></td>
-                    <td class="type"><label>{{$timeline->typeEvent}}</label><input type="hidden" name="timeline[{{$i}}]['type']" value="{{$timeline->typeEvent}}"/></td>
-                    <td class="description"><label>{{$timeline->description}}</label><input type="hidden" name="timeline[{{$i}}]['description']" value="{{$timeline->description}}"/></td>
-                    <td class="outstanding"><label>{{$timeline->outstanding}}</label><input type="hidden" name="timeline[{{$i}}]['outstanding']" value="{{$timeline->outstanding}}"/></td>
+                    <input type="hidden" name="timeline[{{$i}}][id]" value="{{$timeline->id}}"/>
+                    <td class="startDate"><label>{{$timeline->start}}</label><input type="hidden" name="timeline[{{$i}}][startDate]" value="{{$timeline->start}}"/></td>
+                    <td class="endDate"><label>{{$timeline->end}}</label><input type="hidden" name="timeline[{{$i}}][endDate]" value="{{$timeline->end}}"/></td>
+                    <td class="title"><label>{{$timeline->shortDescription}}</label><input type="hidden" name="timeline[{{$i}}][title]" value="{{$timeline->shortDescription}}"/></td>
+                    <td class="type"><label>{{getTypeEvent($timeline->typeEvent)}}</label><input type="hidden" name="timeline[{{$i}}][type]" value="{{$timeline->typeEvent}}"/></td>
+                    <td class="description"><label>{{$timeline->description}}</label><input type="hidden" name="timeline[{{$i}}][description]" value="{{$timeline->description}}"/></td>
+                    <td class="outstanding"><label>{{getBooleanString($timeline->important)}}</label><input type="hidden" name="timeline[{{$i}}][outstanding]" value="{{$timeline->important}}"/></td>
                     <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                   </tr>
                   @endforeach
@@ -198,7 +273,7 @@
               <div class="form-group row">
                 <div class="col-md-12">
                   <label for="outstanding">Es Destacado</label>
-                  <input type="checkbox" name="outstanding" id="outstanding" checked="false">
+                  <input type="checkbox" name="outstanding" id="outstanding-check">
                 </div>
               </div>
           </div>
@@ -246,12 +321,12 @@
                             </tr>
                           </thead>
                           <tbody id="sri-impuesto-grid">
-                            @foreach([] as $i => $rentTax)
+                            @foreach($profile->sri()->where('taxType',1)->get() as $i => $rentTax)
                             <tr class="">
-                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
-                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
-                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="rentTax[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="rentTax[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                              <input type="hidden" name="sri[{{$i}}][id]" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="sri[{{$i}}][type]" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="sri[{{$i}}][year]" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="sri[{{$i}}][tax]" value="{{$rentTax->value}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -282,12 +357,12 @@
                             </tr>
                           </thead>
                           <tbody id="sri-divisas-grid">
-                            @foreach([] as $i => $rentTax)
+                            @foreach($profile->sri()->where('taxType',2)->get() as $i => $rentTax)
                             <tr class="">
-                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
-                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
-                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="rentTax[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="rentTax[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                              <input type="hidden" name="sri[{{6 + $i}}][id]" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="sri[{{6 + $i}}][type]" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="sri[{{6 + $i}}][year]" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="sri[{{6 + $i}}][tax]" value="{{$rentTax->value}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -326,11 +401,11 @@
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="fuente">Url Fuente</label>
-                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                        <input type="text" class="form-control" name="urlFuenteSRI"  placeholder="Ingrese el link" value="{{$profile->urlSri}}" />
                       </div>
                       <div class="col-md-6">
                         <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                        <input type="file" class="form-control" name="fileFuenteSRI" placeholder="Ingrese el archivo">
                       </div>
                   </div>
 
@@ -355,24 +430,25 @@
                     <div class="form-group row">
                       <div class="col-md-3">
                         <label># Casas</label>
-                        <input type="number" name="houses" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="Casas">
+                        <input type="number" name="houses" class="form-control" value="{{(isset($profile->heritage) ? $profile->heritage->houses : 0)}}" placeholder="Casas">
                       </div>
                       <div class="col-md-3">
                         <label># Carros</label>
-                        <input type="number" name="cars" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->cars : 0)}}" placeholder="Carros">
+                        <input type="number" name="cars" class="form-control" value="{{(isset($profile->heritage) ? $profile->heritage->cars : 0)}}" placeholder="Carros">
                       </div>
                       <div class="col-md-3">
                         <label>$ Dinero</label>
-                        <input type="number" name="money" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
+                        <input type="number" name="money" class="form-control" value="{{(isset($profile->heritage) ? $profile->heritage->money : 0)}}" placeholder="Dinero">
                       </div>
                       <div class="col-md-3">
                         <label># Compañias</label>
-                        <input type="number" name="companies" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->companies : 0)}}" placeholder="Compañias">
+                        <input type="number" name="companies" class="form-control" value="{{(isset($profile->heritage) ? $profile->heritage->companies : 0)}}" placeholder="Compañias">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label>Declaración actual</label>
+
                       </div>
                       <div class="col-md-6">
                         <label>Declaración previa</label>
@@ -381,51 +457,51 @@
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="date">Fecha actual</label>
-                        <input type="date" class="form-control" name="actualDate-declaration" id="actualDeclarationDate">
+                        <input type="date" class="form-control" name="actualDeclaration" id="actualDeclarationDate">
                       </div>
                       <div class="col-md-6">
                         <label for="date">Fecha previa</label>
-                        <input type="date" class="form-control" name="actualDate-declaration" id="previousDeclarationDate">
+                        <input type="date" class="form-control" name="previousDeclaration" id="previousDeclarationDate">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label>Activos Actuales</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="actualAssets" value="{{(isset($profile->heritage) ? $profile->heritage->actualAssets : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                       <div class="col-md-6">
                         <label>Activos Previos</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="previousAssets" value="{{(isset($profile->heritage) ? $profile->heritage->previousAssets : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label>Pasivos Actuales</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name=actualLiabilities value="{{(isset($profile->heritage) ? $profile->heritage->actualLiabilities : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                       <div class="col-md-6">
                         <label>Pasivos Previos</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="previousLiabilities" value="{{(isset($profile->heritage) ? $profile->heritage->previousLiabilities : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label>Patromonio Actual</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="actualHeritage" value="{{(isset($profile->heritage) ? $profile->heritage->actualHeritage : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                       <div class="col-md-6">
                         <label>Patromonio Previos</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="previousHeritage" value="{{(isset($profile->heritage) ? $profile->heritage->previousHeritage : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="fuente">Url Fuente</label>
-                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                        <input type="text" class="form-control" name="urlFuentePatrimonio" value="{{$profile->urlHeritage}}"  placeholder="Ingrese el link">
                       </div>
                       <div class="col-md-6">
                         <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                        <input type="file" class="form-control" name="fileFuentePatrimonio" placeholder="Ingrese el archivo">
                       </div>
                   </div>
                 </div>
@@ -458,9 +534,9 @@
                         <tbody id="position-grid">
                           @foreach($profile->companies as $i => $company)
                           <tr class="">
-                            <input type="hidden" name="company[{{$i}}]['id']" value="{{$company->id}}"/>
-                            <td class="position"><label>{{$company->position}}</label><input type="hidden" name="company[{{$i}}]['position']" value="{{$company->position}}"/></td>
-                            <td class="total_companies"><label>{{$company->total_companies}}</label><input type="hidden" name="company[{{$i}}]['total_companies']" value="{{$company->total_companies}}"/></td>
+                            <input type="hidden" name="company[{{$i}}][id]" value="{{$company->id}}"/>
+                            <td class="position"><label>{{getCompanyPosition($company->position)}}</label><input type="hidden" name="company[{{$i}}][position]" value="{{$company->position}}"/></td>
+                            <td class="total_companies"><label>{{$company->total_companies}}</label><input type="hidden" name="company[{{$i}}][total_companies]" value="{{$company->total_companies}}"/></td>
                             <td class="action"><button type="button" class="btn btn-danger btn-delete-company">Eliminar</button></td>
                           </tr>
                           @endforeach
@@ -503,11 +579,11 @@
                   <div class="form-group row">
                     <div class="col-md-6">
                       <label for="fuente">Url Fuente</label>
-                      <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                      <input type="text" class="form-control" name="urlFuenteCompanies" value="{{$profile->urlCompanies}}"  placeholder="Ingrese el link">
                     </div>
                     <div class="col-md-6">
                       <label for="archivo">Archivo Fuente</label>
-                      <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                      <input type="file" class="form-control" name="fileFuenteCompanies" placeholder="Ingrese el archivo">
                     </div>
                 </div>
                 </div>
@@ -532,12 +608,14 @@
                     </div>
                     <div class="form-group row">
                       <div class="col-md-3">
-                        <label>Si</label> <br><input type="checkbox" name="hasPenals" />
+                        <label>Si</label> <br>
+                        @if($profile->hasPenals)
+                          <input type="checkbox" name="hasPenals"  checked/>
+                        @else
+                          <input type="checkbox" name="hasPenals" />
+                        @endif
+
                       </div>
-                        <div class="col-md-9">
-                          <label>Cantidad</label>
-                          <input type="number" class="form-control" name="penalsNumber" disabled/>
-                        </div>
                     </div>
                     <div class="row-fluid">
                       <h4>Judiciales</h4>
@@ -555,12 +633,12 @@
                             </tr>
                           </thead>
                           <tbody id="actor-grid">
-                            @foreach([] as $i => $judicial)
+                            @foreach($profile->judicials()->where('type',1)->get() as $i => $judicial)
                             <tr class="">
-                              <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
-                              <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
-                              <td class="typeJudicial"><label>{{$judicial->typeJudicial}}</label><input type="hidden" name="judicial[{{$i}}]['typeJudicial']" value="{{$judicial->typeJudicial}}"/></td>
-                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
+                              <input type="hidden" name="judicialActor[{{$i}}][id]" value="{{$judicial->id}}"/>
+                              <input type="hidden" name="judicialActor[{{$i}}][type]" value="{{$judicial->type}}"/>
+                              <td class="typeJudicial"><label>{{$judicial->judgment_type_id}}</label><input type="hidden" name="judijudicialActorcial[{{$i}}][judgment_type_id]" value="{{$judicial->judgment_type_id}}"/></td>
+                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicialActor[{{$i}}][number]" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -570,7 +648,7 @@
                             <tr class="model-actor hidden">
                               <input type="hidden" name="id-model" value="-1"/>
                               <input type="hidden" name="type-model" value="-1"/>
-                              <td class="typeJudicial"><label></label><input type="hidden" name="type-model" value="-1"/></td>
+                              <td class="typeJudicial"><label></label><input type="hidden" name="type-jud-model" value="-1"/></td>
                               <td class="number"><label></label><input type="hidden" name="number-model" value="-1"/></td>
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -591,12 +669,12 @@
                             </tr>
                           </thead>
                           <tbody id="demandado-grid">
-                            @foreach([] as $i => $judicial)
+                            @foreach($profile->judicials()->where('type',2)->get()  as $i => $judicial)
                             <tr class="">
-                              <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
-                              <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
-                              <td class="typeJudicial"><label>{{$judicial->typeJudicial}}</label><input type="hidden" name="judicial[{{$i}}]['typeJudicial']" value="{{$judicial->typeJudicial}}"/></td>
-                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
+                              <input type="hidden" name="judicialDemand[{{$i}}][id]" value="{{$judicial->id}}"/>
+                              <input type="hidden" name="judicialDemand[{{$i}}][type]" value="{{$judicial->type}}"/>
+                              <td class="typeJudicial"><label>{{$judicial->judgment_type_id}}</label><input type="hidden" name="judicialDemand[{{$i}}][judgment_type_id]" value="{{$judicial->judgment_type_id}}"/></td>
+                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicialDemand[{{$i}}][number]" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -617,7 +695,7 @@
                       </div>
                       <div class="col-md-6">
                         <label>Tipo</label>
-                        <select id="typeJudicial" class="form-control">
+                        <select id="judgment_type_id" class="form-control">
                           @foreach($judgment_types as $judgment_type)
                             <option value="{{$judgment_type->id}}">{{$judgment_type->name}}</option>
                           @endforeach
@@ -636,11 +714,11 @@
                   <div class="form-group row">
                     <div class="col-md-6">
                       <label for="fuente">Url Fuente</label>
-                      <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                      <input type="text" class="form-control" name="urlFuenteJudicials"  placeholder="Ingrese el link">
                     </div>
                     <div class="col-md-6">
                       <label for="archivo">Archivo Fuente</label>
-                      <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                      <input type="file" class="form-control" name="fileFuenteJudicials" placeholder="Ingrese el archivo">
                     </div>
                 </div>
                 </div>
@@ -664,31 +742,31 @@
                     <div class="form-group row">
                       <div class="col-md-12">
                         <label>Profesión</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Ingrese el título universitario">
+                        <input type="text" name="profession" class="form-control" value="{{(isset($profile->study)) ? $profile->study->profession : ''}}" placeholder="Ingrese el título universitario">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-4">
                         <label># Pregrado</label>
-                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="Casas">
+                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->study) ? $profile->study->pregrade : 0)}}" placeholder="Pregrado">
                       </div>
                       <div class="col-md-4">
                         <label># Posgrado</label>
-                        <input type="number" name="posgrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->cars : 0)}}" placeholder="Carros">
+                        <input type="number" name="posgrade" class="form-control" value="{{(isset($profile->study) ? $profile->study->postgrad : 0)}}" placeholder="Postgrado">
                       </div>
                       <div class="col-md-4">
                         <label># Phd</label>
-                        <input type="number" name="phd" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
+                        <input type="number" name="phd" class="form-control" value="{{(isset($profile->study) ? $profile->study->phd : 0)}}" placeholder="PHD">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="fuente">Url Fuente</label>
-                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                        <input type="text" class="form-control" name="urlFuenteSenecyt" value="{{$profile->urlStudy}}"  placeholder="Ingrese el link">
                       </div>
                       <div class="col-md-6">
                         <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                        <input type="file" class="form-control" name="fileFuenteSenecyt" placeholder="Ingrese el archivo">
                       </div>
                   </div>
                   </div>
@@ -717,17 +795,17 @@
                     <div class="form-group row">
                       <div class="col-md-12">
                         <label>Número de Procesos</label>
-                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="0">
+                        <input type="number" name="comptrollerProcess" value="{{(isset($profile->comptroller) ? $profile->comptroller->processes : 0)}}" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="0">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="fuente">Url Fuente</label>
-                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                        <input type="text" class="form-control" name="urlFuenteComptroller" value="{{$profile->urlComptroller}}"  placeholder="Ingrese el link">
                       </div>
                       <div class="col-md-6">
                         <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                        <input type="file" class="form-control" name="fileFuenteComptroller" placeholder="Ingrese el archivo">
                       </div>
                   </div>
                   </div>
@@ -762,11 +840,25 @@
 </script>
 
 <script>
+  $('#deleteCurriculum').click(function(){
+      $('#curriculum-controls').addClass('hidden');
+      $('#curriculumDelete').val(true);
+  });
+
+  $('#deletePlan').click(function(){
+      $('#plan-controls').addClass('hidden');
+      $('#gobermentPlanDelete').val(true);
+      deletePlan
+  });
+</script>
+
+<script>
 
 
   var $CONTAINER = $('#timeline-grid');
 
   $('#add-to-timeline').click(function () {
+    console.log("Click");
     var index = $('#timeline-grid').find('tr').length;
     var $clone = $('.model-timeline').clone(true).removeClass('hidden model-timeline');
     $clone.find('input').attr('name' , 'timeline['+index+']["id"]');
@@ -789,6 +881,18 @@
     $clone.find('.description').find('input').attr('name' , 'timeline['+index+']["description"]');
     $clone.find('.description').find('input').val($('#type').val());
     $clone.find('.description').find('label').text($('#description').val());
+
+    $clone.find('.outstanding').find('input').attr('name' , 'timeline['+index+']["outstanding"]');
+
+    if ($('#outstanding-check:checked').length > 0)
+    {
+      $clone.find('.outstanding').find('input').val(1);
+      $clone.find('.outstanding').find('label').text("Sí");
+    }else {
+      $clone.find('.outstanding').find('input').val(0);
+      $clone.find('.outstanding').find('label').text("No");
+    }
+
 
     $CONTAINER.append($clone);
 
@@ -824,12 +928,13 @@
 
     for (var i = 0; i < childrensSorted.length; i++) {
       var $clone = $(childrensSorted[i]).clone(true);
-      $clone.find('input').attr('name' , 'timeline['+i+']["id"]');
-      $clone.find('.startDate').find('input').attr('name' , 'timeline['+i+']["startDate"]');
-      $clone.find('.endDate').find('input').attr('name' , 'timeline['+i+']["endDate"]');
-      $clone.find('.title').find('input').attr('name' , 'timeline['+i+']["title"]');
-      $clone.find('.type').find('input').attr('name' , 'timeline['+i+']["type"]');
-      $clone.find('.description').find('input').attr('name' , 'timeline['+i+']["description"]');
+      $clone.find('input').attr('name' , 'timeline['+i+'][id]');
+      $clone.find('.startDate').find('input').attr('name' , 'timeline['+i+'][startDate]');
+      $clone.find('.endDate').find('input').attr('name' , 'timeline['+i+'][endDate]');
+      $clone.find('.title').find('input').attr('name' , 'timeline['+i+'][title]');
+      $clone.find('.type').find('input').attr('name' , 'timeline['+i+'][type]');
+      $clone.find('.description').find('input').attr('name' , 'timeline['+i+'][description]');
+      $clone.find('.outstanding').find('input').attr('name' , 'timeline['+i+'][outstanding]');
       $CONTAINER.append($clone);
     }
   }
@@ -889,15 +994,15 @@
     }
 
     var clone = $('.model-sri-taxes').clone(true).removeClass('hidden model-sri-taxes');
-    clone.find('input[name=id-model]').attr('name' , 'sri['+index+']["id"]');
-    clone.find('input[name=type-model]').attr('name' , 'sri['+index+']["type"]');
+    clone.find('input[name=id-model]').attr('name' , 'sri['+index+'][id]');
     clone.find('input[name=type-model]').val($('#taxType').val());
+    clone.find('input[name=type-model]').attr('name' , 'sri['+index+'][type]');
 
-    clone.find('.year').find('input').attr('name' , 'sri['+index+']["year"]');
+    clone.find('.year').find('input').attr('name' , 'sri['+index+'][year]');
     clone.find('.year').find('input').val($('#taxYear').val());
     clone.find('.year').find('label').text($('#taxYear').val());
 
-    clone.find('.tax').find('input').attr('name' , 'sri['+index+']["tax"]');
+    clone.find('.tax').find('input').attr('name' , 'sri['+index+'][tax]');
     clone.find('.tax').find('input').val($('#taxValue').val());
     clone.find('.tax').find('label').text($('#taxValue').val());
 
@@ -918,22 +1023,22 @@
 </script>
 <script>
 
- var $CONTAINER = $('#position-grid');
+ var $CONTAINERGRD = $('#position-grid');
 
  $('#add-to-companies').click(function () {
    var index = $('#position-grid').find('tr').length;
    var $clone = $('.model-companies').clone(true).removeClass('hidden model-companies');
    if(($('#position')[0]).options.length > 0){
-     $clone.find('input').attr('name' , 'company['+index+']["id"]');
-     $clone.find('.position').find('input').attr('name' , 'company['+index+']["position"]');
+     $clone.find('input').attr('name' , 'company['+index+'][id]');
+     $clone.find('.position').find('input').attr('name' , 'company['+index+'][position]');
      $clone.find('.position').find('input').val($('#position').val());
      $clone.find('.position').find('label').text($('#position option:selected').text());
 
-     $clone.find('.total_companies').find('input').attr('name' , 'company['+index+']["total_companies"]');
+     $clone.find('.total_companies').find('input').attr('name' , 'company['+index+'][total_companies]');
      $clone.find('.total_companies').find('input').val($('#total_companies').val());
      $clone.find('.total_companies').find('label').text($('#total_companies').val());
 
-     $CONTAINER.append($clone);
+     $CONTAINERGRD.append($clone);
      $('#position option:selected').remove();
    }
  });
@@ -964,15 +1069,15 @@
       case "1":
       index  = $ACTORCONTAINER.find('tr').length;
       var clone = $('.model-actor').clone(true).removeClass('hidden model-actor');
-      clone.find('input[name=id-model]').attr('name' , 'judicialActor['+index+']["id"]');
-      clone.find('input[name=type-model]').attr('name' , 'judicialActor['+index+']["judgment_type_id"]');
-      clone.find('input[name=type-model]').val($('#judgment_type_id').val());
+      clone.find('input[name=id-model]').attr('name' , 'judicialActor['+index+'][id]');
+      clone.find('input[name=type-model]').val($('#judgment').val());
+      clone.find('input[name=type-model]').attr('name' , 'judicialActor['+index+'][type]');
 
-      clone.find('.typeJudicial').find('input').attr('name' , 'judicialActor['+index+']["typeJudicial"]');
-      clone.find('.typeJudicial').find('input').val($('#typeJudicial').val());
-      clone.find('.typeJudicial').find('label').text($('#typeJudicial option:selected').text());
+      clone.find('.typeJudicial').find('input').attr('name' , 'judicialActor['+index+'][typeJudicial]');
+      clone.find('.typeJudicial').find('input').val($('#judgment_type_id').val());
+      clone.find('.typeJudicial').find('label').text($('#judgment_type_id option:selected').text());
 
-      clone.find('.number').find('input').attr('name' , 'judicialActor['+index+']["number"]');
+      clone.find('.number').find('input').attr('name' , 'judicialActor['+index+'][number]');
       clone.find('.number').find('input').val($('#number').val());
       clone.find('.number').find('label').text($('#number').val());
 
@@ -982,15 +1087,16 @@
       index = $DEMANDADOCONTAINER.find('tr').length;
 
       var clone = $('.model-actor').clone(true).removeClass('hidden model-actor');
-      clone.find('input[name=id-model]').attr('name' , 'judicialDemand['+index+']["id"]');
-      clone.find('input[name=type-model]').attr('name' , 'judicialDemand['+index+']["judgment_type_id"]');
-      clone.find('input[name=type-model]').val($('#judgment_type_id').val());
+      clone.find('input[name=id-model]').attr('name' , 'judicialDemand['+index+'][id]');
+        clone.find('input[name=type-model]').val($('#judgment').val());
+      clone.find('input[name=type-model]').attr('name' , 'judicialDemand['+index+'][type]');
 
-      clone.find('.typeJudicial').find('input').attr('name' , 'judicialDemand['+index+']["typeJudicial"]');
-      clone.find('.typeJudicial').find('input').val($('#typeJudicial').val());
-      clone.find('.typeJudicial').find('label').text($('#typeJudicial option:selected').text());
+      clone.find('.typeJudicial').find('input').attr('name' , 'judicialDemand['+index+'][typeJudicial]');
+      clone.find('.typeJudicial').find('input').val($('#judgment_type_id').val());
+      clone.find('.typeJudicial').find('label').text($('#judgment_type_id option:selected').text());
 
-      clone.find('.number').find('input').attr('name' , 'judicialDemand['+index+']["number"]');
+
+      clone.find('.number').find('input').attr('name' , 'judicialDemand['+index+'][number]');
       clone.find('.number').find('input').val($('#number').val());
       clone.find('.number').find('label').text($('#number').val());
 

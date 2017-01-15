@@ -12,7 +12,7 @@ class PublicServantRepository extends ProfileRepository
 
     return $this->model->whereHas('person', function ($query) use($isCandidate){
       $query->where('state_id',State::draft())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
-        $query->where('name','!=' ,"Asambleista")->where('name','!=', "Presidente")->orWhere('name','!=',"Vicepresidente");
+        $query->where('name','!=' ,"Asambleista")->where('name','!=', "Presidente")->where('name','!=',"Vicepresidente");
       });
     })->get();
   }
@@ -21,8 +21,8 @@ class PublicServantRepository extends ProfileRepository
   {
     return $this->model->whereHas('person', function ($query) use ($isCandidate){
       $query->where('state_id',State::published())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
-        $query->where('name','!=' ,"Asambleista")->where('name','!=', "Presidente")->orWhere('name','!=',"Vicepresidente");
+        $query->where('name','!=' ,"Asambleísta")->where('name','!=', "Presidente")->where('name','!=',"Vicepresidente");
       });
-    })->get();
+    })->with('person')->get();
   }
 }

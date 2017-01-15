@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::get('/binomials', "Api\BinomialController@getBinomials");
+Route::get('/deputys', "Api\DeputyController@getDeputys");
+Route::get('/publicServants', "Api\PublicServantController@getPublicServants");

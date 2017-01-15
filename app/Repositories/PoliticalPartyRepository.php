@@ -14,19 +14,6 @@ class PoliticalPartyRepository extends Repository
     $this->model = $model;
   }
 
-  function clean($string) {
-     $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-     return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
-  }
-
-  private function nameGenerator($string)
-  {
-    $name = "";
-    $string = mb_strtolower($string,'UTF-8');
-    $name = $this->clean($string);
-    return $name;
-  }
-
   function create($request)
   {
 
