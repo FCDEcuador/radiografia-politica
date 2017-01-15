@@ -8,6 +8,8 @@ use App\Models\SRI;
 use App\Models\Heritage;
 use App\Models\Study;
 use App\Models\Comptroller;
+use App\Models\Company;
+use App\Models\Judicial;
 use Illuminate\Support\Facades\Config;
 use App\Exceptions\ApiResponseException;
 use Auth;
@@ -236,6 +238,85 @@ class ProfileRepository extends Repository
     $profile->urlHeritage = $data['urlFuenteSRI'];
     $profile->save();
     // END Patrimonio
+      // UPDATE Super
+      $actualCompanies = $profile->companies->toArray();
+      $ids = [];
+      $data['company'] = (isset($data['company'])) ? $data['company'] : [];
+      foreach ($data['company'] as $tm) {
+        array_push($ids,$tm['id']);
+      }
+      $ids = collect($ids);
+      $toDelete = [];
+      foreach ($actualCompanies as $companyToSearch) {
+        if(!$ids->contains($companyToSearch['id']))
+        {
+          array_push($toDelete,$companyToSearch);
+        }
+      }
+
+      foreach ($toDelete as $tmDelete) {
+        $m = Company::find($tmDelete['id']);
+        $m->delete();
+      }
+
+      foreach ($data['company'] as $company) {
+        if($company['id'] == "-1")
+        {
+          $newCompany = new Company();
+          $newCompany->profile_id = $profile->id;
+          $newCompany->name = "";
+          $newCompany->position = $company['position'];
+          $newCompany->total_companies = $company['total_companies'];
+          $newCompany->user_id = Auth::user()->id;
+          $newCompany->save();
+        }
+      }
+      $profile->urlCompanies = $data['urlFuenteCompanies'];
+      $profile->save();
+      // END Super
+        // UPDATE Antecedentes
+  $data['judicialActor'] = (isset($data['judicialActor'])) ? $data['judicialActor'] : [];
+  $data['judicialDemand'] = (isset($data['judicialDemand'])) ? $data['judicialDemand'] : [];
+  $antecedentes = [];
+  $ids = [];
+  foreach ($data['judicialActor'] as $tm) {
+    array_push($ids,$tm['id']);
+    array_push($antecedentes,$tm);
+  }
+  foreach ($data['judicialDemand'] as $tm) {
+    array_push($ids,$tm['id']);
+    array_push($antecedentes,$tm);
+  }
+  $actualAtecedentes = $profile->judicials;
+  $ids = collect($ids);
+  $toDelete = [];
+  foreach ($actualAtecedentes as $atecedentesToSearch) {
+    if(!$ids->contains($atecedentesToSearch['id']))
+    {
+      array_push($toDelete,$atecedentesToSearch);
+    }
+  }
+
+  foreach ($toDelete as $tmDelete) {
+    $m = Judicial::find($tmDelete['id']);
+    $m->delete();
+  }
+  foreach ($antecedentes as $antecedente) {
+    if($antecedente['id'] == "-1")
+    {
+      $newJudicial = new Judicial();
+      $newJudicial->profile_id = $profile->id;
+      $newJudicial->judgment_type_id = $antecedente['typeJudicial'];
+      $newJudicial->type = $antecedente['type'];
+      $newJudicial->number = $antecedente['number'];
+      $newJudicial->user_id = Auth::user()->id;
+      $newJudicial->save();
+    }
+  }
+  $profile->hasPenals = (isset($data['hasPenals']) && $data['hasPenals'] == 'on') ?  true : false;
+  $profile->urlJudicial = $data['urlFuenteJudicials'];
+  $profile->save();
+        // END Antecedentes
       // UPDATE Seneciyt
 
           if( $profile->study == null)

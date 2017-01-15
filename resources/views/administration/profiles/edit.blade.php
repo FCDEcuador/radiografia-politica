@@ -27,6 +27,20 @@
     }
   }
 
+  function getCompanyPosition($id)
+  {
+    switch ($id) {
+      case '1':
+        return "Presidente";
+      case '2':
+          return "Gerente";
+      case '3':
+          return "Accionista";
+      default:
+        return "";
+    }
+  }
+
   function getBooleanString($id)
   {
     switch ($id) {
@@ -520,9 +534,9 @@
                         <tbody id="position-grid">
                           @foreach($profile->companies as $i => $company)
                           <tr class="">
-                            <input type="hidden" name="company[{{$i}}]['id']" value="{{$company->id}}"/>
-                            <td class="position"><label>{{$company->position}}</label><input type="hidden" name="company[{{$i}}]['position']" value="{{$company->position}}"/></td>
-                            <td class="total_companies"><label>{{$company->total_companies}}</label><input type="hidden" name="company[{{$i}}]['total_companies']" value="{{$company->total_companies}}"/></td>
+                            <input type="hidden" name="company[{{$i}}][id]" value="{{$company->id}}"/>
+                            <td class="position"><label>{{getCompanyPosition($company->position)}}</label><input type="hidden" name="company[{{$i}}][position]" value="{{$company->position}}"/></td>
+                            <td class="total_companies"><label>{{$company->total_companies}}</label><input type="hidden" name="company[{{$i}}][total_companies]" value="{{$company->total_companies}}"/></td>
                             <td class="action"><button type="button" class="btn btn-danger btn-delete-company">Eliminar</button></td>
                           </tr>
                           @endforeach
@@ -565,11 +579,11 @@
                   <div class="form-group row">
                     <div class="col-md-6">
                       <label for="fuente">Url Fuente</label>
-                      <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                      <input type="text" class="form-control" name="urlFuenteCompanies" value="{{$profile->urlCompanies}}"  placeholder="Ingrese el link">
                     </div>
                     <div class="col-md-6">
                       <label for="archivo">Archivo Fuente</label>
-                      <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                      <input type="file" class="form-control" name="fileFuenteCompanies" placeholder="Ingrese el archivo">
                     </div>
                 </div>
                 </div>
@@ -594,7 +608,13 @@
                     </div>
                     <div class="form-group row">
                       <div class="col-md-3">
-                        <label>Si</label> <br><input type="checkbox" name="hasPenals" />
+                        <label>Si</label> <br>
+                        @if($profile->hasPenals)
+                          <input type="checkbox" name="hasPenals"  checked/>
+                        @else
+                          <input type="checkbox" name="hasPenals" />
+                        @endif
+
                       </div>
                     </div>
                     <div class="row-fluid">
@@ -613,12 +633,12 @@
                             </tr>
                           </thead>
                           <tbody id="actor-grid">
-                            @foreach([] as $i => $judicial)
+                            @foreach($profile->judicials()->where('type',1)->get() as $i => $judicial)
                             <tr class="">
-                              <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
-                              <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
-                              <td class="typeJudicial"><label>{{$judicial->typeJudicial}}</label><input type="hidden" name="judicial[{{$i}}]['typeJudicial']" value="{{$judicial->typeJudicial}}"/></td>
-                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
+                              <input type="hidden" name="judicialActor[{{$i}}][id]" value="{{$judicial->id}}"/>
+                              <input type="hidden" name="judicialActor[{{$i}}][type]" value="{{$judicial->type}}"/>
+                              <td class="typeJudicial"><label>{{$judicial->judgment_type_id}}</label><input type="hidden" name="judijudicialActorcial[{{$i}}][judgment_type_id]" value="{{$judicial->judgment_type_id}}"/></td>
+                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicialActor[{{$i}}][number]" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -628,7 +648,7 @@
                             <tr class="model-actor hidden">
                               <input type="hidden" name="id-model" value="-1"/>
                               <input type="hidden" name="type-model" value="-1"/>
-                              <td class="typeJudicial"><label></label><input type="hidden" name="type-model" value="-1"/></td>
+                              <td class="typeJudicial"><label></label><input type="hidden" name="type-jud-model" value="-1"/></td>
                               <td class="number"><label></label><input type="hidden" name="number-model" value="-1"/></td>
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -649,12 +669,12 @@
                             </tr>
                           </thead>
                           <tbody id="demandado-grid">
-                            @foreach([] as $i => $judicial)
+                            @foreach($profile->judicials()->where('type',2)->get()  as $i => $judicial)
                             <tr class="">
-                              <input type="hidden" name="judicial[{{$i}}]['id']" value="{{$judicial->id}}"/>
-                              <input type="hidden" name="judicial[{{$i}}]['judgment_type_id']" value="{{$judicial->judgment_type_id}}"/>
-                              <td class="typeJudicial"><label>{{$judicial->typeJudicial}}</label><input type="hidden" name="judicial[{{$i}}]['typeJudicial']" value="{{$judicial->typeJudicial}}"/></td>
-                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicial[{{$i}}]['number']" value="{{$judicial->number}}"/></td>
+                              <input type="hidden" name="judicialDemand[{{$i}}][id]" value="{{$judicial->id}}"/>
+                              <input type="hidden" name="judicialDemand[{{$i}}][type]" value="{{$judicial->type}}"/>
+                              <td class="typeJudicial"><label>{{$judicial->judgment_type_id}}</label><input type="hidden" name="judicialDemand[{{$i}}][judgment_type_id]" value="{{$judicial->judgment_type_id}}"/></td>
+                              <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicialDemand[{{$i}}][number]" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -675,7 +695,7 @@
                       </div>
                       <div class="col-md-6">
                         <label>Tipo</label>
-                        <select id="typeJudicial" class="form-control">
+                        <select id="judgment_type_id" class="form-control">
                           @foreach($judgment_types as $judgment_type)
                             <option value="{{$judgment_type->id}}">{{$judgment_type->name}}</option>
                           @endforeach
@@ -694,11 +714,11 @@
                   <div class="form-group row">
                     <div class="col-md-6">
                       <label for="fuente">Url Fuente</label>
-                      <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                      <input type="text" class="form-control" name="urlFuenteJudicials"  placeholder="Ingrese el link">
                     </div>
                     <div class="col-md-6">
                       <label for="archivo">Archivo Fuente</label>
-                      <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                      <input type="file" class="form-control" name="fileFuenteJudicials" placeholder="Ingrese el archivo">
                     </div>
                 </div>
                 </div>
@@ -1009,12 +1029,12 @@
    var index = $('#position-grid').find('tr').length;
    var $clone = $('.model-companies').clone(true).removeClass('hidden model-companies');
    if(($('#position')[0]).options.length > 0){
-     $clone.find('input').attr('name' , 'company['+index+']["id"]');
-     $clone.find('.position').find('input').attr('name' , 'company['+index+']["position"]');
+     $clone.find('input').attr('name' , 'company['+index+'][id]');
+     $clone.find('.position').find('input').attr('name' , 'company['+index+'][position]');
      $clone.find('.position').find('input').val($('#position').val());
      $clone.find('.position').find('label').text($('#position option:selected').text());
 
-     $clone.find('.total_companies').find('input').attr('name' , 'company['+index+']["total_companies"]');
+     $clone.find('.total_companies').find('input').attr('name' , 'company['+index+'][total_companies]');
      $clone.find('.total_companies').find('input').val($('#total_companies').val());
      $clone.find('.total_companies').find('label').text($('#total_companies').val());
 
@@ -1049,15 +1069,15 @@
       case "1":
       index  = $ACTORCONTAINER.find('tr').length;
       var clone = $('.model-actor').clone(true).removeClass('hidden model-actor');
-      clone.find('input[name=id-model]').attr('name' , 'judicialActor['+index+']["id"]');
-      clone.find('input[name=type-model]').attr('name' , 'judicialActor['+index+']["judgment_type_id"]');
-      clone.find('input[name=type-model]').val($('#judgment_type_id').val());
+      clone.find('input[name=id-model]').attr('name' , 'judicialActor['+index+'][id]');
+      clone.find('input[name=type-model]').val($('#judgment').val());
+      clone.find('input[name=type-model]').attr('name' , 'judicialActor['+index+'][type]');
 
-      clone.find('.typeJudicial').find('input').attr('name' , 'judicialActor['+index+']["typeJudicial"]');
-      clone.find('.typeJudicial').find('input').val($('#typeJudicial').val());
-      clone.find('.typeJudicial').find('label').text($('#typeJudicial option:selected').text());
+      clone.find('.typeJudicial').find('input').attr('name' , 'judicialActor['+index+'][typeJudicial]');
+      clone.find('.typeJudicial').find('input').val($('#judgment_type_id').val());
+      clone.find('.typeJudicial').find('label').text($('#judgment_type_id option:selected').text());
 
-      clone.find('.number').find('input').attr('name' , 'judicialActor['+index+']["number"]');
+      clone.find('.number').find('input').attr('name' , 'judicialActor['+index+'][number]');
       clone.find('.number').find('input').val($('#number').val());
       clone.find('.number').find('label').text($('#number').val());
 
@@ -1067,15 +1087,16 @@
       index = $DEMANDADOCONTAINER.find('tr').length;
 
       var clone = $('.model-actor').clone(true).removeClass('hidden model-actor');
-      clone.find('input[name=id-model]').attr('name' , 'judicialDemand['+index+']["id"]');
-      clone.find('input[name=type-model]').attr('name' , 'judicialDemand['+index+']["judgment_type_id"]');
-      clone.find('input[name=type-model]').val($('#judgment_type_id').val());
+      clone.find('input[name=id-model]').attr('name' , 'judicialDemand['+index+'][id]');
+        clone.find('input[name=type-model]').val($('#judgment').val());
+      clone.find('input[name=type-model]').attr('name' , 'judicialDemand['+index+'][type]');
 
-      clone.find('.typeJudicial').find('input').attr('name' , 'judicialDemand['+index+']["typeJudicial"]');
-      clone.find('.typeJudicial').find('input').val($('#typeJudicial').val());
-      clone.find('.typeJudicial').find('label').text($('#typeJudicial option:selected').text());
+      clone.find('.typeJudicial').find('input').attr('name' , 'judicialDemand['+index+'][typeJudicial]');
+      clone.find('.typeJudicial').find('input').val($('#judgment_type_id').val());
+      clone.find('.typeJudicial').find('label').text($('#judgment_type_id option:selected').text());
 
-      clone.find('.number').find('input').attr('name' , 'judicialDemand['+index+']["number"]');
+
+      clone.find('.number').find('input').attr('name' , 'judicialDemand['+index+'][number]');
       clone.find('.number').find('input').val($('#number').val());
       clone.find('.number').find('label').text($('#number').val());
 
