@@ -15,9 +15,9 @@ class BinomialRepository extends Repository
   function getBinomials(){
     $response = [];
     foreach ($this->all() as $partido) {
-      $item['partido'] = $partido;
       $item['president'] = $partido->president();
-      $item['vice_president'] = $partido->vicePresident();
+      $item['vicepresident'] = $partido->vicePresident();
+      $item['partido'] = $partido;
       array_push($response,$item);
     };
     return $response;
