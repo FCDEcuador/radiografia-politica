@@ -28,13 +28,14 @@
         <div class="row btn-profile">
             <button type="button" class="btn btn-dark">Descargar Plan de gobierno</button>
         </div>
+        <div class="row btn-profile">
+            <button type="button" class="btn btn-dark">Observatorio del candidato</button>
+        </div>
         <div class="row profile-redes">
           <b>Redes sociales</b>
           <div class="profile-socials">
             <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
             <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-            <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -49,6 +50,7 @@
         <div class="row">
           <label>Binomio:</label>
         </div>
+          foto binomio
         <div class="row">
           <a href="{{url('profile/1')}}"><label style="color:#506F93;text-decoration:underline;cursor:pointer;">Jorge Glass</label></a>
         </div>
@@ -62,7 +64,7 @@
       </div>
     </div>
     <section class="cd-horizontal-timeline">
-      <div class="timeline">
+      <div class="timeline vpu-line time-yellow">
         <h4>VIDA PÚBLICA</h4>
         <div id="public-wrapper" class="events-wrapper">
           <div class="events">
@@ -84,7 +86,7 @@
         </ul> <!-- .cd-timeline-navigation -->
       </div> <!-- .timeline -->
       <br>
-  	<div class="timeline">
+  	<div class="timeline time-blue">
         <h4>VIDA PRIVADA</h4>
   		<div id="private-wrapper" class="events-wrapper">
   			<div class="events">
@@ -113,7 +115,7 @@
   		</ul> <!-- .cd-timeline-navigation -->
   	</div> <!-- .timeline -->
     <br>
-    <div class="timeline">
+    <div class="timeline time-red">
         <h4>VIDA POLÍTICA</h4>
       <div id="politician-wrapper" class="events-wrapper">
         <div class="events">
@@ -409,28 +411,28 @@
           <div class="well-body">
             <div class="row patrimonial-declaration-icons">
               <div class="col-md-3">
-                <div class="img-responsive">
+                <div class="img-responsive hint--top" data-hint="VIVIENDAS">
                   <img src="/img/ico-vivienda.png">
                 </div>
-                <span>2</span>
+                <div>2</div>
               </div>
               <div class="col-md-3">
-                <div class="img-responsive">
+                <div class="img-responsive hint--top" data-hint="VEHÍCULOS">
                   <img src="/img/ico-auto.png">
                 </div>
-                <span>3</span>
+                <div>3</div>
               </div>
               <div class="col-md-3">
-                <div class="img-responsive">
+                <div class="img-responsive hint--top" data-hint="PATRIMONIO">
                   <img src="/img/ico-dinero.png">
                 </div>
-                <span>$80.000,00</span>
+                <div>$80.000,00</div>
               </div>
               <div class="col-md-3">
-                <div class="img-responsive">
+                <div class="img-responsive hint--top" data-hint="COMPAÑÍAS">
                   <img src="/img/ico-industria.png">
                 </div>
-                <span>0</span>
+                <div>0</div>
               </div>
             </div>
             <div class="row">
@@ -478,7 +480,7 @@
       <div class="col-md-4">
         <div class="well well-lg well-transparency transparencia-superintendencia">
           <div class="well-title">
-            <span class="well-card-title">SUPERINTENDENCIA<span>
+            <span class="well-card-title">SUPERINTENDENCIA DE COMPAÑÍAS<span>
           </div>
           <div class="row well-body">
             <table class="table table-vertical">
@@ -524,8 +526,8 @@
                 <table class="table" style="text-align:center;">
                   <thead>
                     <tr>
-                      <th>Tema</th>
-                      <th>Cantidad de juicios</th>
+                      <th>Tipo de juicio</th>
+                      <th>Cantidad</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -545,8 +547,8 @@
                 <table class="table" style="text-align:center;">
                   <thead>
                     <tr>
-                      <th>Tema</th>
-                      <th>Cantidad de juicios</th>
+                      <th>Tipo de juicio</th>
+                      <th>Cantidad</th>
                     </tr>
                   </thead>
                   <tbody>
