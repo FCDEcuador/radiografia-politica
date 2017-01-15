@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<?php
+  function formatDate($date)
+  {
+    //01/01/0001;
+    $parts = explode('-',$date);
+    return $parts[2].'/'.$parts[1].'/'.$parts[0];
+  }
+?>
 <div class="container">
   <section>
     <div class="row">
@@ -10,17 +18,16 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <h4>Lenin Moreno</h4>
+        <h4>{{$profile->person->name.' '.$profile->person->lastname}}</h4>
       </div>
     </div>
     <div class="row">
       <div class="col-md-3 align-c avatar">
-          <img src="/img/perfiles/lenin-300.jpg" class="img-responsive" />
+          <img src="{{rtrim(asset('/'),'/').$profile->person->img}}" class="img-responsive" />
       </div>
       <div class="col-md-6">
         <div class="row profile-description">
-          <p>Rosita Andrea Espinosa Fernandez, canidata a la Asamblea Nacional por la provincia de Cotopaxi.</p>
-          <p>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</p>
+          {{$profile->person->description}}
         </div>
         <div class="row btn-profile">
           <button type="button" class="btn btn-dark">Descargar curriculum</button>
@@ -34,8 +41,8 @@
         <div class="row profile-redes">
           <b>Redes sociales</b>
           <div class="profile-socials">
-            <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+            <a href="{{$profile->person->facebook}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="{{$profile->person->twitter}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -44,7 +51,7 @@
           <h4>Afiliación Actual:</h4>
         </div>
         <div class="row">
-          <img src="/img/political-parties/35-pais.png" />
+          <img src="{{rtrim(asset('/'),'/').$profile->person->politicalParty->img}}" />
         </div>
         <br>
         <div class="row">
@@ -69,10 +76,9 @@
         <div id="public-wrapper" class="events-wrapper">
           <div class="events">
             <ol>
-			        <li><a href="#0" data-date="01/01/0001" class="selected">1998</a></li>
-              <li><a href="#0" data-date="01/01/0002">1999</a></li>
-              <li><a href="#0" data-date="01/01/0003">2002</a></li>
-              <li><a href="#0" data-date="01/01/0004">2003</a></li>
+              @foreach($profile->person->timelines()->where('typeEvent',1)->get() as $timeline)
+			           <li><a href="#0" data-date="{{formatDate($timeline->start)}}">1995</a></li>
+              @endforeach
             </ol>
 
             <span class="filling-line" aria-hidden="true"></span>
@@ -91,17 +97,9 @@
   		<div id="private-wrapper" class="events-wrapper">
   			<div class="events">
   				<ol>
-  					<li><a href="#0" data-date="01/01/1001">1977</a></li>
-  					<li><a href="#0" data-date="01/01/1002">1980</a></li>
-  					<li><a href="#0" data-date="01/01/1003">1984</a></li>
-  					<li><a href="#0" data-date="01/01/1004">1987</a></li>
-  					<li><a href="#0" data-date="01/01/1005">1989</a></li>
-					<li><a href="#0" data-date="01/01/1006">1989</a></li>
-  					<li><a href="#0" data-date="01/01/1007">1993</a></li>
-  					<li><a href="#0" data-date="01/01/1008">1994</a></li>
-  					<li><a href="#0" data-date="01/01/1009">1994</a></li>
-  					<li><a href="#0" data-date="01/01/1010">2008</a></li>
-  					<li><a href="#0" data-date="01/01/1011">2010</a></li>
+            @foreach($profile->person->timelines()->where('typeEvent',2)->get() as $timeline)
+               <li><a href="#0" data-date="01/01/0001">1995</a></li>
+            @endforeach
   				</ol>
 
   				<span class="filling-line" aria-hidden="true"></span>
@@ -120,11 +118,9 @@
       <div id="politician-wrapper" class="events-wrapper">
         <div class="events">
           <ol>
-            <li><a href="#0" data-date="01/01/2001">2006</a></li>
-  			<li><a href="#0" data-date="01/01/2002">2011</a></li>
-  			<li><a href="#0" data-date="01/01/2003">2013</a></li>
-  			<li><a href="#0" data-date="01/01/2004">2014</a></li>
-  			<li><a href="#0" data-date="01/01/2005">2016</a></li>
+            @foreach($profile->person->timelines()->where('typeEvent',3)->get() as $timeline)
+               <li><a href="#{{$timeline->id}}" data-date="{{formatDate($timeline->start)}}">1995</a></li>
+            @endforeach
           </ol>
 
           <span class="filling-line" aria-hidden="true"></span>
@@ -142,168 +138,15 @@
   		<ol>
 
 			<!-- VIDA PUBLICA -->
-
-  			<li class="selected" data-date="01/01/0001">
+        @foreach($profile->person->timelines as $timeline)
+  			<li data-date="{{formatDate($timeline->start)}}">
   				<h4>Vida Pública</h4>
-  				<em>1998 - 1999</em>
+  				<em>{{$timeline->start}} - {{$timeline->end}}</em>
   				<p>
-  					Gobernador del Guayas (gobierno de Jamil Mahuad)
+  					{{$timeline->description}}
   				</p>
   			</li>
-
-  			<li data-date="01/01/0002">
-  				<h4>Vida Pública</h4>
-  				<em>1999</em>
-  				<p>
-  					Superministro de Economía y Energía (gobierno de Jamil Mahuad)
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/0003">
-  				<h4>Vida Pública</h4>
-  				<em>2002 - 2007</em>
-  				<p>
-  					Presidente de la Fundación Terminal Terrestre y encargado de la reconstrucción del Terminal Terrestre de Guayaquil.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/0004">
-  				<h4>Vida Pública</h4>
-  				<em>2003</em>
-  				<p>
-  					Embajador Itinerante de Ecuador de relaciones con EEUU (gobierno de Lucio Gutierrez)
-  				</p>
-  			</li>
-
-			<!-- FIN VIDA PUBLICA -->
-
-			<!-- INICIO VIDA PRIVADA -->
-			<li data-date="01/01/1001">
-  				<h4>Vida Privada</h4>
-  				<em>1977-1980 </em>
-  				<p>
-  					Gerente de ProCrédito.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/1002">
-  				<h4>Vida Privada</h4>
-  				<em>1980-1989</em>
-  				<p>
-  					Presidente ejecutivo de Finansur.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/1003">
-  				<h4>Vida Privada</h4>
-  				<em>1984</em>
-  				<p>
-  					Vicepresidente de la filial nacional de Coca-Cola, empresa a la que rehabilitó.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/1004">
-  				<h4>Vida Privada</h4>
-  				<em>1987-1988</em>
-  				<p>
-  					Presidente de la Asociación de Compañías Financieras del Ecuador.
-  				</p>
-  			</li>
-			<li data-date="01/01/1005">
-  				<h4>Vida Privada</h4>
-  				<em>1989</em>
-  				<p>
-  					Vicepresidencia Ejecutiva y la Gerencia General del Banco de Guayaquil.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/1006">
-  				<h4>Vida Privada</h4>
-  				<em>1989-1999</em>
-  				<p>
-  					Adquisición de la empresa Mavesa, representante de Hino.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/1007">
-  				<h4>Vida Privada</h4>
-  				<em>1993-1997</em>
-  				<p>
-  					Presidente de la Asociación de Bancos Privados del Ecuador.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/1008">
-  				<h4>Vida Privada</h4>
-  				<em>1994</em>
-  				<p>
-  					Vocal en la Junta Monetaria en representación de los bancos privados nacionales.
-  				</p>
-  			</li>
-			<li data-date="01/01/1009">
-  				<h4>Vida Privada</h4>
-  				<em>1994-2012</em>
-  				<p>
-  					Presidente Ejecutivo del Banco de Guayaquil.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/1010">
-  				<h4>Vida Privada</h4>
-  				<em>2008</em>
-  				<p>
-  					Funda “Banco del Barrio”.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/1011">
-  				<h4>Vida Privada</h4>
-  				<em>2010</em>
-  				<p>
-  					El BID reconoce el “Banco del Barrio” como el mayor proyecto de bancarización de Latinoamérica.
-  				</p>
-  			</li>
-			<!-- FIN VIDA PRIVADA -->
-
-			<!-- INICIO VIDA POLITICA -->
-			<li data-date="01/01/2001">
-  				<h4>Vida Privada</h4>
-  				<em>2006</em>
-  				<p>
-  					Miembro del movimiento político liberal UNO.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/2002">
-  				<h4>Vida Privada</h4>
-  				<em>2011</em>
-  				<p>
-  					Fundador del movimiento político CREO.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/2003">
-  				<h4>Vida Privada</h4>
-  				<em>2013</em>
-  				<p>
-  					Candidato a Presidente por el movimiento CREO.
-  				</p>
-  			</li>
-
-  			<li data-date="01/01/2004">
-  				<h4>Vida Privada</h4>
-  				<em>2014</em>
-  				<p>
-  					Conformó la coalición Compromiso Ecuador.
-  				</p>
-  			</li>
-			<li data-date="01/01/2005">
-  				<h4>Vida Privada</h4>
-  				<em>2016</em>
-  				<p>
-  					Candidato presidencial para las Elecciones 2017 por el movimiento CREO.
-  				</p>
-  			</li>
+        @endforeach
              <!-- FIN VIDA POLITICA -->
 
   		</ol>
@@ -333,25 +176,12 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($profile->sri()->where('taxType',1)->get() as $sri)
                   <tr>
-                    <td>2015</td>
-                    <td>$0,00</td>
+                    <td>$sri->year</td>
+                    <td>$sri->value</td>
                   </tr>
-				 <tr>
-                    <td>2014</td>
-                    <td>$4.884,96</td>
-                  </tr>
-				 <tr>
-                    <td>2013</td>
-                    <td>$27.980,62</td>
-                  </tr>
-				 <tr>
-                    <td>2012</td>
-                    <td>$2.508,52</td>
-                  </tr>
-				 <tr>
-                    <td>2011</td>
-                    <td>$2.224,81</td>
+                  @endforeach
                   </tr>
                 </tbody>
               </table>
@@ -365,26 +195,12 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($profile->sri()->where('taxType',2)->get() as $sri)
                   <tr>
-                    <td>2016</td>
-                    <td>$1.446,32</td>
+                    <td>$sri->year</td>
+                    <td>$sri->value</td>
                   </tr>
-				 <tr>
-                    <td>2015</td>
-                    <td>$1.645,98</td>
-                  </tr>
-				 <tr>
-                    <td>2014</td>
-                    <td>$2.099,59</td>
-                  </tr>
-				 <tr>
-                    <td>2013</td>
-                    <td>$465,59</td>
-                  </tr>
-				 <tr>
-                    <td>2012</td>
-                    <td>$241,42</td>
-                  </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -414,48 +230,48 @@
                 <div class="img-responsive hint--top" data-hint="VIVIENDAS">
                   <img src="/img/ico-vivienda.png">
                 </div>
-                <div>2</div>
+                <div>{{$profile->heritage->houses}}</div>
               </div>
               <div class="col-md-3">
                 <div class="img-responsive hint--top" data-hint="VEHÍCULOS">
                   <img src="/img/ico-auto.png">
                 </div>
-                <div>3</div>
+                <div>{{$profile->heritage->cars}}</div>
               </div>
               <div class="col-md-3">
                 <div class="img-responsive hint--top" data-hint="PATRIMONIO">
                   <img src="/img/ico-dinero.png">
                 </div>
-                <div>$80.000,00</div>
+                <div>{{$profile->heritage->money}}</div>
               </div>
               <div class="col-md-3">
                 <div class="img-responsive hint--top" data-hint="COMPAÑÍAS">
                   <img src="/img/ico-industria.png">
                 </div>
-                <div>0</div>
+                <div>{{$profile->heritage->companies}}</div>
               </div>
             </div>
             <div class="row">
             <table class="table">
               <tr>
                 <th>Fecha de declaración</th>
-                <td>29/04/2013</td>
-                <td>29/04/2013</td>
+                <td>{{$profile->heritage->previousDeclaration}}</td>
+                <td>{{$profile->heritage->actualDeclaration}}</td>
               </tr>
               <tr>
                 <th>Activos</th>
-                <td>$7.726,00</td>
-                <td>$7.726,00</td>
+                <td>{{$profile->heritage->previousAssets}}</td>
+                <td>{{$profile->heritage->actualAssets}}</td>
               </tr>
               <tr>
                 <th>Pasivos</th>
-                <td>$7.726,00</td>
-                <td>$7.726,00</td>
+                <td>{{$profile->heritage->previousLiabilities}}</td>
+                <td>{{$profile->heritage->actualLiabilities}}</td>
               </tr>
               <tr>
                 <th>Patrimonio</th>
-                <td>$7.726,00</td>
-                <td>$7.726,00</td>
+                <td>{{$profile->heritage->previousHeritage}}</td>
+                <td>{{$profile->heritage->actualHeritage}}</td>
               </tr>
             </table>
             </div>
@@ -488,15 +304,15 @@
               <col width="50%">
               <tr>
                 <th>Gerente</th>
-                <td>0</td>
+                <td>{{($profile->companies()->where('position',1)->first() != null) ? $profile->companies()->where('position',1)->first()->total_companies : 0}}</td>
               </tr>
               <tr>
                 <th>Presidente</th>
-                <td>2</td>
+                <td>{{($profile->companies()->where('position',2)->first() != null) ? $profile->companies()->where('position',1)->first()->total_companies : 0}}</td>
               </tr>
               <tr>
                 <th>Accionista</th>
-                <td>1</td>
+                <td>{{($profile->companies()->where('position',3)->first() != null) ? $profile->companies()->where('position',1)->first()->total_companies : 0}}</td>
               </tr>
             </table>
           </div>
@@ -531,13 +347,12 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach($profile->judicials()->where('type',1)->get() as $judgment)
                     <tr>
-                      <td>Inquilinato</td>
-                      <td>1</td>
+                      <td>{{$judgment->judgment_type->name}}</td>
+                      <td>{{$judgment->number}}</td>
                     </tr>
-				   <tr>
-                      <td>Penal</td>
-                      <td>1</td>
+                    @endforeach
                     </tr>
                   </tbody>
                 </table>
@@ -552,25 +367,19 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach($profile->judicials()->where('type',2)->get() as $judgment)
                     <tr>
-                      <td>Civil</td>
-                      <td>3</td>
+                      <td>{{$judgment->judgment_type->name}}</td>
+                      <td>{{$judgment->number}}</td>
                     </tr>
-				   <tr>
-                      <td>Laboral</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <td>Constitucional</td>
-                      <td>2</td>
-                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label>ANTECEDENTES PENALES:&nbsp;&nbsp;</label> <label>SI - 4</label>
+                <label>ANTECEDENTES PENALES:&nbsp;&nbsp;</label> <label>{{$profile->hasPenals}}</label>
               </div>
             </div>
           </div>
@@ -603,15 +412,15 @@
                 <col width="50%">
                 <tr>
                   <th>Tercer Nivel</th>
-                  <td>Licenciado en Administración Pública</td>
+                  <td>{{$profile->study->profession}}</td>
                 </tr>
                 <tr>
                   <th>Maestría</th>
-                  <td>0</td>
+                  <td>{{$profile->study->postgrad}}</td>
                 </tr>
                 <tr>
                   <th>PhD</th>
-                  <td>0</td>
+                  <td>{{$profile->study->phd}}</td>
                 </tr>
               </table>
             </div>
@@ -640,7 +449,7 @@
                 <col width="50%">
                 <tr>
                   <th>Procesos</th>
-                  <td>0</td>
+                  <td>{{$profile->comptroller->processes}}</td>
                 </tr>
               </table>
             </div>

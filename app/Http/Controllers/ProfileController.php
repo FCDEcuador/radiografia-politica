@@ -68,6 +68,18 @@ class ProfileController extends Controller
       //
   }
 
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function view($id)
+  {
+      $profile = $this->repository->find($id);
+      return view('perfil')->with(['profile' => $profile]);
+  }
+
   private function generateLastYears($last=6)
   {
     $years = [];

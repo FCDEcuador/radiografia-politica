@@ -13,9 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/perfil/{id}', function ($id) {
-    return view('perfil');
-});
+Route::get('/perfil/{id}', 'ProfileController@view');
 
 Route::get('/home', 'HomeController@index');
 
