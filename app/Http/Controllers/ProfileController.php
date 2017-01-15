@@ -51,7 +51,7 @@ class ProfileController extends Controller
   {
     if($this->repository->create($request->all()))
     {
-      return redirect(route('profile.index'))->with('success', 'Usuario creado exitosamente!');
+      return redirect(route('profile.create'))->with('success', 'Usuario creado exitosamente!');
     }else {
         return redirect()->back()->with('errors', 'El email ya existe!');
     }

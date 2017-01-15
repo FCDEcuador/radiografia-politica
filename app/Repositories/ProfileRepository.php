@@ -214,6 +214,7 @@ class ProfileRepository extends Repository
       $profile->heritage->profile_id = $profile->id;
       $profile->heritage->user_id = Auth::user()->id;
       $profile->heritage->save();
+      $profile = $this->model->find($id);
     }
     $profile->heritage->houses = $data['houses'];
     $profile->heritage->cars = $data['cars'];
@@ -325,6 +326,7 @@ class ProfileRepository extends Repository
             $profile->study->profile_id = $profile->id;
             $profile->study->user_id = Auth::user()->id;
             $profile->study->save();
+            $profile = $this->model->find($id);
           }
       $profile->study->profession = $data['profession'];
       $profile->study->pregrade = $data['pregrade'];
@@ -341,6 +343,7 @@ class ProfileRepository extends Repository
       $profile->comptroller->profile_id = $profile->id;
       $profile->comptroller->user_id = Auth::user()->id;
       $profile->comptroller->save();
+      $profile = $this->model->find($id);
     }
       $profile->comptroller->processes = $data['comptrollerProcess'];
 

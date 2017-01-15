@@ -6,8 +6,15 @@ controllers.controller('PresidentController', function($scope, President) {
 
     function init()
     {
-      $scope.binomails = President.all();
-      console.log($scope.binomails);
+     President.all().then(function(data)
+    {
+      console.log(data);
+      $scope.binomails = data;
+    }).catch(function(err)
+  {
+    console.error(err);
+  });
+
     }
-    
+
 });
