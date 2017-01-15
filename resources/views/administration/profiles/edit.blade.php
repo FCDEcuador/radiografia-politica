@@ -307,12 +307,12 @@
                             </tr>
                           </thead>
                           <tbody id="sri-impuesto-grid">
-                            @foreach([] as $i => $rentTax)
+                            @foreach($profile->sri()->where('taxType',1)->get() as $i => $rentTax)
                             <tr class="">
-                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
-                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
-                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="rentTax[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="rentTax[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                              <input type="hidden" name="sri[{{$i}}][id]" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="sri[{{$i}}][type]" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="sri[{{$i}}][year]" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="sri[{{$i}}][tax]" value="{{$rentTax->value}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -343,12 +343,12 @@
                             </tr>
                           </thead>
                           <tbody id="sri-divisas-grid">
-                            @foreach([] as $i => $rentTax)
+                            @foreach($profile->sri()->where('taxType',2)->get() as $i => $rentTax)
                             <tr class="">
-                              <input type="hidden" name="rentTax[{{$i}}]['id']" value="{{$rentTax->id}}"/>
-                              <input type="hidden" name="rentTax[{{$i}}]['type']" value="{{$rentTax->type}}"/>
-                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="rentTax[{{$i}}]['year']" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="rentTax[{{$i}}]['tax']" value="{{$rentTax->value}}"/></td>
+                              <input type="hidden" name="sri[{{6 + $i}}][id]" value="{{$rentTax->id}}"/>
+                              <input type="hidden" name="sri[{{6 + $i}}][type]" value="{{$rentTax->type}}"/>
+                              <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="sri[{{6 + $i}}][year]" value="{{$rentTax->year}}"/></td>
+                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="sri[{{6 + $i}}][tax]" value="{{$rentTax->value}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -387,11 +387,11 @@
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="fuente">Url Fuente</label>
-                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                        <input type="text" class="form-control" name="urlFuenteSRI"  placeholder="Ingrese el link" value="{{$profile->urlSri}}" />
                       </div>
                       <div class="col-md-6">
                         <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                        <input type="file" class="form-control" name="fileFuenteSRI" placeholder="Ingrese el archivo">
                       </div>
                   </div>
 
@@ -416,24 +416,25 @@
                     <div class="form-group row">
                       <div class="col-md-3">
                         <label># Casas</label>
-                        <input type="number" name="houses" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="Casas">
+                        <input type="number" name="houses" class="form-control" value="{{(isset($profile->heritage) ? $profile->heritage->houses : 0)}}" placeholder="Casas">
                       </div>
                       <div class="col-md-3">
                         <label># Carros</label>
-                        <input type="number" name="cars" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->cars : 0)}}" placeholder="Carros">
+                        <input type="number" name="cars" class="form-control" value="{{(isset($profile->heritage) ? $profile->heritage->cars : 0)}}" placeholder="Carros">
                       </div>
                       <div class="col-md-3">
                         <label>$ Dinero</label>
-                        <input type="number" name="money" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
+                        <input type="number" name="money" class="form-control" value="{{(isset($profile->heritage) ? $profile->heritage->money : 0)}}" placeholder="Dinero">
                       </div>
                       <div class="col-md-3">
                         <label># Compañias</label>
-                        <input type="number" name="companies" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->companies : 0)}}" placeholder="Compañias">
+                        <input type="number" name="companies" class="form-control" value="{{(isset($profile->heritage) ? $profile->heritage->companies : 0)}}" placeholder="Compañias">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label>Declaración actual</label>
+
                       </div>
                       <div class="col-md-6">
                         <label>Declaración previa</label>
@@ -442,51 +443,51 @@
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="date">Fecha actual</label>
-                        <input type="date" class="form-control" name="actualDate-declaration" id="actualDeclarationDate">
+                        <input type="date" class="form-control" name="actualDeclaration" id="actualDeclarationDate">
                       </div>
                       <div class="col-md-6">
                         <label for="date">Fecha previa</label>
-                        <input type="date" class="form-control" name="actualDate-declaration" id="previousDeclarationDate">
+                        <input type="date" class="form-control" name="previousDeclaration" id="previousDeclarationDate">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label>Activos Actuales</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="actualAssets" value="{{(isset($profile->heritage) ? $profile->heritage->actualAssets : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                       <div class="col-md-6">
                         <label>Activos Previos</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="previousAssets" value="{{(isset($profile->heritage) ? $profile->heritage->previousAssets : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label>Pasivos Actuales</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name=actualLiabilities value="{{(isset($profile->heritage) ? $profile->heritage->actualLiabilities : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                       <div class="col-md-6">
                         <label>Pasivos Previos</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="previousLiabilities" value="{{(isset($profile->heritage) ? $profile->heritage->previousLiabilities : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label>Patromonio Actual</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="actualHeritage" value="{{(isset($profile->heritage) ? $profile->heritage->actualHeritage : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                       <div class="col-md-6">
                         <label>Patromonio Previos</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Valor">
+                        <input type="text" name="previousHeritage" value="{{(isset($profile->heritage) ? $profile->heritage->previousHeritage : 0)}}" class="form-control" placeholder="Valor">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="fuente">Url Fuente</label>
-                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                        <input type="text" class="form-control" name="urlFuentePatrimonio" value="{{$profile->urlHeritage}}"  placeholder="Ingrese el link">
                       </div>
                       <div class="col-md-6">
                         <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                        <input type="file" class="form-control" name="fileFuentePatrimonio" placeholder="Ingrese el archivo">
                       </div>
                   </div>
                 </div>
@@ -721,31 +722,31 @@
                     <div class="form-group row">
                       <div class="col-md-12">
                         <label>Profesión</label>
-                        <input type="text" name="tax-value" class="form-control" placeholder="Ingrese el título universitario">
+                        <input type="text" name="profession" class="form-control" value="{{(isset($profile->study)) ? $profile->study->profession : ''}}" placeholder="Ingrese el título universitario">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-4">
                         <label># Pregrado</label>
-                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="Casas">
+                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->study) ? $profile->study->pregrade : 0)}}" placeholder="Pregrado">
                       </div>
                       <div class="col-md-4">
                         <label># Posgrado</label>
-                        <input type="number" name="posgrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->cars : 0)}}" placeholder="Carros">
+                        <input type="number" name="posgrade" class="form-control" value="{{(isset($profile->study) ? $profile->study->postgrad : 0)}}" placeholder="Postgrado">
                       </div>
                       <div class="col-md-4">
                         <label># Phd</label>
-                        <input type="number" name="phd" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->money : 0)}}" placeholder="Dinero">
+                        <input type="number" name="phd" class="form-control" value="{{(isset($profile->study) ? $profile->study->phd : 0)}}" placeholder="PHD">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="fuente">Url Fuente</label>
-                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                        <input type="text" class="form-control" name="urlFuenteSenecyt" value="{{$profile->urlStudy}}"  placeholder="Ingrese el link">
                       </div>
                       <div class="col-md-6">
                         <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                        <input type="file" class="form-control" name="fileFuenteSenecyt" placeholder="Ingrese el archivo">
                       </div>
                   </div>
                   </div>
@@ -774,17 +775,17 @@
                     <div class="form-group row">
                       <div class="col-md-12">
                         <label>Número de Procesos</label>
-                        <input type="number" name="pregrade" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="0">
+                        <input type="number" name="comptrollerProcess" value="{{(isset($profile->comptroller) ? $profile->comptroller->processes : 0)}}" class="form-control" value="{{(isset($profile->person->heritage) ? $profile->person->heritage->houses : 0)}}" placeholder="0">
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="fuente">Url Fuente</label>
-                        <input type="text" class="form-control" name="Fuente"  placeholder="Ingrese el link">
+                        <input type="text" class="form-control" name="urlFuenteComptroller" value="{{$profile->urlComptroller}}"  placeholder="Ingrese el link">
                       </div>
                       <div class="col-md-6">
                         <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="Archivo" placeholder="Ingrese el archivo">
+                        <input type="file" class="form-control" name="fileFuenteComptroller" placeholder="Ingrese el archivo">
                       </div>
                   </div>
                   </div>
@@ -973,15 +974,15 @@
     }
 
     var clone = $('.model-sri-taxes').clone(true).removeClass('hidden model-sri-taxes');
-    clone.find('input[name=id-model]').attr('name' , 'sri['+index+']["id"]');
-    clone.find('input[name=type-model]').attr('name' , 'sri['+index+']["type"]');
+    clone.find('input[name=id-model]').attr('name' , 'sri['+index+'][id]');
     clone.find('input[name=type-model]').val($('#taxType').val());
+    clone.find('input[name=type-model]').attr('name' , 'sri['+index+'][type]');
 
-    clone.find('.year').find('input').attr('name' , 'sri['+index+']["year"]');
+    clone.find('.year').find('input').attr('name' , 'sri['+index+'][year]');
     clone.find('.year').find('input').val($('#taxYear').val());
     clone.find('.year').find('label').text($('#taxYear').val());
 
-    clone.find('.tax').find('input').attr('name' , 'sri['+index+']["tax"]');
+    clone.find('.tax').find('input').attr('name' , 'sri['+index+'][tax]');
     clone.find('.tax').find('input').val($('#taxValue').val());
     clone.find('.tax').find('label').text($('#taxValue').val());
 

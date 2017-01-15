@@ -4,6 +4,10 @@ namespace App\Repositories;
 use App\Models\Profile;
 use App\Models\State;
 use App\Models\Timeline;
+use App\Models\SRI;
+use App\Models\Heritage;
+use App\Models\Study;
+use App\Models\Comptroller;
 use Illuminate\Support\Facades\Config;
 use App\Exceptions\ApiResponseException;
 use Auth;
@@ -154,10 +158,117 @@ class ProfileRepository extends Repository
         $newTimeLine->save();
       }
     }
-
     // END UPDATE TIMELINE
+    // UPDATE SRI
+    $actualSRI = $profile->sri->toArray();
+    $ids = [];
+    $sri = (isset($data['sri'])) ? $request->get('sri') : [];
+    $sri = collect($sri);
+    $sriKeys = $sri->keys();
+    $sriData = [];
+    foreach ($sriKeys as $key) {
+      array_push($sriData,$sri[$key]);
+    }
+
+    foreach ($sriData as $sd) {
+      array_push($ids,$sd['id']);
+    }
+    $ids = collect($ids);
+    $toDelete = [];
+    foreach ($actualSRI as $sriToSearch) {
+      if(!$ids->contains($sriToSearch['id']))
+      {
+        array_push($toDelete,$sriToSearch);
+      }
+    }
+
+    foreach ($toDelete as $tmDelete) {
+      $m = SRI::find($tmDelete['id']);
+      $m->delete();
+    }
+
+    foreach ($sriData as $sri) {
+
+      if($sri['id'] == "-1")
+      {
+        $newSri = new SRI();
+        $newSri->profile_id = $profile->id;
+        $newSri->year = $sri['year'];
+        $newSri->taxType = $sri['type'];
+        $newSri->value = $sri['tax'];
+        $newSri->user_id = Auth::user()->id;
+        $newSri->save();
+      }
+    }
+
+    $profile->urlSri = $data['urlFuenteSRI'];
+    $profile->save();
+    // END SRI
+    // UPDATE Patrimonio
+
+    if( $profile->heritage == null)
+    {
+      $profile->heritage = new Heritage();
+      $profile->heritage->profile_id = $profile->id;
+      $profile->heritage->user_id = Auth::user()->id;
+      $profile->heritage->save();
+    }
+    $profile->heritage->houses = $data['houses'];
+    $profile->heritage->cars = $data['cars'];
+    $profile->heritage->money = $data['money'];
+    $profile->heritage->companies = $data['companies'];
+    if($data['previousDeclaration'] != "")
+    {
+        $profile->heritage->previousDeclaration = $data['previousDeclaration'];
+    }
+    $profile->heritage->previousAssets = (isset($data['previousAssets'])) ? (float)$data['previousAssets'] : 0 ;
+    $profile->heritage->previousLiabilities =(isset($data['previousLiabilities'])) ? (float)$data['previousAssets'] : 0 ;
+    $profile->heritage->previousHeritage = (isset($data['previousHeritage'])) ? (float)$data['previousHeritage'] : 0 ;
+      if($data['actualDeclaration'] != "")
+      {
+          $profile->heritage->actualDeclaration = $data['actualDeclaration'];
+      }
+
+    $profile->heritage->actualAssets = (isset($data['actualAssets'])) ? (float)$data['actualAssets'] : 0 ;
+    $profile->heritage->actualLiabilities = (isset($data['actualLiabilities'])) ? (float)$data['actualLiabilities'] : 0 ;
+    $profile->heritage->actualHeritage = (isset($data['actualHeritage'])) ? (float)$data['actualHeritage'] : 0 ;
+    $profile->heritage->save();
+    $profile->urlHeritage = $data['urlFuenteSRI'];
+    $profile->save();
+    // END Patrimonio
+      // UPDATE Seneciyt
+
+          if( $profile->study == null)
+          {
+            $profile->study = new Study();
+            $profile->study->profile_id = $profile->id;
+            $profile->study->user_id = Auth::user()->id;
+            $profile->study->save();
+          }
+      $profile->study->profession = $data['profession'];
+      $profile->study->pregrade = $data['pregrade'];
+      $profile->study->postgrad = $data['posgrade'];
+      $profile->study->phd = $data['phd'];
+      $profile->study->save();
+      $profile->urlStudy = $data['urlFuenteSenecyt'];
+      $profile->save();
+    // END Senecyt
+    // UPDATE Contraloría
+    if( $profile->comptroller == null)
+    {
+      $profile->comptroller = new Comptroller();
+      $profile->comptroller->profile_id = $profile->id;
+      $profile->comptroller->user_id = Auth::user()->id;
+      $profile->comptroller->save();
+    }
+      $profile->comptroller->processes = $data['comptrollerProcess'];
+
+      $profile->comptroller->save();
+      $profile->urlComptroller = $data['urlFuenteComptroller'];
+      $profile->save();
+      // END Contraloría
     return true;
-    dd($request);
+
   }
 
   private function saveProfilePhoto($profile,$profilePhoto,$detail=false)
