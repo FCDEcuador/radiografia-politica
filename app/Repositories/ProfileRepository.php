@@ -365,7 +365,7 @@ class ProfileRepository extends Repository
   $file = $request->file('fileFuentePenal');
   if($file != null)
   {
-    $profile->fileJudicial = $this->saveDocFile($profile,$file,"fuentes","penales");
+    $profile->filePenal = $this->saveDocFile($profile,$file,"fuentes","penales");
     $profile->update();
   }else {
     if($data['fileFuentePenalDelete'] == "true")
