@@ -36,6 +36,14 @@ class Person extends Model
     return $this->hasMany(Timeline::class);
   }
 
+  public function isPresident(){
+
+    return $this->position->id == Position::presidentId();
+  }
+
+  public function isVicePresident(){
+    return $this->position->id == Position::vicePresidentId();
+  }
 
 
 }

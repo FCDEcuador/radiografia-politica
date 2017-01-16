@@ -20,7 +20,7 @@ function getTypeEvent($id)
   {
     //01/01/0001;
     $parts = explode('-',$date);
-    return $parts[2].'/'.$parts[1].'/'.$parts[0];
+    return $parts[1].'/'.$parts[0];
   }
 
   function getYear($date)
@@ -68,9 +68,11 @@ function getTypeEvent($id)
         <div class="row btn-profile">
             <a href="{{$profile->person->plan}}" target="_blank"><button type="button" class="btn btn-dark">Descargar Plan de gobierno</button></a>
         </div>
+        @if(!empty($profile->person->observatory))
         <div class="row btn-profile">
             <a href="{{$profile->person->observatory}}" target="_blank"><button type="button" class="btn btn-dark">Observatorio del candidato</button></a>
         </div>
+        @endif
         <div class="row profile-redes">
           <b>Redes sociales</b>
           <div class="profile-socials">
@@ -87,13 +89,17 @@ function getTypeEvent($id)
           <img src="{{rtrim(asset('/'),'/').$profile->person->politicalParty->img}}" />
         </div>
         <br>
+        @if(!empty($binomial))
         <div class="row">
           <label>Binomio:</label>
         </div>
-          foto binomio
         <div class="row">
-          <a href="{{url('profile/1')}}"><label style="color:#506F93;text-decoration:underline;cursor:pointer;">Jorge Glass</label></a>
+          <img src="{{rtrim(asset('/'),'/').$binomial->picture}}" class="img-circle" width="150px" />
         </div>
+        <div class="row">
+          <a href="{{url('perfil/').'/'.$binomial->id}}"><label style="color:#506F93;text-decoration:underline;cursor:pointer;">{{$binomial->person->name." ".$binomial->person->lastname}}</label></a>
+        </div>
+        @endif
       </div>
     </div>
   </section>
@@ -286,25 +292,53 @@ function getTypeEvent($id)
             </div>
             <div class="row">
             <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  @if(($profile->heritage->actualDeclaration)!= 0)
+                  <th>Declaración Actual</th>
+                  @endif
+                  @if(($profile->heritage->previousDeclaration)!= 0)
+                  <th>Declaración Previa</th>
+                  @endif
+                </tr>
+              </thead>
               <tr>
                 <th>Fecha de declaración</th>
-                <td>{{$profile->heritage->previousDeclaration}}</td>
+                @if(($profile->heritage->actualDeclaration)!= 0)
                 <td>{{$profile->heritage->actualDeclaration}}</td>
+                @endif
+                @if(($profile->heritage->previousDeclaration)!= 0)
+                <td>{{$profile->heritage->previousDeclaration}}</td>
+                @endif
+
               </tr>
               <tr>
                 <th>Activos</th>
-                <td>{{$profile->heritage->previousAssets}}</td>
+                @if(($profile->heritage->actualDeclaration)!= 0)
                 <td>{{$profile->heritage->actualAssets}}</td>
+                @endif
+                @if(($profile->heritage->previousDeclaration)!= 0)
+                <td>{{$profile->heritage->previousAssets}}</td>
+                @endif
               </tr>
               <tr>
                 <th>Pasivos</th>
-                <td>{{$profile->heritage->previousLiabilities}}</td>
+                @if(($profile->heritage->actualDeclaration)!= 0)
                 <td>{{$profile->heritage->actualLiabilities}}</td>
+                @endif
+                @if(($profile->heritage->previousDeclaration)!= 0)
+                <td>{{$profile->heritage->previousLiabilities}}</td>
+                @endif
               </tr>
               <tr>
                 <th>Patrimonio</th>
-                <td>{{$profile->heritage->previousHeritage}}</td>
+                @if(($profile->heritage->actualDeclaration)!= 0)
                 <td>{{$profile->heritage->actualHeritage}}</td>
+                @endif
+                @if(($profile->heritage->previousDeclaration)!= 0)
+                <td>{{$profile->heritage->previousHeritage}}</td>
+                @endif
               </tr>
             </table>
             </div>
