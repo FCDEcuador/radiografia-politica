@@ -402,7 +402,7 @@ function getTypeEvent($id)
                   <tbody>
                     @foreach($profile->judicials()->where('type',2)->get() as $judgment)
                     <tr>
-                      <td>{{$judgment->judgment_type->name}}</td>
+                      <td>{{$judgment->judgmentType->name}}</td>
                       <td>{{$judgment->number}}</td>
                     </tr>
                     @endforeach
