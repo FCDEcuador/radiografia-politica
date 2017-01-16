@@ -20,7 +20,7 @@ function getTypeEvent($id)
   {
     //01/01/0001;
     $parts = explode('-',$date);
-    return $parts[1].'/'.$parts[0];
+    return $parts[2].'/'.$parts[1].'/'.$parts[0];
   }
 
   function getYear($date)
