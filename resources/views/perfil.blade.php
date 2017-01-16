@@ -23,6 +23,13 @@ function getTypeEvent($id)
     return $parts[2].'/'.$parts[1].'/'.$parts[0];
   }
 
+  function formatDate2($date)
+  {
+    //01/01/0001;
+    $parts = explode('-',$date);
+    return $parts[1].'/'.$parts[0];
+  }
+
   function getYear($date)
   {
     //01/01/0001;
@@ -180,7 +187,7 @@ function getTypeEvent($id)
         @foreach($profile->person->timelines as $timeline)
   			<li data-date="{{formatDate($timeline->start)}}">
   				<h4>Vida {{getTypeEvent($timeline->typeEvent)}}</h4>
-  				<em>{{$timeline->start}} - {{$timeline->end}}</em>
+  				<em>{{formatDate2($timeline->start)}} - {{formatDate2($timeline->end)}}</em>
   				<p>
   					{!! $timeline->description !!}
   				</p>
