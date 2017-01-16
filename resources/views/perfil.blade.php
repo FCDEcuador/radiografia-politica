@@ -234,7 +234,7 @@ function getTypeEvent($id)
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($profile->sri()->where('taxType',1)->orderBy('year')->limit(5)->get() as $sri)
+                  @foreach($profile->sri()->where('taxType',1)->orderBy('year','desc')->limit(5)->get() as $sri)
                   <tr>
                     <td>{{$sri->year}}</td>
                     <td>${{$sri->value}}</td>
@@ -253,7 +253,7 @@ function getTypeEvent($id)
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($profile->sri()->where('taxType',2)->orderBy('year')->limit(5)->get() as $sri)
+                  @foreach($profile->sri()->where('taxType',2)->orderBy('year','desc')->limit(5)->get() as $sri)
                   <tr>
                     <td>{{$sri->year}}</td>
                     <td>${{$sri->value}}</td>
