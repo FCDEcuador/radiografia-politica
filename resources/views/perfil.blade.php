@@ -234,10 +234,10 @@ function getTypeEvent($id)
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($profile->sri()->where('taxType',1)->get() as $sri)
+                  @foreach($profile->sri()->where('taxType',1)->orderBy('year')->limit(5)->get() as $sri)
                   <tr>
                     <td>{{$sri->year}}</td>
-                    <td>{{$sri->value}}</td>
+                    <td>${{$sri->value}}</td>
                   </tr>
                   @endforeach
                   </tr>
@@ -253,10 +253,10 @@ function getTypeEvent($id)
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($profile->sri()->where('taxType',2)->get() as $sri)
+                  @foreach($profile->sri()->where('taxType',2)->orderBy('year')->limit(5)->get() as $sri)
                   <tr>
                     <td>{{$sri->year}}</td>
-                    <td>{{$sri->value}}</td>
+                    <td>${{$sri->value}}</td>
                   </tr>
                   @endforeach
                 </tbody>
@@ -300,7 +300,7 @@ function getTypeEvent($id)
                 <div class="img-responsive hint--top" data-hint="PATRIMONIO">
                   <img src="/img/ico-dinero.png">
                 </div>
-                <div>{{$profile->heritage->money}}</div>
+                <div>${{$profile->heritage->money}}</div>
               </div>
               <div class="col-md-3">
                 <div class="img-responsive hint--top" data-hint="COMPAÑÍAS">
@@ -335,28 +335,28 @@ function getTypeEvent($id)
               <tr>
                 <th>Activos</th>
                 @if(($profile->heritage->actualDeclaration)!= 0)
-                <td>{{$profile->heritage->actualAssets}}</td>
+                <td>${{$profile->heritage->actualAssets}}</td>
                 @endif
                 @if(($profile->heritage->previousDeclaration)!= 0)
-                <td>{{$profile->heritage->previousAssets}}</td>
+                <td>${{$profile->heritage->previousAssets}}</td>
                 @endif
               </tr>
               <tr>
                 <th>Pasivos</th>
                 @if(($profile->heritage->actualDeclaration)!= 0)
-                <td>{{$profile->heritage->actualLiabilities}}</td>
+                <td>${{$profile->heritage->actualLiabilities}}</td>
                 @endif
                 @if(($profile->heritage->previousDeclaration)!= 0)
-                <td>{{$profile->heritage->previousLiabilities}}</td>
+                <td>${{$profile->heritage->previousLiabilities}}</td>
                 @endif
               </tr>
               <tr>
                 <th>Patrimonio</th>
                 @if(($profile->heritage->actualDeclaration)!= 0)
-                <td>{{$profile->heritage->actualHeritage}}</td>
+                <td>${{$profile->heritage->actualHeritage}}</td>
                 @endif
                 @if(($profile->heritage->previousDeclaration)!= 0)
-                <td>{{$profile->heritage->previousHeritage}}</td>
+                <td>${{$profile->heritage->previousHeritage}}</td>
                 @endif
               </tr>
             </table>
