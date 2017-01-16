@@ -341,11 +341,11 @@ function getTypeEvent($id)
               </tr>
               <tr>
                 <th>Presidente</th>
-                <td>{{($profile->companies()->where('position',2)->first() != null) ? $profile->companies()->where('position',1)->first()->total_companies : 0}}</td>
+                <td>{{($profile->companies()->where('position',2)->first() != null) ? $profile->companies()->where('position',2)->first()->total_companies : 0}}</td>
               </tr>
               <tr>
                 <th>Accionista</th>
-                <td>{{($profile->companies()->where('position',3)->first() != null) ? $profile->companies()->where('position',1)->first()->total_companies : 0}}</td>
+                <td>{{($profile->companies()->where('position',3)->first() != null) ? $profile->companies()->where('position',3)->first()->total_companies : 0}}</td>
               </tr>
             </table>
           </div>
