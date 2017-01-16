@@ -357,13 +357,30 @@ class ProfileRepository extends Repository
     }
   }
   $profile->hasPenals = (isset($data['hasPenals']) && $data['hasPenals'] == 'on') ?  true : false;
+
   $profile->urlJudicial = $data['urlFuenteJudicials'];
+  $profile->urlPenal = $data['urlFuentesPenales'];
   $profile->save();
+
+  $file = $request->file('fileFuentePenal');
+  if($file != null)
+  {
+    $profile->fileJudicial = $this->saveDocFile($profile,$file,"fuentes","penales");
+    $profile->update();
+  }else {
+    if($data['fileFuentePenalDelete'] == "true")
+    {
+      File::delete(public_path().$profile->filePenal);
+      $profile->filePenal = null;
+      $profile->update();
+    }
+  }
+
 
   $file = $request->file('fileFuenteJudicials');
   if($file != null)
   {
-    $profile->fileJudicial = $this->saveDocFile($profile,$file,"fuentes","companies");
+    $profile->fileJudicial = $this->saveDocFile($profile,$file,"fuentes","judiciales");
     $profile->update();
   }else {
     if($data['fileFuenteJudicialsDelete'] == "true")

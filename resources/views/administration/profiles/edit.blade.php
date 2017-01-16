@@ -513,7 +513,7 @@
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
-                        <label for="fuente">Url Fuente<<g/label>
+                        <label for="fuente">Url Fuente</label>
                         <input type="text" class="form-control" name="urlFuentePatrimonio" value="{{$profile->urlHeritage}}"  placeholder="Ingrese el link">
                       </div>
                       <div class="col-md-2">
@@ -660,6 +660,29 @@
 
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="fuente">Url Fuente</label>
+                        <input type="text" class="form-control" name="urlFuentesPenales"  placeholder="Ingrese el link">
+                      </div>
+                      <div class="col-md-2">
+                        <label for="curriculum">Archivo Fuente</label>
+                        <input type="file" class="form-control" name="fileFuentePenal"  placeholder="Archivo fuente">
+                        <input type="hidden" name="fileFuentePenalDelete" id="fileFuentePenalDelete" value="false">
+                      </div>
+                      @if(!empty($profile->filePenal))
+                        <div id="penal-controls">
+                          <div class="col-md-2">
+                              <br>
+                            <a href="{{asset($profile->filePenal)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                          </div>
+                          <div class="col-md-2">
+                              <br>
+                            <button type="button" class="btn btn-danger" id="deleteFilePenal">Borrar</button>
+                          </div>
+                        </div>
+                      @endif
+                  </div>
                     <div class="row-fluid">
                       <h4>Judiciales</h4>
                     </div>
@@ -947,6 +970,11 @@
   $('#deleteFileCompanies').click(function(){
       $('#companies-controls').addClass('hidden');
       $('#fileCompaniesDelete').val(true);
+  });
+
+  $('#deleteFilePenal').click(function(){
+      $('#penal-controls').addClass('hidden');
+      $('#fileFuentePenalDelete').val(true);
   });
 
   $('#deleteFileJudial').click(function(){
