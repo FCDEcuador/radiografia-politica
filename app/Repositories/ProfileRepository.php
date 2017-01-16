@@ -152,7 +152,7 @@ class ProfileRepository extends Repository
         $newTimeLine->person_id = $profile->person->id;
         $newTimeLine->typeEvent = $timeline['type'];
         $newTimeLine->start = $timeline['startDate'];
-        $newTimeLine->end = (isset($timeline['endDate'])) ? $timeline['endDate'] : null ;
+        $newTimeLine->end = (!empty($timeline['endDate'])) ? $timeline['endDate'] : null ;
         $newTimeLine->shortDescription = $timeline['title'];
         $newTimeLine->description = $timeline['description'];
         $newTimeLine->user_id = Auth::user()->id;

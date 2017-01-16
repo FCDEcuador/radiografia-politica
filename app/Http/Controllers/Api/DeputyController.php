@@ -11,8 +11,8 @@ class DeputyController extends ApiController
   {
     $this->repository = $repository;
   }
-    public function getDeputys(){
-      $obj =  $this->repository->published(true);
+    public function getDeputys($isCandidate){
+      $obj =  $this->repository->drafts((bool)$isCandidate);
       return response()->json($obj,200);
     }
 }

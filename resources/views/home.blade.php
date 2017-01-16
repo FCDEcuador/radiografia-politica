@@ -54,7 +54,7 @@
           <!-- End political card -->
         </div>
       </div>
-      <div role="tabpanel" class="tab-pane" id="profile">
+      <div role="tabpanel" class="tab-pane" id="profile" ng-controller="DeputyController">
         <div class="row">
           <div class="input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
@@ -63,36 +63,18 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-md-3">
+
+          <div class="col-md-3" ng-repeat="deputy in deputys">
             <div class="binomial">
             <div class="president">
-              <img src="{{asset('img/lenin-moreno.jpg')}}" alt="Lenin Moreno" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil/1')}}"><span>VER PERFIL</span></a>
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% deputy.picture %>" alt="<% depty.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + deputy.id %>"><span>VER PERFIL</span></a>
             </div>
           </div>
           <br>
-            <label class="align-c president-label">Rosita Espinosa</label><br>
+            <label class="align-c president-label"><% deputy.person.name + " " + deputy.person.lastname %></label><br>
         </div>
-        <div class="col-md-3">
-          <div class="binomial">
-          <div class="president">
-            <img src="{{asset('img/lenin-moreno.jpg')}}" alt="Lenin Moreno" class="img-circle" width="150px">
-            <a href="{{URL::to('/perfil/1')}}"><span>VER PERFIL</span></a>
-          </div>
-        </div>
-        <br>
-          <label class="align-c president-label">Rosita Espinosa</label><br>
-      </div>
-      <div class="col-md-3">
-        <div class="binomial">
-        <div class="president">
-          <img src="{{asset('img/lenin-moreno.jpg')}}" alt="Lenin Moreno" class="img-circle" width="150px">
-          <a href="{{URL::to('/perfil/1')}}"><span>VER PERFIL</span></a>
-        </div>
-      </div>
-      <br>
-        <label class="align-c president-label">Rosita Espinosa</label><br>
-    </div>
+
         </div>
       </div>
     </div>
