@@ -117,7 +117,7 @@
   			<div class="events">
   				<ol>
             @foreach($profile->person->timelines()->where('typeEvent',2)->get() as $timeline)
-               <li><a href="#0" data-date="01/01/0001">1995</a></li>
+               <li><a href="#0" data-date="{{formatDate($timeline->start)}}">{{getYear($timeline->start)}}</a></li>
             @endforeach
   				</ol>
 
@@ -138,7 +138,7 @@
         <div class="events">
           <ol>
             @foreach($profile->person->timelines()->where('typeEvent',3)->get() as $timeline)
-               <li><a href="#{{$timeline->id}}" data-date="{{formatDate($timeline->start)}}">1995</a></li>
+               <li><a href="#{{$timeline->id}}" data-date="{{formatDate($timeline->start)}}">{{getYear($timeline->start)}}</a></li>
             @endforeach
           </ol>
 
