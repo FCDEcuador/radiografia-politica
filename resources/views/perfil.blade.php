@@ -42,19 +42,19 @@
           {!! $profile->person->description !!}
         </div>
         <div class="row btn-profile">
-          <button type="button" class="btn btn-dark">Descargar curriculum</button>
+          <a href="{{$profile->person->curriculum}}" target="_blank"><button type="button" class="btn btn-dark">Descargar curriculum</button></a>
         </div>
         <div class="row btn-profile">
-            <button type="button" class="btn btn-dark">Descargar Plan de gobierno</button>
+            <a href="{{$profile->person->plan}}" target="_blank"><button type="button" class="btn btn-dark">Descargar Plan de gobierno</button></a>
         </div>
         <div class="row btn-profile">
-            <button type="button" class="btn btn-dark">Observatorio del candidato</button>
+            <a href="{{$profile->person->observatory}}" target="_blank"><button type="button" class="btn btn-dark">Observatorio del candidato</button></a>
         </div>
         <div class="row profile-redes">
           <b>Redes sociales</b>
           <div class="profile-socials">
-            <a href="{{$profile->person->facebook}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="{{$profile->person->twitter}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+            <a href="{{$profile->person->twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="{{$profile->person->facebook}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
