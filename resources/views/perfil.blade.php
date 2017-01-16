@@ -2,6 +2,20 @@
 
 @section('content')
 <?php
+
+function getTypeEvent($id)
+{
+  switch ($id) {
+    case '1':
+      return "Pública";
+    case '2':
+        return "Privada";
+    case '3':
+        return "Política";
+    default:
+      return "";
+  }
+}
   function formatDate($date)
   {
     //01/01/0001;
@@ -133,7 +147,7 @@
   	</div> <!-- .timeline -->
     <br>
     <div class="timeline time-red">
-        <h4>VIDA POLÍTICA</h4>
+      <h4>VIDA POLÍTICA</h4>
       <div id="politician-wrapper" class="events-wrapper">
         <div class="events">
           <ol>
@@ -159,7 +173,7 @@
 			<!-- VIDA PUBLICA -->
         @foreach($profile->person->timelines as $timeline)
   			<li data-date="{{formatDate($timeline->start)}}">
-  				<h4>Vida Pública</h4>
+  				<h4>Vida {{getTypeEvent($timeline->typeEvent)}}</h4>
   				<em>{{$timeline->start}} - {{$timeline->end}}</em>
   				<p>
   					{!! $timeline->description !!}
