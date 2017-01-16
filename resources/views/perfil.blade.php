@@ -155,7 +155,7 @@
   				<h4>Vida Pública</h4>
   				<em>{{$timeline->start}} - {{$timeline->end}}</em>
   				<p>
-  					{{$timeline->description}}
+  					{!! $timeline->description !!}
   				</p>
   			</li>
         @endforeach
