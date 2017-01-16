@@ -44,11 +44,25 @@ jQuery(document).ready(function($){
 			//assign a left postion to the single events along the timeline
 			setDatePosition(timelineComponents, eventsMinDistance);
 			setDatePosition(timelineComponents2, eventsMinDistance);
-				setDatePosition(timelineComponents3, eventsMinDistance);
+			setDatePosition(timelineComponents3, eventsMinDistance);
 			//assign a width to the timeline
-			var timelineTotWidth = setTimelineWidth(timelineComponents, eventsMinDistance);
-				var timelineTotWidth2 = setTimelineWidth(timelineComponents2, eventsMinDistance);
-					var timelineTotWidth3 = setTimelineWidth(timelineComponents3, eventsMinDistance);
+			var timelineTotWidth = 0;
+			var timelineTotWidth2 = 0;
+			var timelineTotWidth3 = 0;
+			if(timelineComponents['timelineEvents'].length > 0)
+			{
+				 timelineTotWidth = setTimelineWidth(timelineComponents, eventsMinDistance);
+			}
+			if(timelineComponents2['timelineEvents'].length > 0)
+			{
+				 timelineTotWidth2 = setTimelineWidth(timelineComponents2, eventsMinDistance);
+			}
+			if(timelineComponents3['timelineEvents'].length > 0)
+			{
+				 timelineTotWidth3 = setTimelineWidth(timelineComponents3, eventsMinDistance);
+			}
+
+
 			//the timeline has been initialize - show it
 			timeline.addClass('loaded');
 

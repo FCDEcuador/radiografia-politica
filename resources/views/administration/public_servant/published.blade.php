@@ -43,6 +43,10 @@
                   <td>{{$profile->person->lastname}}</td>
                   <td>{{$profile->person->position->name}}</td>
                   <td>
+                    <form action="{{url(route('profile.unpublish',$profile->id))}}" method="POST">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                      <button type="submit" class="btn btn-warning">Unpublish</button>
+                    </form>
                     <a href="{{URL::to(route('profile.edit',$profile->id))}}"><button class="btn btn-primary">Editar</button></a>
                     <a style="color:#FFFFFF;" href="#" data-toggle="modal" data-target="#myModal" data-whatever="{{$profile->id}}" data-description="{{$profile->person->name}}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
                   </td>

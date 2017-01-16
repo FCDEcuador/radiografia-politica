@@ -9,6 +9,7 @@ use App\Models\Position;
 use App\Models\JudgmentType;
 use App\Profile;
 use Auth;
+use App\Validator\ProfileValidator;
 use App\Exceptions\ApiResponseException;
 
 class ProfileController extends Controller
@@ -51,7 +52,7 @@ class ProfileController extends Controller
   {
     if($this->repository->create($request->all()))
     {
-      return redirect(route('profile.index'))->with('success', 'Usuario creado exitosamente!');
+      return redirect(route('profile.create'))->with('success', 'Usuario creado exitosamente!');
     }else {
         return redirect()->back()->with('errors', 'El email ya existe!');
     }
@@ -66,6 +67,18 @@ class ProfileController extends Controller
   public function show($id)
   {
       //
+  }
+
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function view($id)
+  {
+      $profile = $this->repository->find($id);
+      return view('perfil')->with(['profile' => $profile]);
   }
 
   private function generateLastYears($last=6)
@@ -121,6 +134,28 @@ class ProfileController extends Controller
     }
 
 
+  }
+
+  public function publish(Request $request,$id)
+  {
+
+  /*  $validator = app()->make(ProfileValidator::class);
+    if($validator->validate($id))
+    {
+      return true;
+    }else {
+      return false;
+    }*/
+
+    $this->repository->publish($id);
+    return redirect(route('candidates.president.published'))->with('success', 'Perfil publicado!');
+
+  }
+
+  public function unpublish(Request $request, $id)
+  {
+    $this->repository->unpublish($id);
+    return redirect(route('candidates.president.drafts'))->with('success', 'Perfil movido a borradores!');
   }
 
   /**

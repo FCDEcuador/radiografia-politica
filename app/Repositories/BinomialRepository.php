@@ -16,7 +16,7 @@ class BinomialRepository extends Repository
     $response = [];
     foreach ($this->all() as $partido) {
       $item['president'] = $partido->president();
-      $item['vicepresident'] = $partido->vicePresident();
+      $item['vicepresident'] = $partido->vicepresident();
       $item['partido'] = $partido;
       array_push($response,$item);
     };

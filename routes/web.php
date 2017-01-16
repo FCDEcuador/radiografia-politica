@@ -13,9 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/perfil/{id}', function ($id) {
-    return view('perfil');
-});
+Route::get('/perfil/{id}', 'ProfileController@view');
 
 Route::get('/home', 'HomeController@index');
 
@@ -32,8 +30,12 @@ Route::get('/home', 'HomeController@index');
 | to using a Closure or controller method. Build something great!
 |
 */
-
 Route::group(['prefix'=>'administration'],function(){
+    Auth::routes();
+});
+Route::group(['prefix'=>'administration','middleware' => ['auth']],function(){
+
+
 
   Route::get('/', function () {
       return view('administration.home');
@@ -45,9 +47,11 @@ Route::group(['prefix'=>'administration'],function(){
 
 
   Route::resource('profile', ProfileController::class);
+  Route::get('publish/{id}', 'ProfileController@publish')->name('profile.publish');
+  Route::post('unpublish/{id}', 'ProfileController@unpublish')->name('profile.unpublish');
 
-  Route::get('presidencial-candidates/drafts', 'PresidencialCandidatesController@drafts');
-  Route::get('presidencial-candidates/published', 'PresidencialCandidatesController@published');
+  Route::get('presidencial-candidates/drafts', 'PresidencialCandidatesController@drafts')->name('candidates.president.drafts');
+  Route::get('presidencial-candidates/published', 'PresidencialCandidatesController@published')->name('candidates.president.published');
 
   Route::get('asambleistas-candidates/drafts', 'DeputyCandidatesController@drafts');
   Route::get('asambleistas-candidates/published', 'DeputyCandidatesController@published');
@@ -64,5 +68,5 @@ Route::group(['prefix'=>'administration'],function(){
   Route::get('public-servants/drafts', 'PublicServantController@drafts');
   Route::get('public-servants/published', 'PublicServantController@published');
 
-  Auth::routes();
+
 });

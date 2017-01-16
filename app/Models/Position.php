@@ -11,6 +11,7 @@ class Position extends Model
   ];
 
   function scopePresidentId($query){
+
     return $query->where('name','Presidente')->first()->id;
   }
 

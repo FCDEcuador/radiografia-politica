@@ -1,6 +1,7 @@
 var services = require('../services').services;
 
-services.service('President', function(){
+services.service('President', function($http){
+  var server = "http://localhost:8000";
   var presidents = [
     {
       president: {
@@ -158,7 +159,9 @@ services.service('President', function(){
 
   return {
     all: function(){
-      return presidents;
+      return $http.get(server + '/api/binomials').then(function(res){
+        return res.data;
+      });
     }
   };
 

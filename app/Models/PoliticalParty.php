@@ -12,23 +12,29 @@ class PoliticalParty extends Model
       'user_id','name','img'
     ];
 
-    function people()
+    public function people()
     {
       return $this->hasMany(Person::class,'politicalParty_id');
     }
 
-    function scopePresident($query)
+    public function scopePresident($query)
     {
-      return $query->where('id',$this->id)->whereHas('people', function ($q) {
-        $q->where('position_id', Position::presidentId());
-      })->first();
+      $person = $query->where('id',$this->id)->first()
+        ->people()
+        ->where('position_id',Position::presidentId())
+        ->first();
+
+      return (isset($person)) ? $person->profile()->with('person')->first() : null;
     }
 
-    function scopeVicePresident($query)
+    public function scopeVicepresident($query)
     {
-      return $query->where('id',$this->id)->whereHas('people', function ($q) {
-        $q->where('position_id', Position::vicePresidentId());
-      })->first();
+      $person = $query->where('id',$this->id)->first()
+        ->people()
+        ->where('position_id',Position::vicePresidentId())
+        ->first();
+        
+      return (isset($person)) ? $person->profile()->with('person')->first() : null;
     }
 
 }

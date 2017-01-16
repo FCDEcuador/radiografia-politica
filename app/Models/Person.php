@@ -16,6 +16,11 @@ class Person extends Model
     return $this->belongsTo(State::class);
   }
 
+  public function profile()
+  {
+    return $this->belongsTo(Profile::class);
+  }
+
   public function position()
   {
     return $this->belongsTo(Position::class);
@@ -23,7 +28,7 @@ class Person extends Model
 
   public function politicalParty()
   {
-    return $this->belongsTo(PoliticalParty::class);
+    return $this->belongsTo(PoliticalParty::class,'politicalParty_id');
   }
 
   public function timelines()
@@ -31,6 +36,6 @@ class Person extends Model
     return $this->hasMany(Timeline::class);
   }
 
-  
+
 
 }

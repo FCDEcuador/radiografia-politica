@@ -36,14 +36,14 @@ class Profile extends Model
       return $this->hasMany(SRI::class);
     }
 
-    public function studies()
+    public function study()
     {
-      return $this->hasMany(Study::class);
+      return $this->hasOne(Study::class);
     }
 
-    public function comptrollers()
+    public function comptroller()
     {
-      return $this->hasMany(comptrollers::class);
+      return $this->hasOne(Comptroller::class);
     }
 
     public function person()
