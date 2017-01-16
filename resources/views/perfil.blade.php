@@ -366,7 +366,7 @@ function getTypeEvent($id)
       <div class="col-md-8">
         <div class="well well-lg well-transparency transparencia-antecedentes">
           <div class="well-title">
-            <span class="well-card-title">ANTECEDENTES<span>
+            <span class="well-card-title">ANTECEDENTES JUDICIALES<span>
           </div>
           <div class="well-body">
             <div class="row">
@@ -501,11 +501,14 @@ function getTypeEvent($id)
               <span class="well-card-title">ANTECEDENTES PENALES<span>
             </div>
             <div class="row well-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <label>Antecedentes Penales:&nbsp;&nbsp;</label> <label>{{getBooleanString($profile->hasPenals)}}</label>
-                </div>
-              </div>
+              <table class="table table-vertical">
+                <col width="50%">
+                <col width="50%">
+                <tr>
+                  <th>Antecedentes Penales</th>
+                  <td>{{getBooleanString($profile->hasPenals)}}</td>
+                </tr>
+              </table>
             </div>
             <div class="well-footer">
               <div class="row">
