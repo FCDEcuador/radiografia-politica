@@ -19,15 +19,27 @@ function getTypeEvent($id)
   function formatDate($date)
   {
     //01/01/0001;
-    $parts = explode('-',$date);
-    return $parts[2].'/'.$parts[1].'/'.$parts[0];
+    if($date != null)
+    {
+      $parts = explode('-',$date);
+      return $parts[2].'/'.$parts[1].'/'.$parts[0];
+    }else {
+      return "";
+    }
+
   }
 
   function formatDate2($date)
   {
     //01/01/0001;
-    $parts = explode('-',$date);
-    return $parts[1].'/'.$parts[0];
+    if($date != null)
+    {
+      $parts = explode('-',$date);
+      return $parts[1].'/'.$parts[0];
+    }else {
+      return "";
+    }
+
   }
 
   function getYear($date)
