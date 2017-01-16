@@ -8,6 +8,18 @@
     $parts = explode('-',$date);
     return $parts[2].'/'.$parts[1].'/'.$parts[0];
   }
+
+  function getBooleanString($bool)
+  {
+    switch ($bool) {
+      case '1':
+        return 'Sí';
+      case '0':
+        return 'No';
+      default:
+        return "";
+    }
+  }
 ?>
 <div class="container">
   <section>
@@ -27,7 +39,7 @@
       </div>
       <div class="col-md-6">
         <div class="row profile-description">
-          {{$profile->person->description}}
+          {!! $profile->person->description !!}
         </div>
         <div class="row btn-profile">
           <button type="button" class="btn btn-dark">Descargar curriculum</button>
@@ -377,11 +389,6 @@
                 </table>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label>ANTECEDENTES PENALES:&nbsp;&nbsp;</label> <label>{{$profile->hasPenals}}</label>
-              </div>
-            </div>
           </div>
           <div class="well-footer">
             <div class="row">
@@ -401,7 +408,7 @@
     </div>
       <!-- end row -->
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="well well-lg well-transparency transparencia-senescyt">
             <div class="well-title">
               <span class="well-card-title">SENESCYT<span>
@@ -438,7 +445,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="well well-lg well-transparency transparencia-contraloria">
             <div class="well-title">
               <span class="well-card-title">CONTRALORÍA<span>
@@ -452,6 +459,32 @@
                   <td>{{$profile->comptroller->processes}}</td>
                 </tr>
               </table>
+            </div>
+            <div class="well-footer">
+              <div class="row">
+                <div class="col-md-8">
+                  <button type="button" class="btn btn-dark">VER FUENTE</button>
+                </div>
+                  <div class="col-md-4 share-transaprency">
+                    <label>Comparte</label>
+                    <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="well well-lg well-transparency transparencia-contraloria">
+            <div class="well-title">
+              <span class="well-card-title">ANTECEDENTES PENALES<span>
+            </div>
+            <div class="row well-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Antecedentes Penales:&nbsp;&nbsp;</label> <label>{{getBooleanString($profile->hasPenals)}}</label>
+                </div>
+              </div>
             </div>
             <div class="well-footer">
               <div class="row">

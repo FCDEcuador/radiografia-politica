@@ -68,13 +68,17 @@
 
 <!-- Main content -->
 <section class="content">
-  <form action="{{URL::to(route('profile.update',$profile->id))}}" method="POST" enctype="multipart/form-data">
+  <form id="publishForm" action="{{URL::to(route('profile.publish',$profile->id))}}" method="GET">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+  </form>
+  <form id="editForm" action="{{URL::to(route('profile.update',$profile->id))}}" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
     <input name="_method" type="hidden" value="PUT">
     <!-- /.row -->
     <div class="row">
       <div class="col-md-12">
-        <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+        <button type="submit" class="btn btn-primary pull-right" style="margin-left:10px;" form="publishForm">Publicar</button>
+        <button type="submit" class="btn btn-primary pull-right" form="editForm">Guardar</button>
       </div>
     </div>
     <br>
@@ -861,28 +865,28 @@
     console.log("Click");
     var index = $('#timeline-grid').find('tr').length;
     var $clone = $('.model-timeline').clone(true).removeClass('hidden model-timeline');
-    $clone.find('input').attr('name' , 'timeline['+index+']["id"]');
-    $clone.find('.startDate').find('input').attr('name' , 'timeline['+index+']["startDate"]');
+    $clone.find('input').attr('name' , 'timeline['+index+'][id]');
+    $clone.find('.startDate').find('input').attr('name' , 'timeline['+index+'][startDate]');
     $clone.find('.startDate').find('input').val($('#startDate').val());
     $clone.find('.startDate').find('label').text($('#startDate').val());
 
-    $clone.find('.endDate').find('input').attr('name' , 'timeline['+index+']["endDate"]');
+    $clone.find('.endDate').find('input').attr('name' , 'timeline['+index+'][endDate]');
     $clone.find('.endDate').find('input').val($('#endDate').val());
     $clone.find('.endDate').find('label').text($('#endDate').val());
 
-    $clone.find('.title').find('input').attr('name' , 'timeline['+index+']["title"]');
+    $clone.find('.title').find('input').attr('name' , 'timeline['+index+'][title]');
     $clone.find('.title').find('input').val($('#title').val());
     $clone.find('.title').find('label').text($('#title').val());
 
-    $clone.find('.type').find('input').attr('name' , 'timeline['+index+']["type"]');
+    $clone.find('.type').find('input').attr('name' , 'timeline['+index+'][type]');
     $clone.find('.type').find('input').val($('#type').val());
     $clone.find('.type').find('label').text($('#type option:selected').text());
 
-    $clone.find('.description').find('input').attr('name' , 'timeline['+index+']["description"]');
-    $clone.find('.description').find('input').val($('#type').val());
+    $clone.find('.description').find('input').attr('name' , 'timeline['+index+'][description]');
+    $clone.find('.description').find('input').val($('#description').val());
     $clone.find('.description').find('label').text($('#description').val());
 
-    $clone.find('.outstanding').find('input').attr('name' , 'timeline['+index+']["outstanding"]');
+    $clone.find('.outstanding').find('input').attr('name' , 'timeline['+index+'][outstanding]');
 
     if ($('#outstanding-check:checked').length > 0)
     {

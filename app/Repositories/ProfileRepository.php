@@ -388,5 +388,19 @@ class ProfileRepository extends Repository
     }
   }
 
+  public function publish($id)
+  {
+    $profile = $this->model->find($id);
+    $profile->person->state_id = State::published();
+    $profile->person->save();
+  }
+
+  public function unpublish($id)
+  {
+    $profile = $this->model->find($id);
+    $profile->person->state_id = State::draft();
+    $profile->person->save();
+  }
+
 
 }

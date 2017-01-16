@@ -9,6 +9,7 @@ use App\Models\Position;
 use App\Models\JudgmentType;
 use App\Profile;
 use Auth;
+use App\Validator\ProfileValidator;
 use App\Exceptions\ApiResponseException;
 
 class ProfileController extends Controller
@@ -133,6 +134,28 @@ class ProfileController extends Controller
     }
 
 
+  }
+
+  public function publish(Request $request,$id)
+  {
+
+  /*  $validator = app()->make(ProfileValidator::class);
+    if($validator->validate($id))
+    {
+      return true;
+    }else {
+      return false;
+    }*/
+
+    $this->repository->publish($id);
+    return redirect(route('candidates.president.published'))->with('success', 'Perfil publicado!');
+
+  }
+
+  public function unpublish(Request $request, $id)
+  {
+    $this->repository->unpublish($id);
+    return redirect(route('candidates.president.drafts'))->with('success', 'Perfil movido a borradores!');
   }
 
   /**
