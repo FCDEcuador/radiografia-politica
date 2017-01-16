@@ -78,7 +78,14 @@ class ProfileController extends Controller
   public function view($id)
   {
       $profile = $this->repository->find($id);
-      return view('perfil')->with(['profile' => $profile]);
+      $binomial = null;
+      if($profile->person->isPresident()){
+        $binomial = $profile->person->politicalParty->vicePresident();
+      }
+      if($profile->person->isVicePresident()){
+        $binomial = $profile->person->politicalParty->president();
+      }
+      return view('perfil')->with(['profile' => $profile, 'binomial' =>$binomial]);
   }
 
   private function generateLastYears($last=6)
