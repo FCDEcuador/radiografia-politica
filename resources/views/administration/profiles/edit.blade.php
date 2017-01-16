@@ -77,7 +77,7 @@
     <!-- /.row -->
     <div class="row">
       <div class="col-md-12">
-        <button type="submit" class="btn btn-primary pull-right" style="margin-left:10px;" form="publishForm">Publicar</button>
+        <button type="submit" class="btn btn-primary pull-right" style="margin-left:10px;" form="publishForm" disabled="{{!$canPublish}}">Publicar</button>
         <button type="submit" class="btn btn-primary pull-right" form="editForm">Guardar</button>
       </div>
     </div>
@@ -407,10 +407,23 @@
                         <label for="fuente">Url Fuente</label>
                         <input type="text" class="form-control" name="urlFuenteSRI"  placeholder="Ingrese el link" value="{{$profile->urlSri}}" />
                       </div>
-                      <div class="col-md-6">
-                        <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="fileFuenteSRI" placeholder="Ingrese el archivo">
+                      <div class="col-md-2">
+                        <label for="curriculum">Archivo Fuente</label>
+                        <input type="file" class="form-control" name="fileFuenteSRI"  placeholder="Archivo fuente">
+                        <input type="hidden" name="fileSRIDelete" id="fileSRIDelete" value="false">
                       </div>
+                      @if(!empty($profile->fileSri))
+                        <div id="sri-controls">
+                          <div class="col-md-2">
+                              <br>
+                            <a href="{{asset($profile->fileSri)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                          </div>
+                          <div class="col-md-2">
+                              <br>
+                            <button type="button" class="btn btn-danger" id="deleteFileSri">Borrar</button>
+                          </div>
+                        </div>
+                      @endif
                   </div>
 
                   </div>
@@ -500,13 +513,26 @@
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
-                        <label for="fuente">Url Fuente</label>
+                        <label for="fuente">Url Fuente<<g/label>
                         <input type="text" class="form-control" name="urlFuentePatrimonio" value="{{$profile->urlHeritage}}"  placeholder="Ingrese el link">
                       </div>
-                      <div class="col-md-6">
-                        <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="fileFuentePatrimonio" placeholder="Ingrese el archivo">
+                      <div class="col-md-2">
+                        <label for="curriculum">Archivo Fuente</label>
+                        <input type="file" class="form-control" name="fileFuentePatrimonio"  placeholder="Archivo fuente">
+                        <input type="hidden" name="fileFuentePatrimonioDelete" id="fileFuentePatrimonioDelete" value="false">
                       </div>
+                      @if(!empty($profile->fileHeritage))
+                        <div id="heritage-controls">
+                          <div class="col-md-2">
+                              <br>
+                            <a href="{{asset($profile->fileHeritage)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                          </div>
+                          <div class="col-md-2">
+                              <br>
+                            <button type="button" class="btn btn-danger" id="deleteFileFuentePatrimonio">Borrar</button>
+                          </div>
+                        </div>
+                      @endif
                   </div>
                 </div>
                 <!-- END BOX -->
@@ -585,10 +611,23 @@
                       <label for="fuente">Url Fuente</label>
                       <input type="text" class="form-control" name="urlFuenteCompanies" value="{{$profile->urlCompanies}}"  placeholder="Ingrese el link">
                     </div>
-                    <div class="col-md-6">
-                      <label for="archivo">Archivo Fuente</label>
-                      <input type="file" class="form-control" name="fileFuenteCompanies" placeholder="Ingrese el archivo">
+                    <div class="col-md-2">
+                      <label for="curriculum">Archivo Fuente</label>
+                      <input type="file" class="form-control" name="fileCompanies"  placeholder="Archivo fuente">
+                      <input type="hidden" name="fileCompaniesDelete" id="fileCompaniesDelete" value="false">
                     </div>
+                    @if(!empty($profile->fileCompanies))
+                      <div id="companies-controls">
+                        <div class="col-md-2">
+                            <br>
+                          <a href="{{asset($profile->fileCompanies)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                        </div>
+                        <div class="col-md-2">
+                            <br>
+                          <button type="button" class="btn btn-danger" id="deleteFileCompanies">Borrar</button>
+                        </div>
+                      </div>
+                    @endif
                 </div>
                 </div>
                 </div>
@@ -720,10 +759,23 @@
                       <label for="fuente">Url Fuente</label>
                       <input type="text" class="form-control" name="urlFuenteJudicials"  placeholder="Ingrese el link">
                     </div>
-                    <div class="col-md-6">
-                      <label for="archivo">Archivo Fuente</label>
-                      <input type="file" class="form-control" name="fileFuenteJudicials" placeholder="Ingrese el archivo">
+                    <div class="col-md-2">
+                      <label for="curriculum">Archivo Fuente</label>
+                      <input type="file" class="form-control" name="fileFuenteJudicials"  placeholder="Archivo fuente">
+                      <input type="hidden" name="fileFuenteJudicialsDelete" id="fileFuenteJudicialsDelete" value="false">
                     </div>
+                    @if(!empty($profile->fileJudicial))
+                      <div id="judicial-controls">
+                        <div class="col-md-2">
+                            <br>
+                          <a href="{{asset($profile->fileJudicial)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                        </div>
+                        <div class="col-md-2">
+                            <br>
+                          <button type="button" class="btn btn-danger" id="deleteFileJudial">Borrar</button>
+                        </div>
+                      </div>
+                    @endif
                 </div>
                 </div>
                 </div>
@@ -768,10 +820,23 @@
                         <label for="fuente">Url Fuente</label>
                         <input type="text" class="form-control" name="urlFuenteSenecyt" value="{{$profile->urlStudy}}"  placeholder="Ingrese el link">
                       </div>
-                      <div class="col-md-6">
-                        <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="fileFuenteSenecyt" placeholder="Ingrese el archivo">
+                      <div class="col-md-2">
+                        <label for="curriculum">Archivo Fuente</label>
+                        <input type="file" class="form-control" name="fileStudy"  placeholder="Archivo fuente">
+                        <input type="hidden" name="fileStudyDelete" id="fileStudyDelete" value="false">
                       </div>
+                      @if(!empty($profile->fileStudy))
+                        <div id="study-controls">
+                          <div class="col-md-2">
+                              <br>
+                            <a href="{{asset($profile->fileStudy)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                          </div>
+                          <div class="col-md-2">
+                              <br>
+                            <button type="button" class="btn btn-danger" id="deleteFileStudy">Borrar</button>
+                          </div>
+                        </div>
+                      @endif
                   </div>
                   </div>
                   <div class="box-body">
@@ -807,10 +872,23 @@
                         <label for="fuente">Url Fuente</label>
                         <input type="text" class="form-control" name="urlFuenteComptroller" value="{{$profile->urlComptroller}}"  placeholder="Ingrese el link">
                       </div>
-                      <div class="col-md-6">
-                        <label for="archivo">Archivo Fuente</label>
-                        <input type="file" class="form-control" name="fileFuenteComptroller" placeholder="Ingrese el archivo">
+                      <div class="col-md-2">
+                        <label for="curriculum">Archivo Fuente</label>
+                        <input type="file" class="form-control" name="fileComptroller"  placeholder="Archivo fuente">
+                        <input type="hidden" name="fileComptrollerDelete" id="fileComptrollerDelete" value="false">
                       </div>
+                      @if(!empty($profile->fileComptroller))
+                        <div id="comptroller-controls">
+                          <div class="col-md-2">
+                              <br>
+                            <a href="{{asset($profile->fileComptroller)}}" target="_blank"><button type="button" class="btn btn-primary">Descargar</button></a>
+                          </div>
+                          <div class="col-md-2">
+                              <br>
+                            <button type="button" class="btn btn-danger" id="deleteFileComptroller">Borrar</button>
+                          </div>
+                        </div>
+                      @endif
                   </div>
                   </div>
                   <div class="box-body">
@@ -852,7 +930,38 @@
   $('#deletePlan').click(function(){
       $('#plan-controls').addClass('hidden');
       $('#gobermentPlanDelete').val(true);
-      deletePlan
+  });
+</script>
+
+<script>
+  $('#deleteFileSri').click(function(){
+      $('#sri-controls').addClass('hidden');
+      $('#fileSRIDelete').val(true);
+  });
+
+  $('#deleteFileFuentePatrimonio').click(function(){
+      $('#heritage-controls').addClass('hidden');
+      $('#fileFuentePatrimonioDelete').val(true);
+  });
+
+  $('#deleteFileCompanies').click(function(){
+      $('#companies-controls').addClass('hidden');
+      $('#fileCompaniesDelete').val(true);
+  });
+
+  $('#deleteFileJudial').click(function(){
+      $('#judicial-controls').addClass('hidden');
+      $('#fileFuenteJudicialsDelete').val(true);
+  });
+
+  $('#deleteFileStudy').click(function(){
+      $('#study-controls').addClass('hidden');
+      $('#fileStudyDelete').val(true);
+  });
+
+  $('#deleteFileComptroller').click(function(){
+      $('#comptroller-controls').addClass('hidden');
+      $('#fileComptrollerDelete').val(true);
   });
 </script>
 
