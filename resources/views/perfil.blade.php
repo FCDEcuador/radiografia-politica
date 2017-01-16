@@ -211,8 +211,8 @@ function getTypeEvent($id)
                 <tbody>
                   @foreach($profile->sri()->where('taxType',1)->get() as $sri)
                   <tr>
-                    <td>$sri->year</td>
-                    <td>$sri->value</td>
+                    <td>{{$sri->year}}</td>
+                    <td>{{$sri->value}}</td>
                   </tr>
                   @endforeach
                   </tr>
@@ -230,8 +230,8 @@ function getTypeEvent($id)
                 <tbody>
                   @foreach($profile->sri()->where('taxType',2)->get() as $sri)
                   <tr>
-                    <td>$sri->year</td>
-                    <td>$sri->value</td>
+                    <td>{{$sri->year}}</td>
+                    <td>{{$sri->value}}</td>
                   </tr>
                   @endforeach
                 </tbody>
