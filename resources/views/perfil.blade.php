@@ -37,7 +37,7 @@ function getTypeEvent($id)
       $parts = explode('-',$date);
       return $parts[1].'/'.$parts[0];
     }else {
-      return "";
+      return "Presente";
     }
 
   }
