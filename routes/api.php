@@ -18,5 +18,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::get('/binomials', "Api\BinomialController@getBinomials");
-Route::get('/deputys', "Api\DeputyController@getDeputys");
+Route::get('/deputys/{isCandidate}', "Api\DeputyController@getDeputys");
 Route::get('/publicServants', "Api\PublicServantController@getPublicServants");

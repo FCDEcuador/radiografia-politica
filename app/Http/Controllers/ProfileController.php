@@ -80,12 +80,12 @@ class ProfileController extends Controller
       $profile = $this->repository->find($id);
       $binomial = null;
       if($profile->person->isPresident()){
-        $binomial = $profile->person->politicalParty->vicePresident();
-      }
-      if($profile->person->isVicePresident()){
-        $binomial = $profile->person->politicalParty->president();
-      }
-      return view('perfil')->with(['profile' => $profile, 'binomial' =>$binomial]);
+       $binomial = $profile->person->politicalParty->vicePresident();
+     }
+     if($profile->person->isVicePresident()){
+       $binomial = $profile->person->politicalParty->president();
+     }
+     return view('perfil')->with(['profile' => $profile, 'binomial' =>$binomial]);
   }
 
   private function generateLastYears($last=6)
@@ -110,12 +110,15 @@ class ProfileController extends Controller
     $politicalParties = PoliticalParty::all();
     $profile = $this->repository->find($id);
     $years = $this->generateLastYears();
+    $validator = app()->make(ProfileValidator::class);
+    $canPublish = $validator->validate($id);
     return view('administration.profiles.edit')->with(
       [
         'politicalParties' => $politicalParties,
         'profile' => $profile,
         'years' => $years,
-        'judgment_types' => JudgmentType::all()
+        'judgment_types' => JudgmentType::all(),
+        'canPublish' => $canPublish
       ]
     );
   }
@@ -146,16 +149,26 @@ class ProfileController extends Controller
   public function publish(Request $request,$id)
   {
 
-  /*  $validator = app()->make(ProfileValidator::class);
+    $validator = app()->make(ProfileValidator::class);
     if($validator->validate($id))
     {
-      return true;
-    }else {
-      return false;
-    }*/
+      $this->repository->publish($id);
 
-    $this->repository->publish($id);
-    return redirect(route('candidates.president.published'))->with('success', 'Perfil publicado!');
+      $profile = $this->repository->find($id);
+      if($profile->person->isPresident() || $profile->person->isVicePresident())
+      {
+          return redirect(route('candidates.president.published'))->with('success', 'Perfil publicado!');
+      }else if($this->person->isAsambleista()){
+          return redirect(route('candidates.asambleistas.published'))->with('success', 'Perfil publicado!');
+      }else {
+          return redirect(route('public-servants.published'))->with('success', 'Perfil publicado!');
+      }
+    }else {
+        return redirect()->back()->with('errors', "El perfil no esta completo!. Debe completar para publicar.");
+    }
+
+
+
 
   }
 

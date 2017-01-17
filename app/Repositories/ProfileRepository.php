@@ -152,7 +152,7 @@ class ProfileRepository extends Repository
         $newTimeLine->person_id = $profile->person->id;
         $newTimeLine->typeEvent = $timeline['type'];
         $newTimeLine->start = $timeline['startDate'];
-        $newTimeLine->end = $timeline['endDate'];
+        $newTimeLine->end = (!empty($timeline['endDate'])) ? $timeline['endDate'] : null ;
         $newTimeLine->shortDescription = $timeline['title'];
         $newTimeLine->description = $timeline['description'];
         $newTimeLine->user_id = Auth::user()->id;
@@ -205,6 +205,20 @@ class ProfileRepository extends Repository
 
     $profile->urlSri = $data['urlFuenteSRI'];
     $profile->save();
+
+    $fileSri = $request->file('fileFuenteSRI');
+    if($fileSri != null)
+    {
+      $profile->fileSri = $this->saveDocFile($profile,$fileSri,"fuentes","sri");
+      $profile->update();
+    }else {
+      if($data['fileSRIDelete'] == "true")
+      {
+        File::delete(public_path().$profile->fileSri);
+        $profile->fileSri = null;
+        $profile->update();
+      }
+    }
     // END SRI
     // UPDATE Patrimonio
 
@@ -238,6 +252,20 @@ class ProfileRepository extends Repository
     $profile->heritage->save();
     $profile->urlHeritage = $data['urlFuenteSRI'];
     $profile->save();
+
+    $file = $request->file('fileFuentePatrimonio');
+    if($file != null)
+    {
+      $profile->fileHeritage = $this->saveDocFile($profile,$file,"fuentes","patrimonio");
+      $profile->update();
+    }else {
+      if($data['fileFuentePatrimonioDelete'] == "true")
+      {
+        File::delete(public_path().$profile->fileHeritage);
+        $profile->fileHeritage = null;
+        $profile->update();
+      }
+    }
     // END Patrimonio
       // UPDATE Super
       $actualCompanies = $profile->companies->toArray();
@@ -274,6 +302,20 @@ class ProfileRepository extends Repository
       }
       $profile->urlCompanies = $data['urlFuenteCompanies'];
       $profile->save();
+
+      $file = $request->file('fileCompanies');
+      if($file != null)
+      {
+        $profile->fileCompanies = $this->saveDocFile($profile,$file,"fuentes","companies");
+        $profile->update();
+      }else {
+        if($data['fileCompaniesDelete'] == "true")
+        {
+          File::delete(public_path().$profile->fileCompanies);
+          $profile->fileCompanies = null;
+          $profile->update();
+        }
+      }
       // END Super
         // UPDATE Antecedentes
   $data['judicialActor'] = (isset($data['judicialActor'])) ? $data['judicialActor'] : [];
@@ -315,8 +357,39 @@ class ProfileRepository extends Repository
     }
   }
   $profile->hasPenals = (isset($data['hasPenals']) && $data['hasPenals'] == 'on') ?  true : false;
+
   $profile->urlJudicial = $data['urlFuenteJudicials'];
+  $profile->urlPenal = $data['urlFuentesPenales'];
   $profile->save();
+
+  $file = $request->file('fileFuentePenal');
+  if($file != null)
+  {
+    $profile->filePenal = $this->saveDocFile($profile,$file,"fuentes","penales");
+    $profile->update();
+  }else {
+    if($data['fileFuentePenalDelete'] == "true")
+    {
+      File::delete(public_path().$profile->filePenal);
+      $profile->filePenal = null;
+      $profile->update();
+    }
+  }
+
+
+  $file = $request->file('fileFuenteJudicials');
+  if($file != null)
+  {
+    $profile->fileJudicial = $this->saveDocFile($profile,$file,"fuentes","judiciales");
+    $profile->update();
+  }else {
+    if($data['fileFuenteJudicialsDelete'] == "true")
+    {
+      File::delete(public_path().$profile->fileJudicial);
+      $profile->fileJudicial = null;
+      $profile->update();
+    }
+  }
         // END Antecedentes
       // UPDATE Seneciyt
 
@@ -335,6 +408,20 @@ class ProfileRepository extends Repository
       $profile->study->save();
       $profile->urlStudy = $data['urlFuenteSenecyt'];
       $profile->save();
+
+      $file = $request->file('fileStudy');
+      if($file != null)
+      {
+        $profile->fileStudy = $this->saveDocFile($profile,$file,"fuentes","study");
+        $profile->update();
+      }else {
+        if($data['fileStudyDelete'] == "true")
+        {
+          File::delete(public_path().$profile->fileStudy);
+          $profile->fileStudy = null;
+          $profile->update();
+        }
+      }
     // END Senecyt
     // UPDATE Contraloría
     if( $profile->comptroller == null)
@@ -350,6 +437,20 @@ class ProfileRepository extends Repository
       $profile->comptroller->save();
       $profile->urlComptroller = $data['urlFuenteComptroller'];
       $profile->save();
+
+      $file = $request->file('fileComptroller');
+      if($file != null)
+      {
+        $profile->fileComptroller = $this->saveDocFile($profile,$file,"fuentes","comptroller");
+        $profile->update();
+      }else {
+        if($data['fileComptrollerDelete'] == "true")
+        {
+          File::delete(public_path().$profile->fileComptroller);
+          $profile->fileComptroller = null;
+          $profile->update();
+        }
+      }
       // END Contraloría
     return true;
 
@@ -374,12 +475,12 @@ class ProfileRepository extends Repository
     }
   }
 
-  private function saveDocFile($profile,$doc,$folder="default")
+  private function saveDocFile($profile,$doc,$folder="default",$sectionName="")
   {
     if(collect($this->docsValidsExtensions)->contains($doc->getClientOriginalExtension()))
     {
       $storage_path = public_path()."/docs/".$folder;
-      $filename  = $this->nameGenerator($profile->id."-".$profile->person->name.'-'.$profile->person->lastname."-".$folder).".".$doc->getClientOriginalExtension();
+      $filename  = $this->nameGenerator($profile->id."-".$profile->person->name.'-'.$profile->person->lastname."-".$folder.$sectionName).".".$doc->getClientOriginalExtension();
       $doc->move($storage_path,$filename);
       $relativePath = "/docs/".$folder."/".$filename;
       return $relativePath;

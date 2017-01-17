@@ -45,5 +45,10 @@ class Person extends Model
     return $this->position->id == Position::vicePresidentId();
   }
 
+  public function isAsambleista()
+  {
+    return $this->position->id == Position::asambleistaId();
+  }
+
 
 }

@@ -19,5 +19,9 @@ class Position extends Model
     return $query->where('name','Vicepresidente')->first()->id;
   }
 
+  function scopeAsambleistaId($query)
+  {
+    return $query->where('name','Asambleísta')->first()->id;
+  }
 
 }

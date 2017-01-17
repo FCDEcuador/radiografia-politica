@@ -53,11 +53,11 @@ Route::group(['prefix'=>'administration','middleware' => ['auth']],function(){
   Route::get('presidencial-candidates/drafts', 'PresidencialCandidatesController@drafts')->name('candidates.president.drafts');
   Route::get('presidencial-candidates/published', 'PresidencialCandidatesController@published')->name('candidates.president.published');
 
-  Route::get('asambleistas-candidates/drafts', 'DeputyCandidatesController@drafts');
-  Route::get('asambleistas-candidates/published', 'DeputyCandidatesController@published');
+  Route::get('asambleistas-candidates/drafts', 'DeputyCandidatesController@drafts')->name('candidates.asambleistas.drafts');
+  Route::get('asambleistas-candidates/published', 'DeputyCandidatesController@published')->name('candidates.asambleistas.published');
 
-  Route::get('asambleistas/drafts', 'DeputyController@drafts');
-  Route::get('asambleistas/published', 'DeputyController@published');
+  Route::get('asambleistas/drafts', 'DeputyController@drafts')->name('asambleistas.drafts');
+  Route::get('asambleistas/published', 'DeputyController@published')->name('asambleistas.published');
 
   Route::resource('position', PositionController::class);
   Route::resource('judgment_type', judgmentTypeController::class);
@@ -65,8 +65,8 @@ Route::group(['prefix'=>'administration','middleware' => ['auth']],function(){
   Route::get('/message/edit', 'MessageController@edit')->name("message.edit");
   Route::put('/message/update', 'MessageController@update')->name("message.update");
 
-  Route::get('public-servants/drafts', 'PublicServantController@drafts');
-  Route::get('public-servants/published', 'PublicServantController@published');
+  Route::get('public-servants/drafts', 'PublicServantController@drafts')->name('public-servants.drafts');
+  Route::get('public-servants/published', 'PublicServantController@published')->name('public-servants.published');
 
 
 });
