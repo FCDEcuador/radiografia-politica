@@ -1,7 +1,7 @@
 var services = require('../services').services;
 
 services.service('President', function($http){
-  var server = "http://localhost:8000";
+  var server = "http://"+location.hostname;
   var presidents = [
     {
       president: {
