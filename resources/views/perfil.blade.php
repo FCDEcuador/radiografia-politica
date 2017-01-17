@@ -493,6 +493,7 @@ function getTypeEvent($id)
               <div class="col-md-6">
                 <label>DEMANDADO</label>
                 <table class="table" >
+                  <thead>
                     <tr>
                       <th>Tipo de juicio</th>
                       <th>Cantidad</th>
