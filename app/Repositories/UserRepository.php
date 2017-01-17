@@ -26,7 +26,7 @@ class UserRepository extends Repository
         $data["password"] = $pass;
         Mail::send('emails.new_user', $data, function ($m) {
               $from = Config::get('mail_settings.system.send_from');
-              $to = 'rarmas@umpacto.com';
+              $to = $data["email"];
               $m->from($from, 'Politics Service');
               $m->to($to)->subject('Bienvenido a Políticos');
         });
