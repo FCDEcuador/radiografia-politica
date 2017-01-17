@@ -24,7 +24,7 @@ class UserRepository extends Repository
       if ($this->model->create($data) != null)
       {
         $data["password"] = $pass;
-        Mail::send('emails.new_user', $data, function ($m) {
+        Mail::send('emails.new_user', $data, function ($m) use($data) {
               $from = Config::get('mail_settings.system.send_from');
               $to = $data["email"];
               $m->from($from, 'Politics Service');
