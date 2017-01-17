@@ -322,7 +322,7 @@ function getTypeEvent($id)
           <div class="well-body">
             <div class="row patrimonial-declaration-icons">
               <div class="col-md-3">
-                <div class="img-responsive hint--top" data-hint="VIVIENDAS Y MUEBLES">
+                <div class="img-responsive hint--top" data-hint="INMUEBLES">
                   <img src="/img/ico-vivienda.png">
                 </div>
                 <div>{{$profile->heritage->houses}}</div>
@@ -492,7 +492,7 @@ function getTypeEvent($id)
               </div>
               <div class="col-md-6">
                 <label>DEMANDADO</label>
-                <table class="table" style="text-align:center;"
+                <table class="table" >
                     <tr>
                       <th>Tipo de juicio</th>
                       <th>Cantidad</th>
