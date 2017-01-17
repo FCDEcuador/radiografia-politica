@@ -1055,9 +1055,9 @@
                                                 <td class="panel">
                                                     <p><b>Usuario</b> {{$email}}</p>
                                                     <p><b>Contraseña temporal:</b> {{$password}}</p>
-                                                    <p>Puede acceder mediante <a href="http://celerity.umpacto.com">http://celerity.umpacto.com</a></p>
+                                                    <p>Puede acceder mediante <a href="http://profiles.umpacto.com/administration/login">http://profiles.umpacto.com/administration/login</a></p>
                                                     <p>Saludos. </p>
-                                                    <p>Celerity Service. </p>
+                                                    <p>Politics Service. </p>
                                                 </td>
                                                 <td class="expander"></td>
                                             </tr>
