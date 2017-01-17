@@ -128,6 +128,36 @@ function getTypeEvent($id)
         <h3>LÍNEA DE TIEMPO </h3>
       </div>
     </div>
+  </br>
+    <div class="row">
+      <div class="col-md-3">
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target=".bs-example-modal-lg">DESTACADOS</button>
+
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Destacados</h4>
+                </div>
+                <div class="modal-body">
+                  @foreach($profile->person->timelines()->where('important',1)->orderBy('start')->get() as $timeline)
+    			        	<h4>Vida {{getTypeEvent($timeline->typeEvent)}}</h4>
+            				<em>{{formatDate2($timeline->start)}} - {{formatDate2($timeline->end)}}</em>
+            				<p>
+            					{!! $timeline->description !!}
+            				</p>
+                  @endforeach
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <section class="cd-horizontal-timeline">
       <div class="timeline vpu-line time-yellow">
         <h4>VIDA PÚBLICA</h4>
@@ -265,8 +295,13 @@ function getTypeEvent($id)
           </div>
           <div class="well-footer">
             <div class="row">
-              <div class="col-md-8">
-                <button type="button" class="btn btn-dark">VER FUENTE</button>
+              <div class="col-md-3">
+                <a href ="{{$profile->urlSri}}" target="_blank"><button type="button" class="btn btn-dark">VER FUENTE</button>
+              </div>
+              <div class="col-md-3">
+                <a href ="{{$profile->fileSri}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
+              </div>
+              <div class="col-md-2">
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
@@ -364,8 +399,13 @@ function getTypeEvent($id)
           </div>
           <div class="well-footer">
             <div class="row">
-              <div class="col-md-8">
-                <button type="button" class="btn btn-dark">VER FUENTE</button>
+              <div class="col-md-3">
+                <a href ="{{$profile->urlHeritage}}" target="_blank"><button type="button" class="btn btn-dark">VER FUENTE</button>
+              </div>
+              <div class="col-md-3">
+                <a href ="{{$profile->fileHeritage}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
+              </div>
+              <div class="col-md-2">
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
@@ -404,10 +444,15 @@ function getTypeEvent($id)
           </div>
           <div class="well-footer">
             <div class="row">
-              <div class="col-md-7">
-                <button type="button" class="btn btn-dark">VER FUENTE</button>
+              <div class="col-md-4">
+                <a href ="{{$profile->urlCompanies}}" target="_blank"><button type="button" class="btn btn-dark">VER FUENTE</button>
               </div>
-                <div class="col-md-5 share-transaprency">
+              <div class="col-md-4">
+                <a href ="{{$profile->fileCompanies}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
+              </div>
+              <div class="col-md-4">
+              </div>
+                <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
                   <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
                   <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
@@ -466,8 +511,13 @@ function getTypeEvent($id)
           </div>
           <div class="well-footer">
             <div class="row">
-              <div class="col-md-8">
-                <button type="button" class="btn btn-dark">VER FUENTE</button>
+              <div class="col-md-2">
+                <a href ="{{$profile->urlJudicial}}" target="_blank"><button type="button" class="btn btn-dark">VER FUENTE</button>
+              </div>
+              <div class="col-md-2">
+                <a href ="{{$profile->fileJudicial}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
+              </div>
+              <div class="col-md-4">
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
@@ -507,8 +557,11 @@ function getTypeEvent($id)
             </div>
             <div class="well-footer">
               <div class="row">
-                <div class="col-md-8">
-                  <button type="button" class="btn btn-dark">VER FUENTE</button>
+                <div class="col-md-4">
+                  <a href ="{{$profile->urlStudy}}" target="_blank"><button type="button" class="btn btn-dark">VER FUENTE</button>
+                </div>
+                <div class="col-md-4">
+                  <a href ="{{$profile->fileStudy}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
                 </div>
                   <div class="col-md-4 share-transaprency">
                     <label>Comparte</label>
@@ -536,8 +589,11 @@ function getTypeEvent($id)
             </div>
             <div class="well-footer">
               <div class="row">
-                <div class="col-md-8">
-                  <button type="button" class="btn btn-dark">VER FUENTE</button>
+                <div class="col-md-4">
+                  <a href ="{{$profile->urlComptroller}}" target="_blank"><button type="button" class="btn btn-dark">VER FUENTE</button>
+                </div>
+                <div class="col-md-4">
+                  <a href ="{{$profile->fileComptroller}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
                 </div>
                   <div class="col-md-4 share-transaprency">
                     <label>Comparte</label>
@@ -565,8 +621,11 @@ function getTypeEvent($id)
             </div>
             <div class="well-footer">
               <div class="row">
-                <div class="col-md-8">
-                  <button type="button" class="btn btn-dark">VER FUENTE</button>
+                <div class="col-md-4">
+                  <a href ="{{$profile->urlPenal}}" target="_blank"><button type="button" class="btn btn-dark">VER FUENTE</button>
+                </div>
+                <div class="col-md-4">
+                  <a href ="{{$profile->filePenal}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
                 </div>
                   <div class="col-md-4 share-transaprency">
                     <label>Comparte</label>
