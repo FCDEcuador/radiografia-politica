@@ -703,7 +703,7 @@
                             <tr class="">
                               <input type="hidden" name="judicialActor[{{$i}}][id]" value="{{$judicial->id}}"/>
                               <input type="hidden" name="judicialActor[{{$i}}][type]" value="{{$judicial->type}}"/>
-                              <td class="typeJudicial"><label>{{$judicial->judgment_type_id}}</label><input type="hidden" name="judijudicialActorcial[{{$i}}][judgment_type_id]" value="{{$judicial->judgment_type_id}}"/></td>
+                              <td class="typeJudicial"><label>{{$judicial->judgmentType->name}}</label><input type="hidden" name="judijudicialActorcial[{{$i}}][judgment_type_id]" value="{{$judicial->judgment_type_id}}"/></td>
                               <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicialActor[{{$i}}][number]" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
@@ -739,7 +739,7 @@
                             <tr class="">
                               <input type="hidden" name="judicialDemand[{{$i}}][id]" value="{{$judicial->id}}"/>
                               <input type="hidden" name="judicialDemand[{{$i}}][type]" value="{{$judicial->type}}"/>
-                              <td class="typeJudicial"><label>{{$judicial->judgment_type_id}}</label><input type="hidden" name="judicialDemand[{{$i}}][judgment_type_id]" value="{{$judicial->judgment_type_id}}"/></td>
+                              <td class="typeJudicial"><label>{{$judicial->judgmentType->name}}</label><input type="hidden" name="judicialDemand[{{$i}}][judgment_type_id]" value="{{$judicial->judgment_type_id}}"/></td>
                               <td class="number"><label>{{$judicial->number}}</label><input type="hidden" name="judicialDemand[{{$i}}][number]" value="{{$judicial->number}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>

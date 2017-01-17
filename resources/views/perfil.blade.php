@@ -89,7 +89,7 @@ function getTypeEvent($id)
         </div>
         @if(!empty($profile->person->observatory))
         <div class="row btn-profile">
-            <a href="{{$profile->person->observatory}}" target="_blank"><button type="button" class="btn btn-dark">Observatorio del candidato</button></a>
+            <a href="{{$profile->person->observatory}}" target="_blank"><button type="button" class="btn btn-dark">Gestión como Asambleísta</button></a>
         </div>
         @endif
         <div class="row profile-redes">
@@ -147,6 +147,8 @@ function getTypeEvent($id)
             				<p>
             					{!! $timeline->description !!}
             				</p>
+                    <hr>
+                  </hr>
                   @endforeach
                 </div>
 
@@ -320,7 +322,7 @@ function getTypeEvent($id)
           <div class="well-body">
             <div class="row patrimonial-declaration-icons">
               <div class="col-md-3">
-                <div class="img-responsive hint--top" data-hint="VIVIENDAS">
+                <div class="img-responsive hint--top" data-hint="VIVIENDAS Y MUEBLES">
                   <img src="/img/ico-vivienda.png">
                 </div>
                 <div>{{$profile->heritage->houses}}</div>
@@ -470,7 +472,7 @@ function getTypeEvent($id)
             <div class="row">
               <div class="col-md-6">
                 <label>ACTOR</label>
-                <table class="table" style="text-align:center;">
+                <table class="table" >
                   <thead>
                     <tr>
                       <th>Tipo de juicio</th>
@@ -480,8 +482,8 @@ function getTypeEvent($id)
                   <tbody>
                     @foreach($profile->judicials()->where('type',1)->get() as $judgment)
                     <tr>
-                      <td>{{$judgment->judgmentType->name}}</td>
-                      <td>{{$judgment->number}}</td>
+                      <td style="text-align:left;">{{$judgment->judgmentType->name}}</td>
+                      <td style="text-align:center;">{{$judgment->number}}</td>
                     </tr>
                     @endforeach
                     </tr>
@@ -490,8 +492,7 @@ function getTypeEvent($id)
               </div>
               <div class="col-md-6">
                 <label>DEMANDADO</label>
-                <table class="table" style="text-align:center;">
-                  <thead>
+                <table class="table" style="text-align:center;"
                     <tr>
                       <th>Tipo de juicio</th>
                       <th>Cantidad</th>
@@ -500,8 +501,8 @@ function getTypeEvent($id)
                   <tbody>
                     @foreach($profile->judicials()->where('type',2)->get() as $judgment)
                     <tr>
-                      <td>{{$judgment->judgmentType->name}}</td>
-                      <td>{{$judgment->number}}</td>
+                      <td style="text-align:left;">{{$judgment->judgmentType->name}}</td>
+                      <td style="text-align:center;">{{$judgment->number}}</td>
                     </tr>
                     @endforeach
                   </tbody>
