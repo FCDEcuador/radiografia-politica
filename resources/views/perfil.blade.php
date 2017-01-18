@@ -96,7 +96,7 @@ function getTypeEvent($id)
           <b>Redes sociales</b>
           <div class="profile-socials">
             <a href="{{$profile->person->twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="{{$profile->person->facebook}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+            <a href="{{$profile->person->twitter}}"><i class="fa fa-facebook-official"  aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
@@ -142,6 +142,7 @@ function getTypeEvent($id)
                 </div>
                 <div class="modal-body">
                   @foreach($profile->person->timelines()->where('important',1)->orderBy('start')->get() as $timeline)
+                    <h2>{{$timeline->shortDescription}}</h2>
     			        	<h4>Vida {{getTypeEvent($timeline->typeEvent)}}</h4>
             				<em>{{formatDate2($timeline->start)}} - {{formatDate2($timeline->end)}}</em>
             				<p>
@@ -232,7 +233,8 @@ function getTypeEvent($id)
   			<li data-date="{{formatDate($timeline->start)}}">
   				<h4>Vida {{getTypeEvent($timeline->typeEvent)}}</h4>
   				<em>{{formatDate2($timeline->start)}} - {{formatDate2($timeline->end)}}</em>
-  				<p>
+          <h3>{{$timeline->shortDescription}}</h3>
+        	<p>
   					{!! $timeline->description !!}
   				</p>
   			</li>
@@ -308,7 +310,7 @@ function getTypeEvent($id)
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
                   <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                  <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                  <a ><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                 </div>
             </div>
           </div>
@@ -457,7 +459,9 @@ function getTypeEvent($id)
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
                   <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                  <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                  <a href=""><i id="shareBtn" class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                  <button type="button" class="fa fa-facebook-official" id="shareBtn" data-message="" aria-hidden="true"></button>
+
                 </div>
             </div>
           </div>
@@ -649,5 +653,33 @@ function getTypeEvent($id)
 $(function() {
     $('.well').matchHeight();
 });
+</script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '363202350719048',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    method: 'share',
+    display: 'popup',
+    message: 'hola',
+    href: 'http://profiles.umpacto.com/',
+  }, function(response){});
+}
 </script>
 @endsection
