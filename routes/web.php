@@ -60,7 +60,7 @@ Route::group(['prefix'=>'administration','middleware' => ['auth']],function(){
   Route::get('asambleistas/published', 'DeputyController@published')->name('asambleistas.published');
 
   Route::resource('position', PositionController::class);
-  Route::resource('judgment_type', judgmentTypeController::class);
+  Route::resource('judgment_type', JudgmentTypeController::class);
   Route::resource('political_party', PoliticalPartyController::class);
   Route::get('/message/edit', 'MessageController@edit')->name("message.edit");
   Route::put('/message/update', 'MessageController@update')->name("message.update");
