@@ -1,5 +1,16 @@
 @extends('layouts.app')
 
+@section('metas')
+<meta property="og:url" content="{{url(route('perfil',$profile->id))}}" />
+<meta property="og:title" content="Perfil - {{$profile->person->name.' '.$profile->person->lastname}}" />
+<meta property="og:description" content="Pendiente" />
+<meta property="og:image" content="{{url($profile->person->img)}}" />
+<meta property="fb:app_id" content="363202350719048" />
+<meta property="og:locale" content="es_EC" />
+<meta property="og:updated_time" content="{{$profile->updated_at}}" />
+<meta property="og:rich_attachment" content="true" />
+@endsection
+
 @section('content')
 <?php
 
@@ -309,7 +320,7 @@ function getTypeEvent($id)
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
-                  <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href="https://twitter.com/intent/tweet?text={{$profile->person->name}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                   <a ><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                 </div>
             </div>
@@ -677,9 +688,45 @@ document.getElementById('shareBtn').onclick = function() {
   FB.ui({
     method: 'share',
     display: 'popup',
-    message: 'hola',
     href: 'http://profiles.umpacto.com/',
   }, function(response){});
 }
+</script>
+<script>
+;(function($){
+
+  /**
+   * jQuery function to prevent default anchor event and take the href * and the title to make a share popup
+   *
+   * @param  {[object]} e           [Mouse event]
+   * @param  {[integer]} intWidth   [Popup width defalut 500]
+   * @param  {[integer]} intHeight  [Popup height defalut 400]
+   * @param  {[boolean]} blnResize  [Is popup resizeabel default true]
+   */
+  $.fn.customerPopup = function (e, intWidth, intHeight, blnResize) {
+
+    // Prevent default anchor event
+    e.preventDefault();
+
+    // Set values for window
+    intWidth = intWidth || '500';
+    intHeight = intHeight || '400';
+    strResize = (blnResize ? 'yes' : 'no');
+
+    // Set title and open popup with focus on it
+    var strTitle = ((typeof this.attr('title') !== 'undefined') ? this.attr('title') : 'Social Share'),
+        strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,
+        objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
+  }
+
+  /* ================================================== */
+
+  $(document).ready(function ($) {
+    $('.customer.share').on("click", function(e) {
+      $(this).customerPopup(e);
+    });
+  });
+
+}(jQuery));
 </script>
 @endsection

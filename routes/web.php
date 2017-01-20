@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/perfil/{id}', 'ProfileController@view');
+Route::get('/perfil/{id}', 'ProfileController@view')->name('perfil');
 
 Route::get('/home', 'HomeController@index');
 

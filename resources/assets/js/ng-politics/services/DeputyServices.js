@@ -1,7 +1,7 @@
 var services = require('../services').services;
 
 services.service('Deputy', function($http){
-  var server = "http://"+location.hostname;
+  var server = "http://"+location.host;
 
   return {
     all: function(){
