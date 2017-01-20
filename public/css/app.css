@@ -9380,4 +9380,26 @@ body:before {
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s cubic-bezier(0.71, 1.7, 0.77, 1.24), -webkit-transform 0.3s cubic-bezier(0.71, 1.7, 0.77, 1.24);
 }
 
+/* Menu Hamburguesa */
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border: 0;
+  background-color: #000;
+}
+
+/* Listado asamblea */
+.list-casamblea {
+  text-align: center;
+}
+
+.list-casamblea .president a {
+  width: 150px !important;
+  height: 150px !important;
+  margin-left: 25px;
+}
+
+/* perfil boxes */
+.well-footer {
+  position: relative;
+}
+
 /*# sourceMappingURL=app.css.map */

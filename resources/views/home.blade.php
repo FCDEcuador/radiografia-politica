@@ -62,7 +62,7 @@
            </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row list-casamblea">
 
           <div class="col-md-3" ng-repeat="deputy in deputys">
             <div class="binomial">
@@ -71,7 +71,6 @@
               <a href="{{URL::to('/perfil')}}<% '/' + deputy.id %>"><span>VER PERFIL</span></a>
             </div>
           </div>
-          <br>
             <label class="align-c president-label"><% deputy.person.name + " " + deputy.person.lastname %></label><br>
         </div>
 
