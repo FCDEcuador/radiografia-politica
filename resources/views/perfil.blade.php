@@ -698,7 +698,7 @@ document.getElementById('shareBtn').onclick = function() {
   FB.ui({
     method: 'share',
     display: 'popup',
-    href: 'http://profiles.umpacto.com/',
+    href: '{{url(route("perfil",$profile->id))}}',
   }, function(response){});
 }
 </script>
