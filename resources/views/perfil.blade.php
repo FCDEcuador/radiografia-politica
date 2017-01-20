@@ -1,12 +1,22 @@
 @extends('layouts.app')
 
 @section('metas')
+<?php
+  function onlyText($html)
+  {
+      $string = strip_tags($html);
+      return $string;
+  }
+?>
+
+
 <meta property="og:url" content="{{url(route('perfil',$profile->id))}}" />
 <meta property="og:title" content="Perfil - {{$profile->person->name.' '.$profile->person->lastname}}" />
-<meta property="og:description" content="Pendiente" />
+<meta property="og:description" content="{{onlyText($profile->person->description)}}" />
 <meta property="og:image" content="{{url($profile->person->img)}}" />
+<meta proerty="og:image:width" content="300px" />
 <meta property="fb:app_id" content="363202350719048" />
-<meta property="og:locale" content="es_EC" />
+<meta property="og:locale" content="es_LA" />
 <meta property="og:updated_time" content="{{$profile->updated_at}}" />
 <meta property="og:rich_attachment" content="true" />
 @endsection
