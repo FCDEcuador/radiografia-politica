@@ -14,6 +14,7 @@
 <meta property="og:title" content="Perfil - {{$profile->person->name.' '.$profile->person->lastname}}" />
 <meta property="og:description" content="{{onlyText($profile->person->description)}}" />
 <meta property="og:image" content="{{url($profile->person->img)}}" />
+<meta property="og:hashtag" content="{{"#RadiografiaPolitica ".'#'.$profile->person->name.$profile->person->lastname}}" />
 <meta proerty="og:image:width" content="300px" />
 <meta property="fb:app_id" content="363202350719048" />
 <meta property="og:locale" content="es_LA" />
@@ -434,7 +435,7 @@ function getTypeEvent($id)
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
-                  <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href="https://twitter.com/intent/tweet?text={{$profile->person->name}}&url={{url(route('perfil',$profile->id))}}&via=edduardo111" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                   <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                 </div>
             </div>
