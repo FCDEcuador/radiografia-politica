@@ -7,6 +7,26 @@
       $string = strip_tags($html);
       return $string;
   }
+
+  function renderMessage($message,$profile)
+  {
+    $renderMessage = $message;
+
+    while(strrpos($renderMessage,'[[') != false)
+    {
+      $start = strrpos($renderMessage,'[[');
+      $end = strrpos($renderMessage,']]');
+      $beforeMessage = substr($renderMessage,0,$start);
+      $afterMessage = substr($renderMessage,$end+2,strlen($renderMessage));
+      $key = substr($renderMessage,$start+2,($end-$start-2));
+      $person = $profile->person->toArray();
+      $replace = $person[$key];
+      $renderMessage = $beforeMessage.$replace.$afterMessage;
+    }
+
+    return $renderMessage;
+
+  }
 ?>
 
 
@@ -117,7 +137,7 @@ function getTypeEvent($id)
         <div class="row profile-redes">
           <b>Redes sociales</b>
           <div class="profile-socials">
-            <a href="{{$profile->person->twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/{{$profile->person->twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
             <a href="{{$profile->person->twitter}}"><i class="fa fa-facebook-official"  aria-hidden="true"></i></a>
           </div>
         </div>
@@ -435,7 +455,7 @@ function getTypeEvent($id)
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
-                  <a href="https://twitter.com/intent/tweet?text={{$profile->person->name}}&url={{url(route('perfil',$profile->id))}}&via=edduardo111" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->profileMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}&via=edduardo111" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                   <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                 </div>
             </div>

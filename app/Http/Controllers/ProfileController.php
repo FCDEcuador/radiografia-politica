@@ -8,6 +8,7 @@ use App\Models\PoliticalParty;
 use App\Models\Position;
 use App\Models\JudgmentType;
 use App\Profile;
+use App\Models\Message;
 use Auth;
 use App\Validator\ProfileValidator;
 use App\Exceptions\ApiResponseException;
@@ -85,7 +86,8 @@ class ProfileController extends Controller
      if($profile->person->isVicePresident()){
        $binomial = $profile->person->politicalParty->president();
      }
-     return view('perfil')->with(['profile' => $profile, 'binomial' =>$binomial]);
+     $message = Message::first();
+     return view('perfil')->with(['profile' => $profile, 'binomial' =>$binomial , 'message' =>$message]);
   }
 
   private function generateLastYears($last=6)
