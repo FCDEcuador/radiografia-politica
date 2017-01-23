@@ -718,7 +718,7 @@ $('.shareBtn').click(function(){
     method: 'share',
     display: 'popup',
     href: '{{url(route("perfil",$profile->id))}}',
-    hashtags: "RadiografíaPolítica,{{$profile->person->name.$profile->person->lastname}}"
+    hashtag: "#RadiografíaPolítica#{{$profile->person->name.$profile->person->lastname}}"
   }, function(response){});
 });
 </script>
