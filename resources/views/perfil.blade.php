@@ -351,8 +351,8 @@ function getTypeEvent($id)
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
-                  <a href="https://twitter.com/intent/tweet?text={{$profile->person->name}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                  <a ><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                  <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->SRIMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                 </div>
             </div>
           </div>
@@ -455,8 +455,8 @@ function getTypeEvent($id)
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
-                  <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->profileMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}&via=edduardo111" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                  <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                  <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->deputyMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                 </div>
             </div>
           </div>
@@ -500,10 +500,8 @@ function getTypeEvent($id)
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
-                  <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                  <a href=""><i id="shareBtn" class="fa fa-facebook-official" aria-hidden="true"></i></a>
-                  <button type="button" class="fa fa-facebook-official" id="shareBtn" data-message="" aria-hidden="true"></button>
-
+                  <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->companiesMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                 </div>
             </div>
           </div>
@@ -569,8 +567,8 @@ function getTypeEvent($id)
               </div>
                 <div class="col-md-4 share-transaprency">
                   <label>Comparte</label>
-                  <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                  <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                  <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->judicialMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                 </div>
             </div>
           </div>
@@ -613,8 +611,8 @@ function getTypeEvent($id)
                 </div>
                   <div class="col-md-4 share-transaprency">
                     <label>Comparte</label>
-                    <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->senecytMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                   </div>
               </div>
             </div>
@@ -645,8 +643,8 @@ function getTypeEvent($id)
                 </div>
                   <div class="col-md-4 share-transaprency">
                     <label>Comparte</label>
-                    <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                      <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->comptrollerMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                      <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                   </div>
               </div>
             </div>
@@ -677,8 +675,8 @@ function getTypeEvent($id)
                 </div>
                   <div class="col-md-4 share-transaprency">
                     <label>Comparte</label>
-                    <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->penalMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                   </div>
               </div>
             </div>
@@ -715,13 +713,14 @@ $(function() {
    }(document, 'script', 'facebook-jssdk'));
 </script>
 <script>
-document.getElementById('shareBtn').onclick = function() {
+$('.shareBtn').click(function(){
   FB.ui({
     method: 'share',
     display: 'popup',
     href: '{{url(route("perfil",$profile->id))}}',
+    hashtags: "RadiografíaPolítica,{{$profile->person->name.$profile->person->lastname}}"
   }, function(response){});
-}
+});
 </script>
 <script>
 ;(function($){

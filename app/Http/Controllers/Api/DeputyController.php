@@ -12,7 +12,7 @@ class DeputyController extends ApiController
     $this->repository = $repository;
   }
     public function getDeputys($isCandidate){
-      $obj =  $this->repository->drafts((bool)$isCandidate);
+      $obj =  $this->repository->published((bool)$isCandidate);
       return response()->json($obj,200);
     }
 }

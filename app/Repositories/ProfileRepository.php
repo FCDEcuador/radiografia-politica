@@ -59,6 +59,28 @@ class ProfileRepository extends Repository
 
   }
 
+  public function updateProfile($id,$data)
+  {
+
+    return DB::transaction(function () use($id,$data) {
+      $profile = Profile::find($id);
+      $profile->user_id = Auth::user()->id;
+      if($profile->save())
+      {
+        $profile->person->user_id =  Auth::user()->id;
+        $profile->person->name = $data["name"];
+        $profile->person->lastname = $data["lastname"];
+        $profile->person->position_id  = $data["position"];
+        $profile->person->is_candidate  = (isset($data["isCandidate"]) && $data["isCandidate"] == "on") ? true : false;
+
+        return $profile->person->save();
+      }else {
+        return false;
+      }
+    });
+
+  }
+
   public function update($id,$request)
   {
     $data = $request->all();
@@ -250,7 +272,7 @@ class ProfileRepository extends Repository
     $profile->heritage->actualLiabilities = (isset($data['actualLiabilities'])) ? (float)$data['actualLiabilities'] : 0 ;
     $profile->heritage->actualHeritage = (isset($data['actualHeritage'])) ? (float)$data['actualHeritage'] : 0 ;
     $profile->heritage->save();
-    $profile->urlHeritage = $data['urlFuenteSRI'];
+    $profile->urlHeritage = $data['urlFuentePatrimonio'];
     $profile->save();
 
     $file = $request->file('fileFuentePatrimonio');

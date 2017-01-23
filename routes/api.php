@@ -20,3 +20,8 @@ Route::get('/user', function (Request $request) {
 Route::get('/binomials', "Api\BinomialController@getBinomials");
 Route::get('/deputys/{isCandidate}', "Api\DeputyController@getDeputys");
 Route::get('/publicServants', "Api\PublicServantController@getPublicServants");
+
+
+Route::group(['prefix'=>'admin'],function(){
+  Route::get('/dashboard', 'Api\AdminController@dashboard');
+});

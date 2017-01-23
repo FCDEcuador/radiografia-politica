@@ -28,7 +28,7 @@ class ProfileValidator
       $valid &= $this->hasJudicalsComplete();
       $valid &= $this->hasSenecyt();
       $valid &= $this->hasContraloria();
-      return $valid;
+      return ((bool)$valid);
     }
 
     public function hasSetField($field)
@@ -69,18 +69,19 @@ class ProfileValidator
       $valid &= $this->hasSetField($this->model->heritage);
       if($this->model->heritage != null)
       {
-        $valid &= $this->hasSetField($this->model->heritage->houses);
-        $valid &= $this->hasSetField($this->model->heritage->cars);
-        $valid &= $this->hasSetField($this->model->heritage->money);
-        $valid &= $this->hasSetField($this->model->heritage->companies);
-        $valid &= $this->hasSetField($this->model->heritage->previousDeclaration);
+        // $valid &= $this->hasSetField($this->model->heritage->houses);
+        // $valid &= $this->hasSetField($this->model->heritage->cars);
+        // $valid &= $this->hasSetField($this->model->heritage->money);
+        // $valid &= $this->hasSetField($this->model->heritage->companies);
+        //     dd($this->hasSetField($this->model->heritage->houses));
+        /*$valid &= $this->hasSetField($this->model->heritage->previousDeclaration);
         $valid &= $this->hasSetField($this->model->heritage->actualDeclaration);
         $valid &= $this->hasSetField($this->model->heritage->previousAssets);
         $valid &= $this->hasSetField($this->model->heritage->actualAssets);
         $valid &= $this->hasSetField($this->model->heritage->previousLiabilities);
         $valid &= $this->hasSetField($this->model->heritage->actualLiabilities);
         $valid &= $this->hasSetField($this->model->heritage->previousHeritage);
-        $valid &= $this->hasSetField($this->model->heritage->actualHeritage);
+        $valid &= $this->hasSetField($this->model->heritage->actualHeritage);*/
       }
       $valid &= $this->hasSetField($this->model->urlHeritage);
       return $valid;

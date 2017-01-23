@@ -43,6 +43,14 @@ class ProfileController extends Controller
       return view('administration.profiles.create')->with('positions', $positions);
   }
 
+
+  public function editProfile($id)
+  {
+    $positions = Position::all();
+    $profile = $this->repository->find($id);
+    return view('administration.profiles.edit_profile')->with(['positions'=> $positions,'profile' => $profile]);
+  }
+
   /**
    * Store a newly created resource in storage.
    *
@@ -59,6 +67,15 @@ class ProfileController extends Controller
     }
   }
 
+  public function updateProfile(Request $request,$id)
+  {
+    if($this->repository->updateProfile($id,$request->all()))
+    {
+      return redirect(route('profile.index'))->with('success', 'Perfil actualizado exitosamente!');
+    }else {
+        return redirect()->back()->with('errors', 'El email ya existe!');
+    }
+  }
   /**
    * Display the specified resource.
    *
@@ -160,7 +177,7 @@ class ProfileController extends Controller
       if($profile->person->isPresident() || $profile->person->isVicePresident())
       {
           return redirect(route('candidates.president.published'))->with('success', 'Perfil publicado!');
-      }else if($this->person->isAsambleista()){
+      }else if($profile->person->isAsambleista()){
           return redirect(route('candidates.asambleistas.published'))->with('success', 'Perfil publicado!');
       }else {
           return redirect(route('public-servants.published'))->with('success', 'Perfil publicado!');
@@ -177,7 +194,15 @@ class ProfileController extends Controller
   public function unpublish(Request $request, $id)
   {
     $this->repository->unpublish($id);
-    return redirect(route('candidates.president.drafts'))->with('success', 'Perfil movido a borradores!');
+    $profile = $this->repository->find($id);
+    if($profile->person->isPresident() || $profile->person->isVicePresident())
+    {
+        return redirect(route('candidates.president.drafts'))->with('success', 'Perfil movido a borradores!');
+    }else if($profile->person->isAsambleista()){
+        return redirect(route('candidates.asambleistas.drafts'))->with('success', 'Perfil movido a borradores!');
+    }else {
+        return redirect(route('public-servants.drafts'))->with('success', 'Perfil movido a borradores!');
+    }
   }
 
   /**

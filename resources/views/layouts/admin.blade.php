@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="politics">
+<html lang="es" ng-app="admin-politics">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +29,7 @@
       <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-  <div id="app" class="wrapper">
+  <div id="app" class="wrapper" ng-controller="AdminController">
 
     <header class="main-header">
 
@@ -149,7 +149,7 @@
           <li class="header">SITIO</li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-user"></i> <span>Tipos Delitos</span>
+              <i class="fa fa-gavel"></i> <span>Tipos Delitos</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -161,7 +161,7 @@
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-user"></i> <span>Partido Político</span>
+              <i class="fa fa-flag"></i> <span>Partido Político</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -173,7 +173,7 @@
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-user"></i> <span>Cargos</span>
+              <i class="fa fa-suitcase"></i> <span>Cargos</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -187,52 +187,52 @@
             <a href="#">
               <i class="fa fa-user"></i> <span>Candidatos Presidentes</span>
               <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
+              
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
               <li><a href="{{url('administration/presidencial-candidates/published')}}"><i class="fa fa-circle-o"></i> Publicados</a></li>
-              <li><a href={{url('administration/presidencial-candidates/drafts')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red">3</small></span></a></li>
+              <li><a href={{url('administration/presidencial-candidates/drafts')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red"><% data.draft.binomialCandidates %></small></span></a></li>
             </ul>
           </li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-users"></i> <span>Candidatos Asambleistas</span>
               <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
+
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
               <li><a href="{{url('administration/asambleistas-candidates/published')}}"><i class="fa fa-circle-o"></i> Publicados</a></li>
-              <li><a href={{url('administration/asambleistas-candidates/drafts')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red">3</small></span></a></li>
+              <li><a href={{url('administration/asambleistas-candidates/drafts')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red"><% data.draft.deputyCandidates %></small></span></a></li>
             </ul>
           </li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-users"></i> <span>Asambleistas</span>
               <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
+
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
               <li><a href="{{url('administration/asambleistas/published')}}"><i class="fa fa-circle-o"></i> Publicados</a></li>
-              <li><a href={{url('administration/asambleistas/published')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red">3</small></span></a></li>
+              <li><a href={{url('administration/asambleistas/published')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red"><% data.draft.deputys %></small></span></a></li>
             </ul>
           </li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-users"></i> <span>Funcionarios Públicos</span>
               <span class="pull-right-container">
-                <small class="label pull-right bg-green">new</small>
+                <!--<small class="label pull-right bg-green">new</small> -->
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
               <li><a href="{{url('administration/public-servants/published')}}"><i class="fa fa-circle-o"></i> Publicados</a></li>
-              <li><a href={{url('administration/public-servants/drafts')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red">3</small></span></a></li>
+              <li><a href={{url('administration/public-servants/drafts')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red"><% data.draft.publicServants %></small></span></a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -249,7 +249,7 @@
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-users"></i> <span>Mensaje</span>
+              <i class="fa fa-envelope"></i> <span>Mensajes</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>

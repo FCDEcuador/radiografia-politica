@@ -47,7 +47,10 @@ Route::group(['prefix'=>'administration','middleware' => ['auth']],function(){
 
 
   Route::resource('profile', ProfileController::class);
-  Route::get('publish/{id}', 'ProfileController@publish')->name('profile.publish');
+  Route::get('profile/{id}/general', 'ProfileController@editProfile')->name('profile.edit.general');
+  Route::post('profile/{id}/general', 'ProfileController@updateProfile')->name('profile.update.general');
+
+  Route::post('publish/{id}', 'ProfileController@publish')->name('profile.publish');
   Route::post('unpublish/{id}', 'ProfileController@unpublish')->name('profile.unpublish');
 
   Route::get('presidencial-candidates/drafts', 'PresidencialCandidatesController@drafts')->name('candidates.president.drafts');

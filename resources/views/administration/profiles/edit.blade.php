@@ -68,7 +68,7 @@
 
 <!-- Main content -->
 <section class="content">
-  <form id="publishForm" action="{{URL::to(route('profile.publish',$profile->id))}}" method="GET">
+  <form id="publishForm" action="{{URL::to(route('profile.publish',$profile->id))}}" method="POST">
     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
   </form>
   <form id="editForm" action="{{URL::to(route('profile.update',$profile->id))}}" method="POST" enctype="multipart/form-data">
@@ -77,7 +77,7 @@
     <!-- /.row -->
     <div class="row">
       <div class="col-md-12">
-        <button type="submit" class="btn btn-primary pull-right" style="margin-left:10px;" form="publishForm" disabled="{{!$canPublish}}">Publicar</button>
+        <button type="submit" class="btn btn-primary pull-right" style="margin-left:10px;" form="publishForm" {{($canPublish) ?  '':'disabled'}}>Publicar</button>
         <button type="submit" class="btn btn-primary pull-right" form="editForm">Guardar</button>
       </div>
     </div>
@@ -663,7 +663,7 @@
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="fuente">Url Fuente</label>
-                        <input type="text" class="form-control" name="urlFuentesPenales"  placeholder="Ingrese el link">
+                        <input type="text" class="form-control" name="urlFuentesPenales" value="{{$profile->urlPenal}}" placeholder="Ingrese el link">
                       </div>
                       <div class="col-md-2">
                         <label for="curriculum">Archivo Fuente</label>
@@ -780,7 +780,7 @@
                   <div class="form-group row">
                     <div class="col-md-6">
                       <label for="fuente">Url Fuente</label>
-                      <input type="text" class="form-control" name="urlFuenteJudicials"  placeholder="Ingrese el link">
+                      <input type="text" class="form-control" name="urlFuenteJudicials" value="{{$profile->urlJudicial}}"  placeholder="Ingrese el link">
                     </div>
                     <div class="col-md-2">
                       <label for="curriculum">Archivo Fuente</label>
