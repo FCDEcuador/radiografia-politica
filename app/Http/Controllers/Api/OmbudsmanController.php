@@ -11,7 +11,7 @@ class OmbudsmanController extends ApiController
   {
     $this->repository = $repository;
   }
-    public function getOmbudsman(){
+    public function getOmbudsmen(){
       $obj =  $this->repository->drafts();
       return response()->json($obj,200);
     }

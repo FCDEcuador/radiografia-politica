@@ -187,7 +187,7 @@
             <a href="#">
               <i class="fa fa-user"></i> <span>Candidatos Presidentes</span>
               <span class="pull-right-container">
-              
+
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
@@ -219,7 +219,33 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="{{url('administration/asambleistas/published')}}"><i class="fa fa-circle-o"></i> Publicados</a></li>
-              <li><a href={{url('administration/asambleistas/published')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red"><% data.draft.deputys %></small></span></a></li>
+              <li><a href={{url('administration/asambleistas/drafts')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red"><% data.draft.deputys %></small></span></a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-users"></i> <span>Candidatos Contralor</span>
+              <span class="pull-right-container">
+
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{url('administration/generalComptroller/published')}}"><i class="fa fa-circle-o"></i> Publicados</a></li>
+              <li><a href={{url('administration/generalComptroller/drafts')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red"><% data.draft.deputys %></small></span></a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-users"></i> <span>Candidatos Defensor</span>
+              <span class="pull-right-container">
+
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{url('administration/ombudsman/published')}}"><i class="fa fa-circle-o"></i> Publicados</a></li>
+              <li><a href={{url('administration/ombudsman/drafts')}}><i class="fa fa-circle-o"></i> Borradores    <span class="pull-right-container"> <small class="label pull-right bg-red"><% data.draft.deputys %></small></span></a></li>
             </ul>
           </li>
           <li class="treeview">

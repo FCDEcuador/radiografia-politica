@@ -11,11 +11,19 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/perfil/{id}', 'ProfileController@view')->name('perfil');
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/quienes-somos', function(){
+  return view('about_us');
+});
+
+Route::get('/sumate-a-la-iniciativa', function(){
+  return view('join_the_iniciative');
+});
 
 
 
@@ -61,6 +69,12 @@ Route::group(['prefix'=>'administration','middleware' => ['auth']],function(){
 
   Route::get('asambleistas/drafts', 'DeputyController@drafts')->name('asambleistas.drafts');
   Route::get('asambleistas/published', 'DeputyController@published')->name('asambleistas.published');
+
+  Route::get('generalComptroller/drafts', 'GeneralComptrollerController@drafts')->name('general_comptroller.drafts');
+  Route::get('generalComptroller/published', 'GeneralComptrollerController@published')->name('general_comptroller.published');
+
+  Route::get('ombudsman/drafts', 'OmbudsmanController@drafts')->name('ombudsman.drafts');
+  Route::get('ombudsman/published', 'OmbudsmanController@published')->name('ombudsman.published');
 
   Route::resource('position', PositionController::class);
   Route::resource('judgment_type', JudgmentTypeController::class);

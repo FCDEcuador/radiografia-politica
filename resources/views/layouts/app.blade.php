@@ -46,9 +46,9 @@
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                      <li><a href="{{ url('/') }}">INICIO</a></li>
-                      <li><a href="{{ url('/candidatos') }}">CANDIDATOS</a></li>
-                      <li><a href="{{ url('/funcionarios') }}">FUNCIONARIOS PÚBLICOS</a></li>
+                      <li><a href="{{URL::to(route('home'))}}">INICIO</a></li>
+                      <li><a href="{{URL::to(route('home'))}}/#profile">CANDIDATOS</a></li>
+                      <li><a href="{{URL::to(route('home'))}}/#generalComptroller">FUNCIONARIOS PÚBLICOS</a></li>
                     </ul>
                 </div>
             </div>
@@ -87,14 +87,14 @@
                   </div>
                   <div class="row">
                     <div class="footer-item">
-                      <a href="{{URL::to('candidatos-presidencia')}}">Candidatos Presidencia</a>
+                      <a href="{{URL::to(route('home'))}}">Candidatos Presidencia</a>
                     </div>
                   </div>
-                  <div class="row">
+                  <!--<div class="row">
                     <div class="footer-item">
                       <a href="{{URL::to('informacion-sobre-las-elecciones')}}">Información sobre las elecciones</a>
                     </div>
-                  </div>
+                  </div>-->
                 </div>
                 <div class="col-md-4">
                   <div class="row">
@@ -104,14 +104,14 @@
                   </div>
                   <div class="row">
                     <div class="footer-item">
-                        <a href="{{URL::to('funcionarios-publicos')}}">Funcionarios Públicos</a>
+                        <a href="{{URL::to(route('home'))}}/#generalComptroller">Funcionarios Públicos</a>
                     </div>
                   </div>
-                  <div class="row">
+                  <!--<div class="row">
                     <div class="footer-item">
                         <a href="{{URL::to('buscador')}}">Buscador</a>
                     </div>
-                  </div>
+                  </div>-->
                 </div>
               </div>
               <div class="row">

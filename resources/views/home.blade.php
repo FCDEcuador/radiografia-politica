@@ -12,7 +12,7 @@
   </div>
   <div class="row">
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs" role="tablist" id="myTab">
       <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Candidatos Presidencia</a></li>
       <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Candidatos Asamblea</a></li>
       <li role="presentation"><a href="#generalComptroller" aria-controls="generalComptroller" role="tab" data-toggle="tab">Contralor General del Estado</a></li>
@@ -125,4 +125,19 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+// Javascript to enable link to tab
+var url = document.location.toString();
+if (url.match('#')) {
+    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+}
+
+// Change hash for page-reload
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+})
+</script>
 @endsection
