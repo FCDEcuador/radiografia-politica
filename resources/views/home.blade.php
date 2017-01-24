@@ -15,6 +15,8 @@
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Candidatos Presidencia</a></li>
       <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Candidatos Asamblea</a></li>
+      <li role="presentation"><a href="#generalComptroller" aria-controls="generalComptroller" role="tab" data-toggle="tab">Contralor General del Estado</a></li>
+      <li role="presentation"><a href="#generalComptroller" aria-controls="generalComptroller" role="tab" data-toggle="tab">Defensor del Pueblo</a></li>
     </ul>
 
     <!-- Tab panes -->
@@ -72,6 +74,50 @@
             </div>
           </div>
             <label class="align-c president-label"><% deputy.person.name + " " + deputy.person.lastname %></label><br>
+        </div>
+
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="generalComptroller" ng-controller="GeneralComptrollerController">
+        <div class="row">
+          <div class="input-group">
+             <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+             <input type="text" ng-model="searchText" class="form-control">
+           </div>
+        </div>
+        <br>
+        <div class="row list-casamblea">
+
+          <div class="col-md-3" ng-repeat="generalComptroller in generalComptrollers">
+            <div class="binomial">
+            <div class="president">
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% generalComptroller.picture %>" alt="<% generalComptroller.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + generalComptroller.id %>"><span>VER PERFIL</span></a>
+            </div>
+          </div>
+            <label class="align-c president-label"><% generalComptroller.person.name + " " + generalComptroller.person.lastname %></label><br>
+        </div>
+
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="generalComptroller" ng-controller="GeneralComptrollerController">
+        <div class="row">
+          <div class="input-group">
+             <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+             <input type="text" ng-model="searchText" class="form-control">
+           </div>
+        </div>
+        <br>
+        <div class="row list-casamblea">
+
+          <div class="col-md-3" ng-repeat="generalComptroller in generalComptrollers">
+            <div class="binomial">
+            <div class="president">
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% generalComptroller.picture %>" alt="<% generalComptroller.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + generalComptroller.id %>"><span>VER PERFIL</span></a>
+            </div>
+          </div>
+            <label class="align-c president-label"><% generalComptroller.person.name + " " + generalComptroller.person.lastname %></label><br>
         </div>
 
         </div>

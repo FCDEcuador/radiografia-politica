@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -90,15 +90,15 @@ eval("\nvar app = angular.module('admin-politics', [\n  'admin-politics.controll
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-eval("\n/**\n * First we will load all of this project's JavaScript dependencies which\n * include Vue and Vue Resource. This gives a great starting point for\n * building robust, powerful web applications using Vue and Laravel.\n */\n__webpack_require__(0);\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9yZXNvdXJjZXMvYXNzZXRzL2pzL2FkbWluLmpzP2QwZWUiXSwic291cmNlc0NvbnRlbnQiOlsiXG4vKipcbiAqIEZpcnN0IHdlIHdpbGwgbG9hZCBhbGwgb2YgdGhpcyBwcm9qZWN0J3MgSmF2YVNjcmlwdCBkZXBlbmRlbmNpZXMgd2hpY2hcbiAqIGluY2x1ZGUgVnVlIGFuZCBWdWUgUmVzb3VyY2UuIFRoaXMgZ2l2ZXMgYSBncmVhdCBzdGFydGluZyBwb2ludCBmb3JcbiAqIGJ1aWxkaW5nIHJvYnVzdCwgcG93ZXJmdWwgd2ViIGFwcGxpY2F0aW9ucyB1c2luZyBWdWUgYW5kIExhcmF2ZWwuXG4gKi9cbnJlcXVpcmUoJy4vbmctYWRtaW4tcG9saXRpY3MnKTtcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyByZXNvdXJjZXMvYXNzZXRzL2pzL2FkbWluLmpzIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0FBTUE7Iiwic291cmNlUm9vdCI6IiJ9");
+eval("\nexports.controllers = angular.module('admin-politics.controllers',[]);\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9yZXNvdXJjZXMvYXNzZXRzL2pzL25nLWFkbWluLXBvbGl0aWNzL2NvbnRyb2xsZXJzLmpzPzUxNjkiXSwic291cmNlc0NvbnRlbnQiOlsiXG5leHBvcnRzLmNvbnRyb2xsZXJzID0gYW5ndWxhci5tb2R1bGUoJ2FkbWluLXBvbGl0aWNzLmNvbnRyb2xsZXJzJyxbXSk7XG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gcmVzb3VyY2VzL2Fzc2V0cy9qcy9uZy1hZG1pbi1wb2xpdGljcy9jb250cm9sbGVycy5qcyJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTsiLCJzb3VyY2VSb290IjoiIn0=");
 
 /***/ },
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-eval("var controllers = __webpack_require__(8).controllers;\ncontrollers.controller('AdminController', function($scope, Admin) {\n    $scope.data = {};\n\n    init();\n\n    function init()\n    {\n      Admin.dashboard().then(function(res){\n        console.log(res);\n        $scope.data = res;\n      }).catch(function(err){\n        console.error(err);\n      });\n\n    }\n\n});\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9yZXNvdXJjZXMvYXNzZXRzL2pzL25nLWFkbWluLXBvbGl0aWNzL2NvbnRyb2xsZXJzL0FkbWluQ29udHJvbGxlci5qcz8yODk3Il0sInNvdXJjZXNDb250ZW50IjpbInZhciBjb250cm9sbGVycyA9IHJlcXVpcmUoJy4uL2NvbnRyb2xsZXJzLmpzJykuY29udHJvbGxlcnM7XG5jb250cm9sbGVycy5jb250cm9sbGVyKCdBZG1pbkNvbnRyb2xsZXInLCBmdW5jdGlvbigkc2NvcGUsIEFkbWluKSB7XG4gICAgJHNjb3BlLmRhdGEgPSB7fTtcblxuICAgIGluaXQoKTtcblxuICAgIGZ1bmN0aW9uIGluaXQoKVxuICAgIHtcbiAgICAgIEFkbWluLmRhc2hib2FyZCgpLnRoZW4oZnVuY3Rpb24ocmVzKXtcbiAgICAgICAgY29uc29sZS5sb2cocmVzKTtcbiAgICAgICAgJHNjb3BlLmRhdGEgPSByZXM7XG4gICAgICB9KS5jYXRjaChmdW5jdGlvbihlcnIpe1xuICAgICAgICBjb25zb2xlLmVycm9yKGVycik7XG4gICAgICB9KTtcblxuICAgIH1cblxufSk7XG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gcmVzb3VyY2VzL2Fzc2V0cy9qcy9uZy1hZG1pbi1wb2xpdGljcy9jb250cm9sbGVycy9BZG1pbkNvbnRyb2xsZXIuanMiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTsiLCJzb3VyY2VSb290IjoiIn0=");
+eval("var controllers = __webpack_require__(4).controllers;\ncontrollers.controller('AdminController', function($scope, Admin) {\n    $scope.data = {};\n\n    init();\n\n    function init()\n    {\n      Admin.dashboard().then(function(res){\n        console.log(res);\n        $scope.data = res;\n      }).catch(function(err){\n        console.error(err);\n      });\n\n    }\n\n});\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9yZXNvdXJjZXMvYXNzZXRzL2pzL25nLWFkbWluLXBvbGl0aWNzL2NvbnRyb2xsZXJzL0FkbWluQ29udHJvbGxlci5qcz8yODk3Il0sInNvdXJjZXNDb250ZW50IjpbInZhciBjb250cm9sbGVycyA9IHJlcXVpcmUoJy4uL2NvbnRyb2xsZXJzLmpzJykuY29udHJvbGxlcnM7XG5jb250cm9sbGVycy5jb250cm9sbGVyKCdBZG1pbkNvbnRyb2xsZXInLCBmdW5jdGlvbigkc2NvcGUsIEFkbWluKSB7XG4gICAgJHNjb3BlLmRhdGEgPSB7fTtcblxuICAgIGluaXQoKTtcblxuICAgIGZ1bmN0aW9uIGluaXQoKVxuICAgIHtcbiAgICAgIEFkbWluLmRhc2hib2FyZCgpLnRoZW4oZnVuY3Rpb24ocmVzKXtcbiAgICAgICAgY29uc29sZS5sb2cocmVzKTtcbiAgICAgICAgJHNjb3BlLmRhdGEgPSByZXM7XG4gICAgICB9KS5jYXRjaChmdW5jdGlvbihlcnIpe1xuICAgICAgICBjb25zb2xlLmVycm9yKGVycik7XG4gICAgICB9KTtcblxuICAgIH1cblxufSk7XG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gcmVzb3VyY2VzL2Fzc2V0cy9qcy9uZy1hZG1pbi1wb2xpdGljcy9jb250cm9sbGVycy9BZG1pbkNvbnRyb2xsZXIuanMiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTsiLCJzb3VyY2VSb290IjoiIn0=");
 
 /***/ },
 /* 6 */
@@ -114,9 +114,9 @@ eval("var services = __webpack_require__(6).services;\n\nservices.service('Admin
 
 /***/ },
 /* 8 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-eval("\nexports.controllers = angular.module('admin-politics.controllers',[]);\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiOC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9yZXNvdXJjZXMvYXNzZXRzL2pzL25nLWFkbWluLXBvbGl0aWNzL2NvbnRyb2xsZXJzLmpzPzUxNjkiXSwic291cmNlc0NvbnRlbnQiOlsiXG5leHBvcnRzLmNvbnRyb2xsZXJzID0gYW5ndWxhci5tb2R1bGUoJ2FkbWluLXBvbGl0aWNzLmNvbnRyb2xsZXJzJyxbXSk7XG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gcmVzb3VyY2VzL2Fzc2V0cy9qcy9uZy1hZG1pbi1wb2xpdGljcy9jb250cm9sbGVycy5qcyJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTsiLCJzb3VyY2VSb290IjoiIn0=");
+eval("\n/**\n * First we will load all of this project's JavaScript dependencies which\n * include Vue and Vue Resource. This gives a great starting point for\n * building robust, powerful web applications using Vue and Laravel.\n */\n__webpack_require__(0);\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiOC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9yZXNvdXJjZXMvYXNzZXRzL2pzL2FkbWluLmpzP2QwZWUiXSwic291cmNlc0NvbnRlbnQiOlsiXG4vKipcbiAqIEZpcnN0IHdlIHdpbGwgbG9hZCBhbGwgb2YgdGhpcyBwcm9qZWN0J3MgSmF2YVNjcmlwdCBkZXBlbmRlbmNpZXMgd2hpY2hcbiAqIGluY2x1ZGUgVnVlIGFuZCBWdWUgUmVzb3VyY2UuIFRoaXMgZ2l2ZXMgYSBncmVhdCBzdGFydGluZyBwb2ludCBmb3JcbiAqIGJ1aWxkaW5nIHJvYnVzdCwgcG93ZXJmdWwgd2ViIGFwcGxpY2F0aW9ucyB1c2luZyBWdWUgYW5kIExhcmF2ZWwuXG4gKi9cbnJlcXVpcmUoJy4vbmctYWRtaW4tcG9saXRpY3MnKTtcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyByZXNvdXJjZXMvYXNzZXRzL2pzL2FkbWluLmpzIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0FBTUE7Iiwic291cmNlUm9vdCI6IiJ9");
 
 /***/ }
 /******/ ]);
