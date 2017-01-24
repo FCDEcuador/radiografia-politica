@@ -20,6 +20,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/binomials', "Api\BinomialController@getBinomials");
 Route::get('/deputys/{isCandidate}', "Api\DeputyController@getDeputys");
 Route::get('/generalComptrollers', "Api\GeneralComptrollerController@getGeneralComptroller");
+Route::get('/ombudsmen', "Api\OmbudsmanController@getOmbudsmen");
 Route::get('/publicServants', "Api\PublicServantController@getPublicServants");
 
 
