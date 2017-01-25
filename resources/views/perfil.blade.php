@@ -20,7 +20,40 @@
       $afterMessage = substr($renderMessage,$end+2,strlen($renderMessage));
       $key = substr($renderMessage,$start+2,($end-$start-2));
       $person = $profile->person->toArray();
-      $replace = $person[$key];
+      $replace = "";
+      switch ($key) {
+        case 'ncompanies':
+            $ncompanies = 0;
+            foreach ($profile->companies as $company) {
+              $ncompanies += $company->total_companies;
+            }
+            $replace = (string)$ncompanies;
+          break;
+        case 'njudgments':
+            $njudgments = 0;
+            foreach ($profile->judicials as $judicial) {
+              $njudgments += $judicial->number;
+            }
+            $replace = (string)$njudgments;
+          break;
+        case 'ntitles':
+            $ntitles = 0;
+            foreach ($profile->studies as $study) {
+              $ntitles += $study->pregrade;
+              $ntitles += $study->postgrad;
+              $ntitles += $study->phd;
+            }
+            $replace = (string)$ntitles;
+          break;
+        case 'ncomptrollers':
+            $ncomptrollers = $profile->$comptrollers->processes;
+            $replace = (string)$ncomptrollers;
+          break;
+        default:
+          $replace = $person[$key];
+          break;
+      }
+
       $renderMessage = $beforeMessage.$replace.$afterMessage;
     }
 
