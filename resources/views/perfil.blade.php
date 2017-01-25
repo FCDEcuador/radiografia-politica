@@ -38,7 +38,7 @@
           break;
         case 'ntitles':
             $ntitles = 0;
-            foreach ($profile->studies as $study) {
+            foreach ($profile->study->toArray() as $study) {
               $ntitles += $study->pregrade;
               $ntitles += $study->postgrad;
               $ntitles += $study->phd;
