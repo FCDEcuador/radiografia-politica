@@ -157,6 +157,10 @@ function getTypeEvent($id)
           {!! $profile->person->description !!}
         </div>
         <div class="row btn-profile">
+          <a href="{{url('perfil',$profile->id).'/excel'}}" target="_blank"><button type="button" class="btn btn-success">Descargar Excel</button></a>
+        </div>
+        <br>
+        <div class="row btn-profile">
           <a href="{{$profile->person->curriculum}}" target="_blank"><button type="button" class="btn btn-dark">Descargar curriculum</button></a>
         </div>
         <div class="row btn-profile">

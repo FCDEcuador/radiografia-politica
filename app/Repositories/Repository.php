@@ -14,7 +14,7 @@ abstract class Repository
      return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
   }
 
-  protected function nameGenerator($string)
+  public function nameGenerator($string)
   {
     $name = "";
     $string = mb_strtolower($string,'UTF-8');

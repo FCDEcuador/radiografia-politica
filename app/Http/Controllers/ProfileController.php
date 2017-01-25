@@ -12,6 +12,8 @@ use App\Models\Message;
 use Auth;
 use App\Validator\ProfileValidator;
 use App\Exceptions\ApiResponseException;
+use Excel;
+use App\Excel\Export\ProfileExport;
 
 class ProfileController extends Controller
 {
@@ -105,6 +107,13 @@ class ProfileController extends Controller
      }
      $message = Message::first();
      return view('perfil')->with(['profile' => $profile, 'binomial' =>$binomial , 'message' =>$message]);
+  }
+
+  public function export(ProfileExport $export,$id)
+  {
+   return $export->handleExportWithId($id);
+   $profile = $this->repository->find($id);
+    return view('excel.profile.data')->with(['profile' => $profile]);
   }
 
   private function generateLastYears($last=6)
