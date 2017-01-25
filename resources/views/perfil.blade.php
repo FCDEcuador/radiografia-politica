@@ -39,6 +39,7 @@
         case 'ntitles':
             $ntitles = 0;
             foreach ($profile->study->toArray() as $study) {
+              dd($study);
               $ntitles += $study['pregrade'];
               $ntitles += $study['postgrad'];
               $ntitles += $study['phd'];
