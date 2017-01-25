@@ -176,7 +176,7 @@ function getTypeEvent($id)
           <b>Redes sociales</b>
           <div class="profile-socials">
             <a href="https://twitter.com/{{$profile->person->twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="{{$profile->person->twitter}}"><i class="fa fa-facebook-official"  aria-hidden="true"></i></a>
+            <a href="{{$profile->person->facebook}}"><i class="fa fa-facebook-official"  aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
