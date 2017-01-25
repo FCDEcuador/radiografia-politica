@@ -40,7 +40,7 @@
             $ntitles = 0;
             $study = $profile->study->toArray();
 
-        
+
               $ntitles += $study['pregrade'];
               $ntitles += $study['postgrad'];
               $ntitles += $study['phd'];
@@ -48,7 +48,7 @@
             $replace = (string)$ntitles;
           break;
         case 'ncomptrollers':
-            $ncomptrollers = $profile->$comptrollers->processes;
+            $ncomptrollers = $profile->comptroller->processes;
             $replace = (string)$ncomptrollers;
           break;
         default:
