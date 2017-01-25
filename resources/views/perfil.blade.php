@@ -38,12 +38,13 @@
           break;
         case 'ntitles':
             $ntitles = 0;
-            foreach ($profile->study->toArray() as $study) {
-              dd($study);
+            $study = $profile->study->toArray();
+
+        
               $ntitles += $study['pregrade'];
               $ntitles += $study['postgrad'];
               $ntitles += $study['phd'];
-            }
+
             $replace = (string)$ntitles;
           break;
         case 'ncomptrollers':
