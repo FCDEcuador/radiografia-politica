@@ -39,9 +39,9 @@
         case 'ntitles':
             $ntitles = 0;
             foreach ($profile->study->toArray() as $study) {
-              $ntitles += $study->pregrade;
-              $ntitles += $study->postgrad;
-              $ntitles += $study->phd;
+              $ntitles += $study['pregrade'];
+              $ntitles += $study['postgrad'];
+              $ntitles += $study['phd'];
             }
             $replace = (string)$ntitles;
           break;
