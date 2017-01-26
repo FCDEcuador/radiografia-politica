@@ -24,7 +24,7 @@
       <div role="tabpanel" class="tab-pane active" id="home" ng-controller="PresidentController">
         <div class="row">
           <!-- Init political card -->
-          <div class="politics-card col-md-6" ng-repeat="binomial in binomails">
+          <div class="politics-card col-md-6" ng-repeat="binomial in binomails" ng-cloak>
             <div class="row">
               <div class="col-md-10 col-lg-8">
                 <div class="binomial">
@@ -66,7 +66,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="deputy in deputys">
+          <div class="col-md-3" ng-repeat="deputy in deputys" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% deputy.picture %>" alt="<% depty.person.name %>" class="img-circle" width="150px">
@@ -88,7 +88,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="generalComptroller in generalComptrollers">
+          <div class="col-md-3" ng-repeat="generalComptroller in generalComptrollers" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% generalComptroller.picture %>" alt="<% generalComptroller.person.name %>" class="img-circle" width="150px">
@@ -110,7 +110,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="ombudsman in ombudsmen">
+          <div class="col-md-3" ng-repeat="ombudsman in ombudsmen" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% ombudsman.picture %>" alt="<% ombudsman.person.name %>" class="img-circle" width="150px">

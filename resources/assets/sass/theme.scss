@@ -1111,3 +1111,6 @@ body:before {
 .well-footer {position: relative;}
 .transparencia-superintendencia .well-footer .share-transaprency, .transparencia-senescyt .well-footer .share-transaprency, .transparencia-contraloria .well-footer .share-transaprency {clear: both;}
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+ display: none !important;
+}
