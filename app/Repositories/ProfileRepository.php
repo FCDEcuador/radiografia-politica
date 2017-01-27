@@ -11,7 +11,7 @@ use App\Models\Comptroller;
 use App\Models\Company;
 use App\Models\Judicial;
 use Illuminate\Support\Facades\Config;
-use App\Exceptions\ApiResponseException;
+use UmpactoSoluciones\Tools\Exceptions\ApiException;
 use Auth;
 use DB;
 use File;
@@ -99,7 +99,7 @@ class ProfileRepository extends Repository
       $profile->user_id =  Auth::user()->id;
       $profile->person->update();
     }else {
-      throw new ApiResponseException(['Algunos campos son obligatorios']);
+      throw new ApiException(['Algunos campos son obligatorios']);
     }
     $profilePhoto = $request->file('profilePicture');
     if($profilePhoto != null)
@@ -493,7 +493,7 @@ class ProfileRepository extends Repository
       $relativePath = "/img/perfiles/".$filename;
       return $relativePath;
     }else {
-      throw new ApiResponseException(["Fotografía inválida, solo se admite png, jpg, jpge"]);
+      throw new ApiException(["Fotografía inválida, solo se admite png, jpg, jpge"]);
     }
   }
 
@@ -507,7 +507,7 @@ class ProfileRepository extends Repository
       $relativePath = "/docs/".$folder."/".$filename;
       return $relativePath;
     }else {
-      throw new ApiResponseException(["Documento inválida, solo se admite pdf,doc,docx,xls,xls,ppt,pptx"]);
+      throw new ApiException(["Documento inválida, solo se admite pdf,doc,docx,xls,xls,ppt,pptx"]);
     }
   }
 

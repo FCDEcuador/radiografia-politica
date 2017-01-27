@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\MessageRepository;
-use App\Exceptions\ApiResponseException;
+use UmpactoSoluciones\Tools\Exceptions\ApiException;
 
 class MessageController extends Controller
 {
@@ -32,7 +32,7 @@ class MessageController extends Controller
     }else {
         return redirect()->back()->with('errors', 'Error al editar');
     }
-    } catch (ApiResponseException $e) {
+    } catch (ApiException $e) {
       return redirect()->back()->with('errors', collect($e->errors)->first());
     }
 

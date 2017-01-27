@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\Access\AuthorizationException;
+use UmpactoSoluciones\Tools\Exceptions\ApiException;
 
 class Handler extends ExceptionHandler
 {
@@ -45,7 +46,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof ApiResponseException)
+        if ($exception instanceof ApiException)
         {
 
             $response = [

@@ -2,7 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\PoliticalParty;
-use App\Exceptions\ApiResponseException;
+use UmpactoSoluciones\Tools\Exceptions\ApiException;
 use Auth;
 
 class BinomialRepository extends Repository

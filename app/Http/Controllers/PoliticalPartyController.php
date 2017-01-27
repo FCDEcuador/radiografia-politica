@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\PoliticalPartyRepository;
-use App\Exceptions\ApiResponseException;
+use UmpactoSoluciones\Tools\Exceptions\ApiException;
 
 class PoliticalPartyController extends Controller
 {
@@ -54,7 +54,7 @@ class PoliticalPartyController extends Controller
             return redirect()->back()->with('errors', 'Ha ocurrido un error!');
         }
 
-      } catch (ApiResponseException $e) {
+      } catch (ApiException $e) {
         return redirect()->back()->with('errors', collect($e->errors)->first());
       }
 
@@ -102,7 +102,7 @@ class PoliticalPartyController extends Controller
         }else {
             return redirect()->back()->with('errors', 'Error al editar');
         }
-        } catch (ApiResponseException $e) {
+        } catch (ApiException $e) {
           return redirect()->back()->with('errors', collect($e->errors)->first());
         }
     }

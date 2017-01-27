@@ -2053,16 +2053,16 @@
         },
         {
             "name": "umpactosoluciones/laravel-umtools",
-            "version": "0.1.4",
+            "version": "0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UmpactoSoluciones/laravel-umtools.git",
-                "reference": "47750a6a98737745d8c214101dd5d73cdbef8178"
+                "reference": "5d14825c4a00455592d09fc20ea3bb645863b5ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UmpactoSoluciones/laravel-umtools/zipball/47750a6a98737745d8c214101dd5d73cdbef8178",
-                "reference": "47750a6a98737745d8c214101dd5d73cdbef8178",
+                "url": "https://api.github.com/repos/UmpactoSoluciones/laravel-umtools/zipball/5d14825c4a00455592d09fc20ea3bb645863b5ed",
+                "reference": "5d14825c4a00455592d09fc20ea3bb645863b5ed",
                 "shasum": ""
             },
             "require": {
@@ -2096,7 +2096,7 @@
                 }
             ],
             "description": "Tools for Laravel Development",
-            "time": "2017-01-27 00:56:47"
+            "time": "2017-01-27 01:09:30"
         },
         {
             "name": "uxweb/sweet-alert",

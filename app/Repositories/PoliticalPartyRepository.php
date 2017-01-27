@@ -2,7 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\PoliticalParty;
-use App\Exceptions\ApiResponseException;
+use UmpactoSoluciones\Tools\Exceptions\ApiException;
 use Auth;
 
 class PoliticalPartyRepository extends Repository
@@ -33,7 +33,7 @@ class PoliticalPartyRepository extends Repository
 
         return $this->model->create($data) != null;
       }else {
-        throw new ApiResponseException(["Fotografía inválida, solo se admite png, jpg, jpge"]);
+        throw new ApiException(["Fotografía inválida, solo se admite png, jpg, jpge"]);
       }
 
   }
@@ -67,7 +67,7 @@ class PoliticalPartyRepository extends Repository
         $temp = $this->model->find($id);
         return $temp->update($data) != null;
       }else {
-        throw new ApiResponseException(["Fotografía inválida, solo se admite png, jpg, jpge"]);
+        throw new ApiException(["Fotografía inválida, solo se admite png, jpg, jpge"]);
       }
     }
   }

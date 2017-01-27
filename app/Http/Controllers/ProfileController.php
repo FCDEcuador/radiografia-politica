@@ -11,7 +11,7 @@ use App\Profile;
 use App\Models\Message;
 use Auth;
 use App\Validator\ProfileValidator;
-use App\Exceptions\ApiResponseException;
+use UmpactoSoluciones\Tools\Exceptions\ApiException;
 use Excel;
 use App\Excel\Export\ProfileExport;
 
@@ -167,7 +167,7 @@ class ProfileController extends Controller
       }else {
           return redirect()->back()->with('errors', 'Error al editar');
       }
-    } catch (ApiResponseException $e) {
+    } catch (ApiException $e) {
         return redirect()->back()->with('errors', collect($e->errors)->first());
     }
 
