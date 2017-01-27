@@ -21,13 +21,13 @@ class ProfileValidator
       $this->model = $this->model->find($id);
       $valid = true;
       $valid &= $this->hasDataFinished();
-      $valid &= $this->hasTimelineFinished();
-      $valid &= $this->hasSRI();
-      $valid &= $this->hasHeritageComplete();
-      $valid &= $this->hasCompaniesComplete();
-      $valid &= $this->hasJudicalsComplete();
-      $valid &= $this->hasSenecyt();
-      $valid &= $this->hasContraloria();
+      //$valid &= $this->hasTimelineFinished();
+      //$valid &= $this->hasSRI();
+      //$valid &= $this->hasHeritageComplete();
+      //$valid &= $this->hasCompaniesComplete();
+      //$valid &= $this->hasJudicalsComplete();
+      //$valid &= $this->hasSenecyt();
+      //$valid &= $this->hasContraloria();
       return ((bool)$valid);
     }
 
@@ -43,7 +43,7 @@ class ProfileValidator
         $valid &= $this->hasSetField($this->model->person->name);
         $valid &= $this->hasSetField($this->model->person->lastname);
         $valid &= $this->hasSetField($this->model->person->img);
-        $valid &= $this->hasSetField($this->model->person->politicalParty);
+        //$valid &= $this->hasSetField($this->model->person->politicalParty);
         $valid &= $this->hasSetField($this->model->person->description);
         return $valid;
     }
