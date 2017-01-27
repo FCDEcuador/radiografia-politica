@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
          Maatwebsite\Excel\ExcelServiceProvider::class,
+         UmpactoSoluciones\Tools\ToolsServiceProvider::class,
          UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
