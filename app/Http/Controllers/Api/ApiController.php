@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Routing\Controller as BaseController;
+use UmpactoSoluciones\Tools\Http\Controllers\Api\ApiController as BaseController;
 
 abstract class ApiController extends BaseController
 {
