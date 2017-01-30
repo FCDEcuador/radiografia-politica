@@ -283,7 +283,7 @@ body:before {
     margin-top: -5px;
     font-size: 11px;
     font-family: 'OpenSansRegular';
-    line-height: 20px;
+    line-height: 50px;
     font-size: 13px;
 }
 .political-party-logo
@@ -436,15 +436,21 @@ body:before {
 }
 /*  banner */
 @media (max-width: 1260px) {
-.main-header {background-position: left center;}
+.main-header {background-image: url(../img/banner-medium.jpg); background-size: cover;}
 }
 @media (max-width: 500px) {
-.main-header {display: none;}
+.main-header {background-image: url(../img/banner-553.jpg); background-size: cover;}
 .title-elecciones h2 {margin-top: 0;}
 }
 /*  politicos cards */
 @media (max-width: 992px) {
 .politics-card .row .col-md-10 {width: 350px; margin: 0 auto;}
+}
+@media (max-width: 1199px) {
+.politic-position {line-height: 24px;}
+}
+@media (max-width: 991px) {
+.politic-position {line-height: 20px;}
 }
 
 
