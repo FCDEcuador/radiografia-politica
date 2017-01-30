@@ -51,6 +51,15 @@
             $ncomptrollers = $profile->comptroller->processes;
             $replace = (string)$ncomptrollers;
           break;
+        case 'nsri':
+            $nsri = $profile->sri->where('taxType',1)->where('year',date('Y')-1)->first();
+            if ($nsri != null) {
+              $replace = (string)$nsri->value;
+            }else{
+              $replace = "0";
+            }
+
+          break;
         default:
           $replace = $person[$key];
           break;
@@ -175,8 +184,8 @@ function getTypeEvent($id)
         <div class="row profile-redes">
           <b>Redes sociales</b>
           <div class="profile-socials">
-            <a href="https://twitter.com/{{$profile->person->twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="{{$profile->person->facebook}}"><i class="fa fa-facebook-official"  aria-hidden="true"></i></a>
+            <a href="https://twitter.com/{{$profile->person->twitter}}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="{{$profile->person->facebook}}" target="_blank"><i class="fa fa-facebook-official"  aria-hidden="true"></i></a>
           </div>
         </div>
       </div>

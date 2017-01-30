@@ -95,6 +95,11 @@
                       <a href="{{URL::to('sumate-a-la-iniciativa')}}">Súmate a la iniciativa</a>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="footer-item">
+                      <a href="{{URL::to('http://queremossaber.ec/portal/')}}" target="_blank">¿Quieres tener acceso a información pública?</a>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-4">
                   <div class="row">
