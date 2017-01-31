@@ -24,63 +24,70 @@ class ProfileExportHandler implements \Maatwebsite\Excel\Files\ExportHandler
                 /*$sheet->loadView('excel.profile.data',['profile' => $profile]);
                 $lastrow= $sheet->getHighestRow();
                 $sheet->getStyle('A2:B6'.$lastrow)->getAlignment()->setWrapText(true);*/
-                $this->parseWidth($sheet,'A',1,10);
-                $this->parseWidth($sheet,'B',1,60);
-                $sheet->mergeCells('A1:B1');
+                $header = new PHPExcel_Worksheet_Drawing;
+                $header->setPath(public_path('img/header-exel-radiografiaP.png')); //your image path
+                $header->setWidth(320);
+                $header->setResizeProportional();
+                $header->setCoordinates('B2');
+                $header->setWorksheet($sheet);
+
+                $this->parseWidth($sheet,'B',10,10);
+                $this->parseWidth($sheet,'C',10,60);
+                $sheet->mergeCells('B10:C10');
                 $objDrawing = new PHPExcel_Worksheet_Drawing;
                 $objDrawing->setPath(public_path($profile->person->img)); //your image path
                 $objDrawing->setWidth(420);
                 $objDrawing->setResizeProportional();
-                $this->parseHeight($sheet,'A',1,$objDrawing->getHeight());
-                $objDrawing->setCoordinates('A1');
+                $this->parseHeight($sheet,'B',10,$objDrawing->getHeight());
+                $objDrawing->setCoordinates('B10');
                 $objDrawing->setWorksheet($sheet);
 
 
-                $sheet->cell('A2', function($cell){
+                $sheet->cell('B11', function($cell){
                   $cell->setFontWeight('bold');
                   $cell->setValue('Nombre');
                 });
-                $sheet->cell('B2', function($cell) use($profile){
+                $sheet->cell('C11', function($cell) use($profile){
                   $cell->setValue($profile->person->name);
                 });
-                $sheet->cell('A3', function($cell){
+                $sheet->cell('B12', function($cell){
                   $cell->setFontWeight('bold');
                   $cell->setValue('Apellido');
                 });
-                $sheet->cell('B3', function($cell) use($profile){
+                $sheet->cell('C12', function($cell) use($profile){
                   $cell->setValue($profile->person->lastname);
                 });
-                $sheet->cell('A4', function($cell){
+                $sheet->cell('B13', function($cell){
                   $cell->setFontWeight('bold');
                   $cell->setValue('Facebook');
                 });
-                $sheet->cell('B4', function($cell) use($profile){
+                $sheet->cell('C13', function($cell) use($profile){
                   $cell->setValue($profile->person->facebook);
                 });
-                $sheet->cell('A4', function($cell){
+                $sheet->cell('B14', function($cell){
                   $cell->setFontWeight('bold');
                   $cell->setValue('Twitter');
                 });
-                $sheet->cell('B4', function($cell) use($profile){
+                $sheet->cell('C14', function($cell) use($profile){
                   $cell->setValue("@".$profile->person->twitter);
                 });
-                $sheet->cell('A5', function($cell){
+                $sheet->cell('B15', function($cell){
                   $cell->setFontWeight('bold');
                   $cell->setValue('Facebook');
                 });
-                $sheet->cell('B5', function($cell) use($profile){
+                $sheet->cell('C15', function($cell) use($profile){
                   $cell->setValue($profile->person->facebook);
                 });
-                $sheet->cell('A6', function($cell){
+                $sheet->cell('B16', function($cell){
                   $cell->setFontWeight('bold');
                   $cell->setValue('Descripción');
                 });
-                $sheet->cell('B6', function($cell) use($profile){
+                $sheet->cell('C16', function($cell) use($profile){
                   $cell->setValue(strip_tags($profile->person->description));
                 });
                 $lastrow= $sheet->getHighestRow();
-                $sheet->getStyle('A2:B6'.$lastrow)->getAlignment()->setWrapText(true);
-                $sheet->setBorder('A1:B6', 'thin');
+                $sheet->getStyle('B11:C16'.$lastrow)->getAlignment()->setWrapText(true);
+                $sheet->setBorder('B10:C16', 'thin');
 
 
            })->sheet('Timeline', function($sheet) use($profile){
