@@ -44,7 +44,7 @@ class ProfileValidator
         $valid &= $this->hasSetField($this->model->person->lastname);
         $valid &= $this->hasSetField($this->model->person->img);
         //$valid &= $this->hasSetField($this->model->person->politicalParty);
-        $valid &= $this->hasSetField($this->model->person->description);
+        //$valid &= $this->hasSetField($this->model->person->description);
         return $valid;
     }
 
