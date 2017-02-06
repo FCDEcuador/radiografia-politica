@@ -439,7 +439,7 @@ body:before {
 .main-header {background-image: url(../img/banner-medium.jpg); background-size: cover;}
 }
 @media (max-width: 500px) {
-.main-header {background-image: url(../img/banner-553.jpg); background-size: cover;}
+.main-header {background-image: url(../img/banner-553.jpg); background-size: cover; min-height: 138px;}
 .title-elecciones h2 {margin-top: 0;}
 }
 /*  politicos cards */
