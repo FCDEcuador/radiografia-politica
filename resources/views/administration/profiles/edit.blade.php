@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+
+<?php  setlocale(LC_MONETARY, 'en_US');?>
 <?php
 
   function containsPosition($id,$companies)
@@ -96,12 +98,12 @@
               <div class="form-group">
                 <div class="col-md-4">
                   <label>Foto Perfil</label><br>
-                  <img class="img-circle" data-src="{{ (isset($profile->picture)) ? asset($profile->picture) : 'holder.js/150x150' }}" src="{{ (isset($profile->picture)) ? asset($profile->picture) : 'holder.js/150x150' }}" />
+                  <img class="img-circle" data-src="{{ (isset($profile->picture)) ? asset($profile->picture) : 'holder.js/150x150' }}" src="{{ (isset($profile->picture)) ? asset($profile->picture) : 'holder.js/150x150' }}" width="300px;" />
                   <input type="file" name="profilePicture" placeholder="ingrese">
                 </div>
                 <div class="col-md-8">
                     <label>Foto Detalle</label><br>
-                  <img class="img-thumbnail" data-src="{{ (isset($profile->person->img)) ? asset($profile->person->img) : 'holder.js/200x150' }}" src="{{ (isset($profile->person->img)) ? asset($profile->person->img) : 'holder.js/200x150' }}" />
+                  <img class="img-thumbnail" data-src="{{ (isset($profile->person->img)) ? asset($profile->person->img) : 'holder.js/200x150' }}" src="{{ (isset($profile->person->img)) ? asset($profile->person->img) : 'holder.js/200x150' }}" width="300px;" />
                   <input type="file" name="detailPicture" placeholder="ingrese">
                 </div>
               </div>
@@ -330,7 +332,7 @@
                               <input type="hidden" name="sri[{{$i}}][id]" value="{{$rentTax->id}}"/>
                               <input type="hidden" name="sri[{{$i}}][type]" value="{{$rentTax->type}}"/>
                               <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="sri[{{$i}}][year]" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="sri[{{$i}}][tax]" value="{{$rentTax->value}}"/></td>
+                              <td class="tax"><label>{{money_format('%(#10n', $rentTax->value)}}</label><input type="hidden" name="sri[{{$i}}][tax]" value="{{$rentTax->value}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -366,7 +368,7 @@
                               <input type="hidden" name="sri[{{6 + $i}}][id]" value="{{$rentTax->id}}"/>
                               <input type="hidden" name="sri[{{6 + $i}}][type]" value="{{$rentTax->type}}"/>
                               <td class="year"><label>{{$rentTax->year}}</label><input type="hidden" name="sri[{{6 + $i}}][year]" value="{{$rentTax->year}}"/></td>
-                              <td class="tax"><label>{{$rentTax->value}}</label><input type="hidden" name="sri[{{6 + $i}}][tax]" value="{{$rentTax->value}}"/></td>
+                              <td class="tax"><label>{{money_format('%(#10n', $rentTax->value)}}</label><input type="hidden" name="sri[{{6 + $i}}][tax]" value="{{$rentTax->value}}"/></td>
 
                               <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                             </tr>
@@ -396,7 +398,7 @@
                     </div>
                     <div class="form-group">
                       <label>Valor</label>
-                      <input id="taxValue" type="text" name="tax-value" class="form-control" placeholder="Inpuesto">
+                      <input id="taxValue" type="text" name="tax-value" class="form-control" placeholder="Inpuesto ejemplo: 3254.42 (Ingresar como esta en el ejemplo: sin $ ni ,)">
                     </div>
                     <div class="box-footer">
                       <button id="add-to-sri" type="button" class="btn btn-success">Agregar</button>

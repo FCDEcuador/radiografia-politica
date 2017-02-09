@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('metas')
+<?php  setlocale(LC_MONETARY, 'en_US');?>
 <?php
   function onlyText($html)
   {
@@ -360,7 +361,7 @@ function getTypeEvent($id)
                   @foreach($profile->sri()->where('taxType',1)->orderBy('year','desc')->limit(5)->get() as $sri)
                   <tr>
                     <td>{{$sri->year}}</td>
-                    <td>${{$sri->value}}</td>
+                    <td>{{money_format('%(#10n', $sri->value)}}</td>
                   </tr>
                   @endforeach
                   </tr>
@@ -379,7 +380,7 @@ function getTypeEvent($id)
                   @foreach($profile->sri()->where('taxType',2)->orderBy('year','desc')->limit(5)->get() as $sri)
                   <tr>
                     <td>{{$sri->year}}</td>
-                    <td>${{$sri->value}}</td>
+                      <td>{{money_format('%(#10n', $sri->value)}}</td>
                   </tr>
                   @endforeach
                 </tbody>
@@ -428,7 +429,7 @@ function getTypeEvent($id)
                 <div class="img-responsive hint--top" data-hint="PATRIMONIO">
                   <img src="/img/ico-dinero.png">
                 </div>
-                <div>${{$profile->heritage->money}}</div>
+                <div>{{money_format('%(#10n', $profile->heritage->money)}}</div>
               </div>
               <div class="col-md-3">
                 <div class="img-responsive hint--top" data-hint="COMPAÑÍAS">
@@ -463,28 +464,28 @@ function getTypeEvent($id)
               <tr>
                 <th>Activos</th>
                 @if(($profile->heritage->actualDeclaration)!= 0)
-                <td>${{$profile->heritage->actualAssets}}</td>
+                <td>{{money_format('%(#10n', $profile->heritage->actualAssets)}}</td>
                 @endif
                 @if(($profile->heritage->previousDeclaration)!= 0)
-                <td>${{$profile->heritage->previousAssets}}</td>
+                <td>{{money_format('%(#10n', $profile->heritage->previousAssets)}}</td>
                 @endif
               </tr>
               <tr>
                 <th>Pasivos</th>
                 @if(($profile->heritage->actualDeclaration)!= 0)
-                <td>${{$profile->heritage->actualLiabilities}}</td>
+                <td>{{money_format('%(#10n', $profile->heritage->actualLiabilities)}}</td>
                 @endif
                 @if(($profile->heritage->previousDeclaration)!= 0)
-                <td>${{$profile->heritage->previousLiabilities}}</td>
+                <td>{{money_format('%(#10n', $profile->heritage->previousLiabilities)}}</td>
                 @endif
               </tr>
               <tr>
                 <th>Patrimonio</th>
                 @if(($profile->heritage->actualDeclaration)!= 0)
-                <td>${{$profile->heritage->actualHeritage}}</td>
+                <td>{{money_format('%(#10n', $profile->heritage->actualHeritage)}}</td>
                 @endif
                 @if(($profile->heritage->previousDeclaration)!= 0)
-                <td>${{$profile->heritage->previousHeritage}}</td>
+                <td>{{money_format('%(#10n', $profile->heritage->previousHeritage)}}</td>
                 @endif
               </tr>
             </table>
