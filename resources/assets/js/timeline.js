@@ -98,6 +98,8 @@ jQuery(document).ready(function($){
 			timelineComponents['eventsWrapper'].on('click', 'a', function(event){
 				event.preventDefault();
 				timelineComponents['timelineEvents'].removeClass('selected');
+					timelineComponents2['timelineEvents'].removeClass('selected');
+					timelineComponents3['timelineEvents'].removeClass('selected');
 				$(this).addClass('selected');
 				updateOlderEvents($(this));
 				updateFilling($(this), timelineComponents['fillingLine'], timelineTotWidth);
@@ -106,6 +108,8 @@ jQuery(document).ready(function($){
 			timelineComponents2['eventsWrapper'].on('click', 'a', function(event){
 				event.preventDefault();
 				timelineComponents2['timelineEvents'].removeClass('selected');
+					timelineComponents['timelineEvents'].removeClass('selected');
+						timelineComponents3['timelineEvents'].removeClass('selected');
 				$(this).addClass('selected');
 				updateOlderEvents($(this));
 				updateFilling($(this), timelineComponents2['fillingLine'], timelineTotWidth2);
@@ -113,6 +117,8 @@ jQuery(document).ready(function($){
 			});
 			timelineComponents3['eventsWrapper'].on('click', 'a', function(event){
 				event.preventDefault();
+					timelineComponents['timelineEvents'].removeClass('selected');
+						timelineComponents2['timelineEvents'].removeClass('selected');
 				timelineComponents3['timelineEvents'].removeClass('selected');
 				$(this).addClass('selected');
 				updateOlderEvents($(this));
@@ -234,7 +240,7 @@ jQuery(document).ready(function($){
 		for (i = 0; i < timelineComponents['timelineDates'].length; i++) {
 		    var distance = daydiff(timelineComponents['timelineDates'][0], timelineComponents['timelineDates'][i]),
 		    	distanceNorm = Math.round(distance/timelineComponents['eventsMinLapse']) + 2;
-		    timelineComponents['timelineEvents'].eq(i).css('left', distanceNorm*min+'px');
+		    timelineComponents['timelineEvents'].eq(i).css('left', (i+2) *min+'px');
 		}
 	}
 
@@ -242,7 +248,7 @@ jQuery(document).ready(function($){
 		var timeSpan = daydiff(timelineComponents['timelineDates'][0], timelineComponents['timelineDates'][timelineComponents['timelineDates'].length-1]),
 			timeSpanNorm = timeSpan/timelineComponents['eventsMinLapse'],
 			timeSpanNorm = Math.round(timeSpanNorm) + 4,
-			totalWidth = timeSpanNorm*width;
+			totalWidth = (timelineComponents['timelineDates'].length+4)*width;
 		timelineComponents['eventsWrapper'].css('width', totalWidth+'px');
 		updateFilling(timelineComponents['timelineEvents'].eq(0), timelineComponents['fillingLine'], totalWidth);
 
