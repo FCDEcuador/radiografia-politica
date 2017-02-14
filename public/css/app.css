@@ -9425,4 +9425,21 @@ body:before {
   display: none !important;
 }
 
+.blink_me {
+  -webkit-animation: blinker 2s linear infinite;
+  animation: blinker 2s linear infinite;
+}
+
+@-webkit-keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 /*# sourceMappingURL=app.css.map */

@@ -20,7 +20,7 @@
         <th>Título</th>
         <th>Descripción</th>
       </tr>
-      @foreach($profile->person->timelines()->where('important',1)->get() as $timeline)
+      @foreach($profile->person->timelines()->orderBy('start')->get() as $timeline)
         <tr>
           <td>{{$timeline->start}}</td>
           <td>{{$timeline->end}}</td>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>SRI</title>
+    <title>SRI Impuestos</title>
     <style type="text/css">
       .border > tr > th{
         font-weight: bold;

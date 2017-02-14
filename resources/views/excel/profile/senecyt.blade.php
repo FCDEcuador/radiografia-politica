@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Senecyt</title>
+    <title>Formación Académica</title>
     <style type="text/css">
       .border > tr > th{
         font-weight: bold;

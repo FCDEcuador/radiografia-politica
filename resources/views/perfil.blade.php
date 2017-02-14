@@ -30,6 +30,13 @@
             }
             $replace = (string)$ncompanies;
           break;
+        case 'nshareholder':
+            $ncompanies = 0;
+            foreach ($profile->companies()->where('position',3)->get() as $company) {
+              $ncompanies += $company->total_companies;
+            }
+            $replace = (string)$ncompanies;
+            break;
         case 'njudgments':
             $njudgments = 0;
             foreach ($profile->judicials as $judicial) {
@@ -156,37 +163,39 @@ function getTypeEvent($id)
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <h4>{{$profile->person->name.' '.$profile->person->lastname}}</h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3 align-c avatar">
-          <img src="{{rtrim(asset('/'),'/').$profile->person->img}}" class="img-responsive" />
-      </div>
-      <div class="col-md-6">
-        <div class="row profile-description">
-          {!! $profile->person->description !!}
+      <div class="col-md-9">
+        <div class="col-md-12">
+          <h4>{{$profile->person->name.' '.$profile->person->lastname}}</h4>
         </div>
-        <div class="row btn-profile">
-          <a href="{{url('perfil',$profile->id).'/excel'}}" target="_blank"><button type="button" class="btn btn-success" style="margin-bottom:10px;">Descargar Excel</button></a>
+        <div class="col-md-4 align-c avatar">
+            <img src="{{rtrim(asset('/'),'/').$profile->person->img}}" class="img-responsive" />
         </div>
-        <div class="row btn-profile">
-          <a href="{{$profile->person->curriculum}}" target="_blank"><button type="button" class="btn btn-dark">Descargar curriculum</button></a>
-        </div>
-        <div class="row btn-profile">
-            <a href="{{$profile->person->plan}}" target="_blank"><button type="button" class="btn btn-dark">Descargar Plan de gobierno</button></a>
-        </div>
-        @if(!empty($profile->person->observatory))
-        <div class="row btn-profile">
-            <a href="{{$profile->person->observatory}}" target="_blank"><button type="button" class="btn btn-dark">Gestión como Asambleísta</button></a>
-        </div>
-        @endif
-        <div class="row profile-redes">
-          <b>Redes sociales</b>
-          <div class="profile-socials">
-            <a href="https://twitter.com/{{$profile->person->twitter}}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="{{$profile->person->facebook}}" target="_blank"><i class="fa fa-facebook-official"  aria-hidden="true"></i></a>
+        <div class="col-md-8">
+          <div class="row profile-description">
+            {!! $profile->person->description !!}
+          </div>
+          <div class="row btn-profile">
+            <a href="{{url('perfil',$profile->id).'/excel'}}" target="_blank"><button type="button" class="btn btn-success" style="margin-bottom:10px;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> &nbsp; Excel</button></a>
+            <a href="{{url('perfil',$profile->id).'/csv'}}" target="_blank"><button type="button" class="btn btn-success" style="margin-bottom:10px;"> CSV</button></a>
+          </div>
+          <div class="row btn-profile">
+            <a href="{{$profile->person->curriculum}}" target="_blank"><button type="button" class="btn btn-dark">Descargar curriculum</button></a>
+          </div>
+          <div class="row btn-profile">
+              <a href="{{$profile->person->plan}}" target="_blank"><button type="button" class="btn btn-dark">Descargar Plan de gobierno</button></a>
+          </div>
+          @if(!empty($profile->person->observatory))
+          <div class="row btn-profile">
+              <img src="{{asset('img/logo-Observatorio-60x40.png')}}">
+              <a href="{{$profile->person->observatory}}" target="_blank"><button type="button" class="btn btn-dark">Gestión como Asambleísta</button></a>
+          </div>
+          @endif
+          <div class="row profile-redes">
+            <b>Redes sociales</b>
+            <div class="profile-socials">
+              <a href="https://twitter.com/{{$profile->person->twitter}}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href="{{$profile->person->facebook}}" target="_blank"><i class="fa fa-facebook-official"  aria-hidden="true"></i></a>
+            </div>
           </div>
         </div>
       </div>
@@ -203,7 +212,7 @@ function getTypeEvent($id)
           <label>Binomio:</label>
         </div>
         <div class="row">
-          <img src="{{rtrim(asset('/'),'/').$binomial->picture}}" class="img-circle" width="150px" />
+          <a href="{{url('perfil/').'/'.$binomial->id}}"><img src="{{rtrim(asset('/'),'/').$binomial->picture}}" class="img-circle" width="150px" /></a>
         </div>
         <div class="row">
           <a href="{{url('perfil/').'/'.$binomial->id}}"><label style="color:#506F93;text-decoration:underline;cursor:pointer;">{{$binomial->person->name." ".$binomial->person->lastname}}</label></a>
@@ -216,12 +225,13 @@ function getTypeEvent($id)
     <div class="row">
       <div class="col-md-12 title">
         <h3>LÍNEA DE TIEMPO </h3>
+        <h5>Pulsa sobre cada año para conocer el evento generado </h5>
       </div>
     </div>
   </br>
     <div class="row">
       <div class="col-md-3">
-    <button type="button" class="btn btn-dark" data-toggle="modal" data-target=".bs-example-modal-lg">DESTACADOS</button>
+    <button type="button" class="btn btn-dark blink_me" data-toggle="modal" data-target=".bs-example-modal-lg">DESTACADOS</button>
 
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
           <div class="modal-dialog modal-lg" role="document">
@@ -346,7 +356,7 @@ function getTypeEvent($id)
       <div class="col-md-6">
         <div class="well well-lg well-transparency transparencia-sri">
           <div class="well-title">
-            <span class="well-card-title">SRI<span>
+            <span class="well-card-title">SRI IMPUESTOS<span>
           </div>
           <div class="row well-body">
             <div class="col-md-6">
@@ -398,7 +408,7 @@ function getTypeEvent($id)
               <div class="col-md-2">
               </div>
                 <div class="col-md-4 share-transaprency">
-                  <label>Comparte</label>
+                  <label>Comparte</label></br>
                   <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->SRIMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                   <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                 </div>
@@ -502,7 +512,7 @@ function getTypeEvent($id)
               <div class="col-md-2">
               </div>
                 <div class="col-md-4 share-transaprency">
-                  <label>Comparte</label>
+                  <label>Comparte</label></br>
                   <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->deputyMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                   <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                 </div>
@@ -547,7 +557,7 @@ function getTypeEvent($id)
               <div class="col-md-4">
               </div>
                 <div class="col-md-4 share-transaprency">
-                  <label>Comparte</label>
+                  <label>Comparte</label></br>
                   <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->companiesMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                   <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                 </div>
@@ -614,7 +624,7 @@ function getTypeEvent($id)
               <div class="col-md-4">
               </div>
                 <div class="col-md-4 share-transaprency">
-                  <label>Comparte</label>
+                  <label>Comparte</label></br>
                   <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->judicialMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                   <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                 </div>
@@ -629,7 +639,7 @@ function getTypeEvent($id)
         <div class="col-md-4">
           <div class="well well-lg well-transparency transparencia-senescyt">
             <div class="well-title">
-              <span class="well-card-title">SENESCYT<span>
+              <span class="well-card-title">FORMACIÓN ACADÉMICA<span>
             </div>
             <div class="row well-body">
               <table class="table table-vertical">
@@ -658,7 +668,7 @@ function getTypeEvent($id)
                   <a href ="{{$profile->fileStudy}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
                 </div>
                   <div class="col-md-4 share-transaprency">
-                    <label>Comparte</label>
+                    <label>Comparte</label></br>
                     <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->senecytMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                     <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                   </div>
@@ -671,17 +681,18 @@ function getTypeEvent($id)
             <div class="well-title">
               <span class="well-card-title">CONTRALORÍA<span>
             </div>
-            <div class="row well-body">
-              <table class="table table-vertical">
+            <div class="row well-body" style="text-align:center">
+              En construcción
+              <!-- <table class="table table-vertical">
                 <col width="50%">
                 <col width="50%">
                 <tr>
                   <th>Procesos</th>
                   <td>{{$profile->comptroller->processes}}</td>
                 </tr>
-              </table>
+              </table> -->
             </div>
-            <div class="well-footer">
+            <!-- <div class="well-footer">
               <div class="row">
                 <div class="col-md-4">
                   <a href ="{{$profile->urlComptroller}}" target="_blank"><button type="button" class="btn btn-dark">VER FUENTE</button>
@@ -690,12 +701,12 @@ function getTypeEvent($id)
                   <a href ="{{$profile->fileComptroller}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
                 </div>
                   <div class="col-md-4 share-transaprency">
-                    <label>Comparte</label>
+                    <label>Comparte</label></br>
                       <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->comptrollerMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                       <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                   </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-md-4">
@@ -722,7 +733,7 @@ function getTypeEvent($id)
                   <a href ="{{$profile->filePenal}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
                 </div>
                   <div class="col-md-4 share-transaprency">
-                    <label>Comparte</label>
+                    <label>Comparte</label></br>
                     <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->penalMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                     <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                   </div>
@@ -736,7 +747,6 @@ function getTypeEvent($id)
 @endsection
 
 @section('scripts')
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
 <script>
 $(function() {
     $('.well').matchHeight();
@@ -806,5 +816,11 @@ $('.shareBtn').click(function(){
   });
 
 }(jQuery));
+</script>
+
+<script>
+  $('.blink_me').click(function(){
+    $(this).removeClass('blink_me');
+  });
 </script>
 @endsection

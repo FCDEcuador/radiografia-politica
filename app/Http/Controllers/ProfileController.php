@@ -14,6 +14,7 @@ use App\Validator\ProfileValidator;
 use UmpactoSoluciones\Tools\Exceptions\ApiException;
 use Excel;
 use App\Excel\Export\ProfileExport;
+use App\Excel\Export\ProfileCSVExport;
 
 class ProfileController extends Controller
 {
@@ -112,8 +113,12 @@ class ProfileController extends Controller
   public function export(ProfileExport $export,$id)
   {
    return $export->handleExportWithId($id);
-   $profile = $this->repository->find($id);
-    return view('excel.profile.data')->with(['profile' => $profile]);
+  // $profile = $this->repository->find($id);
+    //return view('excel.profile.data')->with(['profile' => $profile]);
+  }
+
+  public function csv(ProfileCSVExport $export,$id){
+    return $export->handleExportWithId($id);
   }
 
   private function generateLastYears($last=6)

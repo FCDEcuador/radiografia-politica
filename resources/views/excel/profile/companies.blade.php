@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Superintendencia de compañias</title>
+    <title>Superintendencia de compañías</title>
     <style type="text/css">
       .border > tr > th{
         font-weight: bold;

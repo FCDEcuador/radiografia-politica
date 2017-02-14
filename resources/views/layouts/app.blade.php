@@ -51,9 +51,9 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <!-- <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{URL::to('img/radiografia-logo.png')}}" />
-                    </a>
+                    </a> -->
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -66,6 +66,8 @@
                       <li><a href="{{URL::to(route('home'))}}">INICIO</a></li>
                       <li><a href="{{URL::to(route('home'))}}/#profile">CANDIDATOS</a></li>
                       <li><a href="{{URL::to(route('home'))}}/#generalComptroller">FUNCIONARIOS PÚBLICOS</a></li>
+                      <li><a href="{{URL::to('quienes-somos')}}">QUIÉNES SOMOS</a></li>
+                      <li><a href="{{URL::to('sumate-a-la-iniciativa')}}">SÚMATE A LA INICIATIVA</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,9 +77,10 @@
         </div>
       </div>
 
-        <div id="footer" class="container-fluid">
+        <div id="footer">
+          <div class="container">
           <div class="row">
-            <div id="footer-site-map" class="col-sm-12 col-md-8">
+            <div id="footer-site-map" class="col-sm-12 col-md-8 footer-section-row">
               <div class="row">
                 <div class="col-md-4">
                   <div class="row">
@@ -85,16 +88,16 @@
                       Nosotros
                     </div>
                   </div>
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="footer-item">
-                      <a href="{{URL::to('quienes-somos')}}">Quienes Somos</a>
+                      <a href="{{URL::to('quienes-somos')}}">Quiénes Somos</a>
                     </div>
                   </div>
                   <div class="row">
                     <div class="footer-item">
                       <a href="{{URL::to('sumate-a-la-iniciativa')}}">Súmate a la iniciativa</a>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="row">
                     <div class="footer-item">
                       <a href="{{URL::to('http://queremossaber.ec/portal/')}}" target="_blank">¿Quieres tener acceso a información pública?</a>
@@ -102,7 +105,7 @@
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="row">
+                  <!--<div class="row">
                     <div class="footer-title-head">
                       Elecciones 2017
                     </div>
@@ -111,7 +114,7 @@
                     <div class="footer-item">
                       <a href="{{URL::to(route('home'))}}">Candidatos Presidencia</a>
                     </div>
-                  </div>
+                  </div>-->
                   <!--<div class="row">
                     <div class="footer-item">
                       <a href="{{URL::to('informacion-sobre-las-elecciones')}}">Información sobre las elecciones</a>
@@ -119,7 +122,7 @@
                   </div>-->
                 </div>
                 <div class="col-md-4">
-                  <div class="row">
+                    <!--<div class="row">
                     <div class="footer-title-head">
                       Perfiles
                     </div>
@@ -128,7 +131,7 @@
                     <div class="footer-item">
                         <a href="{{URL::to(route('home'))}}/#generalComptroller">Funcionarios Públicos</a>
                     </div>
-                  </div>
+                  </div>-->
                   <!--<div class="row">
                     <div class="footer-item">
                         <a href="{{URL::to('buscador')}}">Buscador</a>
@@ -140,29 +143,46 @@
 
               </div>
             </div>
-            <div id="footer-sponsors" class="col-sm-12 col-md-4">
+            <div id="footer-sponsors" class="col-sm-12 col-md-4 footer-section-row">
               <div class="row">
               Auspiciado por:
               </div>
               <div class="row">
                 <div class="col-sm-12 col-sm-offset-0 col-md-offset-6 col-md-6">
-                  <img src="{{asset('img/universidad-hemisferios-logo.png')}}" style="height: 32px;" class="footer-sponsor-img"/>
+                  <img src="{{asset('img/observatorio-legislativo.png')}}" style="height: 50px;" class="footer-sponsor-img"/>
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12 col-sm-offset-0 col-md-offset-6 col-md-3">
-                  <img src="{{asset('img/udla-logo-footer.png')}}" class="footer-sponsor-img"/>
+                <div class="col-sm-12 col-sm-offset-0 col-md-offset-5 col-md-4">
+                  <img src="{{asset('img/queremossaber.png')}}" style="height: 50px;" class="footer-sponsor-img"/>
                 </div>
                 <div class="col-sm-12 col-sm-offset-0 col-md-3">
-                  <img src="{{asset('img/fcd-logo.png')}}"  style="height: 32px;" class="footer-sponsor-img"/>
+                  <img src="{{asset('img/fcd-logo.png')}}"  style="height: 50px;" class="footer-sponsor-img"/>
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
     </div>
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
     	@yield('scripts')
+      <script>
+      $(function() {
+          $('.footer-section-row').matchHeight();
+      });
+      </script>
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-91968402-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
 </body>
 </html>

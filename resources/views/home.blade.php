@@ -60,13 +60,13 @@
         <div class="row">
           <div class="input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-             <input type="text" ng-model="searchText" class="form-control">
+             <input type="text" ng-model="searchTextDeputy" class="form-control">
            </div>
         </div>
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="deputy in deputys" ng-cloak>
+          <div class="col-md-3" ng-repeat="deputy in deputys | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% deputy.picture %>" alt="<% depty.person.name %>" class="img-circle" width="150px">

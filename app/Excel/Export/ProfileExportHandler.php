@@ -94,15 +94,15 @@ class ProfileExportHandler implements \Maatwebsite\Excel\Files\ExportHandler
              $sheet->loadView('excel.profile.timeline',['profile' => $profile]);
             // $lastrow= $sheet->getHighestRow();
           //   $sheet->getStyle('A2:B6'.$lastrow)->getAlignment()->setWrapText(true);
-           })->sheet('SRI', function($sheet) use($profile){
+        })->sheet('SRI Impestos', function($sheet) use($profile){
                $sheet->loadView('excel.profile.sri',['profile' => $profile]);
            })->sheet('Declaración Patrimonial', function($sheet) use($profile){
                 $sheet->loadView('excel.profile.heritage',['profile' => $profile]);
-           })->sheet('Superintendencia de compañias', function($sheet) use($profile){
+           })->sheet('Superintendencia de compañías', function($sheet) use($profile){
              $sheet->loadView('excel.profile.companies',['profile' => $profile]);
            })->sheet('Antecedentes Judicales', function($sheet) use($profile){
               $sheet->loadView('excel.profile.judicial',['profile' => $profile]);
-           })->sheet('Senecyt', function($sheet) use($profile){
+           })->sheet('Formación Académica', function($sheet) use($profile){
               $sheet->loadView('excel.profile.senecyt',['profile' => $profile]);
            })->sheet('Contraloría', function($sheet) use($profile){
               $sheet->loadView('excel.profile.comptroller',['profile' => $profile]);
