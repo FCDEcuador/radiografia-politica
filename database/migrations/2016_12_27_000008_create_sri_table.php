@@ -19,7 +19,7 @@ class CreateSriTable extends Migration
             $table->integer('profile_id')->unsigned();
             $table->string('year', 4)->nullable();
             $table->tinyInteger('taxType')->nullable();
-            $table->float('value')->nullable();
+            $table->double('value',18,2)->nullable();
             $table->timestamps();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

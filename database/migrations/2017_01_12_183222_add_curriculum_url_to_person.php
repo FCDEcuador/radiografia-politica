@@ -14,7 +14,7 @@ class AddCurriculumUrlToPerson extends Migration
     public function up()
     {
         Schema::table('people', function (Blueprint $table) {
-              $table->string('curriculum')->nullable();
+              $table->string('curriculum',255)->nullable();
         });
     }
 

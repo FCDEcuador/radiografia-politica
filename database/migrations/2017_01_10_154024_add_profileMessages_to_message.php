@@ -14,14 +14,14 @@ class AddProfileMessagesToMessage extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->string('profileMessage',125)->nullable();
-            $table->string('SRIMessage',125)->nullable();
-            $table->string('deputyMessage',125)->nullable();
-            $table->string('companiesMessage',125)->nullable();
-            $table->string('judicialMessage',125)->nullable();
-            $table->string('penalMessage',125)->nullable();
-            $table->string('senecytMessage',125)->nullable();
-            $table->string('comptrollerMessage',125)->nullable();
+            $table->string('profileMessage',255)->nullable();
+            $table->string('SRIMessage',255)->nullable();
+            $table->string('deputyMessage',255)->nullable();
+            $table->string('companiesMessage',255)->nullable();
+            $table->string('judicialMessage',255)->nullable();
+            $table->string('penalMessage',255)->nullable();
+            $table->string('senecytMessage',255)->nullable();
+            $table->string('comptrollerMessage',255)->nullable();
         });
     }
 
@@ -33,14 +33,14 @@ class AddProfileMessagesToMessage extends Migration
     public function down()
     {
         Schema::table('messages', function (Blueprint $table) {
-          $table->string('profileMessage',125)->nullable();
-          $table->string('SRIMessage',125)->nullable();
-          $table->string('deputyMessage',125)->nullable();
-          $table->string('companiesMessage',125)->nullable();
-          $table->string('judicialMessage',125)->nullable();
-          $table->string('penalMessage',125)->nullable();
-          $table->string('senecytMessage',125)->nullable();
-          $table->string('comptrollerMessage',125)->nullable();
+          $table->dropColumn('profileMessage');
+          $table->dropColumn('SRIMessage');
+          $table->dropColumn('deputyMessage');
+          $table->dropColumn('companiesMessage');
+          $table->dropColumn('judicialMessage');
+          $table->dropColumn('penalMessage');
+          $table->dropColumn('senecytMessage');
+          $table->dropColumn('comptrollerMessage');
 
         });
     }

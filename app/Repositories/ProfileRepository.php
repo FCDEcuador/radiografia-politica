@@ -179,6 +179,7 @@ class ProfileRepository extends Repository
         $newTimeLine->description = $timeline['description'];
         $newTimeLine->user_id = Auth::user()->id;
         $newTimeLine->important = $timeline['outstanding'];
+        $newTimeLine->source = $timeline['source'];
         $newTimeLine->save();
       }
     }
@@ -317,7 +318,7 @@ class ProfileRepository extends Repository
           $newCompany->profile_id = $profile->id;
           $newCompany->name = "";
           $newCompany->position = $company['position'];
-          $newCompany->total_companies = $company['total_companies'];
+          $newCompany->name = $company['company_name'];
           $newCompany->user_id = Auth::user()->id;
           $newCompany->save();
         }
@@ -413,7 +414,7 @@ class ProfileRepository extends Repository
     }
   }
         // END Antecedentes
-      // UPDATE Seneciyt
+      // UPDATE Formación Académica
 
           if( $profile->study == null)
           {
@@ -444,7 +445,7 @@ class ProfileRepository extends Repository
           $profile->update();
         }
       }
-    // END Senecyt
+    // END Formación Académica
     // UPDATE Contraloría
     if( $profile->comptroller == null)
     {

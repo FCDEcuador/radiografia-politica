@@ -17,7 +17,7 @@ class CreateStudyTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('profile_id')->unsigned();
-            $table->string('profession', 45)->nullable();
+            $table->string('profession', 255)->nullable();
             $table->integer('pregrade')->nullable();
             $table->integer('postgrad')->nullable();
             $table->integer('phd')->nullable();

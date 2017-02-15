@@ -20,14 +20,14 @@ class CreatePersonTable extends Migration
             $table->integer('state_id')->unsigned();
             $table->integer('profile_id')->unsigned();
             $table->tinyInteger('type')->nullable();
-            $table->string('img', 45)->nullable();
+            $table->string('img', 255)->nullable();
             $table->string('name', 45)->nullable();
             $table->string('lastname', 45)->nullable();
             $table->string('shortDescription', 500)->nullable();
             $table->text('description')->nullable();
             $table->string('plan', 45)->nullable();
-            $table->string('twitter', 45)->nullable();
-            $table->string('facebook', 45)->nullable();
+            $table->string('twitter', 255)->nullable();
+            $table->string('facebook', 255)->nullable();
             $table->timestamps();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

@@ -217,6 +217,7 @@
                     <th>Tipo</th>
                     <th>Descripción</th>
                     <th>Destacado</th>
+                      <th>Fuente</th>
                     <th>Acción</th>
                   </tr>
                 </thead>
@@ -230,6 +231,13 @@
                     <td class="type"><label>{{getTypeEvent($timeline->typeEvent)}}</label><input type="hidden" name="timeline[{{$i}}][type]" value="{{$timeline->typeEvent}}"/></td>
                     <td class="description"><label>{{$timeline->description}}</label><input type="hidden" name="timeline[{{$i}}][description]" value="{{$timeline->description}}"/></td>
                     <td class="outstanding"><label>{{getBooleanString($timeline->important)}}</label><input type="hidden" name="timeline[{{$i}}][outstanding]" value="{{$timeline->important}}"/></td>
+                      <td class="source">
+                          @if($timeline->source != null && $timeline->source != "" && $timeline->source != "#")
+                          <a href="{{$timeline->source}}" target="_blank"><label>Link</label></a><input type="hidden" name="timeline[{{$i}}][source]" value="{{$timeline->source}}"/>
+                          @else
+                          <input type="hidden" name="timeline[{{$i}}][source]" value="#"/>
+                          @endif
+                      </td>
                     <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                   </tr>
                   @endforeach
@@ -243,6 +251,7 @@
                     <td class="type"><label></label><input type="hidden" name="type-model" value="-1"/></td>
                     <td class="description"><label></label><input type="hidden" name="description-model" value="-1"/></td>
                     <td class="outstanding"><label></label><input type="hidden" name="outstanding-model" value="-1"/></td>
+                    <td class="source"><a href="#" target="_blank"><label>Link</label></a><input type="hidden" name="source-model" value="#"/></td>
                     <td class="action"><button type="button" class="btn btn-danger btn-delete">Eliminar</button></td>
                   </tr>
                 </tfooter>
@@ -275,6 +284,10 @@
               <div class="form-group">
                 <label for="email">Descripción</label>
                 <textarea id="description" class="textarea" name="description-timeline" placeholder="Escriba la descripción aquí" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              </div>
+              <div class="form-group">
+                  <label for="source">Fuente</label>
+                  <input id="source" class="form-control" name="source-timeline" placeholder="Ingrese la fuente"/>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
@@ -559,7 +572,7 @@
                         <thead>
                           <tr>
                             <th>Posición</th>
-                            <th># Companias</th>
+                            <th>Compañía</th>
                             <th>Acción</th>
                           </tr>
                         </thead>
@@ -568,7 +581,7 @@
                           <tr class="">
                             <input type="hidden" name="company[{{$i}}][id]" value="{{$company->id}}"/>
                             <td class="position"><label>{{getCompanyPosition($company->position)}}</label><input type="hidden" name="company[{{$i}}][position]" value="{{$company->position}}"/></td>
-                            <td class="total_companies"><label>{{$company->total_companies}}</label><input type="hidden" name="company[{{$i}}][total_companies]" value="{{$company->total_companies}}"/></td>
+                            <td class="company_name"><label>{{$company->name}}</label><input type="hidden" name="company[{{$i}}][company_name]" value="{{$company->name}}"/></td>
                             <td class="action"><button type="button" class="btn btn-danger btn-delete-company">Eliminar</button></td>
                           </tr>
                           @endforeach
@@ -577,7 +590,7 @@
                           <tr class="model-companies hidden">
                             <input type="hidden" name="id-model" value="-1"/>
                             <td class="position"><label></label><input type="hidden" name="position-model" value="-1"/></td>
-                            <td class="total_companies"><label></label><input type="hidden" name="total_companies-model" value="-1"/></td>
+                            <td class="company_name"><label></label><input type="hidden" name="company_name-model" value="-1"/></td>
                             <td class="action"><button type="button" class="btn btn-danger btn-delete-company">Eliminar</button></td>
                           </tr>
                         </tfooter>
@@ -587,20 +600,14 @@
                         <div class="col-md-6">
                           <label for="name">Posición</label>
                           <select id="position" name="type-timeline" class="form-control">
-                            @if(!containsPosition(1,$profile->companies))
                             <option value="1">Presidente</option>
-                            @endif
-                            @if(!containsPosition(2,$profile->companies))
                             <option value="2">Gerente</option>
-                            @endif
-                            @if(!containsPosition(3,$profile->companies))
                             <option value="3">Accionista</option>
-                            @endif
                           </select>
                         </div>
                         <div class="col-md-6">
-                          <label for="name"># Companias</label>
-                          <input type="number" class="form-control" name="endDate-timeline" id="total_companies">
+                          <label for="name">Compañia</label>
+                          <input type="text" class="form-control" name="endDate-timeline" id="company_name">
                         </div>
                       </div>
 
@@ -812,7 +819,7 @@
               <div class="col-md-12">
                 <div class="box box-primary">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Senecyt</h3>
+                    <h3 class="box-title">Formación Académica</h3>
                     <div class="box-tools pull-right">
                       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                       </button>
@@ -1027,6 +1034,10 @@
 
     $clone.find('.outstanding').find('input').attr('name' , 'timeline['+index+'][outstanding]');
 
+    $clone.find('.source').find('input').attr('name' , 'timeline['+index+'][source]');
+    $clone.find('.source').find('input').val($('#source').val());
+    $clone.find('.source').find('a').attr('href' , $('#source').val());
+
     if ($('#outstanding-check:checked').length > 0)
     {
       $clone.find('.outstanding').find('input').val(1);
@@ -1078,6 +1089,7 @@
       $clone.find('.type').find('input').attr('name' , 'timeline['+i+'][type]');
       $clone.find('.description').find('input').attr('name' , 'timeline['+i+'][description]');
       $clone.find('.outstanding').find('input').attr('name' , 'timeline['+i+'][outstanding]');
+      $clone.find('.source').find('input').attr('name' , 'timeline['+i+'][source]');
       $CONTAINER.append($clone);
     }
   }
@@ -1177,22 +1189,21 @@
      $clone.find('.position').find('input').val($('#position').val());
      $clone.find('.position').find('label').text($('#position option:selected').text());
 
-     $clone.find('.total_companies').find('input').attr('name' , 'company['+index+'][total_companies]');
-     $clone.find('.total_companies').find('input').val($('#total_companies').val());
-     $clone.find('.total_companies').find('label').text($('#total_companies').val());
+     $clone.find('.company_name').find('input').attr('name' , 'company['+index+'][company_name]');
+     $clone.find('.company_name').find('input').val($('#company_name').val());
+     $clone.find('.company_name').find('label').text($('#company_name').val());
 
      $CONTAINERGRD.append($clone);
-     $('#position option:selected').remove();
    }
  });
 
  $('.btn-delete-company').click(function(){
    var $this = $(this);
    var divToDelete = $($this.context.parentElement.parentElement);
-   var newOption = $(document.createElement("option"));
-   newOption.val(divToDelete.find('.position').find('input').val());
-   newOption.text(divToDelete.find('.position').find('label').text());
-   $('#position').append(newOption);
+   //var newOption = $(document.createElement("option"));
+   //newOption.val(divToDelete.find('.position').find('input').val());
+   //newOption.text(divToDelete.find('.position').find('label').text());
+   //$('#position').append(newOption);
 
    divToDelete.remove();
  });

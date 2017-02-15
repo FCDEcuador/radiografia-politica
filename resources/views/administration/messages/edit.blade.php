@@ -27,6 +27,12 @@
           <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
           <input name="_method" type="hidden" value="PUT">
           <div class="box-body">
+              <div class="form-group">
+                  <label class="col-md-2 control-label">Mensaje de Timeline</label>
+                  <div class="col-md-10">
+                      <input type="text" name="timelineMessage" class="form-control" value="{{ $message->timelineMessage }}" required/>
+                  </div>
+              </div>
             <div class="form-group">
               <label class="col-md-2 control-label">Mensaje de Perfil</label>
               <div class="col-md-10">

@@ -149,15 +149,20 @@ class ProfileCSVExportHandler implements \Maatwebsite\Excel\Files\ExportHandler
         ['']
       ));
 
-      $companies = $profile->companies->toArray();
-      $dataCompanies = [];
-      foreach ($companies as $company) {
+     // $companies = $profile->companies->toArray();
+      $dataCompanies = [
+          ['Gerente', $profile->companies()->where('position',1)->count()],
+          ['Presidente' , $profile->companies()->where('position',2)->count()],
+          ['Accionista' , $profile->companies()->where('position',3)->count()]
+      ];
+      /*foreach ($companies as $company) {
         array_push($dataCompanies,[
           //  $profile->person->name." ".$profile->person->lastname,
           $this->getCompanyPosition($company['position']),
           $company['total_companies']
         ]);
-      }
+      }*/
+
       $sheet->rows($dataCompanies);
       $sheet->rows(array(
         ['']

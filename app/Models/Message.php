@@ -9,7 +9,7 @@ class Message extends Model
 
 
     protected $fillable = [
-      'profileMessage','SRIMessage','deputyMessage','companiesMessage','judicialMessage','penalMessage','senecytMessage','comptrollerMessage'
+      'timelineMessage','profileMessage','SRIMessage','deputyMessage','companiesMessage','judicialMessage','penalMessage','senecytMessage','comptrollerMessage'
     ];
 
 }

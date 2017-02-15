@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddObservatoryUrlToPerson extends Migration
+class AddSourceToTimeline extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddObservatoryUrlToPerson extends Migration
      */
     public function up()
     {
-        Schema::table('people', function (Blueprint $table) {
-            //
-            $table->string('observatory',255)->nullable();
+        Schema::table('timelines', function (Blueprint $table) {
+            $table->string('source',255)->nullable();
         });
     }
 
@@ -26,9 +25,8 @@ class AddObservatoryUrlToPerson extends Migration
      */
     public function down()
     {
-        Schema::table('people', function (Blueprint $table) {
-            //
-            $table->dropColumn('observatory');
+        Schema::table('timelines', function (Blueprint $table) {
+            $table->dropColumn('source');
         });
     }
 }

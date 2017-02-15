@@ -14,13 +14,13 @@ class AddFilesToProfile extends Migration
     public function up()
     {
         Schema::table('profiles', function (Blueprint $table) {
-            $table->string('fileSri')->nullable();
-            $table->string('fileHeritage')->nullable();
-            $table->string('fileCompanies')->nullable();
-            $table->string('fileJudicial')->nullable();
-            $table->string('filePenal')->nullable();
-            $table->string('fileStudy')->nullable();
-            $table->string('fileComptroller')->nullable();
+            $table->string('fileSri',255)->nullable();
+            $table->string('fileHeritage',255)->nullable();
+            $table->string('fileCompanies',255)->nullable();
+            $table->string('fileJudicial',255)->nullable();
+            $table->string('filePenal',255)->nullable();
+            $table->string('fileStudy',255)->nullable();
+            $table->string('fileComptroller',255)->nullable();
         });
     }
 

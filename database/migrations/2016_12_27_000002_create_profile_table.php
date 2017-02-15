@@ -23,7 +23,7 @@ class CreateProfileTable extends Migration
             $table->string('urlPenal', 125)->nullable();
             $table->string('urlStudy', 125)->nullable();
             $table->string('urlComptroller', 125)->nullable();
-            $table->string('urlProfile', 45)->nullable();
+            $table->string('urlProfile', 125)->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
