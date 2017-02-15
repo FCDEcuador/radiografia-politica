@@ -149,15 +149,15 @@
               </div>
               <div class="row">
                 <div class="col-sm-12 col-sm-offset-0 col-md-offset-6 col-md-6">
-                  <img src="{{asset('img/observatorio-legislativo.png')}}" style="height: 50px;" class="footer-sponsor-img"/>
+                  <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/observatorio-legislativo.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12 col-sm-offset-0 col-md-offset-5 col-md-4">
-                  <img src="{{asset('img/queremossaber.png')}}" style="height: 50px;" class="footer-sponsor-img"/>
+                  <a href="http://queremossaber.ec/portal/" target="_blank"><img src="{{asset('img/queremossaber.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
                 </div>
                 <div class="col-sm-12 col-sm-offset-0 col-md-3">
-                  <img src="{{asset('img/fcd-logo.png')}}"  style="height: 50px;" class="footer-sponsor-img"/>
+                  <a href="http://www.ciudadaniaydesarrollo.org/" target="_blank"><img src="{{asset('img/fcd-logo.png')}}"  style="height: 50px;" class="footer-sponsor-img"/></a>
                 </div>
               </div>
             </div>
