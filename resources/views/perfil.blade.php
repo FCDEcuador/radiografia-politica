@@ -543,11 +543,11 @@ function getBooleanString($bool)
                             <col width="50%">
                             <col width="50%">
                             <tr>
-                                <th>Gerente</th>
+                                <th>Presidente</th>
                                 <td>{{$profile->companies()->where('position',1)->count()}}</td>
                             </tr>
                             <tr>
-                                <th>Presidente</th>
+                                <th>Gerente</th>
                                 <td>{{$profile->companies()->where('position',2)->count()}}</td>
                             </tr>
                             <tr>

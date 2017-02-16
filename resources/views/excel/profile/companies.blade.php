@@ -1,3 +1,19 @@
+<?php
+
+  function getCompanyPosition($id)
+  {
+    switch ($id) {
+      case '1':
+        return "Presidente";
+      case '2':
+          return "Gerente";
+      case '3':
+          return "Accionista";
+      default:
+        return "";
+    }
+  }
+ ?>
 <!Doctype>
 <html>
   <head>
@@ -14,18 +30,16 @@
   </head>
   <body>
     <table class="border" >
-        <tr>
-          <th>Gerente</th>
-          <td>{{$profile->companies()->where('position',1)->count() }}</td>
-        </tr>
-        <tr>
-          <th>Presidente</th>
-          <td>{{$profile->companies()->where('position',2)->count() }}</td>
-        </tr>
-        <tr>
-          <th>Accionista</th>
-          <td>{{$profile->companies()->where('position',3)->count() }}</td>
-        </tr>
+      <tr>
+        <th>Posición</th>
+        <th>Compañía</th>
+      </tr>
+      @foreach($profile->companies as $i => $company)
+      <tr>
+        <td>{getCompanyPosition($company->position)}}</td>
+        <td >{{$company->name}}</td>
+      </tr>
+      @endforeach
     </table>
   </body>
 </html>
