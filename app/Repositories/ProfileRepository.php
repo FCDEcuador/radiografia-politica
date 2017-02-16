@@ -262,7 +262,7 @@ class ProfileRepository extends Repository
         $profile->heritage->previousDeclaration = $data['previousDeclaration'];
     }
     $profile->heritage->previousAssets = (isset($data['previousAssets'])) ? (float)$data['previousAssets'] : 0 ;
-    $profile->heritage->previousLiabilities =(isset($data['previousLiabilities'])) ? (float)$data['previousAssets'] : 0 ;
+    $profile->heritage->previousLiabilities =(isset($data['previousLiabilities'])) ? (float)$data['previousLiabilities'] : 0 ;
     $profile->heritage->previousHeritage = (isset($data['previousHeritage'])) ? (float)$data['previousHeritage'] : 0 ;
       if($data['actualDeclaration'] != "")
       {
