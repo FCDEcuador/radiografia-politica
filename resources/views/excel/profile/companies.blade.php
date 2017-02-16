@@ -36,7 +36,7 @@
       </tr>
       @foreach($profile->companies as $i => $company)
       <tr>
-        <td>{getCompanyPosition($company->position)}}</td>
+        <td>{{getCompanyPosition($company->position)}}</td>
         <td >{{$company->name}}</td>
       </tr>
       @endforeach
