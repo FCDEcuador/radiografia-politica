@@ -432,6 +432,7 @@ function getBooleanString($bool)
             <span class="well-card-title">DECLARACION PATRIMONIAL<span>
                     </div>
                     <div class="well-body">
+                      @if((($profile->heritage->actualDeclaration)!= 0)||(($profile->heritage->previousDeclaration)!= 0) )
                         <div class="row patrimonial-declaration-icons">
                             <div class="col-md-3">
                                 <div class="img-responsive hint--top" data-hint="INMUEBLES">
@@ -510,8 +511,14 @@ function getBooleanString($bool)
                                 </tr>
                             </table>
                         </div>
+                        @endif
+                        @if((($profile->heritage->actualDeclaration)== 0)&&(($profile->heritage->previousDeclaration)== 0))
+                        <th>No poseemos información</th>
+                        @endif
                     </div>
                     <div class="well-footer">
+                      @if((($profile->heritage->actualDeclaration)!= 0)||(($profile->heritage->previousDeclaration)!= 0) )
+
                         <div class="row">
                             <div class="col-md-3">
                                 <a href ="{{$profile->urlHeritage}}" target="_blank"><button type="button" class="btn btn-dark">VER FUENTE</button>
@@ -527,6 +534,8 @@ function getBooleanString($bool)
                                 <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
                             </div>
                         </div>
+                        @endif
+
                     </div>
                 </div>
             </div>
