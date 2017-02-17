@@ -429,7 +429,7 @@ function getBooleanString($bool)
             <div class="col-md-6">
                 <div class="well well-lg well-transparency transparencia-patrimonio">
                     <div class="well-title">
-            <span class="well-card-title">DECLARACION PATRIMONIAL<span>
+            <span class="well-card-title">DECLARACIÓN PATRIMONIAL<span>
                     </div>
                     <div class="well-body">
                       @if((($profile->heritage->actualDeclaration)!= 0)||(($profile->heritage->previousDeclaration)!= 0) )
