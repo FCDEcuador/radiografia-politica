@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home2', 'HomeController@index')->name('home');
+
+Route::get('/',function(){
+    return view('errors.mantence');
+});
 
 Route::get('/perfil/{id}', 'ProfileController@view')->name('perfil');
 
