@@ -701,7 +701,7 @@ function getBooleanString($bool)
               <span class="well-card-title">CONTRALORÍA<span>
                     </div>
                     <div class="row well-body" style="text-align:center">
-                        En construcción
+                        No poseemos información
                         <!-- <table class="table table-vertical">
                           <col width="50%">
                           <col width="50%">
