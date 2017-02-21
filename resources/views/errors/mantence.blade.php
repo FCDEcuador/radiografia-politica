@@ -41,7 +41,7 @@ html, body {
         <div class="container">
             <div class="content">
                 <img src="{{asset('img/logo-radiografia-dark.png')}}" style="width: 100%"/>
-                <div class="title">No poseemos información.</div>
+                <div class="title">En construcción.</div>
             </div>
         </div>
     </body>
