@@ -12,6 +12,7 @@ class PublicServantRepository extends ProfileRepository
 
     return $this->model->whereHas('person', function ($query) use($isCandidate){
       $query->where('state_id',State::draft())->where('is_candidate',$isCandidate)->whereHas('position', function($query) use($isCandidate){
+
         if(!$isCandidate){
           $query->where('name','!=' ,"Asambleista");
         }else {
