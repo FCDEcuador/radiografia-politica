@@ -28,6 +28,10 @@ class ProfileRepository extends Repository
     $this->personRepository = $personRepository;
   }
 
+  public function ordered(){
+    return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->select('profiles.*')->orderBy('p.lastname')->get();
+  }
+
   public function create($data)
   {
 

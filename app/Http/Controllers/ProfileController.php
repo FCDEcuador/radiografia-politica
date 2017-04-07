@@ -31,7 +31,7 @@ class ProfileController extends Controller
    */
   public function index()
   {
-      $profiles = $this->repository->all();
+      $profiles = $this->repository->ordered();
       return view('administration.profiles.index')->with('profiles',$profiles);
   }
 

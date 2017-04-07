@@ -13,18 +13,23 @@
   <div class="row">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist" id="myTab">
-      <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Candidatos Presidencia</a></li>
-      <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Candidatos Asamblea</a></li>
-      <li role="presentation"><a href="#generalComptroller" aria-controls="generalComptroller" role="tab" data-toggle="tab">Contralor General del Estado</a></li>
-      <li role="presentation"><a href="#ombudsman" aria-controls="ombudsman" role="tab" data-toggle="tab">Defensor del Pueblo</a></li>
+      <!-- <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Candidatos Presidencia</a></li> -->
+      <li role="presentation" class="active"><a href="#ejecutivo" aria-controls="ejecutivo" role="tab" data-toggle="tab">Ejecutivo</a></li>
+      <!-- <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Candidatos Asamblea</a></li> -->
+      <li role="presentation"><a href="#legislativo" aria-controls="legislativo" role="tab" data-toggle="tab">Legislativo</a></li>
+      <li role="presentation"><a href="#judicial" aria-controls="judicial" role="tab" data-toggle="tab">Judicial</a></li>
+      <li role="presentation"><a href="#electoral" aria-controls="electoral" role="tab" data-toggle="tab">Electoral</a></li>
+      <li role="presentation"><a href="#participacion-cuidadana-y-control-social" aria-controls="participacion-cuidadana-y-control-social" role="tab" data-toggle="tab">Participación Ciudadana y Control Social</a></li>
+      <li role="presentation"><a href="#otras-autoridades" aria-controls="otras-autoridades" role="tab" data-toggle="tab">Otras autoridades</a></li>
+      <li role="presentation"><a href="#concursos-publicos" aria-controls="concursos-publicos" role="tab" data-toggle="tab">Concursos públicos</a></li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="home" ng-controller="PresidentController">
+      <!-- <div role="tabpanel" class="tab-pane active" id="home" ng-controller="PresidentController">
         <div class="row">
           <!-- Init political card -->
-          <div class="politics-card col-md-6" ng-repeat="binomial in binomails" ng-cloak>
+          <!--  <div class="politics-card col-md-6" ng-repeat="binomial in binomails" ng-cloak>
             <div class="row">
               <div class="col-md-10 col-lg-8">
                 <div class="binomial">
@@ -54,9 +59,9 @@
             </div>
           </div>
           <!-- End political card -->
-        </div>
-      </div>
-      <div role="tabpanel" class="tab-pane" id="profile" ng-controller="DeputyController">
+        <!--  </div>
+      </div> -->
+      <div role="tabpanel" class="tab-pane" id="ejecutivo" ng-controller="EjecutiveController">
         <div class="row">
           <div class="input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
@@ -66,62 +71,151 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="deputy in deputys | filter: searchTextDeputy" ng-cloak>
+          <div class="col-md-3" ng-repeat="ejecutive in ejecutives | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
-              <img ng-src="{{rtrim(asset('/'), '/')}}<% deputy.picture %>" alt="<% depty.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + deputy.id %>"><span>VER PERFIL</span></a>
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% ejecutive.picture %>" alt="<% ejecutive.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + ejecutive.id %>"><span>VER PERFIL</span></a>
             </div>
           </div>
-            <label class="align-c president-label"><% deputy.person.name + " " + deputy.person.lastname %></label><br>
+            <label class="align-c president-label"><% ejecutive.person.name + " " + ejecutive.person.lastname %></label><br>
         </div>
 
         </div>
       </div>
-      <div role="tabpanel" class="tab-pane" id="generalComptroller" ng-controller="GeneralComptrollerController">
+      <div role="tabpanel" class="tab-pane" id="legislativo" ng-controller="LegistativeController">
         <div class="row">
           <div class="input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-             <input type="text" ng-model="searchText" class="form-control">
+             <input type="text" ng-model="searchTextDeputy" class="form-control">
            </div>
         </div>
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="generalComptroller in generalComptrollers" ng-cloak>
+          <div class="col-md-3" ng-repeat="legislative in legislatives | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
-              <img ng-src="{{rtrim(asset('/'), '/')}}<% generalComptroller.picture %>" alt="<% generalComptroller.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + generalComptroller.id %>"><span>VER PERFIL</span></a>
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% v.picture %>" alt="<% legislative.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + legislative.id %>"><span>VER PERFIL</span></a>
             </div>
           </div>
-            <label class="align-c president-label"><% generalComptroller.person.name + " " + generalComptroller.person.lastname %></label><br>
+            <label class="align-c president-label"><% legislative.person.name + " " + legislative.person.lastname %></label><br>
         </div>
 
         </div>
       </div>
-      <div role="tabpanel" class="tab-pane" id="ombudsman" ng-controller="OmbudsmanController">
+      <div role="tabpanel" class="tab-pane" id="judicial" ng-controller="JudicialController">
         <div class="row">
           <div class="input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-             <input type="text" ng-model="searchText" class="form-control">
+             <input type="text" ng-model="searchTextDeputy" class="form-control">
            </div>
         </div>
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="ombudsman in ombudsmen" ng-cloak>
+          <div class="col-md-3" ng-repeat="judicial in judicials | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
-              <img ng-src="{{rtrim(asset('/'), '/')}}<% ombudsman.picture %>" alt="<% ombudsman.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + ombudsman.id %>"><span>VER PERFIL</span></a>
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% judicial.picture %>" alt="<% judicial.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + judicial.id %>"><span>VER PERFIL</span></a>
             </div>
           </div>
-            <label class="align-c president-label"><% ombudsman.person.name + " " + ombudsman.person.lastname %></label><br>
+            <label class="align-c president-label"><% judicial.person.name + " " + judicial.person.lastname %></label><br>
         </div>
 
         </div>
       </div>
+      <div role="tabpanel" class="tab-pane" id="electoral" ng-controller="ElectoralController">
+        <div class="row">
+          <div class="input-group">
+             <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+             <input type="text" ng-model="searchTextDeputy" class="form-control">
+           </div>
+        </div>
+        <br>
+        <div class="row list-casamblea">
+
+          <div class="col-md-3" ng-repeat="electoral in electorals | filter: searchTextDeputy" ng-cloak>
+            <div class="binomial">
+            <div class="president">
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% electoral.picture %>" alt="<% electoral.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + electoral.id %>"><span>VER PERFIL</span></a>
+            </div>
+          </div>
+            <label class="align-c president-label"><% electoral.person.name + " " + electoral.person.lastname %></label><br>
+        </div>
+
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="participacion-cuidadana-y-control-social" ng-controller="CitizenParticipationController">
+        <div class="row">
+          <div class="input-group">
+             <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+             <input type="text" ng-model="searchTextDeputy" class="form-control">
+           </div>
+        </div>
+        <br>
+        <div class="row list-casamblea">
+
+          <div class="col-md-3" ng-repeat="citizen in citizens | filter: searchTextDeputy" ng-cloak>
+            <div class="binomial">
+            <div class="president">
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% citizen.picture %>" alt="<% citizen.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + citizen.id %>"><span>VER PERFIL</span></a>
+            </div>
+          </div>
+            <label class="align-c president-label"><% citizen.person.name + " " + citizen.person.lastname %></label><br>
+        </div>
+
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="otras-autoridades" ng-controller="OtherAuthoritiesController">
+        <div class="row">
+          <div class="input-group">
+             <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+             <input type="text" ng-model="searchTextDeputy" class="form-control">
+           </div>
+        </div>
+        <br>
+        <div class="row list-casamblea">
+
+          <div class="col-md-3" ng-repeat="other in others | filter: searchTextDeputy" ng-cloak>
+            <div class="binomial">
+            <div class="president">
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% other.picture %>" alt="<% other.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + other.id %>"><span>VER PERFIL</span></a>
+            </div>
+          </div>
+            <label class="align-c president-label"><% other.person.name + " " + other.person.lastname %></label><br>
+        </div>
+
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="concursos-publicos" ng-controller="PublicCompetitionController">
+        <div class="row">
+          <div class="input-group">
+             <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+             <input type="text" ng-model="searchTextDeputy" class="form-control">
+           </div>
+        </div>
+        <br>
+        <div class="row list-casamblea">
+
+          <div class="col-md-3" ng-repeat="public in publics | filter: searchTextDeputy" ng-cloak>
+            <div class="binomial">
+            <div class="president">
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% public.picture %>" alt="<% public.person.name %>" class="img-circle" width="150px">
+              <a href="{{URL::to('/perfil')}}<% '/' + public.id %>"><span>VER PERFIL</span></a>
+            </div>
+          </div>
+            <label class="align-c president-label"><% public.person.name + " " + public.person.lastname %></label><br>
+        </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

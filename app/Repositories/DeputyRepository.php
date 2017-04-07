@@ -9,19 +9,19 @@ class DeputyRepository extends ProfileRepository
 
   public function drafts($isCandidate=false)
   {
-    return $this->model->whereHas('person', function ($query) use($isCandidate){
+    return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query) use ($isCandidate){
       $query->where('state_id',State::draft())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
         $query->where('name', "Asambleísta");
       });
-    })->with('person')->get();
+    })->select('profiles.*')->orderBy('p.lastname')->get();
   }
 
   public function published($isCandidate=false)
   {
-    return $this->model->whereHas('person', function ($query) use ($isCandidate){
+    return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query) use ($isCandidate){
       $query->where('state_id',State::published())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
         $query->where('name', "Asambleísta");
       });
-    })->with('person')->get();
+    })->select('profiles.*')->orderBy('p.lastname')->get();
   }
 }
