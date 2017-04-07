@@ -11,8 +11,13 @@ class PublicServantRepository extends ProfileRepository
   {
 
     return $this->model->whereHas('person', function ($query) use($isCandidate){
-      $query->where('state_id',State::draft())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
-        $query->where('name','!=' ,"Asambleista")->where('name','!=', "Presidente")->where('name','!=',"Vicepresidente");
+      $query->where('state_id',State::draft())->where('is_candidate',$isCandidate)->whereHas('position', function($query) use($isCandidate){
+        if(!$isCandidate){
+          $query->where('name','!=' ,"Asambleista");
+        }else {
+          $query->where('name','!=' ,"Asambleista")->where('name','!=', "Presidente")->where('name','!=',"Vicepresidente");
+        }
+
       });
     })->get();
   }
@@ -20,8 +25,12 @@ class PublicServantRepository extends ProfileRepository
   public function published($isCandidate=false)
   {
     return $this->model->whereHas('person', function ($query) use ($isCandidate){
-      $query->where('state_id',State::published())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
-        $query->where('name','!=' ,"Asambleísta")->where('name','!=', "Presidente")->where('name','!=',"Vicepresidente");
+      $query->where('state_id',State::published())->where('is_candidate',$isCandidate)->whereHas('position', function($query) use ($isCandidate){
+        if(!$isCandidate){
+          $query->where('name','!=' ,"Asambleista");
+        }else {
+          $query->where('name','!=' ,"Asambleista")->where('name','!=', "Presidente")->where('name','!=',"Vicepresidente");
+        }
       });
     })->with('person')->get();
   }
