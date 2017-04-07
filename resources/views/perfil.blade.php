@@ -202,12 +202,14 @@ function getBooleanString($bool)
                 </div>
             </div>
             <div class="col-md-offset-1 col-md-2 profile-afiliacion">
+                @if($profile->person->politicalParty != null)
                 <div class="row">
                     <h4>Afiliación Actual:</h4>
                 </div>
                 <div class="row">
                     <img src="{{rtrim(asset('/'),'/').$profile->person->politicalParty->img}}" />
                 </div>
+                @endif
                 <br>
                 @if(!empty($binomial))
                 <div class="row">
