@@ -96,7 +96,7 @@
           <div class="col-md-3" ng-repeat="legislative in legislatives | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
-              <img ng-src="{{rtrim(asset('/'), '/')}}<% v.picture %>" alt="<% legislative.person.name %>" class="img-circle" width="150px">
+              <img ng-src="{{rtrim(asset('/'), '/')}}<% legislative.picture %>" alt="<% legislative.person.name %>" class="img-circle" width="150px">
               <a href="{{URL::to('/perfil')}}<% '/' + legislative.id %>"><span>VER PERFIL</span></a>
             </div>
           </div>
