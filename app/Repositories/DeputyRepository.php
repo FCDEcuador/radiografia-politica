@@ -13,7 +13,7 @@ class DeputyRepository extends ProfileRepository
       $query->where('state_id',State::draft())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
         $query->where('name', "Asambleísta");
       });
-    })->select('profiles.*')->orderBy('p.lastname')->get();
+    })->select('profiles.*')->with('person')->orderBy('p.lastname')->get();
   }
 
   public function published($isCandidate=false)
@@ -22,6 +22,6 @@ class DeputyRepository extends ProfileRepository
       $query->where('state_id',State::published())->where('is_candidate',$isCandidate)->whereHas('position', function($query){
         $query->where('name', "Asambleísta");
       });
-    })->select('profiles.*')->orderBy('p.lastname')->get();
+    })->select('profiles.*')->with('person')->orderBy('p.lastname')->get();
   }
 }
