@@ -13,7 +13,7 @@ class CitizenParticipationRepository extends ProfileRepository
       $query->where('state_id',State::draft())->where('is_candidate',false)->whereHas('position', function($query){
         $query->where('name', "Defensor del Pueblo");
         });
-    })->select('profiles.*')->with('person')->orderBy('p.lastname')->get();
+    })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
 
   public function published()
@@ -22,6 +22,6 @@ class CitizenParticipationRepository extends ProfileRepository
       $query->where('state_id',State::published())->where('is_candidate',false)->whereHas('position', function($query){
         $query->where('name', "Defensor del Pueblo");
       });
-    })->select('profiles.*')->with('person')->orderBy('p.lastname')->get();
+    })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
 }

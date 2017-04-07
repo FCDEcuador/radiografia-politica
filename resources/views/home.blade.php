@@ -61,7 +61,7 @@
           <!-- End political card -->
         <!--  </div>
       </div> -->
-      <div role="tabpanel" class="tab-pane" id="ejecutivo" ng-controller="EjecutiveController">
+      <div role="tabpanel" class="tab-pane active" id="ejecutivo" ng-controller="EjecutiveController">
         <div class="row">
           <div class="input-group">
              <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
@@ -79,6 +79,7 @@
             </div>
           </div>
             <label class="align-c president-label"><% ejecutive.person.name + " " + ejecutive.person.lastname %></label><br>
+            <label class="align-c president-label"><% ejecutive.person.position.name %></label><br>
         </div>
 
         </div>
@@ -101,6 +102,7 @@
             </div>
           </div>
             <label class="align-c president-label"><% legislative.person.name + " " + legislative.person.lastname %></label><br>
+              <label class="align-c president-label"><% legislative.person.position.name %></label><br>
         </div>
 
         </div>
@@ -123,6 +125,7 @@
             </div>
           </div>
             <label class="align-c president-label"><% judicial.person.name + " " + judicial.person.lastname %></label><br>
+            <label class="align-c president-label"><% judicial.person.position.name %></label><br>
         </div>
 
         </div>
@@ -145,6 +148,7 @@
             </div>
           </div>
             <label class="align-c president-label"><% electoral.person.name + " " + electoral.person.lastname %></label><br>
+            <label class="align-c president-label"><% electoral.person.position.name %></label><br>
         </div>
 
         </div>
@@ -167,6 +171,7 @@
             </div>
           </div>
             <label class="align-c president-label"><% citizen.person.name + " " + citizen.person.lastname %></label><br>
+            <label class="align-c president-label"><% citizen.person.position.name %></label><br>
         </div>
 
         </div>
@@ -189,6 +194,7 @@
             </div>
           </div>
             <label class="align-c president-label"><% other.person.name + " " + other.person.lastname %></label><br>
+            <label class="align-c president-label"><% other.person.position.name %></label><br>
         </div>
 
         </div>
@@ -211,6 +217,7 @@
             </div>
           </div>
             <label class="align-c president-label"><% public.person.name + " " + public.person.lastname %></label><br>
+            <label class="align-c president-label"><% public.person.position.name %></label><br>
         </div>
 
         </div>

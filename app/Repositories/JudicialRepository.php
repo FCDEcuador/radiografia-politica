@@ -18,7 +18,7 @@ class JudicialRepository extends Repository
       $query->where('state_id',State::draft())->where('is_candidate',false)->whereHas('position', function($query){
         $query->where('name', "Presidente del Consejo de la Judicatura")->orWhere('name','Fiscal General del Estado')->orWhere('name','Presidente de la Corte Constitucional')->orWhere('name','Presidente de la Corte Nacional de Justicia');
       });
-    })->select('profiles.*')->with('person')->orderBy('p.lastname')->get();
+    })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
 
   public function published()
@@ -27,7 +27,7 @@ class JudicialRepository extends Repository
       $query->where('state_id',State::published())->where('is_candidate',false)->whereHas('position', function($query){
         $query->where('name', "Presidente del Consejo de la Judicatura")->orWhere('name','Fiscal General del Estado')->orWhere('name','Presidente de la Corte Constitucional')->orWhere('name','Presidente de la Corte Nacional de Justicia');
       });
-    })->select('profiles.*')->with('person')->orderBy('p.lastname')->get();
+    })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
 
 
