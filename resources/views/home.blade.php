@@ -20,7 +20,7 @@
       <li role="presentation"><a href="#judicial" aria-controls="judicial" role="tab" data-toggle="tab">Judicial</a></li>
       <li role="presentation"><a href="#electoral" aria-controls="electoral" role="tab" data-toggle="tab">Electoral</a></li>
       <li role="presentation"><a href="#participacion-cuidadana-y-control-social" aria-controls="participacion-cuidadana-y-control-social" role="tab" data-toggle="tab">Transparencia</a></li>
-      <li role="presentation"><a href="#otras-autoridades" aria-controls="otras-autoridades" role="tab" data-toggle="tab">Otras autoridades</a></li>
+      <li role="presentation"><a href="#otras-autoridades" aria-controls="otras-autoridades" role="tab" data-toggle="tab">Otros</a></li>
       <li role="presentation"><a href="#concursos-publicos" aria-controls="concursos-publicos" role="tab" data-toggle="tab">Concursos públicos</a></li>
     </ul>
 
