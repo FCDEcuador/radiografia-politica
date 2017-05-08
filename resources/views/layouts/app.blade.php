@@ -64,8 +64,8 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                       <li><a href="{{URL::to(route('home'))}}">INICIO</a></li>
-                      <li><a href="{{URL::to(route('home'))}}/#profile">CANDIDATOS</a></li>
-                      <li><a href="{{URL::to(route('home'))}}/#generalComptroller">FUNCIONARIOS PÚBLICOS</a></li>
+                      <!--<li><a href="{{URL::to(route('home'))}}/#profile">CANDIDATOS</a></li>-->
+                      <!--<li><a href="{{URL::to(route('home'))}}/#generalComptroller">FUNCIONARIOS PÚBLICOS</a></li>-->
                       <li><a href="{{URL::to('quienes-somos')}}">QUIÉNES SOMOS</a></li>
                       <li><a href="{{URL::to('sumate-a-la-iniciativa')}}">SÚMATE A LA INICIATIVA</a></li>
                     </ul>
@@ -105,12 +105,12 @@
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <!--<div class="row">
+                  <div class="row">
                     <div class="footer-title-head">
-                      Elecciones 2017
+                    <!--  Elecciones 2017-->
                     </div>
                   </div>
-                  <div class="row">
+                <!--  <div class="row">
                     <div class="footer-item">
                       <a href="{{URL::to(route('home'))}}">Candidatos Presidencia</a>
                     </div>
