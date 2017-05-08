@@ -22,8 +22,6 @@ Route::get('/perfil/{id}', 'ProfileController@view')->name('perfil');
 Route::get('/perfil/{id}/excel', 'ProfileController@export')->name('perfil.export');
 Route::get('/perfil/{id}/csv', 'ProfileController@csv')->name('perfil.csv');
 
-Route::get('/home', 'HomeController@index');
-
 Route::get('/quienes-somos', function(){
   return view('about_us');
 });

@@ -11,7 +11,7 @@ class LegislativeRepository extends ProfileRepository
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
       $query->where('state_id',State::draft())->where('is_candidate',false)->whereHas('position', function($query){
-        $query->where('name', "Presidente de la Asamblea Nacional")->orWhere('name','Primer Vicepresidente de la Asamblea Nacional')->orWhere('name','Segundo Vicepresidente de la Asamblea Nacional')->orWhere('name','Asambleístas');
+        $query->where('name', "Presidente de la Asamblea Nacional")->orWhere('name','Primer Vicepresidente de la Asamblea Nacional')->orWhere('name','Segundo Vicepresidente de la Asamblea Nacional')->orWhere('name','Asambleísta');
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
@@ -20,7 +20,7 @@ class LegislativeRepository extends ProfileRepository
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
       $query->where('state_id',State::draft())->where('is_candidate',false)->whereHas('position', function($query){
-        $query->where('name', "Presidente de la Asamblea Nacional")->orWhere('name','Primer Vicepresidente de la Asamblea Nacional')->orWhere('name','Segundo Vicepresidente de la Asamblea Nacional')->orWhere('name','Asambleístas');
+        $query->where('name', "Presidente de la Asamblea Nacional")->orWhere('name','Primer Vicepresidente de la Asamblea Nacional')->orWhere('name','Segundo Vicepresidente de la Asamblea Nacional')->orWhere('name','Asambleísta');
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
