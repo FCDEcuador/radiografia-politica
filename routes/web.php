@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/home2', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/',function(){
-    return view('errors.mantence');
+    return view('home');
 });
 
 Route::get('/perfil/{id}', 'ProfileController@view')->name('perfil');
