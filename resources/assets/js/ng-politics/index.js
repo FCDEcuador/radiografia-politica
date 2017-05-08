@@ -4,6 +4,7 @@ require('./app');
 require('./controllers/PresidentController');
 require('./controllers/EjecutiveController');
 require('./controllers/PrincipalController');
+
 require('./controllers/DeputyController');
 require('./controllers/GeneralComptrollerController');
 require('./controllers/OmbudsmanController');
