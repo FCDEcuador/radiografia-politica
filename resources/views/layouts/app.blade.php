@@ -144,24 +144,13 @@
               </div>
             </div>
             <div id="footer-sponsors" class="col-sm-12 col-md-4 footer-section-row">
-              <div class="row">
-              Una iniciativa de: <a href="http://www.ciudadaniaydesarrollo.org/" target="_blank"><img src="{{asset('img/fcd-logo.png')}}"  style="height: 50px;" class="footer-sponsor-img"/></a>
-              </div>
-              <div class="row">
-                <div class="col-sm-12 col-sm-offset-0 col-md-offset-6 col-md-6">
-                  <a href="http://www.ciudadaniaydesarrollo.org/" target="_blank"><img src="{{asset('img/fcd-logo.png')}}"  style="height: 50px;" class="footer-sponsor-img"/></a>
-                  <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/observatorio-legislativo.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
-                </div>
-              </div>
-              <div class="row">
-                Con el apoyo de:
-                <div class="col-sm-12 col-sm-offset-0 col-md-offset-5 col-md-4">
-                  <a href="http://queremossaber.ec/portal/" target="_blank"><img src="{{asset('img/queremossaber.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
-                </div>
-                <div class="col-sm-12 col-sm-offset-0 col-md-3">
-                  <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/observatorio-legislativo.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
-                </div>
-              </div>
+              <div class="row" style="margin-right: 10px;">
+              Una iniciativa de <a href="http://www.ciudadaniaydesarrollo.org/" target="_blank"><img src="{{asset('img/fcd-logo.png')}}"  style="height: 80px;" class="footer-sponsor-img"/></a>
+            </div><br/>
+              <div class="row" style="margin-right: 10px;">
+                Con el apoyo de <a href="http://queremossaber.ec/portal/" target="_blank"><img src="{{asset('img/queremossaber.png')}}" style="height: 60px;" class="footer-sponsor-img"/></a>                   <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/observatorio-legislativo.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
+
+
             </div>
           </div>
           </div>
