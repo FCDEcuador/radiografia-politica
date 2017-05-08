@@ -16,6 +16,7 @@ require('./controllers/OtherAuthoritiesController');
 require('./controllers/PublicCompetitionController');
 
 require('./services/PresidentServices');
+require('./services/PrincipalService');
 require('./services/EjecutiveService');
 require('./services/DeputyServices');
 require('./services/GeneralComptrollerService');

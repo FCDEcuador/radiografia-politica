@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Repositories\EjecutiveRepository;
+use App\Repositories\PrincipalRepository;
 
 class PrincipalController extends ApiController
 {
