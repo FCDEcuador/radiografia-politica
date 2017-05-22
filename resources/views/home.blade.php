@@ -71,7 +71,7 @@
         <br>-->
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="principal in principals | filter: searchTextDeputy" ng-cloak>
+          <div class="col-md-3" style="min-height: 290px;" ng-repeat="principal in principals | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% principal.picture %>" alt="<% principal.person.name %>" class="img-circle" width="150px">
@@ -94,7 +94,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="ejecutive in ejecutives | filter: searchTextDeputy" ng-cloak>
+          <div class="col-md-3" style="min-height: 290px;" ng-repeat="ejecutive in ejecutives | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% ejecutive.picture %>" alt="<% ejecutive.person.name %>" class="img-circle" width="150px">
@@ -117,7 +117,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="legislative in legislatives | filter: searchTextDeputy" ng-cloak>
+          <div class="col-md-3" style="min-height: 290px;" ng-repeat="legislative in legislatives | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% legislative.picture %>" alt="<% legislative.person.name %>" class="img-circle" width="150px">
@@ -140,7 +140,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="judicial in judicials | filter: searchTextDeputy" ng-cloak>
+          <div class="col-md-3" style="min-height: 290px;" ng-repeat="judicial in judicials | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% judicial.picture %>" alt="<% judicial.person.name %>" class="img-circle" width="150px">
@@ -163,7 +163,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="electoral in electorals | filter: searchTextDeputy" ng-cloak>
+          <div class="col-md-3" style="min-height: 290px;" ng-repeat="electoral in electorals | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% electoral.picture %>" alt="<% electoral.person.name %>" class="img-circle" width="150px">
@@ -186,7 +186,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="citizen in citizens | filter: searchTextDeputy" ng-cloak>
+          <div class="col-md-3" style="min-height: 290px;" ng-repeat="citizen in citizens | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% citizen.picture %>" alt="<% citizen.person.name %>" class="img-circle" width="150px">
@@ -209,7 +209,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="other in others | filter: searchTextDeputy" ng-cloak>
+          <div class="col-md-3" style="min-height: 290px;" ng-repeat="other in others | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% other.picture %>" alt="<% other.person.name %>" class="img-circle" width="150px">
@@ -232,7 +232,7 @@
         <br>
         <div class="row list-casamblea">
 
-          <div class="col-md-3" ng-repeat="public in publics | filter: searchTextDeputy" ng-cloak>
+          <div class="col-md-3" style="min-height: 290px;" ng-repeat="public in publics | filter: searchTextDeputy" ng-cloak>
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% public.picture %>" alt="<% public.person.name %>" class="img-circle" width="150px">

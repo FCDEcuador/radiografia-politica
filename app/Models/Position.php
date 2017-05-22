@@ -12,11 +12,11 @@ class Position extends Model
 
   function scopePresidentId($query){
 
-    return $query->where('name','Presidente')->first()->id;
+    return $query->where('name','Presidente de la República')->first()->id;
   }
 
   function scopeVicePresidentId($query){
-    return $query->where('name','Vicepresidente')->first()->id;
+    return $query->where('name','Vicepresidente de la República')->first()->id;
   }
 
   function scopeAsambleistaId($query)
