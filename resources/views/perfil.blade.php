@@ -183,9 +183,11 @@ function getBooleanString($bool)
                     <div class="row btn-profile">
                         <a href="{{$profile->person->curriculum}}" target="_blank"><button type="button" class="btn btn-dark">Descargar curriculum</button></a>
                     </div>
+                    @if(!empty($profile->person->plan))
                     <div class="row btn-profile">
                         <a href="{{$profile->person->plan}}" target="_blank"><button type="button" class="btn btn-dark">Descargar Plan de gobierno</button></a>
                     </div>
+                    @endif
                     @if(!empty($profile->person->observatory))
                     <div class="row btn-profile">
                         <img src="{{asset('img/logo-Observatorio-60x40.png')}}">
@@ -195,8 +197,12 @@ function getBooleanString($bool)
                     <div class="row profile-redes">
                         <b>Redes sociales</b>
                         <div class="profile-socials">
-                            <a href="https://twitter.com/{{$profile->person->twitter}}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="{{$profile->person->facebook}}" target="_blank"><i class="fa fa-facebook-official"  aria-hidden="true"></i></a>
+                          @if(!empty($profile->person->twitter))
+                            <a href="https://twitter.com/{{$profile->person->twitter}}" target="_blank"><i class="fa fa-twitter"  aria-hidden="true" style="color:#1da1f2; font-size: 30px;"></i></a>
+                            @endif
+                            @if(!empty($profile->person->facebook))
+                            <a href="{{$profile->person->facebook}}" target="_blank"><i class="fa fa-facebook-official"  aria-hidden="true" style="color:#00549f; font-size: 30px;"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -267,15 +273,15 @@ function getBooleanString($bool)
             <div  class="col-md-offset-7 col-md-2">
 
                 <div class="share-transaprency">
-                    <label>Comparte</label></br>
-                    <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->timelineMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
+                    <label style="color:#3780c2">Comparte</label></br>
+                    <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->timelineMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank" ><i class="fa fa-twitter" aria-hidden="true" style="color:#1da1f2; font-size: 30px;"></i></a>
+                    <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true" style="color:#00549f; font-size: 30px;"></i></a>
                 </div>
             </div>
         </div>
         <section class="cd-horizontal-timeline">
             <div class="timeline vpu-line time-yellow">
-                <h4>VIDA PÚBLICA</h4>
+                <h4>FUNCIÓN PÚBLICA</h4>
                 <div id="public-wrapper" class="events-wrapper">
                     <div class="events">
                         <ol>
@@ -296,7 +302,7 @@ function getBooleanString($bool)
             </div> <!-- .timeline -->
             <br>
             <div class="timeline time-blue">
-                <h4>VIDA PRIVADA</h4>
+                <h4>FUNCIÓN PRIVADA</h4>
                 <div id="private-wrapper" class="events-wrapper">
                     <div class="events">
                         <ol>
@@ -317,7 +323,7 @@ function getBooleanString($bool)
             </div> <!-- .timeline -->
             <br>
             <div class="timeline time-red">
-                <h4>VIDA POLÍTICA</h4>
+                <h4>ACTIVIDAD POLÍTICA</h4>
                 <div id="politician-wrapper" class="events-wrapper">
                     <div class="events">
                         <ol>
@@ -420,9 +426,9 @@ function getBooleanString($bool)
                             <div class="col-md-2">
                             </div>
                             <div class="col-md-4 share-transaprency">
-                                <label>Comparte</label></br>
-                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->SRIMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
+                                <label style="color:#3780c2">Comparte</label></br>
+                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->SRIMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true" style="color:#1da1f2; font-size: 30px;"></i></a>
+                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true" style="color:#00549f; font-size: 30px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -531,9 +537,9 @@ function getBooleanString($bool)
                             <div class="col-md-2">
                             </div>
                             <div class="col-md-4 share-transaprency">
-                                <label>Comparte</label></br>
-                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->deputyMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
+                                <label style="color:#3780c2">Comparte</label></br>
+                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->deputyMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true" style="color:#1da1f2; font-size: 30px;"></i></a>
+                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true" style="color:#00549f; font-size: 30px;"></i></a>
                             </div>
                         </div>
                         @endif
@@ -578,9 +584,9 @@ function getBooleanString($bool)
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-4 share-transaprency">
-                                <label>Comparte</label></br>
-                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->companiesMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
+                                <label style="color:#3780c2">Comparte</label></br>
+                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->companiesMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true" style="color:#1da1f2; font-size: 30px;"></i></a>
+                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true" style="color:#00549f; font-size: 30px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -645,9 +651,9 @@ function getBooleanString($bool)
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-4 share-transaprency">
-                                <label>Comparte</label></br>
-                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->judicialMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
+                                <label style="color:#3780c2">Comparte</label></br>
+                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->judicialMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true" style="color:#1da1f2; font-size: 30px;"></i></a>
+                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true" style="color:#00549f; font-size: 30px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -689,9 +695,9 @@ function getBooleanString($bool)
                                 <a href ="{{$profile->fileStudy}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
                             </div>
                             <div class="col-md-4 share-transaprency">
-                                <label>Comparte</label></br>
-                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->senecytMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
+                                <label style="color:#3780c2">Comparte</label></br>
+                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->senecytMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true" style="color:#1da1f2; font-size: 30px;"></i></a>
+                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true" style="color:#00549f; font-size: 30px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -754,9 +760,9 @@ function getBooleanString($bool)
                                 <a href ="{{$profile->filePenal}}" target="_blank"><button type="button" class="btn btn-dark">VER ARCHIVO</button>
                             </div>
                             <div class="col-md-4 share-transaprency">
-                                <label>Comparte</label></br>
-                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->penalMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true"></i></a>
+                                <label style="color:#3780c2">Comparte</label></br>
+                                <a href="https://twitter.com/intent/tweet?text={{urlencode(renderMessage($message->penalMessage,$profile))}}&url={{url(route('perfil',$profile->id))}}" class="twitter customer share"target="_blank"><i class="fa fa-twitter" aria-hidden="true" style="color:#1da1f2; font-size: 30px;"></i></a>
+                                <a href=""><i class="fa fa-facebook-official shareBtn" aria-hidden="true" style="color:#00549f; font-size: 30px;"></i></a>
                             </div>
                         </div>
                     </div>
