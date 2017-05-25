@@ -82,6 +82,9 @@ Route::group(['prefix'=>'administration','middleware' => ['auth']],function(){
   Route::get('ombudsman/drafts', 'OmbudsmanController@drafts')->name('ombudsman.drafts');
   Route::get('ombudsman/published', 'OmbudsmanController@published')->name('ombudsman.published');
 
+  Route::get('banner/edit', 'SiteController@edit')->name('banner.edit');
+  Route::post('banner/update/{id}', 'SiteController@update')->name('banner.update');
+
   Route::resource('position', PositionController::class);
   Route::resource('judgment_type', JudgmentTypeController::class);
   Route::resource('political_party', PoliticalPartyController::class);

@@ -5,12 +5,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Usuarios
-      <small>List</small>
+      Candidatos Controloría General
+      <small>Drafts</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      <li class="active">Usuarios</li>
+      <li class="active">Perfiles</li>
     </ol>
   </section>
 
@@ -21,36 +21,29 @@
       <div class="col-md-12">
         <!-- general form elements -->
         <div class="box box-primary">
+          <form action="{{url(route('banner.update',1))}}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
           <!-- /.box-header -->
-          <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Rol</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($users as $i => $user)
-              @if($i%2==0)
-              <tr class="odd gradeA">
-                @else
-                <tr class="even gradeA">
-                  @endif
-                  <td>{{$user->name}}</td>
-                  <td>{{$user->email}}</td>
-                  <td>{{$user->role->name}}</td>
-                  <td>
-                    <a href="{{URL::to(route('user.edit',$user->id))}}"><button class="btn btn-primary">Editar</button></a>
-                    <a style="color:#FFFFFF;" href="#" data-toggle="modal" data-target="#myModal" data-whatever="{{$user->id}}" data-description="{{$user->name}}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+          <div class="box-body">
+          <div class="col-md-12">
+          <div class="form-group">
+                <div class="table">
+                <label for="photo">Imagen Banner</label><br>
+                <input type="file" name="photo" placeholder="50x50">
+              </div>
+              </div>
           </div>
+          <div class="box-footer">
+              <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
+        </div>
+
+      </div>
+
+
+
+          </form>
           <!-- /.box -->
 
         </div>

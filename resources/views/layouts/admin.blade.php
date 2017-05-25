@@ -149,6 +149,17 @@
           <li class="header">SITIO</li>
           <li class="treeview">
             <a href="#">
+              <i class="fa fa-gavel"></i> <span>Administrar Banner</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{url('administration/banner/edit')}}"><i class="fa fa-circle-o"></i> Editar</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
               <i class="fa fa-gavel"></i> <span>Tipos Delitos</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
