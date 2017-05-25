@@ -34,7 +34,7 @@ class SiteRepository extends Repository
         $storage_path = public_path()."/img/banner";
         $fileName = $this->nameGenerator($id."-"."-").".".$photo->getClientOriginalExtension();
         $photo->move($storage_path,$fileName);
-        $relativePath = "/img/categories/".$fileName;
+        $relativePath = "/img/banner/".$fileName;
         return $relativePath;
       }else{
         throw new ApiException(["Fotografía inválida, solo se admite png, jpg, jpge"]);
