@@ -71,7 +71,17 @@ function renderMessage($message,$profile)
 
                 break;
             default:
-                $replace = $person[$key];
+                if($key == "twitter"){
+                  if($person[$key] == ""){
+                    $beforeMessage = substr($beforeMessage, 0, -1);
+                    $replace = "#".clearSpaces($person['name']).clearSpaces($person['lastname']);
+                  }else {
+                    $replace = $person[$key];
+                  }
+                }else{
+                  $replace = $person[$key];
+                }
+
                 break;
         }
 
@@ -80,6 +90,10 @@ function renderMessage($message,$profile)
 
     return $renderMessage;
 
+}
+function clearSpaces($string) {
+   $string = str_replace(' ', '', $string); // Replaces all spaces with hyphens.
+   return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 }
 ?>
 

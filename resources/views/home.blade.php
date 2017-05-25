@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="img-responsive">
+<div class="img-responsive" style="margin-top: -22px;">
   <img src="{{asset('/img/banner-medium.jpg')}}" width="100%"/>
 </div>
 
