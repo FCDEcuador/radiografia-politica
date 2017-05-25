@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="main-header">
-
+<div class="img-responsive">
+  <img src="{{asset('/img/banner-medium.jpg')}}" width="100%"/>
 </div>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12 right title-elecciones">
