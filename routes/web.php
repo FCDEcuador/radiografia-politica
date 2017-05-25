@@ -10,11 +10,13 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+use App\Models\Site;
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/',function(){
-    return view('home');
+    $site = Site::where('id',1)->first();
+    return view('home')->with(['site' => $site]);
 });
 
 Route::get('/perfil/{id}', 'ProfileController@view')->name('perfil');

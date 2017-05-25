@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="img-responsive" style="margin-top: -22px;">
-  <img src="{{asset('/img/banner-medium.jpg')}}" width="100%"/>
+  @if($site!=null)
+    <img src="{{asset($site->banner)}}" width="100%"/>
+  @endif
 </div>
 
 <div class="container">
