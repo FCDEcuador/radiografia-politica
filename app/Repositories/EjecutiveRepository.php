@@ -11,7 +11,7 @@ class EjecutiveRepository extends ProfileRepository
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
       $query->where('state_id',State::draft())->where('is_candidate',false)->whereHas('position', function($query){
-        $query->where('name', "Presidente de la República")->orWhere('name','Vicepresidente de la República')->orWhere('name','Ministros Coordinadores')->orWhere('name','Ministros')->orWhere('name','Secretarios');
+        $query->where('name', "Presidente de la República")->orWhere('name','Vicepresidente de la República')->orWhereRaw("name like '%Ministr%'")->orWhereRaw("name like '%Secretar%'");
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
@@ -20,7 +20,7 @@ class EjecutiveRepository extends ProfileRepository
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
       $query->where('state_id',State::published())->where('is_candidate',false)->whereHas('position', function($query){
-        $query->where('name', "Presidente de la República")->orWhere('name','Vicepresidente de la República')->orWhere('name','Ministros Coordinadores')->orWhere('name','Ministros')->orWhere('name','Secretarios');
+        $query->where('name', "Presidente de la República")->orWhere('name','Vicepresidente de la República')->orWhereRaw("name like '%Ministr%'")->orWhereRaw("name like '%Secretar%'");
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
