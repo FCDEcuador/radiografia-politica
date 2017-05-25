@@ -51,9 +51,9 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- Branding Image -->
-                    <!-- <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{URL::to('img/radiografia-logo.png')}}" />
-                    </a> -->
+                     <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="{{URL::to('img/radiografia-logo.png')}}" style="height: 45px;" />
+                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -63,11 +63,11 @@
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                      <li><a href="{{URL::to(route('home'))}}">INICIO</a></li>
+                        <!--<li><a href="{{URL::to(route('home'))}}">INICIO</a></li>-->
                       <!--<li><a href="{{URL::to(route('home'))}}/#profile">CANDIDATOS</a></li>-->
                       <!--<li><a href="{{URL::to(route('home'))}}/#generalComptroller">FUNCIONARIOS PÚBLICOS</a></li>-->
                       <li><a href="{{URL::to('quienes-somos')}}">QUIÉNES SOMOS</a></li>
-                      <li><a href="{{URL::to('sumate-a-la-iniciativa')}}">SÚMATE A LA INICIATIVA</a></li>
+                        <!--<li><a href="{{URL::to('sumate-a-la-iniciativa')}}">SÚMATE A LA INICIATIVA</a></li> -->
                     </ul>
                 </div>
             </div>

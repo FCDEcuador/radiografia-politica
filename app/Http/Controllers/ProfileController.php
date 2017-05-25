@@ -110,6 +110,10 @@ class ProfileController extends Controller
      return view('perfil')->with(['profile' => $profile, 'binomial' =>$binomial , 'message' =>$message]);
   }
 
+  public function viewWithName($id,$name){
+    return $this->view($id);
+  }
+
   public function export(ProfileExport $export,$id)
   {
    return $export->handleExportWithId($id);

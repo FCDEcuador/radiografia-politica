@@ -18,6 +18,7 @@ Route::get('/',function(){
 });
 
 Route::get('/perfil/{id}', 'ProfileController@view')->name('perfil');
+Route::get('/perfil/{id}/n/{name}', 'ProfileController@viewWithName')->name('perfil.name');
 
 Route::get('/perfil/{id}/excel', 'ProfileController@export')->name('perfil.export');
 Route::get('/perfil/{id}/csv', 'ProfileController@csv')->name('perfil.csv');
@@ -26,9 +27,9 @@ Route::get('/quienes-somos', function(){
   return view('about_us');
 });
 
-Route::get('/sumate-a-la-iniciativa', function(){
-  return view('join_the_iniciative');
-});
+// Route::get('/sumate-a-la-iniciativa', function(){
+//   return view('join_the_iniciative');
+// });
 
 
 

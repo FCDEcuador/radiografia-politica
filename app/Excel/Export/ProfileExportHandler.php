@@ -6,6 +6,7 @@ use PHPExcel_Worksheet_Drawing;
 
 class ProfileExportHandler implements \Maatwebsite\Excel\Files\ExportHandler
 {
+
   protected function parseWidth($sheet, $column, $row, $width)
   {
       $sheet->setWidth($column, $width);

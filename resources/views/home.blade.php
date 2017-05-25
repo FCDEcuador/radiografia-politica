@@ -75,7 +75,7 @@
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% principal.picture %>" alt="<% principal.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + principal.id %>"><span>VER PERFIL</span></a>
+              <a href="{{URL::to('/perfil')}}<% '/' + principal.id + '/n/' + principal.friendly_url %>"><span>VER PERFIL</span></a>
             </div>
           </div>
             <label class="align-c president-label"><% principal.person.name + " " + principal.person.lastname %></label><br>
@@ -98,7 +98,7 @@
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% ejecutive.picture %>" alt="<% ejecutive.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + ejecutive.id %>"><span>VER PERFIL</span></a>
+              <a href="{{URL::to('/perfil')}}<% '/' + ejecutive.id + '/n/' + ejecutive.friendly_url %>"><span>VER PERFIL</span></a>
             </div>
           </div>
             <label class="align-c president-label"><% ejecutive.person.name + " " + ejecutive.person.lastname %></label><br>
@@ -121,7 +121,7 @@
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% legislative.picture %>" alt="<% legislative.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + legislative.id %>"><span>VER PERFIL</span></a>
+              <a href="{{URL::to('/perfil')}}<% '/' + legislative.id + '/n/' + legislative.friendly_url %>"><span>VER PERFIL</span></a>
             </div>
           </div>
             <label class="align-c president-label"><% legislative.person.name + " " + legislative.person.lastname %></label><br>
@@ -144,7 +144,7 @@
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% judicial.picture %>" alt="<% judicial.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + judicial.id %>"><span>VER PERFIL</span></a>
+              <a href="{{URL::to('/perfil')}}<% '/' + judicial.id  + '/n/' + judicial.friendly_url %>"><span>VER PERFIL</span></a>
             </div>
           </div>
             <label class="align-c president-label"><% judicial.person.name + " " + judicial.person.lastname %></label><br>
@@ -167,7 +167,7 @@
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% electoral.picture %>" alt="<% electoral.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + electoral.id %>"><span>VER PERFIL</span></a>
+              <a href="{{URL::to('/perfil')}}<% '/' + electoral.id  + '/n/' + electoral.friendly_url %>"><span>VER PERFIL</span></a>
             </div>
           </div>
             <label class="align-c president-label"><% electoral.person.name + " " + electoral.person.lastname %></label><br>
@@ -190,7 +190,7 @@
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% citizen.picture %>" alt="<% citizen.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + citizen.id %>"><span>VER PERFIL</span></a>
+              <a href="{{URL::to('/perfil')}}<% '/' + citizen.id  + '/n/' + citizen.friendly_url %>"><span>VER PERFIL</span></a>
             </div>
           </div>
             <label class="align-c president-label"><% citizen.person.name + " " + citizen.person.lastname %></label><br>
@@ -213,7 +213,7 @@
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% other.picture %>" alt="<% other.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + other.id %>"><span>VER PERFIL</span></a>
+              <a href="{{URL::to('/perfil')}}<% '/' + other.id  + '/n/' + other.friendly_url %>"><span>VER PERFIL</span></a>
             </div>
           </div>
             <label class="align-c president-label"><% other.person.name + " " + other.person.lastname %></label><br>
@@ -236,7 +236,7 @@
             <div class="binomial">
             <div class="president">
               <img ng-src="{{rtrim(asset('/'), '/')}}<% public.picture %>" alt="<% public.person.name %>" class="img-circle" width="150px">
-              <a href="{{URL::to('/perfil')}}<% '/' + public.id %>"><span>VER PERFIL</span></a>
+              <a href="{{URL::to('/perfil')}}<% '/' + public.id + '/n/' + public.friendly_url %>"><span>VER PERFIL</span></a>
             </div>
           </div>
             <label class="align-c president-label"><% public.person.name + " " + public.person.lastname %></label><br>
