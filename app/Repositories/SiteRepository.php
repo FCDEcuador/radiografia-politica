@@ -17,23 +17,22 @@ class SiteRepository extends Repository
     function updateBanner($id,$request){
 
       $banner = $this->find($id);
-
       $bannerPhoto = $request->file("photo");
 
-      $data = $request->all();
+
       if($bannerPhoto!= null){
-        $banner["banner"] = $this->savePhoto($data,$bannerPhoto);
+        $banner["banner"] = $this->savePhoto($id,$bannerPhoto);
         $banner->update();
       }
-      return parent::update($id,$data);
+      return true;
     }
 
 
-    function savePhoto($data,$photo){
+    function savePhoto($id,$photo){
 
       if(collect($this->imageValidsExtensions)->contains($photo->getClientOriginalExtension())){
         $storage_path = public_path()."/img/banner";
-        $fileName = $this->nameGenerator($data['id']."-"."-").".".$photo->getClientOriginalExtension();
+        $fileName = $this->nameGenerator($id."-"."-").".".$photo->getClientOriginalExtension();
         $photo->move($storage_path,$fileName);
         $relativePath = "/img/categories/".$fileName;
         return $relativePath;

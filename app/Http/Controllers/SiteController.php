@@ -32,7 +32,7 @@ class SiteController extends Controller
     public function update(Request $request, $id)
     {
 
-      if($this->repository->updateBanner($id,$request->all()))
+      if($this->repository->updateBanner($id,$request))
       {
         return redirect(route('banner.edit',$id))->with('success', 'Banner editado exitosamente!');
       }else {
