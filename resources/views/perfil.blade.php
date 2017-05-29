@@ -115,15 +115,15 @@ function clearSpaces($string) {
 
 function getTypeEvent($id)
 {
-    switch ($id) {
-        case '1':
-            return "Pública";
-        case '2':
-            return "Privada";
-        case '3':
-            return "Política";
-        default:
-            return "";
+  switch ($id) {
+      case '1':
+          return "FUNCIÓN PÚBLICA";
+      case '2':
+          return "FUNCIÓN PRIVADA";
+      case '3':
+          return "ACTIVIDAD POLÍTICA";
+      default:
+          return "";
     }
 }
 function formatDate($date)
@@ -267,7 +267,7 @@ function getBooleanString($bool)
                             <div class="modal-body">
                                 @foreach($profile->person->timelines()->where('important',1)->orderBy('start')->get() as $timeline)
                                 <h2>{{$timeline->shortDescription}}</h2>
-                                <h4>Vida {{getTypeEvent($timeline->typeEvent)}}</h4>
+                                <h4>{{getTypeEvent($timeline->typeEvent)}}</h4>
                                 <em>{{formatDate2($timeline->start)}} - {{formatDate2($timeline->end)}}</em>
                                 <p>
                                     {!! $timeline->description !!}
@@ -363,7 +363,7 @@ function getBooleanString($bool)
                     <!-- VIDA PUBLICA -->
                     @foreach($profile->person->timelines as $timeline)
                     <li data-date="{{formatDate($timeline->start)}}">
-                        <h4>Vida {{getTypeEvent($timeline->typeEvent)}}</h4>
+                        <h4>{{getTypeEvent($timeline->typeEvent)}}</h4>
                         <em>{{formatDate2($timeline->start)}} - {{formatDate2($timeline->end)}}</em>
                         <h3>{{$timeline->shortDescription}}</h3>
                         <p>
