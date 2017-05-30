@@ -115,15 +115,15 @@ function clearSpaces($string) {
 
 function getTypeEvent($id)
 {
-  switch ($id) {
-      case '1':
-          return "FUNCIÓN PÚBLICA";
-      case '2':
-          return "FUNCIÓN PRIVADA";
-      case '3':
-          return "ACTIVIDAD POLÍTICA";
-      default:
-          return "";
+    switch ($id) {
+        case '1':
+            return "FUNCIÓN PÚBLICA";
+        case '2':
+            return "FUNCIÓN PRIVADA";
+        case '3':
+            return "ACTIVIDAD POLÍTICA";
+        default:
+            return "";
     }
 }
 function formatDate($date)
@@ -204,7 +204,7 @@ function getBooleanString($bool)
                     @endif
                     @if(!empty($profile->person->observatory))
                     <div class="row btn-profile">
-                        <img src="{{asset('img/logo-Observatorio-60x40.png')}}">
+                        <img src="{{asset('img/observatorio-color.jpeg')}}" style="width:20%; height:20%;">
                         <a href="{{$profile->person->observatory}}" target="_blank"><button type="button" class="btn btn-dark">Gestión como Asambleísta</button></a>
                     </div>
                     @endif
@@ -271,6 +271,9 @@ function getBooleanString($bool)
                                 <em>{{formatDate2($timeline->start)}} - {{formatDate2($timeline->end)}}</em>
                                 <p>
                                     {!! $timeline->description !!}
+                                </p>
+								<p>
+                                   <a href="{!! $timeline->source !!}" target=_blank> Ver Fuente </a>
                                 </p>
                                 <hr>
                                 </hr>

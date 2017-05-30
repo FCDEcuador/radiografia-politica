@@ -11,7 +11,13 @@ class ElectoralRepository extends ProfileRepository
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
       $query->where('state_id',State::draft())->where('is_candidate',false)->whereHas('position', function($query){
-        $query->where('name', "Presidente del Consejo Nacional Electoral")->orWhere('name','Vicepresidente del Consejo Nacional Electoral')->orWhere('name','Consejeros Electorales')->orWhere('name','Directores de la Delegación Provincial Electoral')->orWhere('name','Presidente del Tribunal Contencioso Electoral')->orWhere('name','Jueces del Tribunal Contenciosos Electoral');
+        $query->where('name', "Presidente del Consejo Nacional Electoral")
+        ->orWhere('name','Vicepresidente del Consejo Nacional Electoral')
+        ->orWhere('name','Consejero Electoral')
+        ->orWhere('name','Director de la Delegación Provincial Electoral')
+        ->orWhere('name','Presidente del Tribunal Contencioso Electoral')
+        ->orWhere('name','Vicepresidente del Tribunal Contencioso Electoral')
+        ->orWhere('name','Juez del Tribunal Contenciosos Electoral');
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
@@ -20,7 +26,13 @@ class ElectoralRepository extends ProfileRepository
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
       $query->where('state_id',State::published())->where('is_candidate',false)->whereHas('position', function($query){
-        $query->where('name', "Presidente del Consejo Nacional Electoral")->orWhere('name','Vicepresidente del Consejo Nacional Electoral')->orWhere('name','Consejeros Electorales')->orWhere('name','Directores de la Delegación Provincial Electoral')->orWhere('name','Presidente del Tribunal Contencioso Electoral')->orWhere('name','Jueces del Tribunal Contenciosos Electoral');
+        $query->where('name', "Presidente del Consejo Nacional Electoral")
+        ->orWhere('name','Vicepresidente del Consejo Nacional Electoral')
+        ->orWhere('name','Consejero Electoral')
+        ->orWhere('name','Director de la Delegación Provincial Electoral')
+        ->orWhere('name','Presidente del Tribunal Contencioso Electoral')
+        ->orWhere('name','Vicepresidente del Tribunal Contencioso Electoral')
+        ->orWhere('name','Juez del Tribunal Contenciosos Electoral');
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
