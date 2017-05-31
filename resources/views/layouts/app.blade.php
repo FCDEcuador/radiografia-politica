@@ -63,7 +63,7 @@
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!--<li><a href="{{URL::to(route('home'))}}">INICIO</a></li>-->
+                      <li><a href="{{URL::to(route('home'))}}">INICIO</a></li>
                       <!--<li><a href="{{URL::to(route('home'))}}/#profile">CANDIDATOS</a></li>-->
                       <!--<li><a href="{{URL::to(route('home'))}}/#generalComptroller">FUNCIONARIOS PÚBLICOS</a></li>-->
                       <li><a href="{{URL::to('quienes-somos')}}">QUIÉNES SOMOS</a></li>
@@ -84,7 +84,7 @@
             <div id="footer-sponsors" class="col-sm-12 col-md-12 footer-section-row">
               <div class="row" style="margin-right: 10px;text-align:center;font-size:16px">
               Una iniciativa de <a href="http://www.ciudadaniaydesarrollo.org/" target="_blank"><img src="{{asset('img/fcd-logo.png')}}"  style="height: 50px;margin-right:15px" class="footer-sponsor-img"/></a>Con el apoyo de <a href="http://queremossaber.ec/portal/" target="_blank"><img src="{{asset('img/queremossaber.png')}}" style="height: 60px;" class="footer-sponsor-img"/></a>
-              <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/observatorio-color.jpeg')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
+              <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/observatorio-blanco.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
               <!--<a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/logo-decretazo.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
               <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/logo-espacio-joven.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>-->
 
