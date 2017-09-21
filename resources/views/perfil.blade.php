@@ -694,7 +694,7 @@ function getBooleanString($bool)
                                 <td>{{$profile->study->profession}}</td>
                             </tr>
                             <tr>
-                                <th>Maestría</th>
+                                <th>Títulos de cuarto nivel</th>
                                 <td>{{$profile->study->postgrad}}</td>
                             </tr>
                             <tr>
