@@ -1,3 +1,20 @@
+<?php
+
+function getTypeEvent($id)
+{
+  switch ($id) {
+    case '1':
+      return "Función Pública";
+    case '2':
+        return "Función Privada";
+    case '3':
+        return "Actividad Política";
+    default:
+      return "";
+  }
+}
+
+ ?>
 <!Doctype>
 <html>
   <head>
@@ -19,6 +36,7 @@
         <th>Fecha Fin</th>
         <th>Título</th>
         <th>Descripción</th>
+        <th>Actividad/Fución</th>
       </tr>
       @foreach($profile->person->timelines()->orderBy('start')->get() as $timeline)
         <tr>
@@ -26,6 +44,7 @@
           <td>{{$timeline->end}}</td>
           <td>{{$timeline->shortDescription}}</td>
           <td>{{strip_tags($timeline->description)}}</td>
+          <td>{{getTypeEvent($timeline->typeEvent)}}</td>
         </tr>
       @endforeach
     </table>

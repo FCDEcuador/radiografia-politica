@@ -10,8 +10,8 @@ class PublicCompetitionRepository extends ProfileRepository
   public function drafts()
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
-      $query->where('state_id',State::draft())->where('is_candidate',true)->whereHas('position', function($query){
-        $query->where('name', "!=","Presidente")->where('name',"!=",'Vicepresidente')->where('name', "!=",'Ministros')->where('name', "!=",'Asambleísta');
+      $query->where('state_id',State::draft())->where('is_candidate',false)->whereHas('position', function($query){
+        $query->where('name', "=","Postulante a Juez (a) de la Corte Nacional de Justicia");
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
@@ -19,8 +19,8 @@ class PublicCompetitionRepository extends ProfileRepository
   public function published()
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
-      $query->where('state_id',State::published())->where('is_candidate',true)->whereHas('position', function($query){
-        $query->where('name', "!=","Presidente")->where('name',"!=",'Vicepresidente')->where('name', "!=",'Ministros')->where('name', "!=",'Asambleísta');
+      $query->where('state_id',State::published())->where('is_candidate',false)->whereHas('position', function($query){
+          $query->where('name', "=","Postulante a Juez (a) de la Corte Nacional de Justicia");
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }

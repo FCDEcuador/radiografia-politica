@@ -10,27 +10,28 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+use App\Models\Site;
 
-Route::get('/home2', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/',function(){
-    return view('errors.mantence');
+    $site = Site::where('id',1)->first();
+    return view('home')->with(['site' => $site]);
 });
 
 Route::get('/perfil/{id}', 'ProfileController@view')->name('perfil');
+Route::get('/perfil/{id}/n/{name}', 'ProfileController@viewWithName')->name('perfil.name');
 
 Route::get('/perfil/{id}/excel', 'ProfileController@export')->name('perfil.export');
 Route::get('/perfil/{id}/csv', 'ProfileController@csv')->name('perfil.csv');
-
-Route::get('/home', 'HomeController@index');
 
 Route::get('/quienes-somos', function(){
   return view('about_us');
 });
 
-Route::get('/sumate-a-la-iniciativa', function(){
-  return view('join_the_iniciative');
-});
+// Route::get('/sumate-a-la-iniciativa', function(){
+//   return view('join_the_iniciative');
+// });
 
 
 
@@ -82,6 +83,9 @@ Route::group(['prefix'=>'administration','middleware' => ['auth']],function(){
 
   Route::get('ombudsman/drafts', 'OmbudsmanController@drafts')->name('ombudsman.drafts');
   Route::get('ombudsman/published', 'OmbudsmanController@published')->name('ombudsman.published');
+
+  Route::get('banner/edit', 'SiteController@edit')->name('banner.edit');
+  Route::post('banner/update/{id}', 'SiteController@update')->name('banner.update');
 
   Route::resource('position', PositionController::class);
   Route::resource('judgment_type', JudgmentTypeController::class);

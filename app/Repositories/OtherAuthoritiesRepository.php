@@ -11,7 +11,11 @@ class OtherAuthoritiesRepository extends ProfileRepository
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
       $query->where('state_id',State::draft())->where('is_candidate',false)->whereHas('position', function($query){
-        $query->where('name', "Contralor General del Estado");
+        $query->where('name', "Procurador General del Estado")
+        ->orWhere('name','Subprocurador General del Estado')
+        ->orWhere('name','Presidente de la Corte Constitucional')
+        ->orWhere('name','Vicepresidente de la Corte Constitucional')
+        ->orWhere('name','Juez de la Corte Constitucional');
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
@@ -20,7 +24,11 @@ class OtherAuthoritiesRepository extends ProfileRepository
   {
     return $this->model->join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query){
       $query->where('state_id',State::published())->where('is_candidate',false)->whereHas('position', function($query){
-        $query->where('name', "Contralor General del Estado");
+        $query->where('name', "Procurador General del Estado")
+        ->orWhere('name','Subprocurador General del Estado')
+        ->orWhere('name','Presidente de la Corte Constitucional')
+        ->orWhere('name','Vicepresidente de la Corte Constitucional')
+        ->orWhere('name','Juez de la Corte Constitucional');
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }

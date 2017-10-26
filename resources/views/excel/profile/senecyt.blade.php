@@ -19,11 +19,11 @@
           <td>{{$profile->study->profession}}</td>
         </tr>
         <tr>
-          <th>Maestrías</th>
+          <th>Títulos de cuarto nivel</th>
           <td>{{$profile->study->postgrad}}</td>
         </tr>
         <tr>
-          <th>Maestrías</th>
+          <th>Títulos de cuarto nivel</th>
           <td>{{$profile->study->phd}}</td>
         </tr>
     </table>

@@ -85,7 +85,7 @@
       modal.find('#modal-question').html("¿Desea eliminar <b>" + description + "</b>?");
       modal.find('#modal-ok-btn').click(function(){
         $.ajax({
-          url: "{{url('/administration/user').'/'}}" + id,
+          url: "{{url('/administration/profile').'/'}}" + id,
           type:"post",
           cache: false,
           data: {_method: 'delete', _token: "{{ csrf_token() }}"},

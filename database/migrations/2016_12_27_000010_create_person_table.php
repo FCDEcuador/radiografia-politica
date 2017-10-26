@@ -33,13 +33,16 @@ class CreatePersonTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->foreign('politicalParty_id', 'fk_person_politicalParty1_idx')
-                ->references('id')->on('politicalParties');
+                ->references('id')->on('politicalParties')
+                ->onDelete('cascade');
 
             $table->foreign('state_id', 'fk_person_state1_idx')
-                ->references('id')->on('states');
+                ->references('id')->on('states')
+                ->onDelete('cascade');
 
             $table->foreign('profile_id', 'fk_person_profile1_idx')
-                ->references('id')->on('profiles');
+                ->references('id')->on('profiles')
+                ->onDelete('cascade');
         });
     }
 

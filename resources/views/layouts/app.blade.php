@@ -51,9 +51,9 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- Branding Image -->
-                    <!-- <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{URL::to('img/radiografia-logo.png')}}" />
-                    </a> -->
+                     <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="{{URL::to('img/radiografia-logo.png')}}" style="height: 45px;" />
+                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -64,8 +64,8 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                       <li><a href="{{URL::to(route('home'))}}">INICIO</a></li>
-                      <li><a href="{{URL::to(route('home'))}}/#profile">CANDIDATOS</a></li>
-                      <li><a href="{{URL::to(route('home'))}}/#generalComptroller">FUNCIONARIOS PÚBLICOS</a></li>
+                      <!--<li><a href="{{URL::to(route('home'))}}/#profile">CANDIDATOS</a></li>-->
+                      <!--<li><a href="{{URL::to(route('home'))}}/#generalComptroller">FUNCIONARIOS PÚBLICOS</a></li>-->
                       <li><a href="{{URL::to('quienes-somos')}}">QUIÉNES SOMOS</a></li>
                       <li><a href="{{URL::to('sumate-a-la-iniciativa')}}">SÚMATE A LA INICIATIVA</a></li>
                     </ul>
@@ -80,86 +80,18 @@
         <div id="footer">
           <div class="container">
           <div class="row">
-            <div id="footer-site-map" class="col-sm-12 col-md-8 footer-section-row">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="row">
-                    <div class="footer-title-head">
-                      Nosotros
-                    </div>
-                  </div>
-                  <!-- <div class="row">
-                    <div class="footer-item">
-                      <a href="{{URL::to('quienes-somos')}}">Quiénes Somos</a>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="footer-item">
-                      <a href="{{URL::to('sumate-a-la-iniciativa')}}">Súmate a la iniciativa</a>
-                    </div>
-                  </div> -->
-                  <div class="row">
-                    <div class="footer-item">
-                      <a href="{{URL::to('http://queremossaber.ec/portal/')}}" target="_blank">¿Quieres tener acceso a información pública?</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <!--<div class="row">
-                    <div class="footer-title-head">
-                      Elecciones 2017
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="footer-item">
-                      <a href="{{URL::to(route('home'))}}">Candidatos Presidencia</a>
-                    </div>
-                  </div>-->
-                  <!--<div class="row">
-                    <div class="footer-item">
-                      <a href="{{URL::to('informacion-sobre-las-elecciones')}}">Información sobre las elecciones</a>
-                    </div>
-                  </div>-->
-                </div>
-                <div class="col-md-4">
-                    <!--<div class="row">
-                    <div class="footer-title-head">
-                      Perfiles
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="footer-item">
-                        <a href="{{URL::to(route('home'))}}/#generalComptroller">Funcionarios Públicos</a>
-                    </div>
-                  </div>-->
-                  <!--<div class="row">
-                    <div class="footer-item">
-                        <a href="{{URL::to('buscador')}}">Buscador</a>
-                    </div>
-                  </div>-->
-                </div>
-              </div>
-              <div class="row">
 
-              </div>
+            <div id="footer-sponsors" class="col-sm-12 col-md-12 footer-section-row">
+              <div class="row" style="margin-right: 10px;text-align:center;font-size:16px">
+              Una iniciativa de <a href="http://www.ciudadaniaydesarrollo.org/" target="_blank"><img src="{{asset('img/fcd-logo.png')}}"  style="height: 50px;margin-right:15px" class="footer-sponsor-img"/></a>Con el apoyo de <a href="http://queremossaber.ec/portal/" target="_blank"><img src="{{asset('img/queremossaber.png')}}" style="height: 60px;" class="footer-sponsor-img"/></a>
+              <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/observatorio-blanco.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
+              <!--<a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/logo-decretazo.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
+              <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/logo-espacio-joven.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>-->
+
             </div>
-            <div id="footer-sponsors" class="col-sm-12 col-md-4 footer-section-row">
-              <div class="row">
-              Auspiciado por:
-              </div>
-              <div class="row">
-                <div class="col-sm-12 col-sm-offset-0 col-md-offset-6 col-md-6">
-                  <a href="http://www.observatoriolegislativo.ec/" target="_blank"><img src="{{asset('img/observatorio-legislativo.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12 col-sm-offset-0 col-md-offset-5 col-md-4">
-                  <a href="http://queremossaber.ec/portal/" target="_blank"><img src="{{asset('img/queremossaber.png')}}" style="height: 50px;" class="footer-sponsor-img"/></a>
-                </div>
-                <div class="col-sm-12 col-sm-offset-0 col-md-3">
-                  <a href="http://www.ciudadaniaydesarrollo.org/" target="_blank"><img src="{{asset('img/fcd-logo.png')}}"  style="height: 50px;" class="footer-sponsor-img"/></a>
-                </div>
-              </div>
+              <div class="row" style="margin-right: 10px;">
+
+
             </div>
           </div>
           </div>

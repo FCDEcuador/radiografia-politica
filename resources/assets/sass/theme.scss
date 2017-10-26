@@ -28,11 +28,11 @@ th {
 {
   margin-top: -22px;
   min-height: 235px;
-  background: #6c6c6c;
-  background-image: url(../img/banner-home.jpg), -moz-linear-gradient(top, #6c6c6c 0%, #8a8a8a 100%);
-  background-image: url(../img/banner-home.jpg),-webkit-linear-gradient(top, #6c6c6c 0%,#8a8a8a 100%);
-  background-image: url(../img/banner-home.jpg),linear-gradient(to bottom, #6c6c6c 0%,#8a8a8a 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6c6c6c', endColorstr='#8a8a8a',GradientType=0 ) ,url(../img/banner-home.jpg) no-repeat center center;
+  background: #4a6189;
+  background-image: url(../img/banner-home.jpg), -moz-linear-gradient(top, #4a6189 0%, #557dbe 100%);
+  background-image: url(../img/banner-home.jpg),-webkit-linear-gradient(top, #4a6189 0%,#557dbe 100%);
+  background-image: url(../img/banner-home.jpg),linear-gradient(to bottom, #4a6189 0%,#557dbe 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4a6189', endColorstr='#557dbe',GradientType=0 ) ,url(../img/banner-home.jpg) no-repeat center center;
   background-position: center center;
   background-repeat: no-repeat;
 }
