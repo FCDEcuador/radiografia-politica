@@ -17,7 +17,7 @@ class ElectoralRepository extends ProfileRepository
         ->orWhere('name','Director de la Delegación Provincial Electoral')
         ->orWhere('name','Presidente del Tribunal Contencioso Electoral')
         ->orWhere('name','Vicepresidente del Tribunal Contencioso Electoral')
-        ->orWhere('name','Juez del Tribunal Contenciosos Electoral');
+        ->orWhere('name','Juez del Tribunal Contencioso Electoral');
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
@@ -32,7 +32,7 @@ class ElectoralRepository extends ProfileRepository
         ->orWhere('name','Director de la Delegación Provincial Electoral')
         ->orWhere('name','Presidente del Tribunal Contencioso Electoral')
         ->orWhere('name','Vicepresidente del Tribunal Contencioso Electoral')
-        ->orWhere('name','Juez del Tribunal Contenciosos Electoral');
+        ->orWhere('name','Juez del Tribunal Contencioso Electoral');
       });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
   }
