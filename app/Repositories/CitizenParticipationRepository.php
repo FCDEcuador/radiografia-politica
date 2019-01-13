@@ -17,6 +17,7 @@ class CitizenParticipationRepository extends ProfileRepository
         ->orWhere('name','Vicepresidente del Consejo de Participación Ciudadana y Control Social')
         ->orWhere('name','Consejeros del Consejo de Participación Ciudadana y Control Social')
         ->orWhere('name','Contralor General del Estado')
+        ->orWhere('name','Consejero del Consejo de Participación Ciudadana y Control Social')
         ->orWhere('name','Superintendente');
         });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();
@@ -32,6 +33,7 @@ class CitizenParticipationRepository extends ProfileRepository
         ->orWhere('name','Vicepresidente del Consejo de Participación Ciudadana y Control Social')
         ->orWhere('name','Consejeros del Consejo de Participación Ciudadana y Control Social')
         ->orWhere('name','Contralor General del Estado')
+        ->orWhere('name','Consejero del Consejo de Participación Ciudadana y Control Social')
         ->orWhere('name','Superintendente');
         });
     })->select('profiles.*')->with('person.position')->orderBy('p.lastname')->get();

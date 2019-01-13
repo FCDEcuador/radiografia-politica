@@ -33,6 +33,25 @@
                 <input type="text" name="name" class="form-control" value="{{ $position->name }}" required/>
               </div>
             </div>
+             <div class="form-group">
+                <label class="col-md-2 control-label">Categoría</label>
+                <div class="col-md-10">
+                
+                  <select name="categorias[]" id="categorias" class="form-control" required multiple="multiple">
+                    <option value="">Selecciona una categoría</option>
+                   @if(count($categorias))
+                    @foreach ($categorias as $id => $categoria)    
+                    
+                      @if(in_array($id, $position->categorias()->pluck('id')->all()))
+                        <option value="{{ $id }}" selected="selected">{{ $categoria }}</option>
+                      @else
+                        <option value="{{ $id }}">{{ $categoria }}</option>
+                      @endif
+                    @endforeach
+                   @endif
+                  </select>                
+                </div>
+              </div>
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">Editar</button>

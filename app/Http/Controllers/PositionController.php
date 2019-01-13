@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\PositionRepository;
+use App\Models\Categoria;
+use App\Models\Position;
 
 class PositionController extends Controller
 {
@@ -32,7 +34,8 @@ class PositionController extends Controller
      */
     public function create()
     {
-      return view('administration.position.create');
+        $categorias = Categoria::activas()->pluck('nombre', 'id');
+        return view('administration.position.create')->with('categorias',$categorias);
     }
 
     /**
@@ -44,12 +47,23 @@ class PositionController extends Controller
     public function store(Request $request)
     {
         //
-        if($this->repository->create($request->all()))
-        {
-          return redirect(route('position.create'))->with('success', 'Cargo creado exitosamente!');
-        }else {
-            return redirect()->back()->with('errors', 'Ha ocurrido un error!');
+        $objPosition = new Position;
+        
+        $objPosition->name = $request->input('name');
+
+        if($objPosition->save()){
+            $objPosition->categorias()->detach();
+            if ($request->has('categorias')){
+                foreach($request->input('categorias') as $key => $val){
+                    $objCategoria = Categoria::find($val);
+                    $objPosition->categorias()->save($objCategoria);
+                }
+            }    
+            // Guardamos las categorias
+            return redirect(route('position.index'))->with('success', 'Cargo creado exitosamente!');
         }
+
+        return redirect()->back()->with('errors', 'Ha ocurrido un error!');
     }
 
     /**
@@ -72,8 +86,13 @@ class PositionController extends Controller
     public function edit($id)
     {
         //
-        $position = $this->repository->find($id);
-        return view('administration.position.edit')->with('position', $position);
+        $data = array(
+            'position' => $this->repository->find($id),
+            'categorias' => Categoria::activas()->pluck('nombre', 'id'),
+        );
+        //$position = $this->repository->find($id);
+        //$categorias = Categoria::activas()->pluck('nombre', 'id');
+        return view('administration.position.edit',$data);
     }
 
     /**
@@ -86,12 +105,28 @@ class PositionController extends Controller
     public function update(Request $request, $id)
     {
         //
-        if($this->repository->update($id,$request->all()))
-        {
-          return redirect(route('position.index'))->with('success', 'Cargo editado exitosamente!');
-        }else {
+        if($id){
+            $objPosition = Position::find($id);
+            if($objPosition){
+                $objPosition->name = $request->input('name');
+
+                if($objPosition->save()){
+                    $objPosition->categorias()->detach();
+                    if ($request->has('categorias')){
+                        foreach($request->input('categorias') as $key => $val){
+                            $objCategoria = Categoria::find($val);
+                            $objPosition->categorias()->save($objCategoria);
+                        }
+                    }    
+                    // Guardamos las categorias
+                    return redirect(route('position.index'))->with('success', 'Cargo editado exitosamente!');
+                }
+                return redirect()->back()->with('errors', 'Error al editar');
+
+            }
             return redirect()->back()->with('errors', 'Error al editar');
         }
+        return redirect()->back()->with('errors', 'Error al editar'); 
     }
 
     /**

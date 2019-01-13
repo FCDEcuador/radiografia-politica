@@ -14,10 +14,7 @@ use App\Models\Site;
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/',function(){
-    $site = Site::where('id',1)->first();
-    return view('home')->with(['site' => $site]);
-});
+Route::get('/','HomeController@index');
 
 Route::get('/perfil/{id}', 'ProfileController@view')->name('perfil');
 Route::get('/perfil/{id}/n/{name}', 'ProfileController@viewWithName')->name('perfil.name');
@@ -29,11 +26,11 @@ Route::get('/quienes-somos', function(){
   return view('about_us');
 });
 
-// Route::get('/sumate-a-la-iniciativa', function(){
-//   return view('join_the_iniciative');
-// });
+Route::get('/sumate-a-la-iniciativa', function(){
+  return view('join_the_iniciative');
+});
 
-
+Route::get('/{aliasCategoria?}', 'CategoriasController@show');
 
 
 /*
@@ -90,6 +87,9 @@ Route::group(['prefix'=>'administration','middleware' => ['auth']],function(){
   Route::resource('position', PositionController::class);
   Route::resource('judgment_type', JudgmentTypeController::class);
   Route::resource('political_party', PoliticalPartyController::class);
+
+  Route::resource('categorias', 'CategoriasController');
+
   Route::get('/message/edit', 'MessageController@edit')->name("message.edit");
   Route::put('/message/update', 'MessageController@update')->name("message.update");
 

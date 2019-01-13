@@ -71,4 +71,22 @@ class Profile extends Model
       $name = $this->clean($string);
       return $name;
     }
+
+
+    protected function perfilesCategorias($id = '')
+    {
+
+        return Profile::join('people as p', 'p.id', '=', 'profiles.id')->whereHas('person', function ($query) use ($id){
+          $query->where('state_id',State::published())->where('is_candidate',false)->whereHas('position', function($query) use ($id){
+            $query->whereHas('categorias', function($query) use ($id){
+                $query->where('categoria_id', '=', $id);
+            });          
+        });
+      })->select('profiles.*', 'p.*')->with('person.position')->orderBy('p.lastname');
+
+
+    }
+
+
+
 }

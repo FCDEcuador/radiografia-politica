@@ -345,6 +345,10 @@ th {
   .navbar {
     display: none;
   }
+
+  .navbar-right{
+    margin-top: 12px;
+  }
   .btn > .caret,
   .dropup > .btn > .caret {
     border-top-color: #000 !important;
@@ -2774,6 +2778,7 @@ th {
   width: 100%;
   max-width: 100%;
   margin-bottom: 22px;
+  font-size: 14px;
 }
 
 .table > thead > tr > th,
@@ -5237,7 +5242,7 @@ tbody.collapse.in {
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-  color: #333;
+  color: #777;
   background-color: transparent;
 }
 
@@ -5314,12 +5319,12 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 
 .navbar-inverse {
-  background-color: #222;
-  border-color: #090909;
+  background-color: #f8f8f8;
+    border-color: #e7e7e7;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+      color: #777;
 }
 
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
@@ -5336,13 +5341,13 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
+  color: #3880c5;
   background-color: transparent;
 }
 
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
   color: #fff;
-  background-color: #090909;
+  background-color: #3880c5;
 }
 
 .navbar-inverse .navbar-nav > .disabled > a, .navbar-inverse .navbar-nav > .disabled > a:hover, .navbar-inverse .navbar-nav > .disabled > a:focus {
@@ -5352,6 +5357,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 
 .navbar-inverse .navbar-toggle {
   border-color: #333;
+  background: #377cbf;
 }
 
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
@@ -6733,6 +6739,7 @@ button.list-group-item-danger.active:focus {
   border: 1px solid #e3e3e3;
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+      font-size: 18px;
 }
 
 .well blockquote {
@@ -8085,13 +8092,13 @@ Main Components
 
 @media only screen and (min-width: 768px) {
   .cd-horizontal-timeline .events-content h2 {
-    font-size: 7rem;
+    font-size: 5rem;
   }
   .cd-horizontal-timeline .events-content em {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .cd-horizontal-timeline .events-content p {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -8183,11 +8190,11 @@ th {
 }
 
 .navbar-nav {
-  padding-top: 10px;
+  /*padding-top: 10px;*/
 }
 
 .navbar-default {
-  height: 65px;
+  height: 74px;
   border-color: #5d5d5d;
 }
 
@@ -8210,7 +8217,7 @@ th {
 
 .nav-tabs > li > a {
   color: #5d5d5d;
-  font-size: 20px;
+  font-size: 15px;
   font-family: 'OpenSansBold';
 }
 
@@ -8231,8 +8238,8 @@ h4 {
 }
 
 .navbar-nav {
-  font-size: 10px;
-  font-family: 'OpenSansBold';
+  font-size: 16px;
+  /*font-family: 'OpenSansBold';*/
 }
 
 #wrapper {
@@ -8240,7 +8247,7 @@ h4 {
 }
 
 #content {
-  padding-bottom: 156px;
+  
 }
 
 /*Opera Fix*/
@@ -8253,13 +8260,13 @@ body:before {
 }
 
 #footer {
-  position: absolute;
+  position: relative;
   width: 100%;
   min-height: 100px;
   padding: 20px 80px;
   background: #5d5d5d;
   color: #fff;
-  margin-top: -156px;
+     bottom: 0;
   clear: both;
   font-size: 12px;
 }
@@ -8581,6 +8588,10 @@ body:before {
 
 .cd-horizontal-timeline .events-wrapper {
   height: 75%;
+}
+
+.events-wrapper ul{
+  list-style: none;
 }
 
 /*.ico-auto {background: url('../img/ico-vivienda-doble.png') no-repeat center top; width: 54px; height: }

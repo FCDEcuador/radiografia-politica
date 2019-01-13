@@ -12,7 +12,7 @@
     </div>
 
     <div class="row" style="text-align:justify;">
-      <div class="col-md-6">
+      <div class="col-md-8 col-sm-8">
         <div class="row">
           <div class="col-md-12">
               <h4>¿Eres funcionario público?</h4>
@@ -25,10 +25,10 @@
 
           </div>
           <div class="row" style="margin-top:20px;text-align: center;margin-bottom: 30px;">
-            <iframe src="https://docs.google.com/a/ciudadaniaydesarrollo.org/forms/d/e/1FAIpQLSetgPW02bu0lrTPXLw3JnVJ7GdTpNN0pFlStaZxlUyS6KKR6w/viewform?embedded=true" width="80%" height="700px" frameborder="0" marginheight="0" marginwidth="0">Cargando...</iframe>
+            <iframe src="https://docs.google.com/a/ciudadaniaydesarrollo.org/forms/d/e/1FAIpQLSetgPW02bu0lrTPXLw3JnVJ7GdTpNN0pFlStaZxlUyS6KKR6w/viewform?embedded=true" width="80%" height="1700px" frameborder="0" marginheight="0" marginwidth="0">Cargando...</iframe>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4 col-sm-4">
           <div class="row">
             <div class="col-md-12">
               <h4>¿Quieres aportar?</h4>

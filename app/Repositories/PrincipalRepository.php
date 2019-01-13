@@ -41,7 +41,7 @@ class PrincipalRepository extends ProfileRepository
         ->orWhere('name','Presidente de la Asamblea Nacional')
         ->orWhere('name','Primer Vicepresidente de la Asamblea Nacional')
         ->orWhere('name','Defensor del Pueblo')
-        ->orWhere('name',' Defensor Público General')
+        ->orWhere('name','Defensor Público General')
         ->orWhere('name','Segundo Vicepresidente de la Asamblea Nacional')
         ->orWhere('name','Presidente de la Corte Constitucional')
         ->orWhere('name','Presidente del Consejo Nacional Electoral')

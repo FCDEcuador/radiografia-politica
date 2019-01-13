@@ -28,6 +28,7 @@
     <!-- Styles -->
     <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css" />
+    
     <!-- Scripts -->
     <script>
         window.Laravel =
@@ -63,7 +64,7 @@
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                      <li><a href="{{URL::to(route('home'))}}">INICIO</a></li>
+                      <li><a href="{{URL::to('/')}}">INICIO</a></li>
                       <!--<li><a href="{{URL::to(route('home'))}}/#profile">CANDIDATOS</a></li>-->
                       <!--<li><a href="{{URL::to(route('home'))}}/#generalComptroller">FUNCIONARIOS PÚBLICOS</a></li>-->
                       <li><a href="{{URL::to('quienes-somos')}}">QUIÉNES SOMOS</a></li>
@@ -98,7 +99,10 @@
         </div>
     </div>
     <!-- Scripts -->
+    <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
+    
+    <script src="{{asset('js/what-input.js')}}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
     	@yield('scripts')
       <script>

@@ -4,11 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Position extends Model
 {
+  
+  protected $table = 'positions';
+
   protected $fillable = [
-  'name','user_id'
+  'name','categoria_id','user_id',
   ];
+
+  // Position __belongs_to_many__ Categoria
+  public function categorias() {
+          return $this->belongsToMany('App\Models\Categoria');
+  }  
 
   function scopePresidentId($query){
 

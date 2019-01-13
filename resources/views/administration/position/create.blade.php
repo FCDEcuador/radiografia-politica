@@ -33,6 +33,17 @@
                 <label for="name">Cargo</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Ingrese el nombre del cargo" required>
               </div>
+              <div class="form-group">
+                <label for="categorias">Categoría</label>
+                <select name="categorias[]" id="categorias" class="form-control" required multiple="multiple">
+                    <option value="">Selecciona una categoría</option>
+                 @if(count($categorias))
+                  @foreach ($categorias as $id => $categoria)
+                    <option value="{{ $id }}">{{ $categoria }}</option>
+                  @endforeach
+                 @endif
+                </select>
+              </div>
             </div>
             <!-- /.box-body -->
 
