@@ -461,25 +461,25 @@ function getBooleanString($bool)
                         <div class="row patrimonial-declaration-icons">
                             <div class="col-md-3">
                                 <div class="img-responsive hint--top" data-hint="INMUEBLES">
-                                    <img src="/img/ico-vivienda.png">
+                                    <img src="{{asset('img/ico-vivienda.png')}}">
                                 </div>
                                 <div>{{$profile->heritage->houses}}</div>
                             </div>
                             <div class="col-md-3">
                                 <div class="img-responsive hint--top" data-hint="VEHÍCULOS">
-                                    <img src="/img/ico-auto.png">
+                                    <img src="{{asset('img/ico-auto.png')}}">
                                 </div>
                                 <div>{{$profile->heritage->cars}}</div>
                             </div>
                             <div class="col-md-3">
                                 <div class="img-responsive hint--top" data-hint="PATRIMONIO">
-                                    <img src="/img/ico-dinero.png">
+                                    <img src="{{asset('img/ico-dinero.png')}}">
                                 </div>
                                 <div>{{money_format('%(#10n', $profile->heritage->money)}}</div>
                             </div>
                             <div class="col-md-3">
                                 <div class="img-responsive hint--top" data-hint="COMPAÑÍAS">
-                                    <img src="/img/ico-industria.png">
+                                    <img src="{{asset('img/ico-industria.png')}}">
                                 </div>
                                 <div>{{$profile->heritage->companies}}</div>
                             </div>
